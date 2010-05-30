@@ -9,5 +9,8 @@ tmp/sockets/*
 # Cucumber rerun
 rerun.txt
 
+# Compiled stylesheets
+public/stylesheets/*.css
+
 # configuration files
 config/database.yml
