@@ -5,7 +5,6 @@ tmp/cache/*
 tmp/pids/*
 tmp/sessions/*
 tmp/sockets/*
-tmp/sass-cache/*
 
 # Cucumber rerun
 rerun.txt
