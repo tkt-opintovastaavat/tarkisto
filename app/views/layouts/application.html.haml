@@ -1,0 +1,16 @@
+!!!
+%html
+
+  %head
+
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
+    %title= title yield :title
+
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+
+  %body
+
+    = (yield :content or yield)
