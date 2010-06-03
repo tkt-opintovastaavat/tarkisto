@@ -17,6 +17,10 @@
 
                = render :partial => "header"
 
-               #content= (yield :content or yield)
+               #content
+
+                    #tabs Tabs come here
+
+                    #tab-content= (yield :content or yield)
 
                = render :partial => "footer"
