@@ -2,13 +2,11 @@ ActionController::Routing::Routes.draw do |map|
 
      map.root :controller => :dashboard, :action => :show
 
-     map.resource :session, :only => [:new, :destroy]
+     map.resource :session, :only => [:create, :destroy]
 
      map.resource :search, :controller => :search, :only => [:show]
 
-     map.resources :courses, :only => [:show] do |course|
-          course.resources :exams, :collection => {:generate => :get}
-     end
+     map.resources :exams, :path_prefix => "courses/:course_id", :collection => {:generate => :get}
 
      map.resource :faq, :controller => :faq, :only => [:show]
 
