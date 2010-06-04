@@ -13,6 +13,15 @@ module NavigationHelpers
 
           when /the faq page/
                '/faq'
+
+          when /the exams page of course ([0-9]+)/
+               "/courses/#{$1}/exams"
+
+          when /the new exam page of course ([0-9]+)/
+               "/courses/#{$1}/exams/new"
+
+          when /the generate practice exam page of course ([0-9]+)/
+               "/courses/#{$1}/exams/generate"
     
           # Add more mappings here.
           # Here is an example that pulls values out of the Regexp:
