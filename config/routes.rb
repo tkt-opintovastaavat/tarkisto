@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
           course.resources :exams, :collection => {:generate => :get}
      end
 
-     map.resource :faq, :only => [:show]
+     map.resource :faq, :controller => :faq, :only => [:show]
 
      map.namespace :admin do |admin|
           admin.resources :courses
