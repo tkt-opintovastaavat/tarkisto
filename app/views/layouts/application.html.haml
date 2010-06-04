@@ -4,7 +4,7 @@
      %head
 
           %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
-          %title= title yield :title
+          %title= yield :title
 
           = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
           = stylesheet_link_tag 'print.css', :media => 'print'
@@ -15,7 +15,7 @@
 
           #container
 
-               = render :partial => "header"
+               = render :partial => "layouts/header"
 
                #content
 
@@ -23,4 +23,4 @@
 
                     #tab-content= (yield :content or yield)
 
-               = render :partial => "footer"
+               = render :partial => "layouts/footer"
