@@ -1,19 +1,18 @@
-@import compass/reset
-@import _header
-@import _footer
+@import _basic-style
+
+!tab-width: 10%
 
 #content
 
      #tabs
-          width: 10%
+          width = !tab-width
           float: left
-          border: thin solid black
           background:
                color: yellow
 
      #tab-content
           margin:
-               left: 11%
+               left = !tab-width + 1%
           border: thin solid black
           background:
                color: green
