@@ -1,1 +1,54 @@
-%h1 Dashboard
+%h1 Kurssit
+
+%h2 Perusopinnot
+
+%table#basic_studies
+     %tr
+          %td Ohjelmoinnin perusteet
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+     %tr
+          %td Ohjelmistojen mallintaminen
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+
+
+%h2 Aineopinnot
+
+%table#intermediate_studies
+     %tr
+          %td Tietokoneen toiminta
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+     %tr
+          %td= link_to('Laskennan mallit', exams_url(:course_id => 1))
+          %td= link_to("Generoi harjoitustentti", generate_exams_url(:course_id => 1))
+          %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
+
+
+%h2 Syventävät opinnot
+
+%table#advanced_studies
+     %tr
+          %td XML-tietokannat
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+     %tr
+          %td Data mining
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+
+%h2 Muut opinnot
+
+%table#other_studies
+     %tr
+          %td TVT-ajokortti
+          %td Generoi harjoitustentti
+          %td Lisää tentti
+
+
