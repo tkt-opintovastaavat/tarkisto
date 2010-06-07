@@ -4,4 +4,4 @@ Feature: Manage searches
   
      Scenario: See the search results
           Given I search with keyword "lama"
-          And I should see "Laskennan mallit"
+          And I should see "Laskennan mallit" within "#content"

@@ -4,26 +4,26 @@ Feature: Manage exams
   
      Scenario: Show all exams
           Given I am on the exams page of course 1
-          And I should see "Laskennan mallit"
-          And I should see "Erilliskoe"
-          And I should see "Kurssikoe"
-          And I should see "Uusintakoe"
+          And I should see "Laskennan mallit" within "#tab-content"
+          And I should see "Erilliskoe" within "#tab-content"
+          And I should see "Kurssikoe" within "#tab-content"
+          And I should see "Uusintakoe" within "#tab-content"
 
      Scenario: Show one exam page
           Given I am on the exams page of course 1
-          And I should see "Laskennan mallit"
-          And I should see "Erilliskoe"
-          When I follow "Erilliskoe"
-          Then I should see "Laskennan mallit"
-          And I should see "Erilliskoe"
-          And I should see "Selitä äärellisestä automaatista"
+          And I should see "Laskennan mallit" within "#tab-content"
+          And I should see "Erilliskoe" within "#tab-content"
+          When I follow "Erilliskoe" within "#tab-content"
+          Then I should see "Laskennan mallit" within "#tab-content"
+          And I should see "Erilliskoe" within "#tab-content"
+          And I should see "Selitä äärellisestä automaatista" within "#tab-content"
 
      Scenario: Add new exam
           Given I am on the new exam page of course 1
-          And I should see "Laskennan mallit"
-          And I should see "Lisää uusi tentti"
+          And I should see "Laskennan mallit" within "#tab-content"
+          And I should see "Lisää uusi tentti" within "#tab-content"
 
      Scenario: Generate practice exam
           Given I am on the generate practice exam page of course 1
-          And I should see "Laskennan mallit"
-          And I should see "Generoi harjoitustentti"
+          And I should see "Laskennan mallit" within "#tab-content"
+          And I should see "Generoi harjoitustentti" within "#tab-content"
