@@ -2,7 +2,18 @@
 
      #general
 
-          #login This is the login area
+          #login
+               - if session[:user_id].nil?
+                    - form_for :session, :url => session_url do |f|
+                         - field_set_tag 'Login' do
+                              = f.label :username , 'Username'
+                              = f.text_field :username
+                              = f.label :password, 'Password'
+                              = f.password_field :password
+                              = submit_tag 'Log in'
+               - else 
+                    = link_to 'Log out', session_url, :method => :delete
+                              
           %ul#links
                %li= link_to('FAQ', faq_url)
 
