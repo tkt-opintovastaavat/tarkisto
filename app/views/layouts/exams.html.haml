@@ -19,7 +19,12 @@
 
                #content
 
-                    #tabs Tabs come here
+                    #tabs 
+                         - tabs_tag do |tab|
+                              = tab.all 'Kaikki kokeet', exams_url(:course_id => 1)
+                              = tab.generate 'Generoi', generate_exams_url(:course_id => 1)
+                              = tab.new 'Lisää koe', new_exam_url(:course_id => 1)
+
 
                     #tab-content= (yield :content or yield)
 
