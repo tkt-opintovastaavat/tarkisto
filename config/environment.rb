@@ -42,4 +42,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
+
 end
