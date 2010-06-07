@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.root :controller => :dashboard, :action => :show
 
-     map.resource :session, :only => [:create, :destroy]
+     map.resource :session, :controller => :session, :only => [:create, :destroy]
 
      map.resource :search, :controller => :search, :only => [:show]
 
