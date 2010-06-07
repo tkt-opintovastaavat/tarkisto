@@ -1,0 +1,30 @@
+!!!
+%html
+
+     %head
+
+          %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
+          %title= yield :title
+
+          = stylesheet_link_tag 'screen-exam.css', :media => 'screen, projection'
+          = stylesheet_link_tag 'print.css', :media => 'print'
+          /[if IE]
+               = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+
+     %body
+
+          #container
+
+               = render :partial => "layouts/header"
+
+               #content
+
+                    #tabs
+                         %ul
+                              %li= link_to('Kaikki kokeet', exams_url(:course_id => 1))
+                              %li= link_to('Generoi', generate_exams_url(:course_id => 1))
+                              %li= link_to('Lisää koe', new_exam_url(:course_id => 1))
+
+                    #tab-content= (yield :content or yield)
+
+               = render :partial => "layouts/footer"
