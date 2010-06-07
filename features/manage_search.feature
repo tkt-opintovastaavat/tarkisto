@@ -11,3 +11,8 @@ Feature: Manage searches
           Given I search with keyword "tira"
           And I should see "Hakusi oli: tira" within "#content"
           And I should see "Tietorakenteet" within "#content"
+
+     Scenario: Could not find course
+          Given I search with keyword "tisu"
+          And I should see "Hakusi oli: tisu" within "#content"
+          And I should see "Hakusi ei tuottanut tuloksia" within "#content"
