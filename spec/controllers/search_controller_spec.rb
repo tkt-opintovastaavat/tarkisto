@@ -15,6 +15,10 @@ describe SearchController do
                get 'show', :query => "lama"
                assigns(:q).should == "lama"
           end
+          it "should search course from result database" do
+               get 'show', :query => "lama"
+               assigns(:result).should == [{"key" => "lama", "name" => "Laskennan mallit", "course_id" => 1}]
+          end
      end
 
 end

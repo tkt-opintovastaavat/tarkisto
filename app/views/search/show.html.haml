@@ -1,4 +1,5 @@
 %h2= "Hakusi oli: #{@q}"
 
 %ul
-     %li= link_to "Laskennan mallit" , exams_url(:course_id => 1)
+     - @result.each do |course|
+          %li= link_to course["name"] , exams_url(:course_id => course["course_id"])
