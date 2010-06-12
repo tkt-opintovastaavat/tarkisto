@@ -8,11 +8,9 @@ class ExamsController < ApplicationController
      end
 
      def new
-     	set_tab :new
      end
 
      def generate
-     	set_tab :generate
      end
 
 end

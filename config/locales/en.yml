@@ -1,5 +1,19 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+     basic_studies: "Basic studies"
+     intermediate_studies: "Intermediate studies"
+     advanced_studies: "Advanced studies"
+     other_studies: "Other studies"
+     courses: "Courses"
+     
+     all_exams: "All exams"
+     generate_exam: "Generate"
+     add_exam: "Add exam"
+     
+     new_exam_title: "Add new exam"
+     generate_exam_title: "Generate practice exam"
+     
+     username_tag: "Username"
+     passwd_tag: "Password"
+     login_tag: "Log in"
+     login_title: "Log in"
+     logout_tag: "Log out"

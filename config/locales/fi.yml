@@ -1,0 +1,19 @@
+fi:
+     basic_studies: "Perusopinnot"
+     intermediate_studies: "Aineopinnot"
+     advanced_studies: "Syventävät opinnot"
+     other_studies: "Muut opinnot"
+     courses: "Kurssit"
+     
+     all_exams: "Kaikki kokeet"
+     generate_exam: "Generoi"
+     add_exam: "Lisää koe"
+     
+     new_exam_title: "Lisää uusi koe"
+     generate_exam_title: "Generoi harjoitustentti"
+     
+     username_tag: "Käyttötunnus"
+     passwd_tag: "Salasana"
+     login_tag: "Kirjaudu"
+     login_title: "Kirjaudu sisään"
+     logout_tag: "Kirjaudu ulos"

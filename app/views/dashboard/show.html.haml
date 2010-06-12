@@ -1,8 +1,10 @@
-%h2 Kurssit
-
-%h3 Perusopinnot
+%h1
+     =t :courses
 
 %table#basic_studies
+     %tr
+          %th 
+               =t :basic_studies
      %tr
           %td Ohjelmoinnin perusteet
           %td Generoi harjoitustentti
@@ -15,9 +17,10 @@
 
 
 
-%h3 Aineopinnot
-
 %table#intermediate_studies
+     %tr
+          %th
+               =t :intermediate_studies
      %tr
           %td Tietokoneen toiminta
           %td Generoi harjoitustentti
@@ -29,9 +32,10 @@
           %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
 
 
-%h3 Syventävät opinnot
-
 %table#advanced_studies
+     %tr
+          %th 
+               =t :advanced_studies
      %tr
           %td XML-tietokannat
           %td Generoi harjoitustentti
@@ -43,9 +47,11 @@
           %td Lisää tentti
 
 
-%h3 Muut opinnot
 
 %table#other_studies
+     %tr
+          %th
+               =t :other_studies
      %tr
           %td TVT-ajokortti
           %td Generoi harjoitustentti

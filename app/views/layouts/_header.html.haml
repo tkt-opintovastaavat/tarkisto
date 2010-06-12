@@ -5,14 +5,14 @@
           #login
                - if session[:user_id].nil?
                     - form_for :session, :url => session_url do |f|
-                         - field_set_tag 'Login' do
-                              = f.label :username , 'Username'
+                         - field_set_tag login_title do
+                              = f.label :username , user
                               = f.text_field :username
-                              = f.label :password, 'Password'
+                              = f.label :password, passwd
                               = f.password_field :password
-                              = submit_tag 'Log in'
+                              = submit_tag login
                - else 
-                    = link_to 'Log out', session_url, :method => :delete
+                    = link_to logout, session_url, :method => :delete
                               
           %ul#links
                %li= link_to('FAQ', faq_url)
