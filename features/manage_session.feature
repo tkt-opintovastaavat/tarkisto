@@ -4,7 +4,7 @@ Feature: Manage sessions
   
      Scenario: Log in
           Given I am on the home page
-          When I press "Log in"
-          Then I should see "Log out"
-          When I follow "Log out"
-          Then I should not see "Log out"
+          When I press "Kirjaudu"
+          Then I should see "Kirjaudu ulos"
+          When I follow "Kirjaudu ulos"
+          Then I should not see "Kirjaudu ulos"

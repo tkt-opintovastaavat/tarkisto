@@ -1,4 +1,6 @@
 module SessionHelper
+	
+	# Button and titles and their corresponding locales for log in box
 	def user
 		t :username_tag
 	end

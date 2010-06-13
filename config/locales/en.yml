@@ -1,17 +1,21 @@
 en:
+      # Course level names
      basic_studies: "Basic studies"
      intermediate_studies: "Intermediate studies"
      advanced_studies: "Advanced studies"
      other_studies: "Other studies"
      courses: "Courses"
      
+      # Tabs
      all_exams: "All exams"
      generate_exam: "Generate"
      add_exam: "Add exam"
      
+     # Titles on the pages
      new_exam_title: "Add new exam"
      generate_exam_title: "Generate practice exam"
      
+     # Login box stuff
      username_tag: "Username"
      passwd_tag: "Password"
      login_tag: "Log in"

@@ -1,4 +1,6 @@
 module ExamsHelper
+	
+	# Tab titles and their corresponding locales
 	def all_exams
 		t :all_exams
 	end

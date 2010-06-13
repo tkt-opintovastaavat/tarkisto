@@ -1,17 +1,22 @@
 fi:
+
+     # Course level names
      basic_studies: "Perusopinnot"
      intermediate_studies: "Aineopinnot"
      advanced_studies: "Syventävät opinnot"
      other_studies: "Muut opinnot"
      courses: "Kurssit"
      
+     # Tabs
      all_exams: "Kaikki kokeet"
      generate_exam: "Generoi"
      add_exam: "Lisää koe"
      
-     new_exam_title: "Lisää uusi koe"
+     # Titles on the pages
+     new_exam_title: "Lisää uusi tentti"
      generate_exam_title: "Generoi harjoitustentti"
      
+     # Login box stuff
      username_tag: "Käyttötunnus"
      passwd_tag: "Salasana"
      login_tag: "Kirjaudu"
