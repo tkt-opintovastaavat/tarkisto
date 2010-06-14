@@ -5,7 +5,7 @@ Perpetual, non-exclusive license to use this code is granted
 on the condition that this notice is left in tact.
 */
 
-var delim = '|';
+var delim = " > ";
 var trailLength = 5;
 var chunks;
 var DAY = 24 * 60 * 60 * 1000;
@@ -47,10 +47,10 @@ function CrumbList(){
   function crumbListShow(){
     for(var i in this.links){
       if(i==this.links.length-1){
-        document.write( ((i==0)?"":" | ") + this.text[i] );
+        document.write( ((i==0)?"":delim) + this.text[i] );
       }else{
         document.write(
-          ((i==0)?"":" | ")
+          ((i==0)?"":delim)
           +"<a href='" + this.links[i] + "'>"
           + this.text[i] + "</a>"
         );
