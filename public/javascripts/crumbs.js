@@ -86,7 +86,7 @@ function setCookie(name, value, days) {
       new Date(new Date().getTime() + days * DAY);
     document.cookie=
       name +"="+ escape(value) +"; expires="
-      + expiry.toGMTString();
+      + expiry.toGMTString() + "; path=/";
     chunks = document.cookie.split("; ");
   }
 }
