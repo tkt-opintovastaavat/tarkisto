@@ -5,7 +5,7 @@ Perpetual, non-exclusive license to use this code is granted
 on the condition that this notice is left in tact.
 */
 
-var delim = " > ";
+var delim = " ... ";
 var trailLength = 5;
 var chunks;
 var DAY = 24 * 60 * 60 * 1000;
