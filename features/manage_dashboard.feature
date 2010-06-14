@@ -4,4 +4,4 @@ Feature: Manage dashboard
   
      Scenario: Visit dashboard page
           Given I am on the home page
-          And I should see "Dashboard" within "#content"
+          And I should see "Kurssit" within "#content"
