@@ -1,0 +1,28 @@
+en:
+
+     courses:
+          title: "Courses"
+          levels:
+               basic: "Basic studies"
+               intermediate: "Intermediate studies"
+               advanced: "Advanced studies"
+               other: "Other studies"
+     
+     pages:
+          exams:
+               tabs:
+                    all: "All exams"
+                    generate: "Generate"
+                    add: "Add exam"
+               titles:
+                    add: "Add new exam"
+                    generate: "Generate practice exam"
+                    all: "All exams"
+     
+          session:
+               form:
+                    username: "Username"
+                    password: "Password"
+                    submit: "Log in"
+                    title: "Log in"
+               logout: "Log out"

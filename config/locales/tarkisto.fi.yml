@@ -1,0 +1,28 @@
+fi:
+
+     courses:
+          title: "Kurssit"
+          levels:
+               basic: "Perusopinnot"
+               intermediate: "Aineopinnot"
+               advanced: "Syventävät opinnot"
+               other: "Muut opinnot"
+
+     pages:
+          exams:
+               tabs:
+                    all: "Kaikki kokeet"
+                    generate: "Generoi"
+                    add: "Lisää koe"
+               titles:
+                    add: "Lisää uusi tentti"
+                    generate: "Generoi harjoitustentti"
+                    all: "Kaikki tentit"
+     
+          session:
+               form:
+                    username: "Käyttötunnus"
+                    password: "Salasana"
+                    submit: "Kirjaudu"
+                    title: "Kirjaudu sisään"
+               logout: "Kirjaudu ulos"

@@ -1,11 +1,11 @@
 - content_for :title do
      Dashboard
 - content_for :content do
-     %h2 Kurssit
-
-     %h3 Perusopinnot
+     %h2= t 'courses.title'
 
      %table#basic_studies
+          %tr
+               %th= t 'courses.levels.basic'
           %tr
                %td Ohjelmoinnin perusteet
                %td Generoi harjoitustentti
@@ -17,10 +17,9 @@
                %td Lisää tentti
 
 
-
-     %h3 Aineopinnot
-
      %table#intermediate_studies
+          %tr
+               %th= t 'courses.levels.intermediate'
           %tr
                %td Tietokoneen toiminta
                %td Generoi harjoitustentti
@@ -32,9 +31,10 @@
                %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
 
 
-     %h3 Syventävät opinnot
 
      %table#advanced_studies
+          %tr
+               %th= t 'courses.levels.advanced'
           %tr
                %td XML-tietokannat
                %td Generoi harjoitustentti
@@ -45,10 +45,9 @@
                %td Generoi harjoitustentti
                %td Lisää tentti
 
-
-     %h3 Muut opinnot
-
      %table#other_studies
+          %tr
+               %th= t 'courses.levels.other'
           %tr
                %td TVT-ajokortti
                %td Generoi harjoitustentti
