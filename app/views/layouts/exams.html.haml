@@ -28,9 +28,9 @@
                     #tabs 
                          -# tabs_on_rails gem making tabs
                          - tabs_tag do |tab|
-                              = tab.all t('pages.exams.tabs.all'), exams_url(:course_id => 1)
-                              = tab.generate t('pages.exams.tabs.generate'), generate_exams_url(:course_id => 1)
-                              = tab.new t('pages.exams.tabs.add'), new_exam_url(:course_id => 1)
+                              = tab.all t('pages.exams.tabs.all'), exams_url(@course)
+                              = tab.generate t('pages.exams.tabs.generate'), generate_exams_url(@course)
+                              = tab.new t('pages.exams.tabs.add'), new_exam_url(@course)
 
 
                     #tab-content= (yield :content or yield)
