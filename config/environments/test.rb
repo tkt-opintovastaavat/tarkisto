@@ -30,3 +30,4 @@ config.action_mailer.delivery_method = :test
 # Specify rspec gems.
 config.gem "rspec", :lib => false, :version => ">= 1.2.0"
 config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
+config.gem "rcov", :lib => false, :version => ">= 0.9.7.1"

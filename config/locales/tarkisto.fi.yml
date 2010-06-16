@@ -17,6 +17,7 @@ fi:
                titles:
                     add: "Lisää uusi tentti"
                     generate: "Generoi harjoitustentti"
+                    all: "Kaikki tentit"
      
           session:
                form:

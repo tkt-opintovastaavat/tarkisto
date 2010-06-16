@@ -17,6 +17,7 @@ en:
                titles:
                     add: "Add new exam"
                     generate: "Generate practice exam"
+                    all: "All exams"
      
           session:
                form:

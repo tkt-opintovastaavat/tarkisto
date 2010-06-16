@@ -1,53 +1,54 @@
-%h2= t 'courses.title'
+- content_for :title do
+     Dashboard
+- content_for :content do
+     %h2= t 'courses.title'
 
-%table#basic_studies
-     %tr
-          %th= t 'courses.levels.basic'
-     %tr
-          %td Ohjelmoinnin perusteet
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+     %table#basic_studies
+          %tr
+               %th= t 'courses.levels.basic'
+          %tr
+               %td Ohjelmoinnin perusteet
+               %td Generoi harjoitustentti
+               %td Lisää tentti
 
-     %tr
-          %td Ohjelmistojen mallintaminen
-          %td Generoi harjoitustentti
-          %td Lisää tentti
-
-
-
-%table#intermediate_studies
-     %tr
-          %th= t 'courses.levels.intermediate'
-     %tr
-          %td Tietokoneen toiminta
-          %td Generoi harjoitustentti
-          %td Lisää tentti
-
-     %tr
-          %td= link_to('Laskennan mallit', exams_url(:course_id => 1))
-          %td= link_to("Generoi harjoitustentti", generate_exams_url(:course_id => 1))
-          %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
+          %tr
+               %td Ohjelmistojen mallintaminen
+               %td Generoi harjoitustentti
+               %td Lisää tentti
 
 
-%table#advanced_studies
-     %tr
-          %th= t 'courses.levels.advanced'
-     %tr
-          %td XML-tietokannat
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+     %table#intermediate_studies
+          %tr
+               %th= t 'courses.levels.intermediate'
+          %tr
+               %td Tietokoneen toiminta
+               %td Generoi harjoitustentti
+               %td Lisää tentti
 
-     %tr
-          %td Data mining
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+          %tr
+               %td= link_to('Laskennan mallit', exams_url(:course_id => 1))
+               %td= link_to("Generoi harjoitustentti", generate_exams_url(:course_id => 1))
+               %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
 
 
 
-%table#other_studies
-     %tr
-          %th= t 'courses.levels.other'
-     %tr
-          %td TVT-ajokortti
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+     %table#advanced_studies
+          %tr
+               %th= t 'courses.levels.advanced'
+          %tr
+               %td XML-tietokannat
+               %td Generoi harjoitustentti
+               %td Lisää tentti
+
+          %tr
+               %td Data mining
+               %td Generoi harjoitustentti
+               %td Lisää tentti
+
+     %table#other_studies
+          %tr
+               %th= t 'courses.levels.other'
+          %tr
+               %td TVT-ajokortti
+               %td Generoi harjoitustentti
+               %td Lisää tentti
