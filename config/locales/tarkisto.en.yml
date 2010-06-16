@@ -9,6 +9,9 @@ en:
                other: "Other studies"
      
      pages:
+          dashboard:
+               practice: "Practice"
+               addnew: "Add exam"
           exams:
                tabs:
                     all: "All exams"
