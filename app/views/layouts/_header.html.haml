@@ -6,12 +6,12 @@
      #login
           - if session[:user_id].nil?
                - form_for :session, :url => session_url do |f|
-                    - field_set_tag 'Login' do
-                         = f.label :username , 'Username'
+                    - field_set_tag t('pages.session.form.title') do
+                         = f.label :username , t('pages.session.form.username')
                          = f.text_field :username
-                         = f.label :password, 'Password'
+                         = f.label :password, t('pages.session.form.password')
                          = f.password_field :password
-                         = submit_tag 'Log in'
+                         = submit_tag t('pages.session.form.submit')
           - else 
-               = link_to 'Log out', session_url, :method => :delete
+               = link_to t('pages.session.logout'), session_url, :method => :delete
 
