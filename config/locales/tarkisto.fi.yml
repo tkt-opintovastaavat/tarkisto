@@ -9,6 +9,9 @@ fi:
                other: "Muut opinnot"
 
      pages:
+          dashboard:
+               practice: "Harjoittele"
+               addnew: "Lisää koe"
           exams:
                tabs:
                     all: "Kaikki kokeet"

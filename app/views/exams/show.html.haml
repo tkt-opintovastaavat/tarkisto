@@ -1,6 +1,6 @@
 - content_for :title do
-     Laskennan mallit :: Erilliskoe
+     #{@course.name} :: #{@exam.exam_type.name}
 - content_for :content do
-     %h2 Laskennan mallit - Erilliskoe
+     %h2 #{@course.name} - #{@exam.exam_type.name}
 
      %h3 Selitä äärellisestä automaatista

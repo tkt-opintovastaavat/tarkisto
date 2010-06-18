@@ -1,4 +1,4 @@
 - content_for :title do
-     Laskennan mallit :: #{t 'pages.exams.titles.add'}
+     #{@course.name} :: #{t 'pages.exams.titles.add'}
 - content_for :content do
-     %h2= "Laskennan mallit - #{t 'pages.exams.titles.add'}"
+     %h2= "#{@course.name} - #{t 'pages.exams.titles.add'}"

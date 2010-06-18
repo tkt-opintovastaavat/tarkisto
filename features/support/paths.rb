@@ -15,13 +15,13 @@ module NavigationHelpers
                '/faq'
 
           when /the exams page of course ([0-9]+)/
-               "/courses/#{$1}/exams"
+               "/courses/#{Course.find_by_code($1).id}/exams"
 
           when /the new exam page of course ([0-9]+)/
-               "/courses/#{$1}/exams/new"
+               "/courses/#{Course.find_by_code($1).id}/exams/new"
 
           when /the generate practice exam page of course ([0-9]+)/
-               "/courses/#{$1}/exams/generate"
+               "/courses/#{Course.find_by_code($1).id}/exams/generate"
     
           # Add more mappings here.
           # Here is an example that pulls values out of the Regexp:

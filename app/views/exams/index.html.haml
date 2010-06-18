@@ -1,9 +1,6 @@
 - content_for :title do
-     Laskennan mallit :: #{t 'pages.exams.titles.all'}
+     #{@course.name} :: #{t 'pages.exams.titles.all'}
 - content_for :content do
-     %h2 Laskennan mallit
+     %h2= @course.name
 
-     %ul
-          %li= link_to('Erilliskoe', exam_url(:course_id => 1, :id => 1))
-          %li= link_to('Kurssikoe', exam_url(:course_id => 1, :id => 2))
-          %li= link_to('Uusintakoe', exam_url(:course_id => 1, :id => 3))
+     = render :partial => "table", :locals => {:exams => @course.exams}
