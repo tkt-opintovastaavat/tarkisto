@@ -1,8 +1,11 @@
-%h2= "Hakusi oli: #{@q}"
+- content_for :title do
+     = "Haku :: #{@q}"
+- content_for :content do
+     %h2= "Hakusi oli: #{@q}"
 
-- if @result.empty?
-     %p= "Hakusi ei tuottanut tuloksia"
-- else
-     %ul
-          - @result.each do |course|
-               %li= link_to course["name"] , exams_url(:course_id => course["course_id"])
+     - if @result.empty?
+          %p= "Hakusi ei tuottanut tuloksia"
+     - else
+          %ul
+               - @result.each do |course|
+                    %li= link_to course["name"] , exams_url(:course_id => course["course_id"])

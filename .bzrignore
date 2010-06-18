@@ -10,6 +10,9 @@ tmp/sass-cache/*
 # Cucumber rerun
 rerun.txt
 
+# rcov directory
+coverage
+
 # Compiled stylesheets
 public/stylesheets/*.css
 

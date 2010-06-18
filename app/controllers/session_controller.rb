@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   
      def create
-          user = User.authetication params[:session][:username], params[:session][:password]
+          user = User.authentication params[:session][:username], params[:session][:password]
           unless user.nil?
                session[:user_id] = user.id
           end

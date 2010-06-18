@@ -1,52 +1,28 @@
-%h2 Kurssit
+- content_for :title do
+     Dashboard
+- content_for :content do
+     %h2= t 'courses.title'
 
-%h3 Perusopinnot
+     %table#basic_studies
+          %tr
+               %th= t 'courses.levels.basic'
+          
+          = render :partial => "courses", :locals => {:courses => @basic_studies}
 
-%table#basic_studies
-     %tr
-          %td Ohjelmoinnin perusteet
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+     %table#intermediate_studies
+          %tr
+               %th= t 'courses.levels.intermediate'
 
-     %tr
-          %td Ohjelmistojen mallintaminen
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+          = render :partial => "courses", :locals => {:courses => @intermediate_studies}
 
+     %table#advanced_studies
+          %tr
+               %th= t 'courses.levels.advanced'
 
-
-%h3 Aineopinnot
-
-%table#intermediate_studies
-     %tr
-          %td Tietokoneen toiminta
-          %td Generoi harjoitustentti
-          %td Lisää tentti
-
-     %tr
-          %td= link_to('Laskennan mallit', exams_url(:course_id => 1))
-          %td= link_to("Generoi harjoitustentti", generate_exams_url(:course_id => 1))
-          %td= link_to("Lisää tentti",  new_exam_url(:course_id => 1))
+          = render :partial => "courses", :locals => {:courses => @advanced_studies}
 
 
-%h3 Syventävät opinnot
-
-%table#advanced_studies
-     %tr
-          %td XML-tietokannat
-          %td Generoi harjoitustentti
-          %td Lisää tentti
-
-     %tr
-          %td Data mining
-          %td Generoi harjoitustentti
-          %td Lisää tentti
-
-
-%h3 Muut opinnot
-
-%table#other_studies
-     %tr
-          %td TVT-ajokortti
-          %td Generoi harjoitustentti
-          %td Lisää tentti
+     %table#other_studies
+          %tr
+               %th= t 'courses.levels.other'
+          = render :partial => "courses", :locals => {:courses => @other_studies}

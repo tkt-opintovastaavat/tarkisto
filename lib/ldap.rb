@@ -1,17 +1,26 @@
 module LDAP
-     def self.autheticate user, psw
+     def self.authenticate user, psw
 
-#          return true
+          config = LDAP_CONFIG.authentication
+
+          unless config['required']
+               return true 
+          end
 
           ldap = Net::LDAP.new
-          ldap.host = "ldap1.cs.helsinki.fi"
-          ldap.base = "dc=cs,dc=helsinki,dc=fi"
+          ldap.host = config['host']
+          ldap.base = config['base']
 
-          result = ldap.bind_as(
-               :method => :simple_tls,
-               :base => "uid=#{user},ou=People,dc=cs,dc=helsinki,dc=fi",
-               :password => psw
-          )
+          begin
+               result = ldap.bind_as(
+                    :method => :simple_tls,
+                    :base => "uid=#{user},#{config['bind_dn']}",
+                    :password => psw
+               )
+          rescue
+               return false
+          end
+
           if result
                return true
           else

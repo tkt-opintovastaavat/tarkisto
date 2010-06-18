@@ -1,0 +1,21 @@
+cs_helsinki_fi: &CS
+     host: ldap1.cs.helsinki.fi
+     base: dc=cs,dc=helsinki,dc=fi
+     bind_dn: ou=People,dc=cs,dc=helsinki,dc=fi
+     required: true
+
+defaults: &defaults
+     authentication:
+          <<: *CS
+
+development:
+     <<: *defaults
+
+production:
+     <<: *defaults
+
+test:
+
+cucumber:
+     authentication:
+          required: false

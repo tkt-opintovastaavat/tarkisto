@@ -1,1 +1,4 @@
-%h2 Laskennan mallit - Generoi harjoitustentti
+- content_for :title do
+     #{@course.name} :: #{t 'pages.exams.titles.generate'}
+- content_for :content do
+     %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
