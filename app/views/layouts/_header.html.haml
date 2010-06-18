@@ -1,30 +1,17 @@
 #header
 
-     #general
-
-          #login
-               - if session[:user_id].nil?
-                    - form_for :session, :url => session_url do |f|
-                         - field_set_tag t('pages.session.form.title') do
-                              = f.label :username, t('pages.session.form.username')
-                              = f.text_field :username
-                              = f.label :password, t('pages.session.form.password')
-                              = f.password_field :password
-                              = submit_tag t('pages.session.form.submit')
-               - else 
-                    = link_to t('pages.session.logout'), session_url, :method => :delete
-                              
-          %ul#links
-               %li= link_to('FAQ', faq_url)
-
      #logo
           %h1= link_to('Tenttiarkisto', root_url)
 
-#search
-          
-     - form_tag search_path, :method => :get do
-          = text_field_tag :query
-          = image_submit_tag "mag.png"
-     
-#crumbs 
-     %script{:type=> "text/javascript"} doCrumbs();
+     #login
+          - if session[:user_id].nil?
+               - form_for :session, :url => session_url do |f|
+                    - field_set_tag t('pages.session.form.title') do
+                         = f.label :username , t('pages.session.form.username')
+                         = f.text_field :username
+                         = f.label :password, t('pages.session.form.password')
+                         = f.password_field :password
+                         = submit_tag t('pages.session.form.submit')
+          - else 
+               = link_to t('pages.session.logout'), session_url, :method => :delete
+

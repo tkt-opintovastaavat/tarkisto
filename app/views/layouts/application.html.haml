@@ -23,6 +23,8 @@
 
                = render :partial => "layouts/header"
 
-               #content= (yield :content or yield)
+               = render :partial => "layouts/navi"
 
-               = render :partial => "layouts/footer"
+               = render :partial => "layouts/main"
+
+          = render :partial => "layouts/footer"
