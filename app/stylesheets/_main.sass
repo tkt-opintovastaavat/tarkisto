@@ -1,20 +1,51 @@
 #main
 
+     /* The relative sizes of the parts. */
+     /* NOTE: THESE ARE TOO BIG! THEY CRAM THE COURSE LISTING INTO TOO SMALL SPACE.*/
+     !left-width = 23%
+     !right-width = 21%
+
+     /* Whole background is colored white. */
      background: #fff
 
+     /* The left block where the tabs go in the exams views. Empty in course view. */
      #left
           float: left
-          width: 23%
+          width: !left-width
+          padding-top: 3.5em
+          
+          ul
+               list-style: none
+               
+               padding: .6em .6em 0 1.5em
+               li
+                    padding: 0 0 .5em 0
+                    font-size: 120%
+                    a
+                         display: block
+                         padding: 1px
+                         text-decoration: none
+                         color: #000
+                    &:hover
+                         text-decoration: underline
+                         
+               /* Span is the active tab when tabs are made with TabsOnRails.*/
+               span
+                    font-weight: bold
+                    background-color: #e5e5e5
+                    
+                    a:hover
+                         text-decoration: none
 
 
+     /* The middle part where crumbs, search and content go. */
      #mainbody
 
           float: center
           background: #fff
           position: relative
-          margin-left: 15%
-          margin-right: 15%
-          margin-top: 2em
+          margin-left: !left-width
+          margin-right: !right-width
           
           padding: 1em 1.7% 4em
           border-left: 1px dashed #666
@@ -22,12 +53,12 @@
           min-height: 50em
 
           
-     
+          /* Styling for the crumbs created with javascript. */
           #breadcrumb
                padding-top: 1em
      
+          /* Styling for search box.*/
           #search
-               clear: both
                padding:
                     top: 1em
                     bottom: 1em
@@ -41,8 +72,12 @@
                     border: thin solid black
                     vertical-align: middle
 
+
+          /* Content, declared by views. */
           #content
                
+          
+               /* Course tables and exam tables. They are named if they need to be styled differently. */
                table
                     width: 100%
                     border-width: 1px 1px 1px 1px
@@ -63,9 +98,9 @@
                               padding: .5em 1em .5em .5em
                               
                
-
+     /* Empty right block. */
      #right
           float: right
-          width: 21%
+          width: !right-width
 
      
