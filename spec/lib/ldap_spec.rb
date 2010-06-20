@@ -51,4 +51,14 @@ describe LDAP do
 
      end
 
+     describe "#departmentcheck" do
+
+          it "should let in if not required"
+
+          it "should let in if required and found"
+
+          it "shouldn't let in if required and not found"
+
+     end
+
 end
