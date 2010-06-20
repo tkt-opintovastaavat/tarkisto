@@ -1,4 +1,5 @@
 module LDAP
+
      def self.authenticate user, psw
 
           config = LDAP_CONFIG.authentication

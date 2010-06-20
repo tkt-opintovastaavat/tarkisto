@@ -1,8 +1,7 @@
-require 'ldap'
-
 class User < ActiveRecord::Base
 
      def self.authentication username, password
+          include LDAP
           if LDAP.authenticate username, password
                user = User.find_by_username username
                if user.nil?

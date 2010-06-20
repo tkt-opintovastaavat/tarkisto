@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ldap'
 
 describe User do
      before(:each) do
