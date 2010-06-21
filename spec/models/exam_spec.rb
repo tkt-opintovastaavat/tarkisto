@@ -10,6 +10,7 @@ describe Exam do
                :public => true ,
                :date => Date.today
           }
+          @valid_exam = Exam.new @valid_attributes
           @invalid_exam = Exam.new
      end
 
@@ -27,6 +28,13 @@ describe Exam do
 
      it "should have a date" do
           @invalid_exam.should have(1).error_on(:date)
+     end
+
+     it "should format name" do
+          etype_mock = mock_model ExamType
+          @valid_exam.stub!(:exam_type).and_return(etype_mock)
+          etype_mock.stub!(:name).and_return("Erilliskoe")
+          @valid_exam.name.should == "#{@valid_exam.exam_type.name} #{@valid_exam.date}"
      end
 
 end

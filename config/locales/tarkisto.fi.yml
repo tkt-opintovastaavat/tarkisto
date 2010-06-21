@@ -21,6 +21,18 @@ fi:
                     add: "Lisää uusi tentti"
                     generate: "Generoi harjoitustentti"
                     all: "Kaikki tentit"
+               forms:
+                    selection:
+                         name: "Valitse tentti"
+                         new: "-- Uusi tentti --"
+                    newexam:
+                         type: "Koetyyppi"
+                         maxpoints: "Maksipisteet"
+                         course: "Kurssi"
+                         lecturer: "Luennoija"
+                         date: "Päivämäärä"
+                         public: "Tentti on julkinen"
+                         continue: "Jatka"
      
           session:
                form:
