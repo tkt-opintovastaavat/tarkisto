@@ -1,3 +1,8 @@
+it_helsinki_fi: &IT
+     host: ldap-internal.it.helsinki.fi
+     base: dc=helsinki,dc=fi
+     bind_dn: dc=helsinki,dc=fi
+
 cs_helsinki_fi: &CS
      host: ldap1.cs.helsinki.fi
      base: dc=cs,dc=helsinki,dc=fi

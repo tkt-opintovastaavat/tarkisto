@@ -30,7 +30,7 @@ describe LDAP do
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
                @ldap_mock.should_receive(:host=).with(@hash['host'])
                @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :simple_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(true)
+               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(true)
                LDAP.authenticate(@username, @password).should == true
           end
 
@@ -39,7 +39,7 @@ describe LDAP do
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
                @ldap_mock.should_receive(:host=).with(@hash['host'])
                @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :simple_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(false)
+               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(false)
                LDAP.authenticate(@username, @password).should == false
           end
 
@@ -48,7 +48,7 @@ describe LDAP do
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
                @ldap_mock.should_receive(:host=).with(@hash['host'])
                @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :simple_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_raise(Net::LDAP::LdapError)
+               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_raise(Net::LDAP::LdapError)
                LDAP.authenticate(@username, @password).should == false
           end
 

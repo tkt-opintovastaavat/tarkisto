@@ -14,7 +14,7 @@ module LDAP
 
           begin
                result = ldap.bind_as(
-                    :method => :simple_tls,
+                    :method => :start_tls,
                     :base => "uid=#{username},#{config['bind_dn']}",
                     :password => password
                )
