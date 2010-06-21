@@ -28,4 +28,12 @@ module LDAP
                return false
           end
      end
+
+     def self.departmentcheck username
+
+          config = LDAP_CONFIG.department
+
+          return true
+     end
+
 end

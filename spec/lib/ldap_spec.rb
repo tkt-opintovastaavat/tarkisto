@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe LDAP do
 
+     before(:each) do
+          @username = 'username'
+          @password = 'password'
+     end
+
      describe "#authenticate" do
 
           before(:each) do
-               @username = 'username'
-               @password = 'password'
                @hash = {
                     'host' => 'testhost',
                     'base' => 'testbase',
@@ -53,7 +56,18 @@ describe LDAP do
 
      describe "#departmentcheck" do
 
-          it "should let in if not required"
+          before(:each) do
+               @hash = {
+                    'required' => true
+               }
+               @ldap_mock = mock_model Net::LDAP
+          end
+
+          it "should let in if not required" do
+               @hash['required'] = false
+               LDAP_CONFIG.should_receive(:department).and_return(@hash)
+               LDAP.departmentcheck(@username).should == true
+          end
 
           it "should let in if required and found"
 
