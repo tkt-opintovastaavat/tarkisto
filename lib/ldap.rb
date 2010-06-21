@@ -1,6 +1,6 @@
 module LDAP
 
-     def self.authenticate user, psw
+     def self.authenticate username, password
 
           config = LDAP_CONFIG.authentication
 
@@ -15,8 +15,8 @@ module LDAP
           begin
                result = ldap.bind_as(
                     :method => :simple_tls,
-                    :base => "uid=#{user},#{config['bind_dn']}",
-                    :password => psw
+                    :base => "uid=#{username},#{config['bind_dn']}",
+                    :password => password
                )
           rescue
                return false
@@ -33,7 +33,25 @@ module LDAP
 
           config = LDAP_CONFIG.department
 
-          return true
+          unless config['required']
+               return true 
+          end
+
+          ldap = Net::LDAP.new
+          ldap.host = config['host']
+          ldap.base = config['base']
+
+          begin
+               result = ldap.search :filter => "uid=#{username}"
+          rescue
+               return false
+          end
+
+          if result.count == 1
+               return true
+          else
+               return false
+          end
      end
 
 end
