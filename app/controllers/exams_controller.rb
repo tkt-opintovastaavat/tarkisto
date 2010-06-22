@@ -4,6 +4,9 @@ class ExamsController < ApplicationController
      def index
           set_tab :all
           @course = Course.find_by_id(params[:course_id])
+          @course_exams = Exam.all(:conditions => ["course_id = ? AND exam_type_id = ?", params[:course_id], 2])
+          @separate_exams = Exam.all(:conditions => ["course_id = ? AND exam_type_id = ?", params[:course_id], 1])
+          @repeat_exams = Exam.all(:conditions => ["course_id = ? AND exam_type_id = ?", params[:course_id], 3])
      end
 
      def show

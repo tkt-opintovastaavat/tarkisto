@@ -21,6 +21,10 @@ fi:
                     add: "Lisää uusi tentti"
                     generate: "Generoi harjoitustentti"
                     all: "Kaikki tentit"
+               types:
+                    course-exams: "Kurssikokeet"
+                    separate-exams: "Erilliskokeet"
+                    repeat-exams: "Uusintakokeet"
      
           session:
                form:

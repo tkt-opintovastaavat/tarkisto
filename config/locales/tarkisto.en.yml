@@ -21,6 +21,10 @@ en:
                     add: "Add new exam"
                     generate: "Generate practice exam"
                     all: "All exams"
+               types:
+                    course-exams: "Course exams"
+                    separate-exams: "Separate exams"
+                    repeat-exams: "Repeat exams"
      
           session:
                form:
