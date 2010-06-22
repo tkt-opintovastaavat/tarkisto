@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Exam do
      before(:each) do
           @valid_attributes = {
-               :exam_type_id => 1 ,
+               :type_id => 1 ,
                :course_id => 2 ,
                :lecturer => 'Arto Wikla' ,
                :maximum_points => 60 ,
