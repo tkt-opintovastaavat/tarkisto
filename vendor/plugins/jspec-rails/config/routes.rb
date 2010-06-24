@@ -1,3 +1,3 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect 'jspec/:action/:id', :controller => 'jspec'
+  map.connect 'jspec/:action/:id.:format', :controller => 'jspec'
 end
