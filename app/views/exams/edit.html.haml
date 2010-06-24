@@ -1,0 +1,7 @@
+- content_for :title do
+     #{@course.name} :: #{@exam.name} :: #{t 'pages.exams.titles.edit'}
+- content_for :content do
+     %h2= "#{@course.name} - #{@exam.name} - #{t 'pages.exams.titles.edit'}"
+
+     - form_for @exam, :url => exams_url do |f|
+          %div= submit_tag t('pages.exams.forms.publish.submit')

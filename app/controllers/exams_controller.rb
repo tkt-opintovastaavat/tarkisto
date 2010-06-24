@@ -19,6 +19,7 @@ class ExamsController < ApplicationController
      end
 
      def new
+          @exam = Exam.new
           @exams = @course.exams
           @exam_types = ExamType.all
 
@@ -30,11 +31,28 @@ class ExamsController < ApplicationController
      end
 
      def create
-          redirect_to edit_exam_url(@course, 1)
+          if params.include? 'exam'
+               if params['exam'].include? 'id'
+                    exam = @course.exams.find_by_id params['exam']['id']
+               end
+               if exam.nil?
+                    exam = @course.exams.create params['exam'].delete_if{|key, value| key == 'id'}
+               end
+               unless exam.new_record?
+                    redirect_to edit_exam_url(@course.id, exam.id)
+                    return
+               end
+          end
+          redirect_to new_exam_url(@course.id)
      end
 
      def edit
           _set_exam
+
+          if @exam.published
+               redirect_to exam_url(@course.id, @exam.id)
+               return
+          end
 
           respond_to do |format|
                format.html do
@@ -58,7 +76,7 @@ class ExamsController < ApplicationController
      end
 
      def _set_exam
-          @exam = Exam.find_by_id(params[:id])
+          @exam = @course.exams.find_by_id(params[:id])
      end
 
 end

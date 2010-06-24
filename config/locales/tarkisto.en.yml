@@ -33,6 +33,8 @@ en:
                          date: "Date"
                          public: "Exam is public"
                          continue: "Continue"
+                    publish:
+                         submit: "Publish"
      
           session:
                form:

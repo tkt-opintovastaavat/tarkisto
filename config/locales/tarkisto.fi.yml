@@ -29,10 +29,11 @@ fi:
                          type: "Koetyyppi"
                          maxpoints: "Maksipisteet"
                          course: "Kurssi"
-                         lecturer: "Luennoija"
                          date: "Päivämäärä"
                          public: "Tentti on julkinen"
                          continue: "Jatka"
+                    publish:
+                         submit: "Julkaise"
      
           session:
                form:

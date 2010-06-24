@@ -14,20 +14,20 @@
      kurssikoe = ExamType.create :name => 'Kurssikoe'
      uusintakoe = ExamType.create :name => 'Uusintakoe'     
 
-     ohpe = perusopinnot.courses.create :code => 581325 , :name => 'Ohjelmoinnin perusteet', :credits => 5
-     lama = aineopinnot.courses.create :code => 582206 , :name => 'Laskennan mallit', :credits => 6
-     bipe = syventävätopinnot.courses.create :code => 582313 , :name => 'Bioinformatiikan perusteet', :credits => 4
-     dima = muutopinnot.courses.create :code => 57049 , :name => 'Johdatus diskreettiin matematiikkaan', :credits => 5
+     ohpe = perusopinnot.courses.create :code => 581325, :name => 'Ohjelmoinnin perusteet', :credits => 5
+     lama = aineopinnot.courses.create :code => 582206, :name => 'Laskennan mallit', :credits => 6
+     bipe = syventävätopinnot.courses.create :code => 582313, :name => 'Bioinformatiikan perusteet', :credits => 4
+     dima = muutopinnot.courses.create :code => 57049, :name => 'Johdatus diskreettiin matematiikkaan', :credits => 5
 
-     ohpe.exams.create :lecturer => 'Arto Wikla', :exam_type => kurssikoe, :public => true, :date => Date.new(2010, 6, 12), :maximum_points => 50
-     ohpe.exams.create :lecturer => 'Luukkainen', :exam_type => erilliskoe, :date => Date.new(2010, 6, 1), :maximum_points => 60
-     ohpe.exams.create :lecturer => 'Arto Wikla', :exam_type => uusintakoe, :public => true, :date => Date.new(2010, 8, 30), :maximum_points => 50
+     ohpe.exams.create :exam_type => kurssikoe, :public => true, :date => Date.new(2010, 6, 12), :maximum_points => 50
+     ohpe.exams.create :exam_type => erilliskoe, :date => Date.new(2010, 6, 1), :maximum_points => 60
+     ohpe.exams.create :exam_type => uusintakoe, :public => true, :date => Date.new(2010, 8, 30), :maximum_points => 50
 
-     lama.exams.create :lecturer => 'Kärkkäinen', :exam_type => erilliskoe , :date => Date.new(2010, 6, 4), :maximum_points => 60
-     lama.exams.create :lecturer => 'Kärkkäinen', :exam_type => kurssikoe , :date => Date.new(2009, 10 , 22), :maximum_points => 60
-     lama.exams.create :lecturer => 'Kärkkäinen', :exam_type => uusintakoe , :date => Date.new(2010, 1, 22), :maximum_points => 60
+     lama.exams.create :exam_type => erilliskoe, :date => Date.new(2010, 6, 4), :maximum_points => 60
+     lama.exams.create :exam_type => kurssikoe, :date => Date.new(2009, 10 , 22), :maximum_points => 60
+     lama.exams.create :exam_type => uusintakoe, :date => Date.new(2010, 1, 22), :maximum_points => 60
 
-     bipe.exams.create :lecturer => 'Sirkka-Liisa Varvio', :exam_type => kurssikoe , :date => Date.new(2009, 10, 21), :maximum_points => 60
+     bipe.exams.create :exam_type => kurssikoe, :date => Date.new(2009, 10, 21), :maximum_points => 60
 
-     dima.exams.create :lecturer => 'Petteri Harjulehto', :exam_type => kurssikoe , :date => Date.new(2009, 12, 18), :maximum_points => 24
-     dima.exams.create :lecturer => 'Petteri Harjulehto', :exam_type => erilliskoe , :date => Date.new(2010, 8, 12), :maximum_points => 24
+     dima.exams.create :exam_type => kurssikoe, :date => Date.new(2009, 12, 18), :maximum_points => 24
+     dima.exams.create :exam_type => erilliskoe, :date => Date.new(2010, 8, 12), :maximum_points => 24
