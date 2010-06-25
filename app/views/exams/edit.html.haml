@@ -1,5 +1,5 @@
 - content_for :title do
-     #{@course.name} :: #{@exam.name} :: #{t 'pages.exams.titles.edit'}
+     #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
 - content_for :content do
      %h2= "#{@course.name} - #{@exam.name} - #{t 'pages.exams.titles.edit'}"
 

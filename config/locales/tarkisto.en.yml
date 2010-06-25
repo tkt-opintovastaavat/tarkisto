@@ -21,6 +21,7 @@ en:
                     add: "Add new exam"
                     generate: "Generate practice exam"
                     all: "All exams"
+                    edit: "Edit exam"
                forms:
                     selection:
                          name: "Select exam"
@@ -31,7 +32,7 @@ en:
                          course: "Course"
                          lecturer: "Lecturer"
                          date: "Date"
-                         public: "Exam is public"
+                         public_notification: "Exam isn't public by default"
                          continue: "Continue"
                     publish:
                          submit: "Publish"

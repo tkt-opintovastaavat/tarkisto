@@ -21,6 +21,7 @@ fi:
                     add: "Lisää uusi tentti"
                     generate: "Generoi harjoitustentti"
                     all: "Kaikki tentit"
+                    edit: "Muokkaa tenttiä"
                forms:
                     selection:
                          name: "Valitse tentti"
@@ -30,7 +31,7 @@ fi:
                          maxpoints: "Maksipisteet"
                          course: "Kurssi"
                          date: "Päivämäärä"
-                         public: "Tentti on julkinen"
+                         public_notification: "Tentti ei ole oletusarvoisesti julkinen"
                          continue: "Jatka"
                     publish:
                          submit: "Julkaise"
