@@ -3,4 +3,4 @@
 - content_for :content do
      %h2= @course.name
 
-     = render :partial => "table", :locals => {:exams => @course.exams.published}
+     = render :partial => "table", :locals => {:exams => @exams}

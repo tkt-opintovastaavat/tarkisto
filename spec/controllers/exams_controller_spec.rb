@@ -22,7 +22,10 @@ describe ExamsController do
 
                describe "#index" do
                     it "should be successful" do
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return([@exam_mock])
                          get 'index', :course_id => @course_id
+                         assigns(:exams).should == [@exam_mock]
                     end
                end
 

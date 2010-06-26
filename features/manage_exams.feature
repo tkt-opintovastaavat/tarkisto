@@ -4,6 +4,9 @@ Feature: Manage exams
   
      Scenario: Show all exams
           Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
+          And I have "Erilliskoe" type of exam on course 581325
+          And I have "Kurssikoe" type of exam on course 581325
+          And I have "Uusintakoe" type of exam on course 581325
           And I am on the exams page of course 581325
           And I should see "Ohjelmoinnin perusteet" within "#tab-content"
           And I should see "Erilliskoe" within "#tab-content"
@@ -12,7 +15,7 @@ Feature: Manage exams
 
      Scenario: Show one exam page
           Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
-          And I have an exam on course 581325
+          And I have "Erilliskoe" type of exam on course 581325
           And I am on the exams page of course 581325
           And I should see "Ohjelmoinnin perusteet" within "#tab-content"
           And I should see "Erilliskoe" within "#tab-content"

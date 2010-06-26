@@ -3,6 +3,7 @@ class ExamsController < ApplicationController
      before_filter :_set_course
 
      def index
+          @exams = @course.exams.published
           respond_to do |format|
                format.html do
                     set_tab :all
