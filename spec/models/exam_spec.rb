@@ -32,4 +32,18 @@ describe Exam do
           @valid_exam.name.should == "#{@valid_exam.exam_type.name} #{I18n.l @valid_exam.date, :format => :short}"
      end
 
+     it "should return only unpublished exams if asked so" do
+          unpublished_exams = Exam.unpublished
+          unpublished_exams.each do |exam|
+               exam.published.should == false
+          end
+     end
+
+     it "should return only published exams if asked so" do
+          published_exams = Exam.published
+          published_exams.each do |exam|
+               exam.published.should == true
+          end
+     end
+
 end

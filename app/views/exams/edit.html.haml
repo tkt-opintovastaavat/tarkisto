@@ -1,7 +1,15 @@
 - content_for :title do
      #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
 - content_for :content do
-     %h2= "#{@course.name} - #{@exam.name} - #{t 'pages.exams.titles.edit'}"
+     #exam_info
 
-     - form_for @exam, :url => exams_url do |f|
-          %div= submit_tag t('pages.exams.forms.publish.submit')
+          - form_for @exam, :url => exams_url do |f|
+               %div= submit_tag t('pages.exams.forms.publish.submit')
+
+          %p#name_of_exam= "#{@course.name} - #{@exam.name}"
+
+     #questions
+          %ul
+               %li= link_to 'Question 1', '#question123'
+               %li= link_to 'Question 2', '#question125'
+               %li= link_to '+', '#new_question'

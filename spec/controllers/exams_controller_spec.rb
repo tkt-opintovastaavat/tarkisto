@@ -9,6 +9,7 @@ describe ExamsController do
           @exam_type_mock = mock_model ExamType
           @course_id = '1'
           Course.should_receive(:find_by_id).with(@course_id).and_return(@course_mock)
+          @course_mock.stub!(:id).and_return(@course_id)
      end
 
      describe "GET" do
@@ -28,6 +29,7 @@ describe ExamsController do
                describe "#show" do
                     it "should be successful" do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return(@exams_mock)
                          @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
 
                          get 'show', :course_id => @course_id, :id => 1
@@ -39,7 +41,8 @@ describe ExamsController do
                describe "#new" do
                     it "should be successful" do
                          Exam.should_receive(:new).and_return(@exam_mock)
-                         @course_mock.should_receive(:exams).and_return([@exam_mock])
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:unpublished).and_return([@exam_mock])
                          ExamType.should_receive(:all).and_return([@exam_type_mock])
 
                          get 'new', :course_id => @course_id
@@ -74,18 +77,38 @@ describe ExamsController do
 
           describe "redirect" do
 
+               describe "#show" do
+                    it "should redirect to index if not found with wanted id" do
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return(@exams_mock)
+                         @exams_mock.should_receive(:find_by_id).with('1').and_return(nil)
+
+                         get 'show', :course_id => @course_id, :id => 1
+
+                         response.should redirect_to(exams_url(@course_id))
+                    end
+               end
+
                describe "#edit" do
 
                     it "should redirect to show if tries to edit published exam" do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
                          @exam_mock.should_receive(:published).and_return(true)
-                         @course_mock.stub!(:id).and_return(1)
                          @exam_mock.stub!(:id).and_return(1)
 
                          get 'edit', :course_id => @course_id, :id => 1
 
                          response.should redirect_to(exam_url(@course_id, 1))
+                    end
+
+                    it "should redirect to show if tries to edit nil exam" do
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:find_by_id).with('1').and_return(nil)
+
+                         get 'edit', :course_id => @course_id, :id => 1
+
+                         response.should redirect_to(new_exam_url(@course_id))
                     end
 
                end

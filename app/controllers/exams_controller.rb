@@ -11,7 +11,12 @@ class ExamsController < ApplicationController
      end
 
      def show
-          _set_exam
+          @exam = @course.exams.published.find_by_id(params[:id])
+
+          if @exam.nil?
+               redirect_to exams_url(@course.id)
+               return
+          end
 
           respond_to do |format|
                format.html
@@ -20,7 +25,7 @@ class ExamsController < ApplicationController
 
      def new
           @exam = Exam.new
-          @exams = @course.exams
+          @exams = @course.exams.unpublished
           @exam_types = ExamType.all
 
           respond_to do |format|
@@ -47,9 +52,12 @@ class ExamsController < ApplicationController
      end
 
      def edit
-          _set_exam
+          @exam = @course.exams.find_by_id(params[:id])
 
-          if @exam.published
+          if @exam.nil?
+               redirect_to new_exam_url(@course.id)
+               return
+          elsif @exam.published
                redirect_to exam_url(@course.id, @exam.id)
                return
           end
@@ -73,10 +81,6 @@ class ExamsController < ApplicationController
 
      def _set_course
           @course = Course.find_by_id(params[:course_id])
-     end
-
-     def _set_exam
-          @exam = @course.exams.find_by_id(params[:id])
      end
 
 end
