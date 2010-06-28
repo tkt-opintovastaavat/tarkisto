@@ -11,7 +11,6 @@ class CreateQuestions < ActiveRecord::Migration
       
 
      end
-end
 
      def self.down
          drop_table :questions
