@@ -1,0 +1,9 @@
+- courses.each do |course|
+     %tr
+          %td
+               = course.code
+               = link_to "#{course.name}", exams_url(course)
+               = "(#{course.credits} op)"
+
+          %td= link_to t('pages.dashboard.practice'), generate_exams_url(course)
+          %td= link_to t('pages.dashboard.addnew'), new_exam_url(course)

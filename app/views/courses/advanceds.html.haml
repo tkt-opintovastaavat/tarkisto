@@ -1,0 +1,11 @@
+- content_for :title do
+     = t 'courses.levels.advanced'
+- content_for :content do
+
+     %p= link_to t('pages.courses.back'), root_url
+
+     %table
+          %tr
+               %th= t 'courses.levels.advanced'
+          
+          = render :partial => "courses", :locals => {:courses => @courses}

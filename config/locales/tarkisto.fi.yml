@@ -33,3 +33,7 @@ fi:
                     submit: "Kirjaudu"
                     title: "Kirjaudu sisään"
                logout: "Kirjaudu ulos"
+               
+          courses:
+               showall: "Näytä kaikki"
+               back: "Takaisin etusivulle"

@@ -33,3 +33,8 @@ en:
                     submit: "Log in"
                     title: "Log in"
                logout: "Log out"
+
+               
+          courses:
+               showall: "Show all"
+               back: "Back to dashboard"
