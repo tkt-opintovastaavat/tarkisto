@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
      has_many :exams
      has_many :shortcuts
+     has_many :instances
      belongs_to :level
 
      validates_presence_of :name_fi, :credits, :code
