@@ -10,8 +10,9 @@
      
      #mainbody
 
-          #breadcrumb
-               %script{:type=> "text/javascript"} doCrumbs();
+          -# stupid history breadcrumbs are disabled
+          -# #breadcrumb
+               -# %script{:type=> "text/javascript"} doCrumbs();
 
           = render :partial => "layouts/search"
 

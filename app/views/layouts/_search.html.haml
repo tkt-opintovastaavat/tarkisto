@@ -1,4 +1,5 @@
-#search          
-     - form_tag search_path, :method => :get do
-          = text_field_tag :query
-          = image_submit_tag "mag.png"
+#search
+     .box
+          - form_tag search_path, :method => :get do
+               = text_field_tag :query, "Tähän tulee pyöreät kulmat vielä!"
+               = image_submit_tag "mag.png"
