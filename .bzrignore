@@ -16,5 +16,9 @@ coverage
 # Compiled stylesheets
 public/stylesheets/*.css
 
+# Lucy and Babilu generated JavaScripts
+public/javascripts/common.js
+public/javascripts/locales.js
+
 # configuration files
 config/database.yml

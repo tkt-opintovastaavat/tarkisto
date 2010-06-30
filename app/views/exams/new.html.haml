@@ -4,10 +4,11 @@
      %h2= "#{@course.name} - #{t 'pages.exams.titles.add'}"
 
      %form#selection
-          %label{:for => :name}= t('pages.exams.forms.selection.name')
-          = select_tag :name, options_for_select(exam_selection(@exams), 'new')
+          %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
+          = select_tag :exam_name, options_for_select(exam_selection(@exams), 'new')
 
      - form_for @exam, :url => exams_url do |f|
+          %div= f.hidden_field :id
           %div
                = f.label :course, t('pages.exams.forms.newexam.course')
                %span#course{:name => :course}= @course.name
