@@ -17,7 +17,7 @@ describe Type do
      end
 
      it "should return name in correct language" do
-          type = Course.new :name_fi => "Suomeksi", :name_en => "In English", :name_se => "På Svenska"
+          type = Type.new :name_fi => "Suomeksi", :name_en => "In English", :name_se => "På Svenska"
           I18n.locale= :fi
           type.name.should == "Suomeksi"
           I18n.locale= :en
