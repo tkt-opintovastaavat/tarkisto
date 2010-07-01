@@ -4,8 +4,8 @@
 
      %p= link_to t('pages.courses.back'), root_url
 
-     %table
+     %table#basic_studies
           %tr
                %th= t 'courses.levels.basic'
           
-          = render :partial => "courses", :locals => {:courses => @courses}
+          = render :partial => "courses", :locals => {:courses => @courses.basic_courses}
