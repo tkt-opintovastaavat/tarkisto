@@ -1,19 +1,18 @@
 require 'spec_helper'
 
-describe ExamType do
+describe Level do
      before(:each) do
           @valid_attributes = {
-               :name => 'Kurssikoe'
+               :name_fi => 'Perusopinnot'
           }
-          @invalid_exam_type = ExamType.new
+          @invalid_level = Level.new
      end
 
      it "should create a new instance given valid attributes" do
-          ExamType.create!(@valid_attributes)
+          Level.create!(@valid_attributes)
      end
 
      it "should have a name" do
-          @invalid_exam_type.should have(1).error_on(:name)
+          @invalid_level.should have(1).error_on(:name_fi)
      end
-
 end

@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe CourseShortcut do
+describe Shortcut do
      before(:each) do
           @valid_attributes = {
-               :shortcut => 'ohpe' ,
+               :name => 'ohpe' ,
                :course_id => 1
           }
-          @invalid_course_shortcut = CourseShortcut.new
+          @invalid_shortcut = Shortcut.new
      end
 
      it "should create a new instance given valid attributes" do
-          CourseShortcut.create!(@valid_attributes)
+          Shortcut.create!(@valid_attributes)
      end
 
      it "should contain a shortcut" do
-          @invalid_course_shortcut.should have(1).error_on(:shortcut)
+          @invalid_shortcut.should have(1).error_on(:name)
      end
 
 end
