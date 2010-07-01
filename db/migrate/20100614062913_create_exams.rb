@@ -7,6 +7,7 @@ class CreateExams < ActiveRecord::Migration
                t.integer :maximum_points
                t.boolean :public, :default => false
                t.date :date
+               t.string :language
                t.timestamps
           end
      end

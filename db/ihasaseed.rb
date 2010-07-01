@@ -38,7 +38,7 @@ File.open("seeds.rb", 'w') do |f|
 
      end
 
-     File.open("seeds.bak", 'r') do |s|
+     File.open("examseeds.rb", 'r') do |s|
           while line = s.gets
                f.puts(line)
           end
