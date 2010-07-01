@@ -1,0 +1,7 @@
+- if exam.nil?
+     %p Empty
+- else
+     %p Maksimi pisteet: #{points}
+     - exam.each do |question|
+          %h3 #{question.number}. #{question.name} <pre>#{question.description}</pre> #{question.points}
+          %br
