@@ -16,8 +16,14 @@ describe Question do
           Question.create!(@valid_attributes)
      end
      
+     it "should have name info" do
+          @invalid_question.should have(1).error_on(:name)
+     end
      it "should have description info" do
           @invalid_question.should have(1).error_on(:description)
+     end
+     it "should have points info" do
+          @invalid_question.should have(1).error_on(:points)
      end
      
      it "should have number info" do

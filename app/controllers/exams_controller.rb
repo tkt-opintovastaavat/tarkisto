@@ -9,6 +9,7 @@ class ExamsController < ApplicationController
      def show
           @course = Course.find_by_id(params[:course_id])
           @exam = Exam.find_by_id(params[:id])
+          @questions = Question.find_all_by_exam_id(params[:id])
      end
 
      def new

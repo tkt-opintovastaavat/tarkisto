@@ -1,6 +1,6 @@
 - content_for :title do
      #{@course.name} :: #{@exam.type.name}
 - content_for :content do
-     %h2 #{@course.name} - #{@exam.type.name}
+     %h2 #{@course.name} - #{@exam.type.name} - #{@exam.date}
 
-     %h3 Selitä äärellisestä automaatista
+     = render :partial => "questions", :locals => {:exam => @questions, :points => @exam.maximum_points}
