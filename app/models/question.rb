@@ -3,5 +3,5 @@ class Question < ActiveRecord::Base
      has_many :code_snippets
      has_many :images
      
-     validates_presence_of :number, :description
+     validates_presence_of :number, :name, :points, :description
 end
