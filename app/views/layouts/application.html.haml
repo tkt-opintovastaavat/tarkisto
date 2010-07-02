@@ -16,15 +16,20 @@
                = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
           = javascript_include_tag 'crumbs'
+          = javascript_include_tag 'niftycube'
 
+          %script{:type=> "text/javascript"} 
+               window.onload=function(){
+               Nifty("div#box","big");
+               }
+		
+		
      %body
 
           #container
 
                = render :partial => "layouts/header"
 
-               = render :partial => "layouts/navi"
-
                = render :partial => "layouts/main"
 
-          = render :partial => "layouts/footer"
+               = render :partial => "layouts/footer"
