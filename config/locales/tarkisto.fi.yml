@@ -21,10 +21,24 @@ fi:
                     add: "Lisää uusi tentti"
                     generate: "Generoi harjoitustentti"
                     all: "Kaikki tentit"
+                    edit: "Muokkaa tenttiä"
+               forms:
+                    selection:
+                         name: "Valitse tentti"
+                         new: "-- Uusi tentti --"
+                    newexam:
+                         type: "Koetyyppi"
+                         maxpoints: "Maksipisteet"
+                         course: "Kurssi"
+                         date: "Päivämäärä"
+                         public_notification: "Tentti ei ole oletusarvoisesti julkinen"
+                         continue: "Jatka"
+                    publish:
+                         submit: "Julkaise"
      
           session:
                form:
-                    username: "Käyttötunnus"
+                    username: "Käyttäjätunnus"
                     password: "Salasana"
                     submit: "Kirjaudu"
                     title: "Kirjaudu sisään"

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+     has_many :attendances
+
      def self.authentication username, password
           include LDAP
           if LDAP.authenticate(username, password) && LDAP.departmentcheck(username)
@@ -11,5 +13,4 @@ class User < ActiveRecord::Base
           end
      end
 
-     
 end

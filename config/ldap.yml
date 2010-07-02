@@ -27,3 +27,5 @@ test:
 cucumber:
      authentication:
           required: false
+     department:
+          required: false

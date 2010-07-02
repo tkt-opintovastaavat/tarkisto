@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+
      before(:each) do
           @valid_attributes = {
                :username => 'ptkarjal',
@@ -57,4 +58,5 @@ describe User do
           end
 
      end
+
 end

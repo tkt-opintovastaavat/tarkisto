@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DashboardController do
 
      before :each do
-          @course_level_mock = mock_model CourseLevel
+          @level_mock = mock_model Level
           @course_mock = mock_model Course
      end
 
@@ -13,12 +13,12 @@ describe DashboardController do
 
      describe "GET 'show'" do
           it "should be successful" do
-               CourseLevel.should_receive(:find_by_name).with("Perusopinnot").and_return(@course_level_mock)
-               CourseLevel.should_receive(:find_by_name).with("Aineopinnot").and_return(@course_level_mock)
-               CourseLevel.should_receive(:find_by_name).with("Muut opinnot").and_return(@course_level_mock)
-               CourseLevel.should_receive(:find_by_name).with("Syventävät opinnot").and_return(@course_level_mock)
+               Level.should_receive(:find_by_name_fi).with("Perusopinnot").and_return(@level_mock)
+               Level.should_receive(:find_by_name_fi).with("Aineopinnot").and_return(@level_mock)
+               Level.should_receive(:find_by_name_fi).with("Muut opinnot").and_return(@level_mock)
+               Level.should_receive(:find_by_name_fi).with("Syventävät opinnot").and_return(@level_mock)
                4.times do
-                    @course_level_mock.should_receive(:courses).and_return([@course_mock])
+                    @level_mock.should_receive(:courses).and_return([@course_mock])
                end
                get 'show'
                assigns(:basic_studies).should==[@course_mock]

@@ -1,20 +1,51 @@
 #main
 
+     /* The relative sizes of the parts. */
+     /* NOTE: THESE ARE TOO BIG! THEY CRAM THE COURSE LISTING INTO TOO SMALL SPACE.*/
+     !left-width = 23%
+     !right-width = 21%
+
+     /* Whole background is colored white. */
      background: #fff
 
+     /* The left block where the tabs go in the exams views. Empty in course view. */
      #left
           float: left
-          width: 23%
+          width: !left-width
+          padding-top: 3.5em
+          
+          ul
+               list-style: none
+               padding: 1em 1em 0 1.5em
+               li
+                    padding: 0em 0 1em 0
+                    /* font-size: 120% */
+                    a
+                         display: block
+                         padding: 7px
+                         text-decoration: none
+                         color: #000
+                         background-color: #e5e5e5
+                    a:hover
+                         background-color: #cccccc
+                         
+               /* Span is the active tab when tabs are made with TabsOnRails.*/
+               span
+                    font-weight: bold
+                    display: block
+                    padding: 7px
+                    background-color: #666666
+                    color: #ffffff
+                    
 
-
+     /* The middle part where crumbs, search and content go. */
      #mainbody
 
           float: center
           background: #fff
           position: relative
-          margin-left: 15%
-          margin-right: 15%
-          margin-top: 2em
+          margin-left: !left-width
+          margin-right: !right-width
           
           padding: 1em 1.7% 4em
           border-left: 1px dashed #666
@@ -22,50 +53,62 @@
           min-height: 50em
 
           
-     
+          /* Styling for the crumbs created with javascript. */
           #breadcrumb
                padding-top: 1em
      
-          #search
-               clear: both
-               padding:
-                    top: 1em
-                    bottom: 1em
-               input[type=image]
-                    margin: 0
-                    padding: 0
-                    vertical-align: middle
-               input[type=text]
-                    margin: 0
-                    padding: 0
-                    border: thin solid black
-                    vertical-align: middle
 
+
+
+          /* Content, declared by views. */
           #content
                
+          
+               /* Course tables and exam tables. They are named if they need to be styled differently. */
                table
+                    margin: 0px 0px 10px 0px
                     width: 100%
-                    border-width: 1px 1px 1px 1px
+                    /* border-width: 1px 1px 1px 1px */ 
                     border-spacing: 2px
                     border-style: solid
                     border-color: #000
-                    border-collapse: collapse
+                    border-collapse: collapse 
                     
                     tr
-                    
-                         td
-                              border-width: 1px 1px 1px 1px
-                              padding: 3px 6px 3px 6px
-                              border-style: solid
-                              border-color: #000
-                         th
-                              font-size: 120%
-                              padding: .5em 1em .5em .5em
-                              
-               
 
+                         td
+                              /* border-width: 1px 1px 1px 1px */
+                              /* padding: 3px 6px 3px 6px */
+                              /* border-style: solid */
+                              /* border-color: #000 */
+                              background-color: #f2f2f2
+                              padding: 7px
+                              border-bottom: 1px solid #cccccc
+                              border-right: 1px solid #cccccc
+                         td:hover
+                              background-color: #eaeaea
+                         .column1 /* eka sarake */
+                              width: 70%
+                         .column2 /* toka */
+                              text:
+                                   align: center
+                         .column3 /* kolmas */
+                              text:
+                                   align: center
+                         th
+                              font-size: 115%
+                              padding: 1em .5em 1em .5em 
+
+               a
+                    color: #000
+                    text-decoration: none
+                    border-bottom: 1px dashed #cccccc
+               a:hover
+                    border-bottom: 1px solid #666666
+               
+     /* Empty right block. */
      #right
           float: right
-          width: 21%
+          width: !right-width
 
      

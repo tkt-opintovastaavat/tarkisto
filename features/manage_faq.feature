@@ -8,6 +8,6 @@ Feature: Manage faqs
   
      Scenario: Visit FAQ page from home page
           Given I am on the home page
-          And I should see "FAQ" within "#navi"
-          When I follow "FAQ" within "#navi"
+          And I should see "FAQ" within "#footer"
+          When I follow "FAQ" within "#footer"
           Then I should see "FAQ" within "#content"
