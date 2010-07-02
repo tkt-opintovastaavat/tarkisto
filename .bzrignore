@@ -22,3 +22,4 @@ public/javascripts/locales.js
 
 # configuration files
 config/database.yml
+config/ldap.yml
