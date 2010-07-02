@@ -1,10 +1,7 @@
-class Course < ActiveRecord::Base
+class Type < ActiveRecord::Base
      has_many :exams
-     has_many :shortcuts
-     has_many :instances
-     belongs_to :level
 
-     validates_presence_of :name_fi, :credits, :code
+     validates_presence_of :name_fi
 
      def name
           if (I18n.locale == :fi)
