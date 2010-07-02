@@ -38,7 +38,7 @@ fi:
      
           session:
                form:
-                    username: "Käyttötunnus"
+                    username: "Käyttäjätunnus"
                     password: "Salasana"
                     submit: "Kirjaudu"
                     title: "Kirjaudu sisään"
