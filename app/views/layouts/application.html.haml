@@ -18,6 +18,8 @@
 
           = javascript_include_tag 'locales', 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min', 'examinput', 'crumbs', 'niftycube'
 
+          = include_qunit if RAILS_ENV == 'development'
+
           %script{:type=> "text/javascript"} 
                window.onload=function(){
                Nifty("div#box","big");
