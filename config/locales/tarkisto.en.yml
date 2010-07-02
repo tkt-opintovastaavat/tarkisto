@@ -21,6 +21,21 @@ en:
                     add: "Add new exam"
                     generate: "Generate practice exam"
                     all: "All exams"
+                    edit: "Edit exam"
+               forms:
+                    selection:
+                         name: "Select exam"
+                         new: "-- New exam --"
+                    newexam:
+                         type: "Exam type"
+                         maxpoints: "Maximum points"
+                         course: "Course"
+                         lecturer: "Lecturer"
+                         date: "Date"
+                         public_notification: "Exam isn't public by default"
+                         continue: "Continue"
+                    publish:
+                         submit: "Publish"
      
           session:
                form:

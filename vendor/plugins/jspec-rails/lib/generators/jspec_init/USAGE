@@ -1,0 +1,29 @@
+Description:
+    Initializes a Rails application to use jspec-rails.
+
+Examples:
+    `./script/generate jspec_init`
+
+        creates the following files
+                         jspec
+                         jspec/fixtures
+                         jspec/spec
+       JSpec Test View:  jspec/spec/index.html.erb
+           Sample Spec:  jspec/spec/jspec_rails_spec.js
+        Sample Fixture:  jspec/fixtures/test_fixture.html.erb
+                Config:  jspec/jspec.yml
+
+        adds the JSpec javascript library to your public dir:
+                         public/jspec
+                         public/jspec/jspec.js
+                         public/jspec/jspec.jquery.js
+                         public/jspec/jspec.css
+                         public/jspec/images
+                         public/jspec/images/bg.png
+                         public/jspec/images/hr.png
+                         public/jspec/images/sprites.bg.png
+                         public/jspec/images/sprites.png
+                         public/jspec/images/vr.png
+                        
+            
+            
