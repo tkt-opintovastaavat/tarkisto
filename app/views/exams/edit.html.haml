@@ -10,6 +10,10 @@
 
      #questions
           %ul
-               %li= link_to 'Question 1', '#question123'
-               %li= link_to 'Question 2', '#question125'
-               %li= link_to '+', '#new_question'
+               %li
+                    = link_to 'Question 1', '#questions-1'
+                    %a(href="#remove")
+                         %span.ui-icon.ui-icon-close Remove Tab
+               %li.new-question= link_to 'New question', '#new_question'
+          #questions-1
+               %p Foobar
