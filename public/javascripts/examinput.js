@@ -26,6 +26,25 @@ $(document).ready(function() {
      } else if (questionsPage()) {
           questions_tabs_holder = jQuery('#questions');
           addTabs();
+          //FIXME: later ..
+          $('a[href="#show-picture"]').live('click', function(event) {
+               event.preventDefault();
+               alert('This will pop-up an dialog with picture');
+          });
+          $('a[href="#show-code"]').live('click', function(event) {
+               event.preventDefault();
+               alert('This will pop-up an dialog with code');
+          });
+          $('a[href="#delete-pic"]').live('click', function(event) {
+               event.preventDefault();
+               if (confirm('Do you want to delete picture?'))
+                    alert('This will delete the picture');
+          });
+          $('a[href="#delete-code"]').live('click', function(event) {
+               event.preventDefault();
+               if (confirm('Do you want to delete code?'))
+                    alert('This will delete the code');
+          });
      }
 });
 

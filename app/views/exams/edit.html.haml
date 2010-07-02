@@ -17,3 +17,18 @@
                %li.new-question= link_to 'New question', '#new_question'
           #questions-1
                %p Foobar
+               %table
+                    %tr
+                         %td
+                              %textarea#question-content
+                         %td
+                              %div
+                                   %p Lisää kuva
+                                   %p
+                                        %a(href="#show-picture") P=NP
+                                        %a(href="#delete-pic") [poista]
+                              %div
+                                   %p Lisää koodi
+                                   %p
+                                        %a(href="#show-code") automata
+                                        %a(href="#delete-code") [poista]
