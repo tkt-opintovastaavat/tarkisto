@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Exam do
      before(:each) do
           @valid_attributes = {
-               :exam_type_id => 1 ,
+               :type_id => 1 ,
                :course_id => 2 ,
                :maximum_points => 60 ,
                :public => true ,
@@ -26,10 +26,10 @@ describe Exam do
      end
 
      it "should format name" do
-          etype_mock = mock_model ExamType
-          @valid_exam.stub!(:exam_type).and_return(etype_mock)
-          etype_mock.stub!(:name).and_return("Erilliskoe")
-          @valid_exam.name.should == "#{@valid_exam.exam_type.name} #{I18n.l @valid_exam.date, :format => :short}"
+          type_mock = mock_model Type
+          @valid_exam.stub!(:type).and_return(type_mock)
+          type_mock.stub!(:name).and_return("Erilliskoe")
+          @valid_exam.name.should == "#{@valid_exam.type.name} #{I18n.l @valid_exam.date, :format => :short}"
      end
 
      it "should return only unpublished exams if asked so" do
@@ -43,6 +43,36 @@ describe Exam do
           published_exams = Exam.published
           published_exams.each do |exam|
                exam.published.should == true
+          end
+     end
+
+     it "should publish exam, when asked" do
+          exam = Exam.create!(@valid_attributes)
+          exam.published.should == false
+          exam.publish!
+          exam.published.should == true
+     end
+
+     it "should unpublish exam, when asked" do
+          exam = Exam.create!(@valid_attributes)
+          exam.published.should == false
+          exam.publish!
+          exam.published.should == true
+          exam.unpublish!
+          exam.published.should == false
+     end
+
+     it "should return only private exams if asked so" do
+          private_exams = Exam.only_private
+          private_exams.each do |exam|
+               exam.public.should == false
+          end
+     end
+
+     it "should return only public exams if asked so" do
+          public_exams = Exam.only_public
+          public_exams.each do |exam|
+               exam.public.should == true
           end
      end
 

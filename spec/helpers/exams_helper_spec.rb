@@ -22,15 +22,15 @@ describe ExamsHelper do
 
      end
 
-     describe "#exam_type_selection" do
+     describe "#type_selection" do
 
           it "should return list of exam types" do
-               exam_type_mock = mock_model ExamType do |etype|
+               type_mock = mock_model Type do |etype|
                     etype.stub!(:name).and_return "Seperate exam"
                     etype.stub!(:id).and_return "1"
                end
-               exam_types = [exam_type_mock]
-               exam_type_selection(exam_types).should include(["Seperate exam", "1"])
+               types = [type_mock]
+               type_selection(types).should include(["Seperate exam", "1"])
           end
 
      end

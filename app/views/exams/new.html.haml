@@ -13,8 +13,8 @@
                = f.label :course, t('pages.exams.forms.newexam.course')
                %span#course{:name => :course}= @course.name
           %div
-               = f.label :exam_type_id, t('pages.exams.forms.newexam.type')
-               = select_tag 'exam[exam_type_id]', options_for_select(exam_type_selection(@exam_types))
+               = f.label :type_id, t('pages.exams.forms.newexam.type')
+               = select_tag 'exam[type_id]', options_for_select(type_selection(@types))
           %div
                = f.label :date, t('pages.exams.forms.newexam.date')
                = f.text_field :date

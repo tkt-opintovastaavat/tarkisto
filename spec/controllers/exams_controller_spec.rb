@@ -6,7 +6,8 @@ describe ExamsController do
           @course_mock = mock_model Course
           @exam_mock = mock_model Exam
           @exams_mock = [@exam_mock]
-          @exam_type_mock = mock_model ExamType
+          @type_mock = mock_model Type
+          @question_mock = mock_model Question
           @course_id = '1'
           Course.should_receive(:find_by_id).with(@course_id).and_return(@course_mock)
           @course_mock.stub!(:id).and_return(@course_id)
@@ -34,10 +35,12 @@ describe ExamsController do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:published).and_return(@exams_mock)
                          @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
+                         @exam_mock.should_receive(:questions).and_return(@question_mock)
 
                          get 'show', :course_id => @course_id, :id => 1
 
                          assigns(:exam).should == @exam_mock
+                         assigns(:questions).should == @question_mock
                     end
                end
 
@@ -46,13 +49,13 @@ describe ExamsController do
                          Exam.should_receive(:new).and_return(@exam_mock)
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:unpublished).and_return([@exam_mock])
-                         ExamType.should_receive(:all).and_return([@exam_type_mock])
+                         Type.should_receive(:all).and_return([@type_mock])
 
                          get 'new', :course_id => @course_id
 
                          assigns(:exam).should == @exam_mock
                          assigns(:exams).should == [@exam_mock]
-                         assigns(:exam_types).should == [@exam_type_mock]
+                         assigns(:types).should == [@type_mock]
                     end
                end
 
@@ -146,7 +149,7 @@ describe ExamsController do
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:create).and_return(@exam_mock)
                     @exam_mock.should_receive(:new_record?).and_return(true)
-                    post 'create', :course_id => @course_id, :exam => {:exam_type_id => '1', :date => Date.today}
+                    post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today}
                     response.should redirect_to(new_exam_url(@course_id))
                end
 
@@ -166,7 +169,7 @@ describe ExamsController do
                     @exams_mock.should_receive(:create).and_return(@exam_mock)
                     @exam_mock.should_receive(:new_record?).and_return(false)
                     @exam_mock.stub!(:id).and_return(3)
-                    post 'create', :course_id => @course_id, :exam => {:exam_type_id => '1', :date => Date.today, :maximum_points => '60'}
+                    post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today, :maximum_points => '60'}
                     response.should redirect_to(edit_exam_url(@course_id, @exam_mock.id))
                end
 

@@ -19,6 +19,8 @@ class ExamsController < ApplicationController
                return
           end
 
+          @questions = @exam.questions
+
           respond_to do |format|
                format.html
           end
@@ -27,7 +29,7 @@ class ExamsController < ApplicationController
      def new
           @exam = Exam.new
           @exams = @course.exams.unpublished
-          @exam_types = ExamType.all
+          @types = Type.all
 
           respond_to do |format|
                format.html do

@@ -3,4 +3,4 @@
 - content_for :content do
      %h2 #{@course.name} - #{@exam.name}
 
-     %h3 Selitä äärellisestä automaatista
+     = render :partial => "questions", :locals => {:questions => @questions, :points => @exam.maximum_points}
