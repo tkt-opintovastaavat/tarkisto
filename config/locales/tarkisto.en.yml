@@ -44,3 +44,7 @@ en:
                     submit: "Log in"
                     title: "Log in"
                logout: "Log out"
+               errors:
+                    login_failed: "Your login attempt failed"
+               notifications:
+                    logout: "Successfully logged out"

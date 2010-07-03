@@ -57,6 +57,11 @@ describe User do
                User.authentication(@username, @password).should == nil
           end
 
+          it "should fail, when passed empty username" do
+               User.authentication('', @password).should == nil
+               User.authentication(nil, @password).should == nil
+          end
+
      end
 
 end
