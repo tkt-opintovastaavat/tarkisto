@@ -43,6 +43,7 @@ fi:
                     submit: "Kirjaudu"
                     title: "Kirjaudu sisään"
                logout: "Kirjaudu ulos"
+               logged_in: "Kirjautuneena"
                errors:
                     login_failed: "Kirjautumisyrityksesi epäonnistui"
                notifications:

@@ -15,4 +15,6 @@
                     %tr
                          %td.notifications(colspan=3)= flash[:session_notification]
 - else 
+     %span.title #{t('pages.session.logged_in')}:
+     #{current_user.username}
      = link_to t('pages.session.logout'), session_url, :method => :delete
