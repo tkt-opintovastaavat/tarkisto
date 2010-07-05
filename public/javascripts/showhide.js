@@ -1,22 +1,13 @@
-function showhide(obj) {
-     var el = document.getElementById(obj);
-     if ( el.style.display != 'none' ) {
-          el.style.display = 'none';
-     }
-     
-     else {
-          el.style.display = '';
-     }
+$(document).ready(function() {
+     collapseAll();
+     $('#examlists a[href="#toggle"]').live('click', showhide);
+});
+
+function showhide(event) {
+     event.preventDefault();
+     $(this).parent().next('.exams').toggle('slow');
 }
 
 function collapseAll(objs) {
-     var i;
-     for (i=0;i<objs.length;i++ ) {
-          objs[i].style.display = 'none';
-     }
-}
-
-
-function pageLoad() {
-     collapseAll($('course','repeat','separate'));
+     $('.exams').hide();
 }

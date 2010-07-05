@@ -6,21 +6,15 @@
 
      #examlists
 
-          %h3 
-               %a(onclick="showhide('course');" title="Näytä/piilota kaikki")
-                    =t 'pages.exams.types.course-exams'
-          #course
-               = render :partial => "table", :locals => {:exams => @course.exams.course_exams}
+          %h3
+               %a(href="#toggle")=t 'pages.exams.types.course-exams'
+          .exams= render :partial => "table", :locals => {:exams => @course.exams.course_exams}
      
           %h3
-               %a(onclick="showhide('separate');" title="Näytä/piilota kaikki")
-                    =t 'pages.exams.types.separate-exams'
-          #separate
-               = render :partial => "table", :locals => {:exams => @course.exams.separate_exams}
+               %a(href="#toggle")=t 'pages.exams.types.separate-exams'
+          .exams= render :partial => "table", :locals => {:exams => @course.exams.separate_exams}
      
      
           %h3
-               %a(onclick="showhide('repeat');" title="Näytä/piilota kaikki")
-                    =t 'pages.exams.types.repeat-exams'
-          #repeat
-               = render :partial => "table", :locals => {:exams => @course.exams.repeat_exams}
+               %a(href="#toggle")=t 'pages.exams.types.repeat-exams'
+          .exams= render :partial => "table", :locals => {:exams => @course.exams.repeat_exams}
