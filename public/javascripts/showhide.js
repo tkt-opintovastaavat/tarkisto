@@ -8,6 +8,6 @@ function showhide(event) {
      $(this).parent().next('.exams').toggle('slow');
 }
 
-function collapseAll(objs) {
+function collapseAll() {
      $('.exams').hide();
 }
