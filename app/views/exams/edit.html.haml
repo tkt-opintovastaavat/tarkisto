@@ -11,7 +11,11 @@
      #questions
           %ul
                %li
-                    = link_to 'Question 1', '#questions-1'
+                    = link_to 'Question 1', 'questions/1'
+                    %a(href="#remove")
+                         %span.ui-icon.ui-icon-close Remove Tab
+               %li
+                    = link_to 'Question 2', 'questions/2'
                     %a(href="#remove")
                          %span.ui-icon.ui-icon-close Remove Tab
                %li.new-question= link_to 'New question', '#new_question'
@@ -20,7 +24,7 @@
                %table
                     %tr
                          %td
-                              %textarea#question-content
+                              %textarea.question-content
                          %td
                               %div
                                    %p Lisää kuva

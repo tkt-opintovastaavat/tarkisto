@@ -129,12 +129,17 @@ function addTabs() {
 
      $('a[href="#new_question"]').live('click', function(event) {
           event.preventDefault();
-          $tabs.tabs('add', 'questions/'+tab_counter+'.json', 'Question #'+tab_counter, $tabs.tabs('length')-1);
+          var data = {id: 1, name: 'Question #1'}
+          $tabs.tabs('add', 'questions/'+data.id+'.json', data.name, $tabs.tabs('length')-1);
           tab_counter++
      });
      $tabs.find('.ui-tabs-nav').sortable({
           axis:'x',
           items: 'li:not(.new-question)',
+     });
+     $('.question-content').resizable({
+          handles: 's',
+          minHeight: 150
      });
 }
 
