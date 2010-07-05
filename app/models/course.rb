@@ -1,12 +1,24 @@
 class Course < ActiveRecord::Base
      has_many :exams
      has_many :shortcuts
-     belongs_to :course_level
+     has_many :instances
+     belongs_to :level
 
-     validates_presence_of :name, :credits, :code
-     
-     named_scope :basic_courses, :conditions => {:course_level_id => CourseLevel.find_by_name("Perusopinnot").id}
-     named_scope :intermediate_courses, :conditions => {:course_level_id => CourseLevel.find_by_name("Aineopinnot").id}
-     named_scope :advanced_courses, :conditions => {:course_level_id => CourseLevel.find_by_name("Syventävät opinnot").id}
-     named_scope :other_courses , :conditions => {:course_level_id => CourseLevel.find_by_name("Muut opinnot").id}
+     validates_presence_of :name_fi, :credits, :code
+
+     named_scope :basic_courses, :conditions => {:level_id => Level.find_by_name_fi("Perusopinnot").id}
+     named_scope :intermediate_courses, :conditions => {:level_id => Level.find_by_name_fi("Aineopinnot").id}
+     named_scope :advanced_courses, :conditions => {:level_id => Level.find_by_name_fi("Syventävät opinnot").id}
+     named_scope :other_courses , :conditions => {:level_id => Level.find_by_name_fi("Muut opinnot").id}
+
+     def name
+          if (I18n.locale == :fi)
+               return name_fi
+          elsif (I18n.locale == :en)
+               return name_en
+          elsif (I18n.locale == :se)
+               return name_se
+          end
+     end
+
 end

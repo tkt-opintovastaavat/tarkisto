@@ -2,10 +2,12 @@ class CreateCourses < ActiveRecord::Migration
      def self.up
           create_table :courses do |t|
                t.integer :code
-               t.string :name
-               t.references :course_level, :options => "CONSTRAINT fk_course_level REFERENCES course_levels(id)"
+               t.string :name_fi
+               t.string :name_se
+               t.string :name_en
+               t.references :level, :options => "CONSTRAINT fk_course_level REFERENCES course_levels(id)"
                t.integer :credits
-               t.references :replaced_by_course, :options => "CONSTRAINT fk_course REFERENCES courses(id)"
+               t.integer :replaced_by, :options => "CONSTRAINT fk_course REFERENCES courses(id)"
                t.timestamps
           end
      end

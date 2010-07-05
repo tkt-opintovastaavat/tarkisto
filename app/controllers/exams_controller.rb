@@ -1,23 +1,88 @@
 class ExamsController < ApplicationController
 
-     # set_tab is tabs_on_rails method that sets the current tab as the one specified
+     before_filter :_set_course
+
      def index
-          set_tab :all
-          @course = Course.find_by_id(params[:course_id])
+          @exams = @course.exams.published
+          respond_to do |format|
+               format.html do
+                    set_tab :all
+               end
+          end
      end
 
      def show
-          @course = Course.find_by_id(params[:course_id])
-          @exam = Exam.find_by_id(params[:id])
+          @exam = @course.exams.published.find_by_id(params[:id])
+
+          if @exam.nil?
+               redirect_to course_exams_url(@course.id)
+               return
+          end
+
+          @questions = @exam.questions
+
+          respond_to do |format|
+               format.html
+          end
      end
 
      def new
-          set_tab :new
-          @course = Course.find_by_id(params[:course_id])
+          @exam = Exam.new
+          @exams = @course.exams.unpublished
+          @types = Type.all
+
+          respond_to do |format|
+               format.html do
+                    set_tab :new
+               end
+          end
+     end
+
+     def create
+          if params.include? 'exam'
+               if params['exam'].include? 'id'
+                    exam = @course.exams.find_by_id params['exam']['id']
+               end
+               if exam.nil?
+                    exam = @course.exams.create params['exam'].delete_if{|key, value| key == 'id'}
+               end
+               unless exam.new_record?
+                    redirect_to edit_course_exam_url(@course.id, exam.id)
+                    return
+               end
+          end
+          redirect_to new_course_exam_url(@course.id)
+     end
+
+     def edit
+          @exam = @course.exams.find_by_id(params[:id])
+
+          if @exam.nil?
+               redirect_to new_course_exam_url(@course.id)
+               return
+          elsif @exam.published
+               redirect_to course_exam_url(@course.id, @exam.id)
+               return
+          end
+
+          respond_to do |format|
+               format.html do
+                    set_tab :new
+               end
+          end
      end
 
      def generate
-          set_tab :generate
+          respond_to do |format|
+               format.html do
+                    set_tab :generate
+               end
+          end
+     end
+
+     private
+
+     def _set_course
           @course = Course.find_by_id(params[:course_id])
      end
 

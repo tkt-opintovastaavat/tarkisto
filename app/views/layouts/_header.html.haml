@@ -1,17 +1,7 @@
 #header
 
      #logo
-          %h1= link_to('Tenttiarkisto', root_url)
+          = link_to(image_tag("logo.png", :border => 0, :alt => "Tenttiarkisto", :title => "Tenttiarkisto"), root_url)
 
-     #login
-          - if session[:user_id].nil?
-               - form_for :session, :url => session_url do |f|
-                    - field_set_tag t('pages.session.form.title') do
-                         = f.label :username , t('pages.session.form.username')
-                         = f.text_field :username
-                         = f.label :password, t('pages.session.form.password')
-                         = f.password_field :password
-                         = submit_tag t('pages.session.form.submit')
-          - else 
-               = link_to t('pages.session.logout'), session_url, :method => :delete
+     #login= render :partial => "layouts/login"
 

@@ -7,7 +7,7 @@ en:
                intermediate: "Intermediate studies"
                advanced: "Advanced studies"
                other: "Other studies"
-     
+
      pages:
           dashboard:
                practice: "Practice"
@@ -21,11 +21,26 @@ en:
                     add: "Add new exam"
                     generate: "Generate practice exam"
                     all: "All exams"
+                    edit: "Edit exam"
                types:
                     course-exams: "Course exams"
                     separate-exams: "Separate exams"
                     repeat-exams: "Repeat exams"
-     
+               forms:
+                    selection:
+                         name: "Select exam"
+                         new: "-- New exam --"
+                    newexam:
+                         type: "Exam type"
+                         maxpoints: "Maximum points"
+                         course: "Course"
+                         lecturer: "Lecturer"
+                         date: "Date"
+                         public_notification: "Exam isn't public by default"
+                         continue: "Continue"
+                    publish:
+                         submit: "Publish"
+
           session:
                form:
                     username: "Username"
@@ -33,8 +48,12 @@ en:
                     submit: "Log in"
                     title: "Log in"
                logout: "Log out"
+               logged_in: "Logged in"
+               errors:
+                    login_failed: "Your login attempt failed"
+               notifications:
+                    logout: "Successfully logged out"
 
-               
           courses:
                showall: "Show all"
                back: "Back to dashboard"

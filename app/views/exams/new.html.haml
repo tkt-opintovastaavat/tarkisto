@@ -2,3 +2,24 @@
      #{@course.name} :: #{t 'pages.exams.titles.add'}
 - content_for :content do
      %h2= "#{@course.name} - #{t 'pages.exams.titles.add'}"
+
+     %form#selection
+          %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
+          = select_tag :exam_name, options_for_select(exam_selection(@exams), 'new')
+
+     - form_for @exam, :url => course_exams_url(@course.id) do |f|
+          %div= f.hidden_field :id
+          %div
+               = f.label :course, t('pages.exams.forms.newexam.course')
+               %span#course{:name => :course}= @course.name
+          %div
+               = f.label :type_id, t('pages.exams.forms.newexam.type')
+               = select_tag 'exam[type_id]', options_for_select(type_selection(@types))
+          %div
+               = f.label :date, t('pages.exams.forms.newexam.date')
+               = f.text_field :date
+          %div
+               = f.label :maximum_points, t('pages.exams.forms.newexam.maxpoints')
+               = f.text_field :maximum_points
+          %div= t('pages.exams.forms.newexam.public_notification')
+          %div= submit_tag t('pages.exams.forms.newexam.continue')

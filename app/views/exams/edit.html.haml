@@ -1,0 +1,34 @@
+- content_for :title do
+     #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
+- content_for :content do
+     #exam_info
+
+          - form_for @exam, :url => course_exams_url(@course) do |f|
+               %div= submit_tag t('pages.exams.forms.publish.submit')
+
+          %p#name_of_exam= "#{@course.name} - #{@exam.name}"
+
+     #questions
+          %ul
+               %li
+                    = link_to 'Question 1', '#questions-1'
+                    %a(href="#remove")
+                         %span.ui-icon.ui-icon-close Remove Tab
+               %li.new-question= link_to 'New question', '#new_question'
+          #questions-1
+               %p Foobar
+               %table
+                    %tr
+                         %td
+                              %textarea#question-content
+                         %td
+                              %div
+                                   %p Lisää kuva
+                                   %p
+                                        %a(href="#show-picture") P=NP
+                                        %a(href="#delete-pic") [poista]
+                              %div
+                                   %p Lisää koodi
+                                   %p
+                                        %a(href="#show-code") automata
+                                        %a(href="#delete-code") [poista]

@@ -1,0 +1,8 @@
+- if questions.empty?
+     %p Empty
+- else
+     %p Maksimipisteet: #{points}
+     - questions.each do |question|
+          %h3 #{question.number}. #{question.name} 
+          %pre #{question.description}
+          %p Pisteet: #{question.points}

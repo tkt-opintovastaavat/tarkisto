@@ -1,26 +1,38 @@
 @import compass/reset
 @import _header
 @import _footer
-@import _navi
 @import _main
+@import _search
+
+body
+     font:
+          size: 75%
+          family: Verdana, Arial, Helvetica, sans-serif
 
 h1
      font:
-          size: 200%
+          size: 1.5em
+     text:
+          transform: uppercase
 
 h2
+     margin: 0em 0em 1em 0em
      font:
-          size: 160%
+          size: 1.2em
+          weight: bold
      text:
-          align: center
+          transform: uppercase
           
 h3
+     margin: 2em 0em 1em 0em
      font:
-          size: 120%
+          size: 1.3em
+     text:
+          transform: uppercase
 
 @mixin content-style
      padding: 0.5em
-     border: thin solid black
+     /* border: thin solid black */
      font:
           family: Verdana, Arial, Helvetica, sans-serif
        
