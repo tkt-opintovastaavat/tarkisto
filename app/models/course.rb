@@ -17,9 +17,16 @@ class Course < ActiveRecord::Base
      end
      
      def self.search keyword
-          keyword = "%#{keyword}%"
-          Course.find :all, :conditions => ["name_fi like ? or name_se like ? or name_en like ?" , keyword, keyword, keyword]
-          #Course.find :all, :conditions => ["name_fi like ?", "%#{keyword}%"] or ["name_se like ?", "%#{keyword}%"] or ["name_en like ?", "%#{keyword}%"]
+          if (I18n.locale == :fi)
+               condition = "name_fi LIKE ?"
+          elsif (I18n.locale == :en)
+               condition = "name_en LIKE ?"
+          elsif (I18n.locale == :se)
+               condition = "name_se LIKE ?"
+          else
+               return nil
+          end
+          Course.find :all, :conditions => [condition , "%#{keyword}%"]
      end
      
 end

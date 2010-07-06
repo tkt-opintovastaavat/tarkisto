@@ -77,13 +77,41 @@ describe Course do
                found.should == true
           end
           
-          it "should search by different language" do
-               results = Course.search "trod"
+          it "should search name in English" do
+               results = Course.search "Introduction to Programming"
+               I18n.stub!(:locale).and_return(:en)
                found = false
                results.each do |result|
-                    found = true if result.name == "Ohjelmoinnin perusteet"
+                    found == true if result.name == "Introduction to Programming"
                end
-               found.should == true
           end
+
+          it "should search name in English" do
+               results = Course.search "Introduction to Programming"
+               I18n.stub!(:locale).and_return(:en)
+               found = false
+               results.each do |result|
+                    found == true if result.name == "Introduction to Programming"
+               end
+          end
+          
+          it "should search name in English" do
+               results = Course.search "Introduction to Programming"
+               I18n.stub!(:locale).and_return(:en)
+               found = false
+               results.each do |result|
+                    found == true if result.name == "Introduction to Programming"
+               end
+          end
+          
+          it "should search name in Swedish" do
+               results = Course.search "Introduktion till programmering"
+               I18n.stub!(:locale).and_return(:en)
+               found = false
+               results.each do |result|
+                    found == true if result.name == "Introduktion till programmering"
+               end
+          end
+
      end
 end
