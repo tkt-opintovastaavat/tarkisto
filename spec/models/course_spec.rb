@@ -5,6 +5,8 @@ describe Course do
           @valid_attributes = {
                :code => 12345 ,
                :name_fi => 'Ohjelmoinnin perusteet' ,
+               :name_se => 'Introduktion till programmering' ,
+               :name_en => 'Introduction to Programming' ,
                :level_id => 1 ,
                :credits => 5 ,
                :replaced_by => 2
@@ -49,5 +51,39 @@ describe Course do
           end
 
      end
+     
+     describe "#search" do
+          
+          before :each do 
+               Course.create! @valid_attributes
+          end
+          
+          it "should search by full name" do
+               results = Course.search "Ohjelmoinnin perusteet"
+               found = false
+               results.each do |result|
+                    found = true if result.name == "Ohjelmoinnin perusteet"
+               end
+               found.should == true
 
+          end
+          
+          it "should search by partial" do
+               results = Course.search "moin"
+               found = false
+               results.each do |result|
+                    found = true unless result.name.scan(/moin/).empty? 
+               end
+               found.should == true
+          end
+          
+          it "should search by different language" do
+               results = Course.search "trod"
+               found = false
+               results.each do |result|
+                    found = true if result.name == "Ohjelmoinnin perusteet"
+               end
+               found.should == true
+          end
+     end
 end

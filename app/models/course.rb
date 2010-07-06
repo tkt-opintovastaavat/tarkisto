@@ -15,4 +15,11 @@ class Course < ActiveRecord::Base
                return name_se
           end
      end
+     
+     def self.search keyword
+          keyword = "%#{keyword}%"
+          Course.find :all, :conditions => ["name_fi like ? or name_se like ? or name_en like ?" , keyword, keyword, keyword]
+          #Course.find :all, :conditions => ["name_fi like ?", "%#{keyword}%"] or ["name_se like ?", "%#{keyword}%"] or ["name_en like ?", "%#{keyword}%"]
+     end
+     
 end
