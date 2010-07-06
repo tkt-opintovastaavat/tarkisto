@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :session, :controller => :session, :only => [:create, :destroy]
 
-     map.resource :search, :controller => :search, :only => [:show]
+     map.resource :search, :controller => :search, :only => [:show], :member => {:courses => :get}
 
      map.resources :exams, :path_prefix => "courses/:course_id", :only => [:index, :show, :new, :create, :edit], :collection => {:generate => :get}
 

@@ -7,17 +7,28 @@ describe SearchController do
      end
 
      describe "GET 'show'" do
+          before :each do
+               @course_mock = mock_model Course
+          end    
+     
           it "should be successful" do
                get 'show'
                response.should be_success
           end
           it "should receive query variable" do
                get 'show', :query => "lama"
-               assigns(:q).should == "lama"
+               assigns(:p).should == "lama"
           end
           it "should search course from result database" do
+               Course.should_receive(:search).and_return [@course_mock] 
                get 'show', :query => "lama"
-               assigns(:result).should == [{"key" => "lama", "name" => "Laskennan mallit", "course_id" => 1}]
+               assigns(:result).should == [@course_mock]
+          end
+          #siirrä tämäkin course_controller_speciin
+          it "should search all courses" do
+               @course_mock.should_receive(:name).twice.and_return("fu-")
+               Course.should_receive(:search).with("fu-").and_return([@course_mock])
+               get 'courses', :term => "fu-", :format => :json
           end
      end
 
