@@ -1,4 +1,4 @@
-cmd = ARGV.shift || "script/server -p 9999 -e production"
+cmd = ARGV.shift || "script/server -b 127.0.0.3 -e production"
 
 pid = nil
 timestamps = {}
