@@ -16,7 +16,13 @@ class SearchController < ApplicationController
      # siirrä tämä kurssi-kontrolleriin
      protected
      def format_json courses
-          courses.collect{|course| {:id => course.id, :value => course.name, :label => course.name}}
+          courses.collect do |course|
+               label = course.name
+               if label.size - 3 > 60
+                    label = "#{label[0...55]}..."
+               end
+               {:id => course.id, :value => course.name, :label => label}
+          end
      end
 
 end

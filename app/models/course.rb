@@ -26,8 +26,21 @@ class Course < ActiveRecord::Base
           else
                return nil
           end
+          
           courses = Course.find :all, :conditions => [condition , "%#{keyword}%"]
-          courses.sort_by { |name| name[:name_fi] }
+          courses.sort do |course1, course2|
+               first_starts_with_keyword = !course1.name.scan(/^#{keyword}/i).empty?               
+               second_starts_with_keyword = !course2.name.scan(/^#{keyword}/i).empty?               
+               if first_starts_with_keyword and second_starts_with_keyword
+                    course1.name <=> course2.name
+               elsif first_starts_with_keyword and not second_starts_with_keyword
+                    -1
+               elsif not first_starts_with_keyword and second_starts_with_keyword
+                    +1
+               else
+                    course1.name <=> course2.name
+               end
+          end
      end
      
 end
