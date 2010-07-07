@@ -26,7 +26,8 @@ class Course < ActiveRecord::Base
           else
                return nil
           end
-          Course.find :all, :conditions => [condition , "%#{keyword}%"]
+          courses = Course.find :all, :conditions => [condition , "%#{keyword}%"]
+          courses.sort_by { |name| name[:name_fi] }
      end
      
 end
