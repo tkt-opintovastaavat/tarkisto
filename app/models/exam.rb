@@ -22,4 +22,8 @@ class Exam < ActiveRecord::Base
           update_attributes :published => false
      end
 
+     def to_public
+          {:id => id, :type => type_id, :edate => I18n.l(date, :format => :short), :maxpoints => maximum_points}
+     end
+
 end

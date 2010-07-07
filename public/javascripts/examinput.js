@@ -75,9 +75,8 @@ function _getExamData(examid) {
      if (examid == 'new') {
           _nonexistingExam();
      } else {
-          // TODO: Add real functionality here to get json data from application.
-          var data = {id: examid, type: 2, edate: '20.06.2010', maxpoints: 60}
-          _existingExam(data);
+          var cid = /courses\/(.+)\/exams/.exec(window.location)[1];
+          $.getJSON('/courses/'+cid+'/exams/'+examid+'.json', _existingExam);
      }
 }
 

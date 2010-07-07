@@ -16,21 +16,25 @@ describe ExamsController do
      describe "GET" do
 
           describe "success" do
+
                after :each do
                     assigns(:course).should == @course_mock
                     response.should be_success
                end
 
                describe "#index" do
+
                     it "should be successful" do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:published).and_return([@exam_mock])
                          get 'index', :course_id => @course_id
                          assigns(:exams).should == [@exam_mock]
                     end
+
                end
 
                describe "#show" do
+
                     it "should be successful" do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:published).and_return(@exams_mock)
@@ -42,9 +46,11 @@ describe ExamsController do
                          assigns(:exam).should == @exam_mock
                          assigns(:questions).should == @question_mock
                     end
+
                end
 
                describe "#new" do
+
                     it "should be successful" do
                          Exam.should_receive(:new).and_return(@exam_mock)
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
@@ -57,6 +63,7 @@ describe ExamsController do
                          assigns(:exams).should == [@exam_mock]
                          assigns(:types).should == [@type_mock]
                     end
+
                end
 
                describe "#edit" do
@@ -81,9 +88,10 @@ describe ExamsController do
 
           end
 
-          describe "redirect" do
+          describe "redirect or render" do
 
                describe "#show" do
+
                     it "should redirect to index if not found with wanted id" do
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:published).and_return(@exams_mock)
@@ -93,6 +101,17 @@ describe ExamsController do
 
                          response.should redirect_to(exams_url(@course_id))
                     end
+
+                    it "should render json if so requested" do
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                         @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
+                         @exam_mock.should_receive(:to_public)
+
+                         get 'show', :course_id => @course_id, :id => 1, :format => 'json'
+
+                    end
+
                end
 
                describe "#edit" do

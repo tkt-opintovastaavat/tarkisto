@@ -76,4 +76,8 @@ describe Exam do
           end
      end
 
+     it "should return hash of public information" do
+          @valid_exam.to_public.should == {:id => @valid_attributes[:id], :type => @valid_attributes[:type_id], :edate => I18n.l(@valid_attributes[:date], :format => :short), :maxpoints => @valid_attributes[:maximum_points]}
+     end
+
 end

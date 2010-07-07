@@ -12,17 +12,20 @@ class ExamsController < ApplicationController
      end
 
      def show
-          @exam = @course.exams.published.find_by_id(params[:id])
-
-          if @exam.nil?
-               redirect_to exams_url(@course.id)
-               return
-          end
-
-          @questions = @exam.questions
-
           respond_to do |format|
-               format.html
+               format.html do
+                    @exam = @course.exams.published.find_by_id(params[:id])
+
+                    if @exam.nil?
+                         redirect_to exams_url(@course.id)
+                         return
+                    end
+
+                    @questions = @exam.questions
+               end
+               format.json do
+                    render :json => @course.exams.unpublished.find_by_id(params[:id]).to_public
+               end
           end
      end
 
