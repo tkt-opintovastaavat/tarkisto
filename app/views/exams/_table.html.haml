@@ -1,5 +1,7 @@
 - if exams.empty?
-     %p Empty
+     %p=t 'pages.exams.no_exams'
+     %br
+     %br
 - else
      %table
           - exams.each do |exam|

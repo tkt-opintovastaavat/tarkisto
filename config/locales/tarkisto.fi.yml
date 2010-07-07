@@ -13,6 +13,7 @@ fi:
                practice: "Harjoittele"
                addnew: "Lisää koe"
           exams:
+               no_exams: "Ei kokeita."
                tabs:
                     all: "Kaikki kokeet"
                     generate: "Generoi"
@@ -56,3 +57,4 @@ fi:
           courses:
                showall: "Näytä kaikki"
                back: "Takaisin etusivulle"
+               show-hide-unpublished: "Näytä/piilota julkaisemattomat kokeet"

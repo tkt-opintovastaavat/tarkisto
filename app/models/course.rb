@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
      named_scope :intermediate_courses, :conditions => {:level_id => Level.find_by_name_fi("Aineopinnot").id}
      named_scope :advanced_courses, :conditions => {:level_id => Level.find_by_name_fi("Syventävät opinnot").id}
      named_scope :other_courses , :conditions => {:level_id => Level.find_by_name_fi("Muut opinnot").id}
+     named_scope :alphabetize, :order => :name_fi
 
      def name
           if (I18n.locale == :fi)
@@ -21,4 +22,8 @@ class Course < ActiveRecord::Base
           end
      end
 
+     def has_exams?
+          return !exams.published.empty?
+     end
+     
 end

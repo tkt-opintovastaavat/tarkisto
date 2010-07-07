@@ -1,9 +1,18 @@
 - courses.each do |course|
      %tr
-          %td.column1
-               = course.code
-               = link_to "#{course.name}", course_exams_url(course)
-               = "(#{course.credits} op)"
+          -if course.has_exams? 
+               %td
+                    = course.code
+                    = link_to "#{course.name}", course_exams_url(course)
+                    = "(#{course.credits} op)"
+                    
+               %td= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
 
-          %td.column2= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
+          -else
+               %td.noexams
+                    = course.code
+                    = link_to "#{course.name}", course_exams_url(course)
+                    = "(#{course.credits} op)"
+               %td.noexams= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
+
           %td.column3= link_to t('pages.dashboard.addnew'), new_course_exam_url(course)
