@@ -34,7 +34,7 @@ fi:
                          public_notification: "Tentti ei ole oletusarvoisesti julkinen"
                          continue: "Jatka"
                     publish:
-                         submit: "Julkaise"
+                         submit: "Esikatsele"
      
           session:
                form:

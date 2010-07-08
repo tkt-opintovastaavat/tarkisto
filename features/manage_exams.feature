@@ -22,7 +22,6 @@ Feature: Manage exams
           When I follow "Erilliskoe" within "#mainbody"
           Then I should see "Ohjelmoinnin perusteet" within "#mainbody"
           And I should see "Erilliskoe" within "#mainbody"
-          #And I should see "Selitä äärellisestä automaatista" within "#mainbody"
 
      Scenario: Add new exam
           Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
@@ -48,3 +47,5 @@ Feature: Manage exams
           And I press "Jatka"
           Then I should see "Erilliskoe 25.01.2009"
           And I should see publish button
+          When I press "Julkaise"
+          Then I should see "Erilliskoe 25.01.2009"

@@ -75,6 +75,12 @@ class ExamsController < ApplicationController
           end
      end
 
+     def update
+          @exam = @course.exams.unpublished.find_by_id(params[:id])
+          @exam.publish!
+          redirect_to exam_url(@course.id, @exam.id)
+     end
+
      def generate
           respond_to do |format|
                format.html do

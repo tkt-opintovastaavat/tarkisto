@@ -9,6 +9,7 @@ var maxpoints_selection = null;
 var date_selection = null;
 
 var questions_tabs_holder = null;
+var exam_publishing_form = null;
 
 /*
  * jQuery onload
@@ -16,15 +17,15 @@ var questions_tabs_holder = null;
 
 $(document).ready(function() {
      if (examsPage()) {
-          exam_selection = jQuery('#exam_name');
-          examid = jQuery('#exam_id');
-          type_selection = jQuery('#exam_type_id');
-          maxpoints_selection = jQuery('#exam_maximum_points');
-          date_selection = jQuery('#exam_date');
+          exam_selection = $('#exam_name');
+          examid = $('#exam_id');
+          type_selection = $('#exam_type_id');
+          maxpoints_selection = $('#exam_maximum_points');
+          date_selection = $('#exam_date');
           addExamSelection();
           addCalendar();
      } else if (questionsPage()) {
-          questions_tabs_holder = jQuery('#questions');
+          questions_tabs_holder = $('#questions');
           addTabs();
           //FIXME: later ..
           $('a[href="#show-picture"]').live('click', function(event) {

@@ -137,6 +137,24 @@ describe ExamsController do
                     end
 
                end
+
+               describe "#update" do
+
+                    it "should redirect to exam show view after publishing" do
+                         @exam_id = '1'
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                         @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                         @exam_mock.should_receive(:publish!)
+                         @exam_mock.stub!(:id).and_return(@exam_id)
+
+                         get 'update', :course_id => @course_id, :id => @exam_id
+
+                         response.should redirect_to(exam_url(@course_id, @exam_id))
+                    end
+
+               end
+
           end
 
      end

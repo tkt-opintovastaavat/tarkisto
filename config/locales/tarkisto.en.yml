@@ -35,7 +35,7 @@ en:
                          public_notification: "Exam isn't public by default"
                          continue: "Continue"
                     publish:
-                         submit: "Publish"
+                         submit: "Preview"
      
           session:
                form:
