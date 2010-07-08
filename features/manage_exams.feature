@@ -47,5 +47,5 @@ Feature: Manage exams
           And I press "Jatka"
           Then I should see "Erilliskoe 25.01.2009"
           And I should see publish button
-          When I press "Julkaise"
+          When I press "Esikatsele"
           Then I should see "Erilliskoe 25.01.2009"
