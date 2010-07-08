@@ -93,6 +93,17 @@ describe ExamsController do
 
                          response.should redirect_to(exams_url(@course_id))
                     end
+                    it "should format pdf from given exam id" do
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @course_mock.should_receive(:name).and_return("foo")
+                         @exams_mock.should_receive(:published).and_return(@exams_mock)
+                         @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
+                         @exam_mock.should_receive(:name).and_return("bar")
+                         PdfExport.should_receive(:exam).with(@exam_mock).and_return(nil)
+                         controller.should_receive(:send_data).with(nil, :filename => "foo - bar.pdf").and_return(nil)
+
+                         get 'show', :course_id => @course_id, :id => 1, :format => "pdf"
+                    end
                end
 
                describe "#edit" do

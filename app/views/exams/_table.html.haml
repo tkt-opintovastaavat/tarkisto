@@ -6,5 +6,4 @@
                %tr
                     %td= link_to exam.type.name, exam_url(exam.course, exam)
                     %td= exam.date
-                    %td= link_to "PDF", exam_url(exam.course, exam)
-                    %td= link_to "TXT", exam_url(exam.course, exam)
+                    %td= link_to "PDF", exam_url(exam.course, exam, :format => :pdf)

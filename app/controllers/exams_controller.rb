@@ -13,16 +13,16 @@ class ExamsController < ApplicationController
 
      def show
           @exam = @course.exams.published.find_by_id(params[:id])
-
           if @exam.nil?
                redirect_to exams_url(@course.id)
                return
           end
 
-          @questions = @exam.questions
-
           respond_to do |format|
-               format.html
+               format.html do
+                    @questions = @exam.questions
+               end
+               format.pdf { send_data PdfExport.exam(@exam), :filename => "#{@course.name} - #{@exam.name}.pdf"} 
           end
      end
 
