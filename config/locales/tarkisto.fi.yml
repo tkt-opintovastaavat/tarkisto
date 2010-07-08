@@ -1,5 +1,13 @@
 fi:
 
+     pdf:
+          school:
+               name: "Helsingin Yliopisto"
+               department: "Tietojenkäsittelytiede"
+          exam:
+               max_points: "Maksimipisteet"
+               points: "pistettä"
+
      courses:
           title: "Kurssit"
           levels:
