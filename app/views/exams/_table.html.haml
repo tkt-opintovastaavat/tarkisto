@@ -3,10 +3,16 @@
      %br
      %br
 - else
-     %table
-          - exams.each do |exam|
+     %table#exams
+          %thead
                %tr
-                    %td= link_to exam.type.name, course_exam_url(exam.course, exam)
-                    %td= exam.date
-                    %td= link_to "PDF", course_exam_url(exam.course, exam, :format => :pdf)
+                    %td Koetyyppi
+                    %td Päivämäärä
+                    %td PDF
+          %tbody
+               - exams.each do |exam|
+                    %tr
+                         %td= link_to exam.type.name, course_exam_url(exam.course, exam)
+                         %td= exam.date
+                         %td= link_to "PDF", course_exam_url(exam.course, exam, :format => :pdf)
 

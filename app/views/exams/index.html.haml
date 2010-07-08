@@ -6,15 +6,4 @@
 
      #examlists
 
-          %h3
-               %a(href="#toggle")=t 'pages.exams.types.course-exams'
-          .exams= render :partial => "table", :locals => {:exams => @course.exams.course_exams}
-     
-          %h3
-               %a(href="#toggle")=t 'pages.exams.types.separate-exams'
-          .exams= render :partial => "table", :locals => {:exams => @course.exams.separate_exams}
-     
-     
-          %h3
-               %a(href="#toggle")=t 'pages.exams.types.repeat-exams'
-          .exams= render :partial => "table", :locals => {:exams => @course.exams.repeat_exams}
+          = render :partial => "table", :locals => {:exams => @exams}
