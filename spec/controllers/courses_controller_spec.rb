@@ -4,12 +4,14 @@ describe CoursesController do
 
      before :each do
           @course_mock = mock_model Course
+          @courses_mock = [@course_mock]
      end
 
      describe "#basics" do
 
           it "should be successful" do
-               Course.should_receive(:basic_courses).and_return([@course_mock])
+               Course.should_receive(:basic_courses).and_return(@courses_mock)
+               @courses_mock.should_receive(:alphabetize).and_return(@courses_mock)
 
                get 'basics'
 
@@ -21,7 +23,8 @@ describe CoursesController do
      describe "#intermediates" do
 
           it "should be successful" do
-               Course.should_receive(:intermediate_courses).and_return([@course_mock])
+               Course.should_receive(:intermediate_courses).and_return(@courses_mock)
+               @courses_mock.should_receive(:alphabetize).and_return([@course_mock])
 
                get 'intermediates'
 
@@ -33,7 +36,8 @@ describe CoursesController do
      describe "#advanceds" do
 
           it "should be successful" do
-               Course.should_receive(:advanced_courses).and_return([@course_mock])
+               Course.should_receive(:advanced_courses).and_return(@courses_mock)
+               @courses_mock.should_receive(:alphabetize).and_return([@course_mock])
 
                get 'advanceds'
 
@@ -45,7 +49,8 @@ describe CoursesController do
      describe "#others" do
 
           it "should be successful" do
-               Course.should_receive(:other_courses).and_return([@course_mock])
+               Course.should_receive(:other_courses).and_return(@courses_mock)
+               @courses_mock.should_receive(:alphabetize).and_return([@course_mock])
 
                get 'others'
 
