@@ -7,12 +7,13 @@ en:
                intermediate: "Intermediate studies"
                advanced: "Advanced studies"
                other: "Other studies"
-     
+
      pages:
           dashboard:
                practice: "Practice"
                addnew: "Add exam"
           exams:
+               no-exams: "No exams."
                tabs:
                     all: "All exams"
                     generate: "Generate"
@@ -22,6 +23,10 @@ en:
                     generate: "Generate practice exam"
                     all: "All exams"
                     edit: "Edit exam"
+               types:
+                    course-exams: "Course exams"
+                    separate-exams: "Separate exams"
+                    repeat-exams: "Repeat exams"
                forms:
                     selection:
                          name: "Select exam"
@@ -36,7 +41,7 @@ en:
                          continue: "Continue"
                     publish:
                          submit: "Publish"
-     
+
           session:
                form:
                     username: "Username"
@@ -49,3 +54,8 @@ en:
                     login_failed: "Your login attempt failed"
                notifications:
                     logout: "Successfully logged out"
+
+          courses:
+               showall: "Show all"
+               back: "Back to dashboard"
+               show-hide-unpublished: "Show/hide unpublished courses"
