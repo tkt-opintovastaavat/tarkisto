@@ -9,29 +9,9 @@
 
      #questions
           %ul
-               %li
-                    = link_to 'Question 1', '#questions-1'
-                    %a(href="#remove")
-                         %span.ui-icon.ui-icon-close Remove Tab
-               %li
-                    = link_to 'Question 2', 'questions/2'
-                    %a(href="#remove")
-                         %span.ui-icon.ui-icon-close Remove Tab
-               %li.new-question= link_to 'New question', '#new_question'
-          #questions-1
-               %p Foobar
-               %table
-                    %tr
-                         %td
-                              %textarea.question-content
-                         %td
-                              %div
-                                   %p Lisää kuva
-                                   %p
-                                        %a(href="#show-picture") P=NP
-                                        %a(href="#delete-pic") [poista]
-                              %div
-                                   %p Lisää koodi
-                                   %p
-                                        %a(href="#show-code") automata
-                                        %a(href="#delete-code") [poista]
+               - @exam.questions.each do |question|
+                    %li
+                         = link_to "Question ##{question.id}", exam_question_url(@course.id, @exam.id, question.id)
+                         %a(href="#remove")
+                              %span.ui-icon.ui-icon-close Remove Tab
+               %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question', :id => "#{exam_path(@course.id, @exam.id)}"

@@ -28,6 +28,7 @@ $(document).ready(function() {
           questions_tabs_holder = $('#questions');
           addTabs();
           //FIXME: later ..
+          /*
           $('a[href="#show-picture"]').live('click', function(event) {
                event.preventDefault();
                alert('This will pop-up an dialog with picture');
@@ -46,6 +47,7 @@ $(document).ready(function() {
                if (confirm('Do you want to delete code?'))
                     alert('This will delete the code');
           });
+          */
      }
 });
 
@@ -111,13 +113,17 @@ function questionsPage() {
 }
 
 function addTabs() {
-     var tab_counter = 2;
      var $tabs = questions_tabs_holder.tabs({
           tabTemplate: '<li><a href="#{href}">#{label}</a> <a href="#remove"><span class="ui-icon ui-icon-close">Remove Tab</span></a></li>',
           idPrefix: 'questions-',
           add: function(event, ui) {
-               _addNewTab(event, ui);
                $tabs.tabs('select', '#' + ui.panel.id);
+          },
+          load: function(event, ui) {
+               $('.question-content').resizable({
+                    handles: 's',
+                    minHeight: 150
+               });
           }
      });
 
@@ -127,22 +133,16 @@ function addTabs() {
           $tabs.tabs('remove', index);
      });
 
-     $('a[href="#new_question"]').live('click', function(event) {
+     $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          var data = {id: 1, name: 'Question #1'}
-          $tabs.tabs('add', 'questions/'+data.id+'.json', data.name, $tabs.tabs('length')-1);
-          tab_counter++
+          var creation_url = $(this).attr('id') + '/questions'
+          $.post(creation_url, function(data) {
+               $tabs.tabs('add', creation_url+'/'+data.id, "Question #"+data.id, $tabs.tabs('length')-1);
+          }, 'json');
      });
+
      $tabs.find('.ui-tabs-nav').sortable({
           axis:'x',
           items: 'li:not(.new-question)',
      });
-     $('.question-content').resizable({
-          handles: 's',
-          minHeight: 150
-     });
-}
-
-function _addNewTab(event, ui) {
-     $(ui.panel).append('<p>Content of added tab</p>');
 }

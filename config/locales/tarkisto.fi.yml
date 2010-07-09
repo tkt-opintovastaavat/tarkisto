@@ -46,6 +46,8 @@ fi:
                     preview:
                          title: "Esikatselu"
                          submit: "Julkaise"
+                    questions:
+                         new: "Uusi kysymys"
      
           session:
                form:

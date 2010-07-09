@@ -20,6 +20,6 @@
                = f.text_field :date
           %div
                = f.label :maximum_points, t('pages.exams.forms.newexam.maxpoints')
-               = f.text_field :maximum_points
+               = f.text_field :maximum_points, :size => 3
           %div= t('pages.exams.forms.newexam.public_notification')
           %div= submit_tag t('pages.exams.forms.newexam.continue')

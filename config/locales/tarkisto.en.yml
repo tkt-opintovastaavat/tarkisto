@@ -46,6 +46,8 @@ en:
                     preview:
                          title: "Preview"
                          submit: "Publish"
+                    questions:
+                         new: "New question"
      
           session:
                form:

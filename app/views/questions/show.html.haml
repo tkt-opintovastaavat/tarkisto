@@ -1,0 +1,20 @@
+%table
+     %tr
+          %td
+
+               %input.name(type="text")
+                    = @question.name unless @question.name.nil? or @question.name.empty?
+
+               %textarea.question-content
+                    = @question.description unless @question.description.nil? or @question.description.empty?
+          %td
+               %div
+                    %p Lisää kuva
+                    %p
+                         %a(href="#show-picture") P=NP
+                         %a(href="#delete-pic") [poista]
+               %div
+                    %p Lisää koodi
+                    %p
+                         %a(href="#show-code") automata
+                         %a(href="#delete-code") [poista]
