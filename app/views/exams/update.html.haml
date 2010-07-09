@@ -1,0 +1,9 @@
+- content_for :title do
+     #{@course.name} :: #{@exam.name} :: #{t 'pages.exams.forms.preview.title'}
+- content_for :content do
+     %h2 #{@course.name} - #{@exam.name} - #{t 'pages.exams.forms.preview.title'}
+
+     = render :partial => "questions", :locals => {:questions => @questions, :points => @exam.maximum_points}
+
+     - form_for @exam, :url => publish_exam_url(@course.id, @exam.id), :html => {:method => :post} do |f|
+          %div= submit_tag t('pages.exams.forms.preview.submit')

@@ -43,6 +43,9 @@ fi:
                          continue: "Jatka"
                     publish:
                          submit: "Esikatsele"
+                    preview:
+                         title: "Esikatselu"
+                         submit: "Julkaise"
      
           session:
                form:

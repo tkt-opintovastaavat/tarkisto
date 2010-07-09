@@ -86,17 +86,28 @@ class ExamsController < ApplicationController
           end
      end
 
-     def update
-          @exam = @course.exams.unpublished.find_by_id(params[:id])
-          @exam.publish!
-          redirect_to exam_url(@course.id, @exam.id)
-     end
-
      def generate
           respond_to do |format|
                format.html do
                     set_tab :generate
                end
+          end
+     end
+
+     def update
+          @exam = @course.exams.unpublished.find_by_id params[:id]
+          @questions = @exam.questions
+          respond_to do |format|
+               format.html
+          end
+     end
+
+     def publish
+          @exam = @course.exams.unpublished.find_by_id(params[:id])
+          if @exam.publish!
+               redirect_to exam_url(@course.id, @exam.id)
+          else
+               redirect_to edit_exam_url(@course.id, @exam.id)
           end
      end
 

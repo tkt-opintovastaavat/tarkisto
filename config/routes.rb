@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :search, :controller => :search, :only => [:show]
 
-     map.resources :exams, :path_prefix => "courses/:course_id", :only => [:index, :show, :new, :create, :edit, :update], :collection => {:generate => :get} do |exam|
+     map.resources :exams, :path_prefix => "courses/:course_id", :only => [:index, :show, :new, :create, :edit, :update], :collection => {:generate => :get}, :member => {:publish => :post} do |exam|
           exam.resources :questions, :only => [:show]
      end
 

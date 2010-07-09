@@ -15,7 +15,11 @@ class Exam < ActiveRecord::Base
      end
 
      def publish!
-          update_attributes :published => true
+          unless questions.empty?
+               update_attributes :published => true
+          else
+               false
+          end
      end
 
      def unpublish!

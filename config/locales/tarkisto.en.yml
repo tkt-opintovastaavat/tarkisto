@@ -1,5 +1,13 @@
 en:
 
+     pdf:
+          school:
+               name: "University of Helsinki"
+               department: "Computer science"
+          exam:
+               max_points: "Maximum points"
+               points: "points"
+
      courses:
           title: "Courses"
           levels:
@@ -30,12 +38,14 @@ en:
                          type: "Exam type"
                          maxpoints: "Maximum points"
                          course: "Course"
-                         lecturer: "Lecturer"
                          date: "Date"
                          public_notification: "Exam isn't public by default"
                          continue: "Continue"
                     publish:
                          submit: "Preview"
+                    preview:
+                         title: "Preview"
+                         submit: "Publish"
      
           session:
                form:

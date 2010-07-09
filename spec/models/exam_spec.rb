@@ -46,19 +46,25 @@ describe Exam do
           end
      end
 
-     it "should publish exam, when asked" do
+     it "should publish exam, when asked and it has questions" do
           exam = Exam.create!(@valid_attributes)
+          exam.questions.create! :name => "test question", :points => 60, :number => 1
           exam.published.should == false
-          exam.publish!
+          exam.publish!.should == true
           exam.published.should == true
      end
 
-     it "should unpublish exam, when asked" do
+     it "shouldn't publish exam if it hasn't any questions" do
           exam = Exam.create!(@valid_attributes)
           exam.published.should == false
-          exam.publish!
+          exam.publish!.should == false
+          exam.published.should == false
+     end
+
+     it "should unpublish exam, when asked" do
+          exam = Exam.create!(@valid_attributes.merge({:published => true}))
           exam.published.should == true
-          exam.unpublish!
+          exam.unpublish!.should == true
           exam.published.should == false
      end
 

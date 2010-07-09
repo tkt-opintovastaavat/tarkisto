@@ -160,23 +160,6 @@ describe ExamsController do
 
                end
 
-               describe "#update" do
-
-                    it "should redirect to exam show view after publishing" do
-                         @exam_id = '1'
-                         @course_mock.should_receive(:exams).and_return(@exams_mock)
-                         @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
-                         @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                         @exam_mock.should_receive(:publish!)
-                         @exam_mock.stub!(:id).and_return(@exam_id)
-
-                         get 'update', :course_id => @course_id, :id => @exam_id
-
-                         response.should redirect_to(exam_url(@course_id, @exam_id))
-                    end
-
-               end
-
           end
 
      end
@@ -186,6 +169,7 @@ describe ExamsController do
           before :each do
                @course_mock.stub!(:id).and_return(@course_id)
                @exam_id = '1'
+               @exam_mock.stub!(:id).and_return(@exam_id)
           end
 
           describe "#create" do
@@ -230,6 +214,52 @@ describe ExamsController do
                     @exam_mock.stub!(:id).and_return(3)
                     post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today, :maximum_points => '60'}
                     response.should redirect_to(edit_exam_url(@course_id, @exam_mock.id))
+               end
+
+          end
+
+          describe "#update" do
+
+               it "should preview the exam" do
+                    @exam_id = '1'
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                    @exam_mock.should_receive(:questions).and_return(@question_mock)
+
+                    put 'update', :course_id => @course_id, :id => @exam_id
+
+                    assigns(:exam).should == @exam_mock
+                    assigns(:questions).should == @question_mock
+                    assigns(:course).should == @course_mock
+
+                    response.should be_success
+               end
+
+          end
+
+          describe "#publish" do
+
+               it "should publish the exam" do
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                    @exam_mock.should_receive(:publish!).and_return(true)
+
+                    post 'publish', :course_id => @course_id, :id => @exam_id
+
+                    response.should redirect_to(exam_url(@course_id, @exam_id))
+               end
+
+               it "should redirect the unfinished exam" do
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                    @exam_mock.should_receive(:publish!).and_return(false)
+
+                    post 'publish', :course_id => @course_id, :id => @exam_id
+
+                    response.should redirect_to(edit_exam_url(@course_id, @exam_id))
                end
 
           end
