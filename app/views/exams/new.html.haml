@@ -7,7 +7,7 @@
           %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
           = select_tag :exam_name, options_for_select(exam_selection(@exams), 'new')
 
-     - form_for @exam, :url => exams_url do |f|
+     - form_for @exam, :url => course_exams_url(@course.id) do |f|
           %div= f.hidden_field :id
           %div
                = f.label :course, t('pages.exams.forms.newexam.course')

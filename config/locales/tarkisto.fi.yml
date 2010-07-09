@@ -21,6 +21,7 @@ fi:
                practice: "Harjoittele"
                addnew: "Lisää koe"
           exams:
+               no_exams: "Ei kokeita."
                tabs:
                     all: "Kaikki kokeet"
                     generate: "Generoi"
@@ -30,6 +31,10 @@ fi:
                     generate: "Generoi harjoitustentti"
                     all: "Kaikki tentit"
                     edit: "Muokkaa tenttiä"
+               types:
+                    course-exams: "Kurssikokeet"
+                    separate-exams: "Erilliskokeet"
+                    repeat-exams: "Uusintakokeet"
                forms:
                     selection:
                          name: "Valitse tentti"
@@ -48,7 +53,7 @@ fi:
                          submit: "Julkaise"
                     questions:
                          new: "Uusi kysymys"
-     
+
           session:
                form:
                     username: "Käyttäjätunnus"
@@ -61,3 +66,8 @@ fi:
                     login_failed: "Kirjautumisyrityksesi epäonnistui"
                notifications:
                     logout: "Onnistuneesti kirjauduttu ulos"
+
+          courses:
+               showall: "Näytä kaikki"
+               back: "Takaisin etusivulle"
+               show-hide-unpublished: "Näytä/piilota julkaisemattomat kokeet"

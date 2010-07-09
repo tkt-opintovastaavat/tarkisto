@@ -17,7 +17,7 @@ class ExamsController < ApplicationController
                     @exam = @course.exams.published.find_by_id(params[:id])
 
                     if @exam.nil?
-                         redirect_to exams_url(@course.id)
+                         redirect_to course_exams_url(@course.id)
                          return
                     end
 
@@ -30,7 +30,7 @@ class ExamsController < ApplicationController
                     @exam = @course.exams.published.find_by_id(params[:id])
 
                     if @exam.nil?
-                         redirect_to exams_url(@course.id)
+                         redirect_to course_exams_url(@course.id)
                          return
                     end
 
@@ -61,21 +61,21 @@ class ExamsController < ApplicationController
                     exam = @course.exams.create params['exam'].delete_if{|key, value| key == 'id'}
                end
                unless exam.new_record?
-                    redirect_to edit_exam_url(@course.id, exam.id)
+                    redirect_to edit_course_exam_url(@course.id, exam.id)
                     return
                end
           end
-          redirect_to new_exam_url(@course.id)
+          redirect_to new_course_exam_url(@course.id)
      end
 
      def edit
           @exam = @course.exams.find_by_id(params[:id])
 
           if @exam.nil?
-               redirect_to new_exam_url(@course.id)
+               redirect_to new_course_exam_url(@course.id)
                return
           elsif @exam.published
-               redirect_to exam_url(@course.id, @exam.id)
+               redirect_to course_exam_url(@course.id, @exam.id)
                return
           end
 
@@ -105,9 +105,9 @@ class ExamsController < ApplicationController
      def publish
           @exam = @course.exams.unpublished.find_by_id(params[:id])
           if @exam.publish!
-               redirect_to exam_url(@course.id, @exam.id)
+               redirect_to course_exam_url(@course.id, @exam.id)
           else
-               redirect_to edit_exam_url(@course.id, @exam.id)
+               redirect_to edit_course_exam_url(@course.id, @exam.id)
           end
      end
 

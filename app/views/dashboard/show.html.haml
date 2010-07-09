@@ -8,6 +8,8 @@
                %th= t 'courses.levels.basic'
           
           = render :partial => "courses", :locals => {:courses => @basic_studies}
+          
+     %p= link_to t('pages.courses.showall'), basics_courses_url
 
      %table#intermediate_studies
           %tr
@@ -15,14 +17,19 @@
 
           = render :partial => "courses", :locals => {:courses => @intermediate_studies}
 
+     %p= link_to t('pages.courses.showall'), intermediates_courses_url
+     
      %table#advanced_studies
           %tr
                %th= t 'courses.levels.advanced'
 
           = render :partial => "courses", :locals => {:courses => @advanced_studies}
 
+     %p= link_to t('pages.courses.showall'), advanceds_courses_url
 
      %table#other_studies
           %tr
                %th= t 'courses.levels.other'
           = render :partial => "courses", :locals => {:courses => @other_studies}
+          
+     %p= link_to t('pages.courses.showall'), others_courses_url

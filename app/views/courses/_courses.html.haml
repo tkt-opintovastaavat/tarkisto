@@ -1,0 +1,18 @@
+- courses.each do |course|
+     %tr
+          -if course.has_exams? 
+               %td
+                    = course.code
+                    = link_to "#{course.name}", course_exams_url(course)
+                    = "(#{course.credits} op)"
+                    
+               %td= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
+               %td= link_to t('pages.dashboard.addnew'), new_course_exam_url(course)
+
+          -else
+               %td.noexams
+                    = course.code
+                    = link_to "#{course.name}", course_exams_url(course)
+                    = "(#{course.credits} op)"
+               %td.noexams= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
+               %td.noexams_add= link_to t('pages.dashboard.addnew'), new_course_exam_url(course)
