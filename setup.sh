@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Setting enviroment"
-export NLS_LANG=AMERICAN_AMERICA.UTF8 >> /dev/null
+export NLS_LANG=AMERICAN_AMERICA.UTF8
 
 echo "Copying database"
 cp config/database.yml.example config/database.yml >> /dev/null
