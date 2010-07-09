@@ -6,7 +6,6 @@ describe Exam do
                :type_id => 1 ,
                :course_id => 2 ,
                :maximum_points => 60 ,
-               :public => true ,
                :date => Date.today
           }
           @valid_exam = Exam.new @valid_attributes
@@ -15,6 +14,14 @@ describe Exam do
 
      it "should create a new instance given valid attributes" do
           Exam.create!(@valid_attributes)
+     end
+
+     it "should should be public by default" do
+          Exam.create!(@valid_attributes).public.should == true
+     end
+
+     it "should should be unpublished by default" do
+          Exam.create!(@valid_attributes).published.should == false
      end
 
      it "should have maximum points" do

@@ -39,7 +39,7 @@ fi:
                          maxpoints: "Maksipisteet"
                          course: "Kurssi"
                          date: "Päivämäärä"
-                         public_notification: "Tentti ei ole oletusarvoisesti julkinen"
+                         public_notification: "Tentti on oletusarvoisesti julkinen"
                          continue: "Jatka"
                     publish:
                          submit: "Esikatsele"

@@ -39,7 +39,7 @@ en:
                          maxpoints: "Maximum points"
                          course: "Course"
                          date: "Date"
-                         public_notification: "Exam isn't public by default"
+                         public_notification: "Exam is public by default"
                          continue: "Continue"
                     publish:
                          submit: "Preview"
