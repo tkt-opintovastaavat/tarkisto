@@ -1,11 +1,9 @@
 - content_for :title do
-     = "Haku :: #{@q}"
+     = "Haku :: #{@p}"
 - content_for :content do
-     %h2= "Hakusi oli: #{@q}"
+     %h2= "Hakusi oli: #{@p}"
 
      - if @result.empty?
           %p= "Hakusi ei tuottanut tuloksia"
      - else
-          %ul
-               - @result.each do |course|
-                    %li= link_to course["name"] , exams_url(:course_id => course["course_id"])
+          %table#search_results= render :partial => "dashboard/courses", :locals => {:courses => @result}                    

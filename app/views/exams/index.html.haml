@@ -1,6 +1,9 @@
 - content_for :title do
      #{@course.name} :: #{t 'pages.exams.titles.all'}
+     
 - content_for :content do
      %h2= @course.name
 
-     = render :partial => "table", :locals => {:exams => @exams}
+     #examlists
+
+          = render :partial => "table", :locals => {:exams => @exams}

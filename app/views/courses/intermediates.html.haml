@@ -1,0 +1,14 @@
+- content_for :title do
+     = t 'courses.levels.intermediate'
+- content_for :content do
+
+     %p#back= link_to t('pages.courses.back'), root_url
+     
+     %p#hide-button
+          %a(href="#hideshow-noexams")=t 'pages.courses.show-hide-unpublished'
+
+     %table#intermediate_studies
+          %tr
+               %th= t 'courses.levels.intermediate'
+          
+          = render :partial => "courses", :locals => {:courses => @courses}
