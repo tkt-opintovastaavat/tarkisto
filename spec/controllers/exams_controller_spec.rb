@@ -91,7 +91,7 @@ describe ExamsController do
 
                          get 'show', :course_id => @course_id, :id => 1
 
-                         response.should redirect_to(exams_url(@course_id))
+                         response.should redirect_to(course_exams_url(@course_id))
                     end
                end
 
@@ -105,7 +105,7 @@ describe ExamsController do
 
                          get 'edit', :course_id => @course_id, :id => 1
 
-                         response.should redirect_to(exam_url(@course_id, 1))
+                         response.should redirect_to(course_exam_url(@course_id, 1))
                     end
 
                     it "should redirect to show if tries to edit nil exam" do
@@ -114,7 +114,7 @@ describe ExamsController do
 
                          get 'edit', :course_id => @course_id, :id => 1
 
-                         response.should redirect_to(new_exam_url(@course_id))
+                         response.should redirect_to(new_course_exam_url(@course_id))
                     end
 
                end
@@ -137,12 +137,12 @@ describe ExamsController do
                     @exam_mock.should_receive(:id).and_return(@exam_id)
                     @exam_mock.should_receive(:new_record?).and_return(false)
                     post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
-                    response.should redirect_to(edit_exam_url(@course_id, @exam_id))
+                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_id))
                end
 
                it "should be redirected back to new page if missing attributes." do
                     post 'create', :course_id => @course_id
-                    response.should redirect_to(new_exam_url(@course_id))
+                    response.should redirect_to(new_course_exam_url(@course_id))
                end
 
                it "should be redirected back to new page if invalid attributes." do
@@ -150,7 +150,7 @@ describe ExamsController do
                     @exams_mock.should_receive(:create).and_return(@exam_mock)
                     @exam_mock.should_receive(:new_record?).and_return(true)
                     post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today}
-                    response.should redirect_to(new_exam_url(@course_id))
+                    response.should redirect_to(new_course_exam_url(@course_id))
                end
 
                it "should save new data (id return nil) and be redirected to edit exam url" do
@@ -160,7 +160,7 @@ describe ExamsController do
                     @exam_mock.should_receive(:new_record?).and_return(false)
                     @exam_mock.stub!(:id).and_return(2)
                     post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
-                    response.should redirect_to(edit_exam_url(@course_id, @exam_mock.id))
+                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_mock.id))
                end
 
                it "should save new data (id isn't set) and be redirected to edit exam url" do
@@ -170,7 +170,7 @@ describe ExamsController do
                     @exam_mock.should_receive(:new_record?).and_return(false)
                     @exam_mock.stub!(:id).and_return(3)
                     post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today, :maximum_points => '60'}
-                    response.should redirect_to(edit_exam_url(@course_id, @exam_mock.id))
+                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_mock.id))
                end
 
           end

@@ -5,6 +5,9 @@ class Exam < ActiveRecord::Base
 
      validates_presence_of :date, :maximum_points
 
+     named_scope :repeat_exams, :conditions => {:type_id => Type.find_by_name_fi('Uusintakoe').id}
+     named_scope :course_exams, :conditions => {:type_id => Type.find_by_name_fi('Kurssikoe').id}
+     named_scope :separate_exams, :conditions => {:type_id => Type.find_by_name_fi('Erilliskoe').id}
      named_scope :unpublished, :conditions => {:published => false}
      named_scope :published, :conditions => {:published => true}
      named_scope :only_private, :conditions => {:public => false}

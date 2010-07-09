@@ -6,10 +6,12 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :search, :controller => :search, :only => [:show], :member => {:courses => :get}
 
-     map.resources :exams, :path_prefix => "courses/:course_id", :only => [:index, :show, :new, :create, :edit], :collection => {:generate => :get}
-
      map.resource :faq, :controller => :faq, :only => [:show]
-
+     
+     map.resources :courses, :collection => {:basics => :get, :intermediates => :get, :advanceds => :get, :others => :get}, :only => [:index] do |course|
+          course.resources :exams, :only => [:index, :show, :new, :create, :edit], :collection => {:generate => :get}
+     end
+          
      map.namespace :admin do |admin|
           admin.resources :courses
           admin.resources :users
