@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Exam do
+
      before(:each) do
           @valid_attributes = {
                :type_id => 1 ,
@@ -12,24 +13,59 @@ describe Exam do
           @invalid_exam = Exam.new
      end
 
-     it "should create a new instance given valid attributes" do
-          Exam.create!(@valid_attributes)
+     describe "accessibility" do
+
+          it "should not allow publishing changes outside" do
+               @valid_exam.published.should == false
+               @valid_exam.update_attributes :published => true
+               @valid_exam.published.should == false
+          end
+
+          it "should not allow publicity changes outside" do
+               @valid_exam.public.should == true
+               @valid_exam.update_attributes :published => false
+               @valid_exam.public.should == true
+          end
+
      end
 
-     it "should should be public by default" do
-          Exam.create!(@valid_attributes).public.should == true
-     end
+     describe "validation" do
 
-     it "should should be unpublished by default" do
-          Exam.create!(@valid_attributes).published.should == false
-     end
+          it "should create a new instance given valid attributes" do
+               Exam.create!(@valid_attributes)
+          end
 
-     it "should have maximum points" do
-          @invalid_exam.should have(1).error_on(:maximum_points)
-     end
+          it "should should be public by default" do
+               Exam.create!(@valid_attributes).public.should == true
+          end
 
-     it "should have a date" do
-          @invalid_exam.should have(1).error_on(:date)
+          it "should should be unpublished by default" do
+               Exam.create!(@valid_attributes).published.should == false
+          end
+
+          it "should have maximum points" do
+               @invalid_exam.should have(1).error_on(:maximum_points)
+          end
+
+          it "should have a date" do
+               @invalid_exam.should have(1).error_on(:date)
+          end
+
+          it "should have points error" do
+               @valid_exam.should have(0).error_on(:maximum_points)
+               @valid_exam.save
+               @valid_exam.questions.new(:points => 20).save(false)
+               @valid_exam.should have(1).error_on(:maximum_points)
+          end
+
+          it "should have same amount of points in questions than maximum points" do
+               @valid_exam.should have(0).error_on(:maximum_points)
+               @valid_exam.save
+               @valid_exam.questions.new(:points => 20).save(false)
+               @valid_exam.questions.new(:points => 40).save(false)
+               @valid_exam.should have(0).error_on(:maximum_points)
+          end
+
      end
 
      it "should format name" do
@@ -39,58 +75,86 @@ describe Exam do
           @valid_exam.name.should == "#{@valid_exam.type.name} #{I18n.l @valid_exam.date, :format => :short}"
      end
 
-     it "should return only unpublished exams if asked so" do
-          unpublished_exams = Exam.unpublished
-          unpublished_exams.each do |exam|
-               exam.published.should == false
-          end
-     end
+     describe "publishing" do
 
-     it "should return only published exams if asked so" do
-          published_exams = Exam.published
-          published_exams.each do |exam|
+          it "should return only unpublished exams if asked so" do
+               unpublished_exams = Exam.unpublished
+               unpublished_exams.each do |exam|
+                    exam.published.should == false
+               end
+          end
+
+          it "should return only published exams if asked so" do
+               published_exams = Exam.published
+               published_exams.each do |exam|
+                    exam.published.should == true
+               end
+          end
+
+          it "should publish exam, when asked and it has valid questions" do
+               exam = Exam.create!(@valid_attributes)
+               exam.published.should == false
+               exam.questions.create! :name => "test question", :points => 60, :number => 1 #FIXME: use fixtures
+               exam.publish!.should == true
                exam.published.should == true
           end
-     end
 
-     it "should publish exam, when asked and it has questions" do
-          exam = Exam.create!(@valid_attributes)
-          exam.questions.create! :name => "test question", :points => 60, :number => 1
-          exam.published.should == false
-          exam.publish!.should == true
-          exam.published.should == true
-     end
-
-     it "shouldn't publish exam if it hasn't any questions" do
-          exam = Exam.create!(@valid_attributes)
-          exam.published.should == false
-          exam.publish!.should == false
-          exam.published.should == false
-     end
-
-     it "should unpublish exam, when asked" do
-          exam = Exam.create!(@valid_attributes.merge({:published => true}))
-          exam.published.should == true
-          exam.unpublish!.should == true
-          exam.published.should == false
-     end
-
-     it "should return only private exams if asked so" do
-          private_exams = Exam.only_private
-          private_exams.each do |exam|
-               exam.public.should == false
+          it "shouldn't publish exam if it hasn't any questions" do
+               exam = Exam.create!(@valid_attributes)
+               exam.published.should == false
+               exam.publish!.should == false
+               exam.published.should == false
           end
-     end
 
-     it "should return only public exams if asked so" do
-          public_exams = Exam.only_public
-          public_exams.each do |exam|
-               exam.public.should == true
+          it "shouldn't publish exam if it has any invalid questions" do
+               exam = Exam.create!(@valid_attributes)
+               exam.published.should == false
+               question = exam.questions.new
+               question.save(false)
+               exam.publish!.should == false
+               exam.published.should == false
           end
+
+          it "shouldn't publish, if points doesn't match" do
+               exam = Exam.create!(@valid_attributes)
+               exam.published.should == false
+               exam.questions.create! :name => "test question", :points => 10, :number => 1 #FIXME: use fixtures
+               exam.publish!.should == false
+               exam.published.should == false
+          end
+
+          it "should unpublish exam, when asked" do
+               exam = Exam.create! @valid_attributes
+               exam.published.should == false
+               exam.questions.create! :name => "test question", :points => 60, :number => 1 #FIXME: use fixtures
+               exam.publish!.should == true
+               exam.published.should == true
+               exam.unpublish!#.should == true
+               exam.published.should == false
+          end
+
      end
 
-     it "should return hash of public information" do
-          @valid_exam.to_public.should == {:id => @valid_attributes[:id], :type => @valid_attributes[:type_id], :edate => I18n.l(@valid_attributes[:date], :format => :short), :maxpoints => @valid_attributes[:maximum_points]}
+     describe "publicity" do
+
+          it "should return only private exams if asked so" do
+               private_exams = Exam.only_private
+               private_exams.each do |exam|
+                    exam.public.should == false
+               end
+          end
+
+          it "should return only public exams if asked so" do
+               public_exams = Exam.only_public
+               public_exams.each do |exam|
+                    exam.public.should == true
+               end
+          end
+
+          it "should return hash of public information" do
+               @valid_exam.to_public.should == {:id => @valid_attributes[:id], :type => @valid_attributes[:type_id], :edate => I18n.l(@valid_attributes[:date], :format => :short), :maxpoints => @valid_attributes[:maximum_points]}
+          end
+
      end
 
 end

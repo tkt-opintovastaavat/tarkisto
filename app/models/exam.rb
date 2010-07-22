@@ -1,9 +1,13 @@
 class Exam < ActiveRecord::Base
+
      belongs_to :course
      belongs_to :type
      has_many :questions
 
+     attr_protected :public, :published
+
      validates_presence_of :date, :maximum_points
+     validate_on_update :validate_points
 
      named_scope :repeat_exams, :conditions => {:type_id => Type.find_by_name_fi('Uusintakoe').id}
      named_scope :course_exams, :conditions => {:type_id => Type.find_by_name_fi('Kurssikoe').id}
@@ -19,18 +23,27 @@ class Exam < ActiveRecord::Base
 
      def publish!
           unless questions.empty?
-               update_attributes :published => true
+               questions.each do |question|
+                    return false unless question.valid?
+               end
+               self.published = true if valid?
+               save
           else
                false
           end
      end
 
      def unpublish!
-          update_attributes :published => false
+          self.published = false
+          save
      end
 
      def to_public
           {:id => id, :type => type_id, :edate => I18n.l(date, :format => :short), :maxpoints => maximum_points}
+     end
+
+     def validate_points
+          errors.add 'maximum_points', "Numbers doesn't match" unless questions.map{|q| q.points}.sum == maximum_points
      end
 
 end
