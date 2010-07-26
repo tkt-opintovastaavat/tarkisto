@@ -63,6 +63,8 @@ class ExamsController < ApplicationController
                unless exam.new_record?
                     redirect_to edit_course_exam_url(@course.id, exam.id)
                     return
+               else
+                    flash[:errors] = exam.errors.full_messages
                end
           end
           redirect_to new_course_exam_url(@course.id)
@@ -107,6 +109,8 @@ class ExamsController < ApplicationController
           if @exam.publish!
                redirect_to course_exam_url(@course.id, @exam.id)
           else
+               @exam.valid?
+               flash[:errors] = @exam.errors.full_messages
                redirect_to edit_course_exam_url(@course.id, @exam.id)
           end
      end

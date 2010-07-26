@@ -7,6 +7,12 @@
           - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
                %div= submit_tag t('pages.exams.forms.publish.submit')
 
+          - unless flash[:errors].nil? or flash[:errors].empty?
+               %p moi
+               %ul.errors
+               - flash[:errors].each do |error|
+                    %li #{error}
+
      #questions
           %ul
                - @exam.questions.each do |question|

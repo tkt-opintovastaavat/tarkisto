@@ -189,10 +189,14 @@ describe ExamsController do
                end
 
                it "should be redirected back to new page if invalid attributes." do
+                    @errors = []
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:create).and_return(@exam_mock)
                     @exam_mock.should_receive(:new_record?).and_return(true)
+                    @exam_mock.should_receive(:errors).and_return(@errors)
+                    @errors.should_receive(:full_messages).and_return([])
                     post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today}
+                    flash[:errors].should == []
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
 
@@ -252,13 +256,18 @@ describe ExamsController do
                end
 
                it "should redirect the unfinished exam" do
+                    @errors = []
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
                     @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
                     @exam_mock.should_receive(:publish!).and_return(false)
+                    @exam_mock.should_receive(:valid?)
+                    @exam_mock.should_receive(:errors).and_return(@errors)
+                    @errors.should_receive(:full_messages).and_return([])
 
                     post 'publish', :course_id => @course_id, :id => @exam_id
 
+                    flash[:errors].should == []
                     response.should redirect_to(edit_course_exam_url(@course_id, @exam_id))
                end
 

@@ -1,5 +1,10 @@
 fi:
 
+     activerecord:
+          errors:
+               messages:
+                    points_not_match: "eivät ole pisteiden summa"
+
      pdf:
           school:
                name: "Helsingin Yliopisto"

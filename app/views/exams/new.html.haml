@@ -7,6 +7,11 @@
           %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
           = select_tag :exam_name, options_for_select(exam_selection(@exams), 'new')
 
+     - unless flash[:errors].nil? or flash[:errors].empty?
+          %ul.errors
+          - flash[:errors].each do |error|
+               %li #{error}
+
      - form_for @exam, :url => course_exams_url(@course.id) do |f|
           %div= f.hidden_field :id
           %div

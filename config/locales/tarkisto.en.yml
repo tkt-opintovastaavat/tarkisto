@@ -1,5 +1,10 @@
 en:
 
+     activerecord:
+          errors:
+               messages:
+                    points_not_match: "aren't sum of points"
+
      pdf:
           school:
                name: "University of Helsinki"
