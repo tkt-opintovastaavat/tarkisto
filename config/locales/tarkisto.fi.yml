@@ -1,6 +1,12 @@
 fi:
 
      activerecord:
+          models:
+               exam: "Tentti"
+          attributes:
+               exam:
+                    date: "Päivämäärä"
+                    maximum_points: "Maksimipisteet"
           errors:
                messages:
                     points_not_match: "eivät ole pisteiden summa"

@@ -1,6 +1,12 @@
 en:
 
      activerecord:
+          models:
+               exam: "Exam"
+          attributes:
+               exam:
+                    date: "Date"
+                    maximum_points: "Maximum points"
           errors:
                messages:
                     points_not_match: "aren't sum of points"

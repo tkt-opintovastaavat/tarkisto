@@ -43,7 +43,7 @@ class Exam < ActiveRecord::Base
      end
 
      def validate_points
-          errors.add 'maximum_points', I18n.t('activerecord.errors.messages.points_not_match') unless questions.map{|q| q.points}.sum == maximum_points
+          errors.add 'maximum_points', I18n.t('activerecord.errors.messages.points_not_match') unless questions.map{|q| q.points.to_i}.sum == maximum_points
      end
 
 end

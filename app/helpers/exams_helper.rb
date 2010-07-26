@@ -8,4 +8,12 @@ module ExamsHelper
           types.collect {|etype| [etype.name, etype.id]}
      end
 
+     def question_name_for_exam_input name
+          if name.nil?
+               "Anonymous"
+          else
+               "#{name[0...15]}..."
+          end
+     end
+
 end

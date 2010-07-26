@@ -2,11 +2,20 @@
      %tr
           %td
 
-               %input.name(type="text")
-                    = @question.name unless @question.name.nil? or @question.name.empty?
+               - form_for @question, :url => '#' do |f|
 
-               %textarea.question-content
-                    = @question.description unless @question.description.nil? or @question.description.empty?
+                    %p
+                         = f.label 'name'
+                         = text_area_tag 'question_name', (@question.name unless @question.name.nil? or @question.name.empty?), :class => 'question-name'
+
+                    %p
+                         = f.label 'description'
+                         = text_area_tag 'question_description', (@question.description unless @question.description.nil? or @question.description.empty?), :class => 'question-content'
+
+                    %p
+                         = f.label 'points'
+                         = f.text_field 'points'
+
           %td
                %div
                     %p Lisää kuva
