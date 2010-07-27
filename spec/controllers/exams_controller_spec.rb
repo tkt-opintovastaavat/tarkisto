@@ -225,7 +225,6 @@ describe ExamsController do
           describe "#update" do
 
                it "should preview the exam" do
-                    @exam_id = '1'
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
                     @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)

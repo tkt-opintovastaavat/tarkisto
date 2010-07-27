@@ -46,4 +46,15 @@ describe QuestionsController do
 
      end
 
+     describe "#destroy" do
+
+          it "should remove existing question if not published" do
+               @questions_mock.should_receive(:find_by_id).with(@question_id).and_return(@question_mock)
+               @question_mock.should_receive(:destroy)
+
+               delete 'destroy', :course_id => @course_id, :exam_id => @exam_id, :id => @question_id, :format => 'json'
+          end
+
+     end
+
 end

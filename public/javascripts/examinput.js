@@ -124,20 +124,28 @@ function addTabs() {
                     handles: 's',
                     minHeight: 150
                });
+          },
+          remove: function(event, ui) {
+               var id = $(ui.tab).parent().attr('id').replace('question_id-', '');
+               send_remove_question(id);
+               $tabs.tabs('select', '0');
           }
      });
 
      $('a[href="#remove"]').live('click', function(event) {
           event.preventDefault();
-          var index = $('li', $tabs).index($(this).parent());
-          $tabs.tabs('remove', index);
+          if (confirm(I18n.t('pages.exams.forms.questions.delete'))) {
+               var index = $('li', $tabs).index($(this).parent());
+               $tabs.tabs('remove', index);
+          }
      });
 
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          var creation_url = $(this).attr('id') + '/questions'
+          alert('new');
+          var creation_url = _exam_url() + '/questions'
           $.post(creation_url, function(data) {
-               $tabs.tabs('add', creation_url+'/'+data.id, "Question #"+data.id, $tabs.tabs('length')-1);
+               $tabs.tabs('add', creation_url+'/'+data.id, "Anonymous", $tabs.tabs('length')-1);
           }, 'json');
      });
 
@@ -145,4 +153,15 @@ function addTabs() {
           axis:'x',
           items: 'li:not(.new-question)',
      });
+}
+
+function send_remove_question(id) {
+     $.ajax({
+          type: "DELETE",
+          url: _exam_url()+'/questions/'+id+'.json'
+     });
+}
+
+function _exam_url() {
+     return $('#exam_url').text();
 }
