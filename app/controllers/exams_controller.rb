@@ -104,6 +104,12 @@ class ExamsController < ApplicationController
           end
      end
 
+     def destroy
+          @exam = @course.exams.unpublished.find_by_id params[:id]
+          @exam.destroy if @exam.created_at == @exam.updated_at
+          redirect_to new_course_exam_url(@course.id)
+     end
+
      def publish
           @exam = @course.exams.unpublished.find_by_id(params[:id])
           if @exam.publish!

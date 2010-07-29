@@ -241,6 +241,33 @@ describe ExamsController do
 
           end
 
+          describe "#destroy" do
+
+               after(:each) do
+                    delete 'destroy', :course_id => @course_id, :id => @exam_id
+                    response.should redirect_to(new_course_exam_url(@course_id))
+               end
+
+               it "shouldn't destroy modified exam" do
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                    @exam_mock.should_receive(:created_at).and_return(1)
+                    @exam_mock.should_receive(:updated_at).and_return(2)
+                    @exam_mock.should_not_receive(:destroy)
+               end
+
+               it "should destroy unmodified exam" do
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
+                    @exam_mock.should_receive(:created_at).and_return(1)
+                    @exam_mock.should_receive(:updated_at).and_return(1)
+                    @exam_mock.should_receive(:destroy)
+               end
+
+          end
+
           describe "#publish" do
 
                it "should publish the exam" do

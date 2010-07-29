@@ -10,7 +10,7 @@ module ExamsHelper
 
      def question_name_for_exam_input name
           if name.nil?
-               "Anonymous"
+               t('pages.exams.forms.questions.anon')
           else
                "#{name[0...15]}..."
           end

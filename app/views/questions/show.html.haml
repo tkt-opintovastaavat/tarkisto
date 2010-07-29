@@ -5,16 +5,18 @@
                - form_for @question, :url => '#' do |f|
 
                     %p
-                         = f.label 'name'
+                         = f.label t('pages.exams.forms.questions.name')
                          = text_area_tag 'question_name', (@question.name unless @question.name.nil? or @question.name.empty?), :class => 'question-name'
 
                     %p
-                         = f.label 'description'
+                         = f.label t('pages.exams.forms.questions.description')
                          = text_area_tag 'question_description', (@question.description unless @question.description.nil? or @question.description.empty?), :class => 'question-content'
 
                     %p
-                         = f.label 'points'
+                         = f.label t('pages.exams.forms.questions.points')
                          = f.text_field 'points'
+
+                    %p Teemat tähän
 
           %td
                %div
@@ -25,9 +27,9 @@
                     %ul 
                          %li
                               %a(href="#show-picture") P=NP
-                              %a(href="#delete-pic") [poista]
+                              %a(href="#delete-pic")= t('pages.exams.forms.questions.remove')
                %div
-                    %p Lisää koodi
+                    %p= t('pages.exams.forms.questions.add_code')
                     %p
                          %a(href="#show-code") automata
-                         %a(href="#delete-code") [poista]
+                         %a(href="#delete-code")= t('pages.exams.forms.questions.remove')

@@ -58,13 +58,24 @@ en:
                          public_notification: "Exam is public by default"
                          continue: "Continue"
                     publish:
-                         submit: "Preview"
+                         submit: "Continue"
+                         back: "Back"
+                         save: "Save"
                     preview:
                          title: "Preview"
                          submit: "Publish"
                     questions:
                          new: "New question"
+                         anon: "Unnamed"
                          delete: "Are you sure, that you want to delete this question?"
+                         name: "Name"
+                         description: "Description"
+                         points: "Points"
+                         themes: "Theme"
+                         add_pic: "Add picture"
+                         add_code: "Add code"
+                         add_formula: "Add formula"
+                         remove: "[remove]"
 
           session:
                form:

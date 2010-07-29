@@ -117,7 +117,8 @@ function addTabs() {
           tabTemplate: '<li><a href="#{href}">#{label}</a> <a href="#remove"><span class="ui-icon ui-icon-close">Remove Tab</span></a></li>',
           idPrefix: 'questions-',
           add: function(event, ui) {
-               $tabs.tabs('select', '#' + ui.panel.id);
+               var index = $('li', $tabs).index($(ui.tab).parent());
+               $tabs.tabs('select', '#' + index);
           },
           load: function(event, ui) {
                $('.question-content').resizable({
@@ -126,26 +127,28 @@ function addTabs() {
                });
           },
           remove: function(event, ui) {
-               var id = $(ui.tab).parent().attr('id').replace('question_id-', '');
-               send_remove_question(id);
-               $tabs.tabs('select', '0');
+               var li = $(ui.tab).parent();
+               if ($(li).attr('id')) {
+                    var id = $(li).attr('id').replace('question_id-', '');
+                    send_remove_question(id);
+                    $tabs.tabs('select', '0');
+               }
           }
      });
 
      $('a[href="#remove"]').live('click', function(event) {
           event.preventDefault();
+          var index = $('li', $tabs).index($(this).parent());
           if (confirm(I18n.t('pages.exams.forms.questions.delete'))) {
-               var index = $('li', $tabs).index($(this).parent());
                $tabs.tabs('remove', index);
           }
      });
 
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          alert('new');
           var creation_url = _exam_url() + '/questions'
           $.post(creation_url, function(data) {
-               $tabs.tabs('add', creation_url+'/'+data.id, "Anonymous", $tabs.tabs('length')-1);
+               $tabs.tabs('add', creation_url+'/'+data.id, I18n.t('pages.exams.forms.questions.anon'), $tabs.tabs('length')-1);
           }, 'json');
      });
 
