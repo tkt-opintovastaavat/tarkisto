@@ -59,6 +59,7 @@ en:
                          continue: "Continue"
                     publish:
                          submit: "Preview"
+                         back: "Back"
                     preview:
                          title: "Preview"
                          submit: "Publish"

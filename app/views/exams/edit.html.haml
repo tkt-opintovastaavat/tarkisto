@@ -4,8 +4,6 @@
      #exam_info
 
           %p#name_of_exam= "#{@course.name} - #{@exam.name}"
-          - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
-               %div= submit_tag t('pages.exams.forms.publish.submit')
 
           - unless flash[:errors].nil? or flash[:errors].empty?
                %ul.errors
@@ -21,3 +19,9 @@
                          %a(href="#remove")
                               %span.ui-icon.ui-icon-close Remove Tab
                %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question'
+
+     #buttons
+          - form_for @exam, :url => course_exam_url(@course.id, @exam.id), :html => { :method => :delete } do |f|
+               %div= submit_tag t('pages.exams.forms.publish.back')
+          - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
+               %div= submit_tag t('pages.exams.forms.publish.submit')

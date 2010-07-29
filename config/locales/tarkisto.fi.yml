@@ -59,6 +59,7 @@ fi:
                          continue: "Jatka"
                     publish:
                          submit: "Esikatsele"
+                         back: "Takaisin"
                     preview:
                          title: "Esikatselu"
                          submit: "Julkaise"
