@@ -1,10 +1,10 @@
 class DashboardController < ApplicationController
 
      def show
-          @basic_studies = Level.find_by_name_fi("Perusopinnot").courses[0...5]
-          @intermediate_studies = Level.find_by_name_fi("Aineopinnot").courses[0...5]
-          @advanced_studies = Level.find_by_name_fi("Syventävät opinnot").courses[0...5]
-          @other_studies = Level.find_by_name_fi("Muut opinnot").courses[0...5]
+          @basic_studies = Course.basic_courses.alphabetize.courses_on_semester 2010, 'S'
+          @intermediate_studies = Course.intermediate_courses.alphabetize.courses_on_semester 2010, 'S'
+          @advanced_studies = Course.advanced_courses.alphabetize.courses_on_semester 2010, 'S'
+          @other_studies = Course.other_courses.alphabetize.courses_on_semester 2010, 'S'
      end
 
 end
