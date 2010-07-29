@@ -65,6 +65,9 @@ fi:
                     questions:
                          new: "Uusi kysymys"
                          delete: "Haluatko varmasti poistaa kysymyksen?"
+                         image:
+                              title: "Lisää kuva"
+                              submit: "Lisää"
 
           session:
                form:

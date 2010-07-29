@@ -3,7 +3,10 @@
      
 - content_for :content do
      %h2= @course.name
-
+     - form_for :image, :url => image_url, :html => { :multipart => true } do |f|
+          = f.file_field :picture
+          = f.submit
+     
      #examlists
 
           = render :partial => "table", :locals => {:exams => @exams}

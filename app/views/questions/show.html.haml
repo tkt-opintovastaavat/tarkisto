@@ -18,10 +18,14 @@
 
           %td
                %div
-                    %p Lisää kuva
-                    %p
-                         %a(href="#show-picture") P=NP
-                         %a(href="#delete-pic") [poista]
+                    %p= t('pages.exams.forms.questions.image.title')
+                    - form_for :image, :url => image_url, :html => { :multipart => true } do |f|
+                         = f.file_field :picture
+                         = f.submit t('pages.exams.forms.questions.image.submit')
+                    %ul 
+                         %li
+                              %a(href="#show-picture") P=NP
+                              %a(href="#delete-pic") [poista]
                %div
                     %p Lisää koodi
                     %p
