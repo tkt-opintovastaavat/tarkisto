@@ -58,14 +58,24 @@ fi:
                          public_notification: "Tentti on oletusarvoisesti julkinen"
                          continue: "Jatka"
                     publish:
-                         submit: "Esikatsele"
+                         submit: "Jatka"
                          back: "Takaisin"
+                         save: "Tallenna"
                     preview:
                          title: "Esikatselu"
                          submit: "Julkaise"
                     questions:
                          new: "Uusi kysymys"
+                         anon: "Nimetön"
                          delete: "Haluatko varmasti poistaa kysymyksen?"
+                         name: "Nimi"
+                         description: "Kuvaus"
+                         points: "Pisteet"
+                         themes: "Pääteema"
+                         add_pic: "Lisää kuva"
+                         add_code: "Lisää koodia"
+                         add_formula: "Lisää kaava"
+                         remove: "[poista]"
 
           session:
                form:

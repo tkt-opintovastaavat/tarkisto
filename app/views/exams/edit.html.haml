@@ -3,7 +3,7 @@
 - content_for :content do
      #exam_info
 
-          %p#name_of_exam= "#{@course.name} - #{@exam.name}"
+          %h2#name_of_exam= "#{@course.name} - #{@exam.name}"
 
           - unless flash[:errors].nil? or flash[:errors].empty?
                %ul.errors

@@ -142,10 +142,9 @@ function addTabs() {
 
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          alert('new');
           var creation_url = _exam_url() + '/questions'
           $.post(creation_url, function(data) {
-               $tabs.tabs('add', creation_url+'/'+data.id, "Anonymous", $tabs.tabs('length')-1);
+               $tabs.tabs('add', creation_url+'/'+data.id, I18n.t('pages.exams.forms.questions.anon'), $tabs.tabs('length')-1);
           }, 'json');
      });
 
