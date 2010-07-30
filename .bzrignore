@@ -8,7 +8,7 @@ tmp/sockets/*
 tmp/sass-cache/*
 
 # Image upload folder
-public/system/*
+public/question_images/*
 
 # Cucumber rerun
 rerun.txt
