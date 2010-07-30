@@ -4,9 +4,9 @@ describe Image do
      before(:each) do
           @valid_attributes = {
                :question_id => 1,
-               :picture_file_name => 'test.jpg',
-               :picture_content_type => 'image/jpg',
-               :picture_file_size => 100
+               :question_image_file_name => 'test.jpg',
+               :question_image_content_type => 'image/jpg',
+               :question_image_file_size => 100
           }
           @invalid_image = Image.new
      end
