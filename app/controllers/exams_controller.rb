@@ -34,8 +34,7 @@ class ExamsController < ApplicationController
                          return
                     end
 
-                    send_data PdfExport.exam(@exam),
-                              :filename => "#{@course.name} - #{@exam.name}.pdf"
+                    send_data PdfExport.exam(@exam), :filename => "#{@course.name} - #{@exam.name}.pdf"
                end
           end
      end

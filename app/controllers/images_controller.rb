@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
      def create
-          @image = Image.create(params[:image])
+          @image = Question.find_by_id(params[:question][:id]).images.create(params[:image])
      end
 end
