@@ -42,7 +42,7 @@ describe ExamsHelper do
           end
 
           it "should return placeholder for empty name" do
-               question_name_for_exam_input(nil).should == "Anonymous"
+               question_name_for_exam_input(nil).should == I18n.t('pages.exams.forms.questions.anon')
           end
 
      end
