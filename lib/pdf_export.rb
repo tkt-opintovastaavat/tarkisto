@@ -12,6 +12,8 @@ module PdfExport
 
      def self.question_format(exam, pdf)
           exam.questions.each do |question|
+               attachments = question.images + question.code_snippets
+
                pdf.text("\n#{question.number}. #{question.name}", :font_size => 10)
                filter = /<\[[ci]#[0-9]+\]>/
                attach = /<\[([ci])#([0-9]+)\]>/
@@ -25,7 +27,9 @@ module PdfExport
                     end
                end
 
-               texts << "" if texts.empty?
+               if texts.empty?
+                    texts << ""
+               end
 
                texts.each do |str|
                     pdf.text str, :left => 30, :font_size => 8
@@ -33,20 +37,26 @@ module PdfExport
                          object = objects.shift
                          if object.instance_of? Image
                               pdf.image object.question_image.url( :pdf )
+                              attachments.delete object
                          else
                               pdf.text object.text
+                              attachments.delete object
                          end
                     end
                end
-               #pdf.text("\n#{question.description}", :left => 30, :font_size => 8)
 
-               #question.code_snippets.each do |code|
-               #     pdf.text code.text
-               #end
-               #question.images.each do |image|
-               #     pdf.image image.question_image.url( :pdf )
-               #end
+               attachments.each do |a|
+                    objects << a
+               end
 
+               objects.each do |object|
+                    object.instance_of? Image
+                    if object.instance_of? Image
+                         pdf.image object.question_image.url( :pdf )
+                    else
+                         pdf.text object.text
+                    end
+               end
                pdf.text("(#{question.points} #{I18n.t'pdf.exam.points'})", :justification => :center, :font_size => 8)
 
           end
