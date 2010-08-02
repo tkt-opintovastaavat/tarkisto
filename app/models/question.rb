@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
      belongs_to :exam
+     has_many :course_theme_questions
      has_many :code_snippets
      has_many :images
      
