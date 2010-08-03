@@ -19,7 +19,9 @@ describe DashboardController do
                Level.should_receive(:find_by_name_fi).with("Muut opinnot").and_return(@level_mock)
                Level.should_receive(:find_by_name_fi).with("Syventävät opinnot").and_return(@level_mock)
                4.times do                   
-                    @level_mock.should_receive(:courses).and_return([@course_mock]) 
+                    @level_mock.should_receive(:courses).and_return([@course_mock])
+                    @courses_mock.should_receive(:alphabetize).and_return(@courses_mock)
+                    @courses_mock.should_receive(:courses_on_semester).and_return(@courses_mock) 
                end
 
                get 'show'

@@ -171,6 +171,10 @@ describe Course do
                     situation = Course.sorting_priority "course", @course2, @course1
                     situation.should == 1
                end
+               
+               it "should return courses on semester" do
+                    @courses_on_semester = Course.courses_on_semester 2009, 'K'
+               end
 
           end
 
