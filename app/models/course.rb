@@ -11,6 +11,9 @@ class Course < ActiveRecord::Base
      named_scope :advanced_courses, :conditions => {:level_id => Level.find_by_name_fi("Syventävät opinnot").id}
      named_scope :other_courses , :conditions => {:level_id => Level.find_by_name_fi("Muut opinnot").id}
      named_scope :alphabetize, :order => :name_fi
+     named_scope :courses_on_semester, lambda { |year, semester|
+          { :joins => :instances, :conditions => ["instances.year = ? AND instances.semester = ?", year, semester] }
+     }
 
      def name
           if (I18n.locale == :fi)

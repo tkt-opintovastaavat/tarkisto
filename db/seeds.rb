@@ -383,6 +383,13 @@ aine.courses.create :code => 582336, :name_fi => "Introduction to Go", :name_se 
 
      Course.find_by_code(582313).exams.create :lecturer => 4, :type_id => kurssikoe.id , :date => Date.new(2009, 10, 21), :maximum_points => 60
 
+     Course.find_by_code(581325).instances.create :period => 1, :year => 2010, :semester => 'S'
+     Course.find_by_code(581328).instances.create :period => 1, :year => 2010, :semester => 'S'
+     Course.find_by_code(582104).instances.create :period => 2, :year => 2010, :semester => 'S'
+     Course.find_by_code(582206).instances.create :period => 1, :year => 2010, :semester => 'S'
+     Course.find_by_code(582497).instances.create :period => 1, :year => 2010, :semester => 'S'
+     Course.find_by_code(582103).instances.create :period => 3, :year => 2011, :semester => 'S'
+     
      kesa.questions.create :number => 1 , :name => %&Selitä lyhyesti ja selkeästi käsitteet parametri, konstruktori, aksessori, kapselointi&, :description => "", :points => 16
      kesa.questions.create :number => 2 , :description => %&* public OliiviOljyAsema (double pääsailiö, double varastosailio) luo oliiviöljyaseman, jonka säiliöiden vetoisuudet annetaan parametreina. Jos vetoisuus on virheellinen, säiliön kooksi asetetaan 100 litraa. Molemmat säiliöt ovat aluksi tyhjiä.
 
