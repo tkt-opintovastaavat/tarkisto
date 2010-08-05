@@ -13,6 +13,7 @@ class ExamsController < ApplicationController
 
      def show
           @exam = @course.exams.published.find_by_id(params[:id])
+          
           if @exam.nil?
                redirect_to course_exams_url(@course.id)
                return
@@ -27,6 +28,12 @@ class ExamsController < ApplicationController
      end
 
      def new
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+
+          end
+
           @exam = Exam.new
           @exams = @course.exams.unpublished
           @types = Type.all
@@ -39,6 +46,11 @@ class ExamsController < ApplicationController
      end
 
      def create
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+          end
+
           if params.include? 'exam'
                if params['exam'].include? 'id'
                     exam = @course.exams.find_by_id params['exam']['id']
@@ -55,6 +67,11 @@ class ExamsController < ApplicationController
      end
 
      def edit
+          unless moderator?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+          end
+
           @exam = @course.exams.find_by_id(params[:id])
 
           if @exam.nil?
@@ -71,8 +88,23 @@ class ExamsController < ApplicationController
                end
           end
      end
-
      def generate
+          unless access?
+               @exam = @course.exams.public
+
+               if @exam.nil?
+                    redirect_to course_exams_url(@course.id)
+                    return
+               end
+          else
+               @exam = @course.exams.private
+
+               if @exam.nil?
+                    redirect_to course_exams_url(@course.id)
+                    return
+               end
+          end
+
           respond_to do |format|
                format.html do
                     set_tab :generate
