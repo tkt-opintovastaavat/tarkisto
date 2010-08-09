@@ -9,12 +9,12 @@ module LDAP
           end
 
           ldap = Net::LDAP.new(
-               :host => 'ldap-internal.it.helsinki.fi', 
-               :base => 'dc=helsinki,dc=fi', 
+               :host => config['host'],
+               :base => config['base'], 
                :port=> 636, 
                :encryption => :simple_tls
           )
-          ldap.authenticate "uid=#{username},dc=helsinki,dc=fi", password
+          ldap.authenticate "uid=#{username},#{config['base']}", password
 
           begin
                result = ldap.bind
