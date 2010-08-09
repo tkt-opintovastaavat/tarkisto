@@ -47,6 +47,21 @@ describe Exam do
                @invalid_exam.should have(1).error_on(:maximum_points)
           end
 
+          it "should have numeric maximum points" do
+               @invalid_exam.maximum_points = 'asd' 
+               @invalid_exam.should have(1).error_on(:maximum_points)
+          end
+
+          it "should have positive number on maximum points" do
+               @invalid_exam.maximum_points = 0
+               @invalid_exam.should have(1).error_on(:maximum_points)
+          end
+
+          it "should have integer on maximum points" do
+               @invalid_exam.maximum_points = 0.1
+               @invalid_exam.should have(1).error_on(:maximum_points)
+          end
+
           it "should have a date" do
                @invalid_exam.should have(1).error_on(:date)
           end
@@ -153,6 +168,19 @@ describe Exam do
 
           it "should return hash of public information" do
                @valid_exam.to_public.should == {:id => @valid_attributes[:id], :type => @valid_attributes[:type_id], :edate => I18n.l(@valid_attributes[:date], :format => :short), :maxpoints => @valid_attributes[:maximum_points]}
+          end
+
+     end
+
+     describe "#build_exam" do
+
+          it "should create exam from hash" do
+               date = Date.today
+               data = { 'type_id' => 1, 'date' => date, 'maximum_points' => 60 }
+               exam = Exam.build_exam data
+               exam.type.id.should == 1
+               exam.date.should == date
+               exam.maximum_points.should == 60
           end
 
      end

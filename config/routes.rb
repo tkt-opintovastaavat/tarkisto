@@ -11,9 +11,7 @@ ActionController::Routing::Routes.draw do |map|
      map.resource :image, :only => [:create]
 
      map.resources :courses, :collection => {:basics => :get, :intermediates => :get, :advanceds => :get, :others => :get}, :only => [:index] do |course|
-          course.resources :exams, :only => [:index, :show, :new, :create, :edit, :update, :destroy], :collection => {:generate => :get}, :member => {:publish => :post} do |exam|
-               exam.resources :questions, :only => [:show, :create, :destroy]
-          end
+          course.resources :exams, :only => [:index, :show, :new, :create], :collection => {:generate => :get, :preview => :post, :publish => :post}
      end
 
      map.namespace :admin do |admin|

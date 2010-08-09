@@ -7,6 +7,7 @@ class Exam < ActiveRecord::Base
      attr_protected :public, :published
 
      validates_presence_of :date, :maximum_points
+     validates_numericality_of :maximum_points, :only_integer => true, :greater_than => 0, :unless =>Proc.new { |exam| exam.maximum_points.nil? }
      validate_on_update :validate_points
 
      named_scope :repeat_exams, :conditions => {:type_id => Type.find_by_name_fi('Uusintakoe').id}
@@ -44,6 +45,10 @@ class Exam < ActiveRecord::Base
 
      def validate_points
           errors.add 'maximum_points', I18n.t('activerecord.errors.messages.points_not_match') unless questions.map{|q| q.points.to_i}.sum == maximum_points
+     end
+
+     def self.build_exam data
+          Exam.new data
      end
 
 end

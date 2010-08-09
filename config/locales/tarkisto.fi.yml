@@ -5,6 +5,8 @@ fi:
                exam: "Tentti"
           attributes:
                exam:
+                    course: "Kurssi"
+                    type_id: "Koetyyppi"
                     date: "Päivämäärä"
                     maximum_points: "Maksimipisteet"
           errors:
@@ -47,18 +49,13 @@ fi:
                     separate-exams: "Erilliskokeet"
                     repeat-exams: "Uusintakokeet"
                forms:
+                    continue: "Jatka"
                     selection:
                          name: "Valitse tentti"
                          new: "-- Uusi tentti --"
                     newexam:
-                         type: "Koetyyppi"
-                         maxpoints: "Maksipisteet"
-                         course: "Kurssi"
-                         date: "Päivämäärä"
                          public_notification: "Tentti on oletusarvoisesti julkinen"
-                         continue: "Jatka"
                     publish:
-                         submit: "Jatka"
                          back: "Takaisin"
                          save: "Tallenna"
                     preview:

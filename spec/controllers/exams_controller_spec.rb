@@ -66,20 +66,6 @@ describe ExamsController do
 
                end
 
-               describe "#edit" do
-
-                    it "should be successful" do
-                         @course_mock.should_receive(:exams).and_return(@exams_mock)
-                         @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
-                         @exam_mock.should_receive(:published).and_return(false)
-
-                         get 'edit', :course_id => @course_id, :id => 1
-
-                         assigns(:exam).should == @exam_mock
-                    end
-
-               end
-
                describe "#generate" do
                     it "should be successful" do
                          get 'generate', :course_id => @course_id
@@ -136,30 +122,6 @@ describe ExamsController do
 
                end
 
-               describe "#edit" do
-
-                    it "should redirect to show if tries to edit published exam" do
-                         @course_mock.should_receive(:exams).and_return(@exams_mock)
-                         @exams_mock.should_receive(:find_by_id).with('1').and_return(@exam_mock)
-                         @exam_mock.should_receive(:published).and_return(true)
-                         @exam_mock.stub!(:id).and_return(1)
-
-                         get 'edit', :course_id => @course_id, :id => 1
-
-                         response.should redirect_to(course_exam_url(@course_id, 1))
-                    end
-
-                    it "should redirect to show if tries to edit nil exam" do
-                         @course_mock.should_receive(:exams).and_return(@exams_mock)
-                         @exams_mock.should_receive(:find_by_id).with('1').and_return(nil)
-
-                         get 'edit', :course_id => @course_id, :id => 1
-
-                         response.should redirect_to(new_course_exam_url(@course_id))
-                    end
-
-               end
-
           end
 
      end
@@ -174,127 +136,70 @@ describe ExamsController do
 
           describe "#create" do
 
-               it "should confirm old data and be redirected to edit exam url" do
-                    @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:id).and_return(@exam_id)
-                    @exam_mock.should_receive(:new_record?).and_return(false)
-                    post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
-                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_id))
-               end
-
                it "should be redirected back to new page if missing attributes." do
                     post 'create', :course_id => @course_id
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
 
-               it "should be redirected back to new page if invalid attributes." do
-                    @errors = []
+               it "should confirm old data and assign id-variable data" do
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:create).and_return(@exam_mock)
-                    @exam_mock.should_receive(:new_record?).and_return(true)
-                    @exam_mock.should_receive(:errors).and_return(@errors)
-                    @errors.should_receive(:full_messages).and_return([])
-                    post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today}
-                    flash[:errors].should == []
-                    response.should redirect_to(new_course_exam_url(@course_id))
-               end
-
-               it "should save new data (id return nil) and be redirected to edit exam url" do
-                    @course_mock.should_receive(:exams).twice.and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(nil)
-                    @exams_mock.should_receive(:create).and_return(@exam_mock)
-                    @exam_mock.should_receive(:new_record?).and_return(false)
-                    @exam_mock.stub!(:id).and_return(2)
-                    post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
-                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_mock.id))
-               end
-
-               it "should save new data (id isn't set) and be redirected to edit exam url" do
-                    @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_not_receive(:find_by_id)
-                    @exams_mock.should_receive(:create).and_return(@exam_mock)
-                    @exam_mock.should_receive(:new_record?).and_return(false)
-                    @exam_mock.stub!(:id).and_return(3)
-                    post 'create', :course_id => @course_id, :exam => {:type_id => '1', :date => Date.today, :maximum_points => '60'}
-                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_mock.id))
-               end
-
-          end
-
-          describe "#update" do
-
-               it "should preview the exam" do
-                    @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
                     @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:questions).and_return(@question_mock)
 
-                    put 'update', :course_id => @course_id, :id => @exam_id
+                    post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
 
-                    assigns(:exam).should == @exam_mock
-                    assigns(:questions).should == @question_mock
-                    assigns(:course).should == @course_mock
-
+                    assigns[:exam].should == @exam_mock
                     response.should be_success
                end
 
-          end
+               it "should confirm old data and redirect to previous page on wrong id number." do
+                    @course_mock.should_receive(:exams).and_return(@exams_mock)
+                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(nil)
 
-          describe "#destroy" do
+                    post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
 
-               after(:each) do
-                    delete 'destroy', :course_id => @course_id, :id => @exam_id
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
 
-               it "shouldn't destroy modified exam" do
+               it "should store new data (id isn't set) in variable" do
+                    @exam_data = {}
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:created_at).and_return(1)
-                    @exam_mock.should_receive(:updated_at).and_return(2)
-                    @exam_mock.should_not_receive(:destroy)
+                    @exams_mock.should_receive(:new).with(@exam_data).and_return(@exam_mock)
+                    @exam_mock.should_receive(:valid?).and_return(true)
+
+                    post 'create', :course_id => @course_id, :exam => @exam_data
+
+                    assigns[:exam].should == @exam_mock
+                    response.should be_success
                end
 
-               it "should destroy unmodified exam" do
+               it "should be redirected back to new page if invalid attributes." do
+                    @errors = []
+                    @exam_data = {'type_id' => '1'}
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:created_at).and_return(1)
-                    @exam_mock.should_receive(:updated_at).and_return(1)
-                    @exam_mock.should_receive(:destroy)
+                    @exams_mock.should_receive(:new).with(@exam_data).and_return(@exam_mock)
+                    @exam_mock.should_receive(:valid?).and_return(false)
+                    @exam_mock.should_receive(:errors).and_return(@errors)
+                    @errors.should_receive(:full_messages).and_return([])
+
+                    post 'create', :course_id => @course_id, :exam => @exam_data
+
+                    flash[:errors].should == @errors
+                    response.should redirect_to(new_course_exam_url(@course_id))
                end
 
           end
 
-          describe "#publish" do
+          describe "#preview" do
 
-               it "should publish the exam" do
-                    @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:publish!).and_return(true)
+               it "should deliver exam data" do
+                    @exam_data = {'type_id' => '1'}
 
-                    post 'publish', :course_id => @course_id, :id => @exam_id
+                    Exam.should_receive(:build_exam).with(@exam_data).and_return(@exam_mock)
 
-                    response.should redirect_to(course_exam_url(@course_id, @exam_id))
-               end
+                    post 'preview', :course_id => @course_id, :exam => @exam_data
 
-               it "should redirect the unfinished exam" do
-                    @errors = []
-                    @course_mock.should_receive(:exams).and_return(@exams_mock)
-                    @exams_mock.should_receive(:unpublished).and_return(@exams_mock)
-                    @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
-                    @exam_mock.should_receive(:publish!).and_return(false)
-                    @exam_mock.should_receive(:valid?)
-                    @exam_mock.should_receive(:errors).and_return(@errors)
-                    @errors.should_receive(:full_messages).and_return([])
-
-                    post 'publish', :course_id => @course_id, :id => @exam_id
-
-                    flash[:errors].should == []
-                    response.should redirect_to(edit_course_exam_url(@course_id, @exam_id))
+                    assigns[:exam].should == @exam_mock
+                    response.should render_template('show')
                end
 
           end

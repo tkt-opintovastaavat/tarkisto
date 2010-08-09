@@ -1,0 +1,22 @@
+- content_for :title do
+     #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
+- content_for :header do
+     %script(type="text/javascript")
+          var dataObject = #{@exam.to_json}
+- content_for :content do
+     #exam_info
+
+          %h2#name_of_exam= "#{@course.name} - #{@exam.name}"
+
+     #questions
+          %ul
+               - @exam.questions.each do |question|
+                    %li(id="question_id-#{question.id}")
+                         = link_to question_name_for_exam_input(question.name), course_exam_question_url(@course.id, @exam.id, question.id)
+                         %a(href="#remove")
+                              %span.ui-icon.ui-icon-close Remove Tab
+               %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question'
+
+     #buttons
+          %div= button_to t('pages.exams.forms.publish.back'), new_course_exam_url(@course.id), :method => :get
+          %div= button_to t('pages.exams.forms.continue'), preview_course_exams_url(@course.id)

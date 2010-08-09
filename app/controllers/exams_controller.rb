@@ -54,38 +54,25 @@ class ExamsController < ApplicationController
 
      def create
           if params.include? 'exam'
-               if params['exam'].include? 'id'
-                    exam = @course.exams.find_by_id params['exam']['id']
-               end
-               if exam.nil?
-                    exam = @course.exams.create params['exam'].delete_if{|key, value| key == 'id'}
-               end
-               unless exam.new_record?
-                    redirect_to edit_course_exam_url(@course.id, exam.id)
-                    return
+               if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
+                    @exam = @course.exams.find_by_id(params[:exam][:id])
+                    redirect_to new_course_exam_url(@course.id) if @exam.nil?
+
                else
-                    flash[:errors] = exam.errors.full_messages
+                    @exam = @course.exams.new params[:exam]
+                    unless @exam.valid?
+                         flash[:errors] = @exam.errors.full_messages
+                         redirect_to new_course_exam_url(@course.id)
+                    end
                end
+          else
+               redirect_to new_course_exam_url(@course.id)
           end
-          redirect_to new_course_exam_url(@course.id)
      end
 
-     def edit
-          @exam = @course.exams.find_by_id(params[:id])
-
-          if @exam.nil?
-               redirect_to new_course_exam_url(@course.id)
-               return
-          elsif @exam.published
-               redirect_to course_exam_url(@course.id, @exam.id)
-               return
-          end
-
-          respond_to do |format|
-               format.html do
-                    set_tab :new
-               end
-          end
+     def preview
+          @exam = Exam.build_exam params[:exam]
+          render :action => :show
      end
 
      def generate
@@ -93,31 +80,6 @@ class ExamsController < ApplicationController
                format.html do
                     set_tab :generate
                end
-          end
-     end
-
-     def update
-          @exam = @course.exams.unpublished.find_by_id params[:id]
-          @questions = @exam.questions
-          respond_to do |format|
-               format.html
-          end
-     end
-
-     def destroy
-          @exam = @course.exams.unpublished.find_by_id params[:id]
-          @exam.destroy if @exam.created_at == @exam.updated_at
-          redirect_to new_course_exam_url(@course.id)
-     end
-
-     def publish
-          @exam = @course.exams.unpublished.find_by_id(params[:id])
-          if @exam.publish!
-               redirect_to course_exam_url(@course.id, @exam.id)
-          else
-               @exam.valid?
-               flash[:errors] = @exam.errors.full_messages
-               redirect_to edit_course_exam_url(@course.id, @exam.id)
           end
      end
 
