@@ -13,7 +13,7 @@ class ExamsController < ApplicationController
 
      def show
           @exam = @course.exams.published.find_by_id(params[:id])
-          
+         
           if @exam.nil?
                redirect_to course_exams_url(@course.id)
                return
@@ -89,20 +89,12 @@ class ExamsController < ApplicationController
           end
      end
      def generate
-          unless access?
-               @exam = @course.exams.public
+          @exam = @course.exams.published
+          @exam = @exam.only_public unless access?
 
-               if @exam.nil?
-                    redirect_to course_exams_url(@course.id)
-                    return
-               end
-          else
-               @exam = @course.exams.private
-
-               if @exam.nil?
-                    redirect_to course_exams_url(@course.id)
-                    return
-               end
+          if @exam.nil?
+               redirect_to course_exams_url(@course.id)
+               return
           end
 
           respond_to do |format|

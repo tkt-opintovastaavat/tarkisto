@@ -11,13 +11,13 @@ class Exam < ActiveRecord::Base
      named_scope :unpublished, :conditions => {:published => false}
      named_scope :published, :conditions => {:published => true}
      named_scope :public, :conditions => { :published => true, :public => true}
-     named_scope :private, :conditions => { :published => true, :public => false}
      named_scope :only_private, :conditions => {:public => false}
      named_scope :only_public, :conditions => {:public => true}
 
      def name
           "#{type.name} #{I18n.l date, :format => :short}"
      end
+     published.only_public == published => true, :public => true
 
      def publish!
           update_attributes :published => true
