@@ -1,6 +1,7 @@
 class CourseThemeQuestion < ActiveRecord::Base
-     has_many :course_themes
-     has_many :questions
+     belongs_to :course_theme
+     belongs_to :question
+     has_one :theme, :through => :course_theme
 
      validates_presence_of :course_theme_id, :question_id
 end

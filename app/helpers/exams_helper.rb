@@ -17,31 +17,34 @@ module ExamsHelper
      end
 
      def generate_data_object exam
+          questions = []
           unless exam[:id].nil?
-               questions = []
                exam.questions.each do |q|
-                    _question_to_json(q, questions)
+                   questions << _question_to_json(q)
                end
           end
+          data_object = {"exam" => exam, "questions" => questions, "modified" => false}
+          return data_object.to_json
+          
      end
 
      private
 
-     def _question_to_json q, questions
+     def _question_to_json q
           images = []
           q.images.each do |i|
-               images << i.attributes.to_json
+               images << i.attributes
           end
           codes = []
           q.code_snippets.each do |c|
-               codes << c.attributes.to_json
+               codes << c.attributes
           end
           themes = []
           q.themes.each do |t|
-               themes << t.attributes.to_json
+               themes << t.attributes
           end
-          questions << q.attributes.merge(
+          return q.attributes.merge(
                {"images" => images, "codes" => codes, "themes" => themes}
-          ).to_json
+          )
      end
 end
