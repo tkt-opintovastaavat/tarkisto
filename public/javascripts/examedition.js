@@ -73,3 +73,16 @@ function createQuestionMetaImagesBox(data) {
 function createQuestionMetaCodesBox(data) {
      return $('<div />').text('code');
 }
+
+function createExamQuestion(number) {
+     return question = {
+          "codes": [],
+          "images": [],
+          "course_themes": [],
+          "number": number,
+          "description": "",
+          "name": "",
+          "points": ""
+     };
+}
+
