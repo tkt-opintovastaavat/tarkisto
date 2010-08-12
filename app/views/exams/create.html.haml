@@ -1,8 +1,9 @@
 - content_for :title do
      #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
 - content_for :header do
+     - @object = generate_data_object @exam
      %script(type="text/javascript")
-          var dataObject = #{@exam.to_json}
+          var dataObject = #{@object}
      = javascript_include_tag "examedition"
 - content_for :content do
      #exam_info
