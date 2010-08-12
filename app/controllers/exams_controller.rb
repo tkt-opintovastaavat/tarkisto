@@ -31,7 +31,6 @@ class ExamsController < ApplicationController
           unless access?
                flash[:notice] = I18n.t('pages.session.notifications.denied')
                redirect_to :back
-
           end
 
           @exam = Exam.new

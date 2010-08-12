@@ -17,7 +17,6 @@ class Exam < ActiveRecord::Base
      def name
           "#{type.name} #{I18n.l date, :format => :short}"
      end
-     published.only_public == published => true, :public => true
 
      def publish!
           update_attributes :published => true
