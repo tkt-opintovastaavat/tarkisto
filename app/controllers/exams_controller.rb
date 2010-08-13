@@ -75,6 +75,43 @@ class ExamsController < ApplicationController
      def generate
           respond_to do |format|
                format.html do
+               
+                    # If there's course_theme parameters, it means that the generate button was pressed
+                    if params.include? 'course_theme'
+                         # Generate the basic info
+                         generated_exam = Exam.new
+                         generated_exam.course_id = @course.id
+                         generated_exam.date = Date.today
+                         generated_exam.type_id = Type.find_by_name_fi("Generoitu koe")
+                         
+                         # Extract the themes array from parameters
+                         chosen_themes = params[:course_theme]
+                         
+                         # Get all the questions for the course in random order, then pick only ones that match the themes
+                         all_questions = Course.find_by_id(@course).questions (:order => 'random()')
+                         
+                         all_questions.each do |question|
+                              
+                              chosen_themes.each do |theme|
+                                   if question.course_themes.first.id == theme.id
+                                        generated_exam.questions << question
+                                   end
+                              end
+                         end
+                         
+                         # If no questions were chosen, return (display alert maybe?)
+                         if generated_exam.questions.empty?
+                              redirect_to generate_course_exams_url(@course.id)
+                         # Else send exam to be turned into pdf
+                         else
+                              send_data PdfExport.exam(generated_exam), :filename => "#{@course.name} - #{generated_exam.name}.pdf"
+                         end
+                         
+                    
+                    else
+                         @exams = @course.exams.published
+                         @course_themes = @course.course_themes
+                    end
                     set_tab :generate
                end
           end

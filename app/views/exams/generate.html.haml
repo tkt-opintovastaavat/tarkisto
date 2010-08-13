@@ -2,3 +2,24 @@
      #{@course.name} :: #{t 'pages.exams.titles.generate'}
 - content_for :content do
      %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
+
+     - if @exams.empty?
+          %p Koetta ei voida generoida koska tähän kurssiin ei liity yhtään kysymystä.
+          
+     - else
+          
+          - form_tag generate_course_exams_url(@course.id), :method => 'get' do
+
+               %div
+                    = label_tag "Kuinka monta:"
+                    = text_field_tag :number, '1', :size => 1
+          
+               - @course_themes.each do |ct|
+                    %div
+                         = check_box_tag 'course_theme', ct.theme_id, true
+                         = label_tag ct.theme.name_fi
+               %div
+                    = check_box_tag 'course_theme', '0', true
+                    = label_tag 'Teemattomat'
+     
+               %div= submit_tag "Generoi"

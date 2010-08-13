@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
      has_many :exams
+     has_many :questions, :through => :exams
      has_many :shortcuts
      has_many :instances
      has_many :course_themes

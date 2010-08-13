@@ -6,6 +6,7 @@
      erilliskoe = Type.create :name_fi => 'Erilliskoe'
      kurssikoe = Type.create :name_fi => 'Kurssikoe'
      uusintakoe = Type.create :name_fi => 'Uusintakoe'
+     generoitu_koe = Type.create :name_fi => 'Generoitu koe'
 
      algorithm_theme = Theme.create :name_fi => 'Algoritmit ja ohjausrakenteet'
      algorithm_theme.course_themes.create :course_id => Course.find_by_code(581325).id
