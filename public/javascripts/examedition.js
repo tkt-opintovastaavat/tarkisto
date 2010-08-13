@@ -21,7 +21,9 @@ $(document).ready(function() {
           event.preventDefault();
           if (!lastQuestionId)
                lastQuestionId = 0;
-          $(createQuestionBox()).appendTo('#questions');
+          var question = createExamQuestion(0);
+          dataObject.questions.push(question);
+          $(createQuestionBox(question)).appendTo('#questions');
           $tabs.tabs('add', '#questions-' + lastQuestionId, I18n.t('pages.exams.forms.questions.anon'));
           lastQuestionId++;
      });
@@ -44,17 +46,23 @@ function createQuestionDataBox(data) {
 }
 
 function createQuestionDataNameBox(data) {
-     var textarea = $('<textarea />').addClass('question-name').attr('id', 'question_name');
+     var textarea = $('<textarea />').addClass('question-name').attr('id', 'question_name').change(function (){
+          data.name = $(this).val();
+     });
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.name'))).append(textarea);
 }
 
 function createQuestionDataDescriptionBox(data) {
-     var textarea = $('<textarea />').addClass('question-content').attr('id', 'question_description');
+     var textarea = $('<textarea />').addClass('question-content').attr('id', 'question_description').change(function () {
+          data.description = $(this).val();
+     });
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.description'))).append(textarea);
 }
 
 function createQuestionDataPointsBox(data) {
-     var textfield = $('<input />').attr('type', 'text').attr('id', 'points');
+     var textfield = $('<input />').attr('type', 'text').attr('id', 'points').change(function () {
+          data.points = $(this).val();          
+     });
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.points'))).append(textfield);
 }
 
@@ -75,14 +83,14 @@ function createQuestionMetaCodesBox(data) {
 }
 
 function createExamQuestion(number) {
-     return question = {
+     return {
+          "id": null,
           "codes": [],
           "images": [],
           "course_themes": [],
           "number": number,
           "description": "",
           "name": "",
-          "points": ""
+          "points": 0
      };
 }
-
