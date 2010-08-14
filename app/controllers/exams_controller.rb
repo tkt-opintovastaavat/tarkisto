@@ -76,41 +76,50 @@ class ExamsController < ApplicationController
           respond_to do |format|
                format.html do
                
-                    # If there's course_theme parameters, it means that the generate button was pressed
-                    if params.include? 'course_theme'
+                    @course_themes = @course.course_themes
+               
+                    # If there's commit parameter, it means that the generate button was pressed
+                    if params.include? 'commit'
                          # Generate the basic info
-                         generated_exam = Exam.new
-                         generated_exam.course_id = @course.id
-                         generated_exam.date = Date.today
-                         generated_exam.type_id = Type.find_by_name_fi("Generoitu koe")
-                         
-                         # Extract the themes array from parameters
-                         chosen_themes = params[:course_theme]
+                         @generated_exam = Exam.new
+                         @generated_exam.course_id = @course.id
+                         @generated_exam.date = Date.today
+                         @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
                          
                          # Get all the questions for the course in random order, then pick only ones that match the themes
-                         all_questions = Course.find_by_id(@course).questions (:order => 'random()')
+                         @all_questions = Course.find_by_id(@course).questions(:order => 'random()')
                          
-                         all_questions.each do |question|
+                         @all_questions.each do |question|
+                         
+                              if @generated_exam.questions.size == params[:number].to_i
+                                   break
+                              end
                               
-                              chosen_themes.each do |theme|
-                                   if question.course_themes.first.id == theme.id
-                                        generated_exam.questions << question
+                              @course_themes.each do |theme|
+                                   if params[theme.theme_id.to_s] == 'chosen' and question.course_themes.include? theme
+                                        @generated_exam.questions << question
+                                        break
                                    end
                               end
+                              
+                              if params.include? 'themeless' and question.course_theme_questions.empty?
+                                   @generated_exam.questions << question
+                              end
+                              
                          end
                          
+                         
                          # If no questions were chosen, return (display alert maybe?)
-                         if generated_exam.questions.empty?
+                         if @generated_exam.questions.empty?
                               redirect_to generate_course_exams_url(@course.id)
                          # Else send exam to be turned into pdf
                          else
-                              send_data PdfExport.exam(generated_exam), :filename => "#{@course.name} - #{generated_exam.name}.pdf"
+                              send_data PdfExport.exam(@generated_exam), :filename => "#{@course.name} - #{@generated_exam.name}.pdf"
                          end
                          
                     
                     else
                          @exams = @course.exams.published
-                         @course_themes = @course.course_themes
                     end
                     set_tab :generate
                end

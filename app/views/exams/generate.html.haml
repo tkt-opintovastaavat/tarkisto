@@ -12,14 +12,14 @@
 
                %div
                     = label_tag "Kuinka monta:"
-                    = text_field_tag :number, '1', :size => 1
+                    = text_field_tag 'number', '1', :size => 1
           
                - @course_themes.each do |ct|
                     %div
-                         = check_box_tag 'course_theme', ct.theme_id, true
+                         = check_box_tag ct.theme_id, "chosen", true
                          = label_tag ct.theme.name_fi
                %div
-                    = check_box_tag 'course_theme', '0', true
+                    = check_box_tag 'themeless', 'chosen', true
                     = label_tag 'Teemattomat'
      
                %div= submit_tag "Generoi"
