@@ -80,7 +80,7 @@ class ExamsController < ApplicationController
                
                     # If there's commit parameter, it means that the generate button was pressed
                     if params.include? 'commit'
-                         # Generate the basic info
+                         # Generate the basic info for the exam
                          @generated_exam = Exam.new
                          @generated_exam.course_id = @course.id
                          @generated_exam.date = Date.today
@@ -107,7 +107,7 @@ class ExamsController < ApplicationController
                               end
                               
                          end
-                         
+
                          
                          # If no questions were chosen, return (display alert maybe?)
                          if @generated_exam.questions.empty?
