@@ -87,6 +87,7 @@ class ExamsController < ApplicationController
                          @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
                          
                          # Get all the questions for the course in random order, then pick only ones that match the themes
+                         # and add those to the exam. Stop when have as many questions as the user wanted.
                          @all_questions = Course.find_by_id(@course).questions
                          @all_questions = @all_questions.sort_by{rand}
                          
@@ -103,18 +104,20 @@ class ExamsController < ApplicationController
                                    end
                               end
                               
+                              # Themeless questions are handled separately because they have different params id
                               if params.include? 'themeless' and question.course_theme_questions.empty?
                                    @generated_exam.questions << question
                               end
                               
                          end
                          
+                         # Fix the question numbers
                          @generated_exam.questions.each_with_index do |question, index|
                               question.number = index+1
                          end
 
                          
-                         # If no questions were chosen, return (display alert maybe?)
+                         # If no questions were chosen, return
                          if @generated_exam.questions.empty?
                               redirect_to generate_course_exams_url(@course.id)
                          # Else send exam to be turned into pdf
