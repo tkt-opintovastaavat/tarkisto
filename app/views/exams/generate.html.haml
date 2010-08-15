@@ -14,7 +14,7 @@
 
                %div
                     = label_tag "Kuinka monta:"
-                    = text_field_tag 'number', '1', :size => 1
+                    = select_tag 'number', '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>'
           
                - @course_themes.each do |ct|
                     %div
