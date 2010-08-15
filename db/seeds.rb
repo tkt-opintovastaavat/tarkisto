@@ -408,8 +408,8 @@ aine.courses.create :code => 582336, :name_fi => "Introduction to Go", :name_se 
 
      kesa.questions.create :number => 1 , :name => %&Selitä lyhyesti ja selkeästi käsitteet parametri, konstruktori, aksessori, kapselointi&, :description => "", :points => 16
 
-     kesa.questions.first.course_theme_questions.create :course_theme => objects
-     kesa.questions.first.course_theme_questions.create :course_theme => var
+     kesa.questions.last.course_theme_questions.create :course_theme => objects
+     kesa.questions.last.course_theme_questions.create :course_theme => var
 
      kesa.questions.create :number => 2 , :description => %&* public OliiviOljyAsema (double pääsailiö, double varastosailio) luo oliiviöljyaseman, jonka säiliöiden vetoisuudet annetaan parametreina. Jos vetoisuus on virheellinen, säiliön kooksi asetetaan 100 litraa. Molemmat säiliöt ovat aluksi tyhjiä.
 
@@ -467,22 +467,22 @@ Arvattavien lukujen hakeminen on tehokkuussyistä ohjelmoitava binäärihakua k�
 
 Havainnollista Saatio-luokan käyttöä pienellä pääohjelmalla. Tämän ohjelman ei tarvitse eikä ole syytä lukea mitään. Älä turhaan yritä etsiä Saatio-luokalle vastineita todellisuudesta! Ohjelmoi vain niin kuin "API" käskee. &, :description => "", :points => 16
 
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => objects
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => var
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => classes
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => objects
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => var
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => classes
 
 
      ohpes2009.questions.create :number => 2 , :name => %&Selitä lyhyesti ja selkeästi käsitteet parametri, konstruktori, aksessori, kapselointi.&, :description => "", :points => 16
 
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => var
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => var
      
      
      ohpes2009.questions.create :number => 3 , :name => %&Toteuta seuraava arvauspeli vuorovaikutteisena eli keskustelevana ohjelmana:  Aamuisin ohjelmalle syötetään ensin tasan tuhat onnenlukua missä järjestyksessä tahansa. Onnenluvut ovat positiivisia kokonaislukuja. Sama luku saa esiintyä useamminkin kuin kerran. Päivän mittaan pelaajat käyvät sitten arvaamassa lukuja. Jos pelaaja onnistuu arvaamaan jonkin luvun, joka oli aamulla syötettyjen lukujen joukossa, ohjelma onnittelee pelaajaa. Jos pelaaja epäonnistuu, ohjelma esittää valittelunsa. Ohjelman suoritus päättyy, kun arvatuksi luvuksi syötetään nolla tai negatiivinen luku. Tällöin ohjelma tulostaa oikeiden ja väärien arvausten määrän. Tehokkuussyistä lukujen hakeminen taulukosta on ohjelmoitava binäärihakua käyttäen. Saat olettaa, että kaikki syötetyt tiedot ovat kelvollisia kokonaislukuja.&, :description => "", :points => 18
 
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => objects
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => var
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => classes
-     ohpes2009.questions.first.course_theme_questions.create :course_theme => sub
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => objects
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => var
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => classes
+     ohpes2009.questions.last.course_theme_questions.create :course_theme => sub
      
      ohpes2009.publish!     
      
@@ -494,9 +494,9 @@ Havainnollista Saatio-luokan käyttöä pienellä pääohjelmalla. Tämän ohjel
      
      ohpek2008.questions.create :number => 1 , :name => %&Selitä lyhyesti ja selkeästi käsitteet muuttujan tyyppi, parametri, kapselointi, new-ilmaus, toString()-metodi, indeksi.&, :description => "", :points => 18
 
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => objects
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => var
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => alg
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => objects
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => var
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => alg
 
 
      ohpek2008.questions.create :number => 2 , :name => %&Virvoitusjuoma-automaatissa on kaksi säiliötä: vesisäiliö ja makuainesäiliö. Juomaa valmistetaan sekoittamalla yksi osa makuainetta ja yhdeksän osaa vettä.
@@ -515,18 +515,18 @@ Ohjelmoi luokka VirvoitusjuomaAutomaatti virvoitusjuoma-automaatin toteutukseksi
 
 Laadi myös pääohjelma, joka esittelee ja havainnollistaa VirvoitusjuomaAutomaatti-olioiden käyttöä.&, :description => "", :points => 16
 
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => var
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => objects
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => classes
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => alg
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => var
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => objects
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => classes
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => alg
      
      
      ohpek2008.questions.create :number => 3 , :name => %&Toteuta seuraava arvauspeli vuorovaikutteisena eli keskustelevana ohjelmana:  Aamuisin ohjelmalle syötetään ensin tasan tuhat onnenlukua missä järjestyksessä milloinkin. Onnenluvut ovat positiivisia kokonaislukuja. Päivän mittaan pelaajat käyvät sitten arvaamassa lukuja. Jos pelaaja onnistuu arvaamaan jonkin luvun, joka oli aamulla syötettyjen lukujen joukossa, ohjelma onnittelee pelaajaa. Jos pelaaja epäonnistuu, ohjelma esittää valittelunsa. Ohjelman suoritus päättyy, kun arvatuksi luvuksi syötetään nolla tai negatiivinen luku. Tällöin ohjelma tulostaa oikeiden ja väärien arvausten määrän. Tehokkuussyistä lukujen hakeminen taulukosta on ohjelmoitava binäärihakua käyttäen. &, :description => "", :points => 18
 
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => objects
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => var
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => classes
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => sub
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => objects
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => var
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => classes
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => sub
      
      ohpek2008.publish!     
     
@@ -538,7 +538,7 @@ Laadi myös pääohjelma, joka esittelee ja havainnollistaa VirvoitusjuomaAutoma
      
      ohpek2007.questions.create :number => 1 , :name => %&"Olio, mikä hemmetin olio?", kysyy ystäväsi kuunnellessaan tarinoitasi Ohjelmoinnin perusteet -kurssilta. Ystäväsi on ohjelmoinut sen verran, että hän tuntee yksinkertaiset muuttujat, lausekkeet, lauseet, metodit ja parametrit, mutta olio-ohjelmoinnista hän ei tiedä yhtään mitään. Auta ystävääsi ymmärtämään, mitä oliot ovat, miten niitä ohjelmoidaan ja käytetään, mitä hyötyä ja iloa niistä voi olla. Laadi siis asiasta kirjallinen selitys (maksimipituus on 1 konseptiarkki). Muista että esimerkit auttavat oppimisessa. Vastauksen arvioinnissa otetaan huomioon selostuksen ajateltu lukija. Älä siis kirjoita tarkastajalle, joka jo osaa oliot, kirjoita tuolle ystävälle!&, :description => "", :points => 16
 
-     ohpek2007.questions.first.course_theme_questions.create :course_theme => objects
+     ohpek2007.questions.last.course_theme_questions.create :course_theme => objects
 
 
      ohpek2007.questions.create :number => 2 , :name => %&Sekuntilaskuri tuntee sekunnit, minuutit ja tunteja vuorokauden verran. Laskuri voi vain edetä. Kun sekunnit ylittävät arvon 59 yhdellä, minuutit kasvavat ja sekunnit nollataan. Kun minuutit ylittävät arvon 59 yhdellä, tunnit kasvavat ja minuutit nollataan. Kun laskuri ylittää arvon 23:59:59 (23 tuntia, 59 minuuttia, 59 sekuntia), aloitetaan uudelleen arvosta 0:0:0. Laskuri siis laskee: 0:0:0, 0:0:1, ..., 0:0:59, 0:1:0, 0:1:1, 0:1:2, ..., 0:59:57, 0:59:58, 0:59:59, 1:0:0, 1:0:1,..., 23:59:58, 23:59:59, 0:0:0
@@ -553,18 +553,18 @@ Toteuta luokka Sekuntilaskuri
 
 Varusta luokka metodilla toString(), jonka ansiosta olion arvo saadaan tulostettua muodossa tunnit:minuutit:sekunnit, siis esimerkiksi "14:7:53". &, :description => "", :points => 16
 
-     ohpek2007.questions.first.course_theme_questions.create :course_theme => var
-     ohpek2007.questions.first.course_theme_questions.create :course_theme => objects
-     ohpek2007.questions.first.course_theme_questions.create :course_theme => classes
-     ohpek2007.questions.first.course_theme_questions.create :course_theme => alg
+     ohpek2007.questions.last.course_theme_questions.create :course_theme => var
+     ohpek2007.questions.last.course_theme_questions.create :course_theme => objects
+     ohpek2007.questions.last.course_theme_questions.create :course_theme => classes
+     ohpek2007.questions.last.course_theme_questions.create :course_theme => alg
      
      
      ohpek2007.questions.create :number => 3 , :name => %&Toteuta seuraava arvauspeli vuorovaikutteisena eli keskustelevana ohjelmana:  Aamuisin ohjelmalle syötetään ensin tasan tuhat onnenlukua missä järjestyksessä milloinkin. Onnenluvut ovat positiivisia kokonaislukuja. Päivän mittaan pelaajat käyvät sitten arvaamassa lukuja. Jos pelaaja onnistuu arvaamaan jonkin luvun, joka oli aamulla syötettyjen lukujen joukossa, ohjelma onnittelee pelaajaa. Jos pelaaja epäonnistuu, ohjelma esittää valittelunsa. Ohjelman suoritus päättyy, kun arvatuksi luvuksi syötetään nolla tai negatiivinen luku. Tällöin ohjelma tulostaa oikeiden ja väärien arvausten määrän. Tehokkuussyistä lukujen hakeminen taulukosta on ohjelmoitava binäärihakua käyttäen. &, :description => "", :points => 18
 
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => objects
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => var
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => classes
-     ohpek2008.questions.first.course_theme_questions.create :course_theme => sub
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => objects
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => var
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => classes
+     ohpek2008.questions.last.course_theme_questions.create :course_theme => sub
      
      ohpek2008.publish!
      

@@ -87,7 +87,8 @@ class ExamsController < ApplicationController
                          @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
                          
                          # Get all the questions for the course in random order, then pick only ones that match the themes
-                         @all_questions = Course.find_by_id(@course).questions(:order => 'random()')
+                         @all_questions = Course.find_by_id(@course).questions
+                         @all_questions = @all_questions.sort_by{rand}
                          
                          @all_questions.each do |question|
                          
@@ -106,6 +107,10 @@ class ExamsController < ApplicationController
                                    @generated_exam.questions << question
                               end
                               
+                         end
+                         
+                         @generated_exam.questions.each_with_index do |question, index|
+                              question.number = index+1
                          end
 
                          
