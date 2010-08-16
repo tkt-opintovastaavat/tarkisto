@@ -67,7 +67,18 @@ function createQuestionDataPointsBox(data) {
 }
 
 function createQuestionDataThemesBox(data) {
-     return $('<p />').text('-- Teemat tähän --');
+     var dropdown_selection = $('<select />').attr('multiple','multiple').attr('id','course_themes').attr('name','course_theme_selection')
+     $.each(dataObject.themes, function(i, theme) {
+          theme = ($.parseJSON(theme)).theme;
+          dropdown_selection.append(
+               $('<option />').attr('value', theme.id).text(theme.name_fi)
+          );
+     });
+     dropdown_selection.change(function() {
+          data.themes = $.parseJSON('['+$(this).val()+']')
+     });
+     return $('<p />').append(dropdown_selection);
+     
 }
 
 function createQuestionMetaBox(data) {

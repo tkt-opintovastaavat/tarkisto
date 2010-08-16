@@ -23,9 +23,14 @@ module ExamsHelper
                    questions << _question_to_json(q)
                end
           end
+          themes = exam.course.themes
+          course_themes = []
+          themes.each do |t|
+               course_themes << t.to_json
+          end
           examhash = exam.attributes
 
-          data_object = {"exam" => examhash, "questions" => questions, "modified" => false}
+          data_object = {"exam" => examhash, "questions" => questions, "modified" => false, "themes" => course_themes}
           return data_object.to_json
      end
 
