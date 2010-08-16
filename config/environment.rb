@@ -45,5 +45,6 @@ Rails::Initializer.run do |config|
    config.i18n.default_locale = :fi
   
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
+  config.action_controller.allow_forgery_protection = false
 
 end

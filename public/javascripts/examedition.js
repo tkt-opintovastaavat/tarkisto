@@ -75,8 +75,20 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
-     return $('<div />').text('image');
+     var image = $('<form />').attr('target','upload_frame').attr('action', "http://tenttiarkisto.users.cs.helsinki.fi:9999/image").attr('enctype','multipart/form-data').attr('method','post').append(
+         $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
+         $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number),
+         $('<input />').attr('id','image_submit').attr('name','commit').attr('type','submit').attr('value', 'Lisää')
+     )
+     var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
+     //image.submit(function() {
+     //     alert(
+     //          $(return_frame).contents()
+     //     );
+     //}
+     return $('<div />').append(image).append(return_frame);
 }
+
 
 function createQuestionMetaCodesBox(data) {
      return $('<div />').text('code');
@@ -93,4 +105,25 @@ function createExamQuestion(number) {
           "name": "",
           "points": 0
      };
+}
+function getBaseURL() {
+    var url = location.href;  // entire url including querystring - also: window.location.href;
+    var baseURL = url.substring(0, url.indexOf('/', 14));
+
+
+    if (baseURL.indexOf('http://localhost') != -1) {
+        // Base Url for localhost
+        var url = location.href;  // window.location.href;
+        var pathname = location.pathname;  // window.location.pathname;
+        var index1 = url.indexOf(pathname);
+        var index2 = url.indexOf("/", index1 + 1);
+        var baseLocalUrl = url.substr(0, index2);
+
+        return baseLocalUrl + "/";
+    }
+    else {
+        // Root Url for domain name
+        return baseURL + "/";
+    }
+
 }
