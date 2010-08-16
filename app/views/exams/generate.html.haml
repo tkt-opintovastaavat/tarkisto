@@ -7,10 +7,8 @@
           %p= t('pages.exams.forms.generate.cannot_generate')
           
      - else
-     
-          %h3= @alert
           
-          - form_tag generate_course_exams_url(@course.id), :method => 'get' do
+          - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
 
                %div
                     = label_tag "Kuinka monta:"
@@ -24,4 +22,4 @@
                     = check_box_tag 'themeless', 'chosen', true
                     = label_tag t('pages.exams.forms.generate.themeless')
      
-               %div= submit_tag t('pages.exams.forms.generate.generate')
+               %div= submit_tag t('pages.exams.forms.generate.continue')

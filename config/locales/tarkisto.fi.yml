@@ -50,7 +50,9 @@ fi:
                          how_many: "Kuinka monta:"
                          themeless: "Teemattomat"
                          generate: "Generoi"
+                         continue: "Jatka"
                          cannot_generate: "Koetta ei voida generoida koska kurssiin ei liity yhtään kysymystä."
+                         back: "Takaisin"
                     publish:
                          submit: "Julkaise"
 

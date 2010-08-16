@@ -43,7 +43,9 @@ en:
                          how_many: "How many:"
                          themeless: "Themeless"
                          generate: "Generate"
+                         continue: "Continue"
                          cannot_generate: "Cannot generate an exam because there are no questions linked to this course."
+                         back: "Back"
                     publish:
                          submit: "Publish"
 

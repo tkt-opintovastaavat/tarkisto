@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
      map.resource :faq, :controller => :faq, :only => [:show]
      
      map.resources :courses, :collection => {:basics => :get, :intermediates => :get, :advanceds => :get, :others => :get}, :only => [:index] do |course|
-          course.resources :exams, :only => [:index, :show, :new, :create, :edit], :collection => {:generate => :get}
+          course.resources :exams, :only => [:index, :show, :new, :create, :edit], :collection => {:generate => :get, :generate_preview => :get}
      end
           
      map.namespace :admin do |admin|
