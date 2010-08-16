@@ -5,7 +5,7 @@ module SchoolDates
           if (1..5).include?(month)
                'K'
           elsif (6..8).include?(month)
-               'V'# <---DEMOA VARTEN: 'S'
+               'S'# <---DEMOA VARTEN: 'S' MUUTEN: 'V'
           else
                'S'
           end

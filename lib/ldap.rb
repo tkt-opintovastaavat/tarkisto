@@ -8,16 +8,16 @@ module LDAP
                return true 
           end
 
-          ldap = Net::LDAP.new
-          ldap.host = config['host']
-          ldap.base = config['base']
+          ldap = Net::LDAP.new(
+               :host => config['host'],
+               :base => config['base'], 
+               :port=> 636, 
+               :encryption => :simple_tls
+          )
+          ldap.authenticate "uid=#{username},#{config['base']}", password
 
           begin
-               result = ldap.bind_as(
-                    :method => :start_tls,
-                    :base => "uid=#{username},#{config['bind_dn']}",
-                    :password => password
-               )
+               result = ldap.bind
           rescue
                return false
           end
