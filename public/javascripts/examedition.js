@@ -21,7 +21,7 @@ $(document).ready(function() {
           event.preventDefault();
           if (!lastQuestionId)
                lastQuestionId = 0;
-          var question = createExamQuestion(0);
+          var question = createExamQuestion(lastQuestionId);
           dataObject.questions.push(question);
           $(createQuestionBox(question)).appendTo('#questions');
           $tabs.tabs('add', '#questions-' + lastQuestionId, I18n.t('pages.exams.forms.questions.anon'));
@@ -75,23 +75,26 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
-     var image = $('<form />').attr('target','upload_frame').attr('action', "http://tenttiarkisto.users.cs.helsinki.fi:9999/image").attr('enctype','multipart/form-data').attr('method','post').append(
+     var image = $('<form />').attr('target','upload_frame').attr('action', "getBaseURL()+'image'").attr('enctype','multipart/form-data').attr('method','post').append(
          $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
          $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number),
          $('<input />').attr('id','image_submit').attr('name','commit').attr('type','submit').attr('value', 'Lisää')
      )
      var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
-     //image.submit(function() {
-     //     alert(
-     //          $(return_frame).contents()
-     //     );
-     //}
-     return $('<div />').append(image).append(return_frame);
+
+
+     //var code_form = $('<form />').attr('target','upload_frame').attr('action', "getBaseURL()+'image'").attr('enctype','multipart/form-data').attr('method','post').append("
+     var code_image = $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
+     var textfield = $('<input />').attr('type', 'text').attr('id', 'codesbox').keyup(function () {
+          code_image.attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
+     });
+
+     return  $('<div />').append(image).append(return_frame).append(textfield).append(code_image);
 }
 
 
 function createQuestionMetaCodesBox(data) {
-     return $('<div />').text('code');
+     return $('<div />').text("code");
 }
 
 function createExamQuestion(number) {

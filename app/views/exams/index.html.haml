@@ -32,11 +32,3 @@
      %h2= @course.name
      
      #examlists= render :partial => "table", :locals => {:exams => @exams}
-
-     %tr
-          %td
-               %div
-                    %p= t('pages.exams.forms.questions.image.title')
-                    - form_for :image, :url => image_url, :html => { :multipart => true } do |f|
-                         = f.file_field :question_image
-                         = f.submit t('pages.exams.forms.questions.image.submit')
