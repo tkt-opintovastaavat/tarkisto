@@ -35,6 +35,7 @@ $(document).ready(function() {
                $tabs.tabs('remove', index);
           }
      });
+     $('#save form').submit(saveDataObject);
 });
 
 function createQuestionBox(data) {
@@ -75,7 +76,7 @@ function createQuestionDataThemesBox(data) {
           );
      });
      dropdown_selection.change(function() {
-          data.themes = $.parseJSON('['+$(this).val()+']')
+          data.course_themes = $.parseJSON('['+$(this).val()+']')
      });
      return $('<p />').append(dropdown_selection);
      
@@ -198,6 +199,13 @@ function createExamQuestion(number) {
           "name": "",
           "points": 0
      };
+}
+
+function saveDataObject(event){
+     event.preventDefault();
+     $.post($(this).attr("action"), dataObject, function(data) {
+          alert("Save successful")
+     });
 }
 function getBaseURL() {
     var url = location.href;  // entire url including querystring - also: window.location.href;

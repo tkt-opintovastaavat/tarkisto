@@ -1,5 +1,7 @@
 class ExamsController < ApplicationController
 
+     include DataObject
+
      before_filter :_set_course
 
      def index
@@ -53,20 +55,29 @@ class ExamsController < ApplicationController
      end
 
      def create
-          if params.include? 'exam'
-               if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
-                    @exam = @course.exams.find_by_id(params[:exam][:id])
-                    redirect_to new_course_exam_url(@course.id) if @exam.nil?
+          respond_to do |format|
+               format.html do
+                    if params.include? 'exam'
+                         if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
+                              @exam = @course.exams.find_by_id(params[:exam][:id])
+                              redirect_to new_course_exam_url(@course.id) if @exam.nil?
 
-               else
-                    @exam = @course.exams.new params[:exam]
-                    unless @exam.valid?
-                         flash[:errors] = @exam.errors.full_messages
+                         else
+                              @exam = @course.exams.new params[:exam]
+                              unless @exam.valid?
+                                   flash[:errors] = @exam.errors.full_messages
+                                   redirect_to new_course_exam_url(@course.id)
+                              end
+                         end
+                    else
                          redirect_to new_course_exam_url(@course.id)
                     end
                end
-          else
-               redirect_to new_course_exam_url(@course.id)
+               format.json do
+                    exam = save_data_object(params)
+                    object = generate_data_object(exam)
+                    render :json => object
+               end
           end
      end
 
