@@ -82,16 +82,37 @@ function createQuestionMetaImagesBox(data) {
      )
      var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
 
+     var open_formula_dialog = $('<p />').append(
+          $('<button />').text('Add new').click(function(event) {
+               createFormulaDialog(data).dialog('open');
+          })
+     );
 
-     //var code_form = $('<form />').attr('target','upload_frame').attr('action', "getBaseURL()+'image'").attr('enctype','multipart/form-data').attr('method','post').append("
+     return  $('<div />').append(image).append(return_frame).append(open_formula_dialog);
+}
+
+function createFormulaDialog(data) {
      var code_image = $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
      var textfield = $('<input />').attr('type', 'text').attr('id', 'codesbox').keyup(function () {
           code_image.attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
      });
 
-     return  $('<div />').append(image).append(return_frame).append(textfield).append(code_image);
+     return $('<form />').append(textfield).append(code_image).dialog({
+          autoOpen: false,
+          resizable: false,
+          draggable: false,
+          modal: true,
+          closeOnEscape: false,
+          buttons: {
+               create: function() {
+                    $(this).dialog('close');
+               },
+               close: function() {
+                    $(this).dialog('close');
+               }
+          }
+     });
 }
-
 
 function createQuestionMetaCodesBox(data) {
      return $('<div />').text("code");
