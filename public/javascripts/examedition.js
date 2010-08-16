@@ -75,7 +75,7 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
-     var image = $('<form />').attr('target','upload_frame').attr('action', "getBaseURL()+'image'").attr('enctype','multipart/form-data').attr('method','post').append(
+     var image = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"image").attr('enctype','multipart/form-data').attr('method','post').append(
          $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
          $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number),
          $('<input />').attr('id','image_submit').attr('name','commit').attr('type','submit').attr('value', 'Lisää')
@@ -83,9 +83,8 @@ function createQuestionMetaImagesBox(data) {
      var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
 
 
-     //var code_form = $('<form />').attr('target','upload_frame').attr('action', "getBaseURL()+'image'").attr('enctype','multipart/form-data').attr('method','post').append("
      var code_image = $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
-     var textfield = $('<input />').attr('type', 'text').attr('id', 'codesbox').keyup(function () {
+     var textfield = $('<input />').attr('type', 'text').attr('id', 'formulaebox').keyup(function () {
           code_image.attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
      });
 
@@ -94,7 +93,11 @@ function createQuestionMetaImagesBox(data) {
 
 
 function createQuestionMetaCodesBox(data) {
-     return $('<div />').text("code");
+     var code_form = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"codes").attr('method','post').append(
+          $('<textarea />').attr('id','codebox'),
+          $('<input />').attr('type','submit').attr('id','codesubmit').attr('value','Lisää Koodi')
+     )
+     return $('<div />').append(code_form);
 }
 
 function createExamQuestion(number) {
