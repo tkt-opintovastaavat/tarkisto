@@ -39,6 +39,11 @@ en:
                          date: "Date"
                          public_notification: "Exam isn't public by default"
                          continue: "Continue"
+                    generate:
+                         how_many: "How many:"
+                         themeless: "Themeless"
+                         generate: "Generate"
+                         cannot_generate: "Cannot generate an exam because there are no questions linked to this course."
                     publish:
                          submit: "Publish"
 

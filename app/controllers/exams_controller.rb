@@ -75,6 +75,60 @@ class ExamsController < ApplicationController
      def generate
           respond_to do |format|
                format.html do
+               
+                    @course_themes = @course.course_themes
+               
+                    # If there's commit parameter, it means that the generate button was pressed
+                    if params.include? 'commit'
+                         # Generate the basic info for the exam
+                         @generated_exam = Exam.new
+                         @generated_exam.course_id = @course.id
+                         @generated_exam.date = Date.today
+                         @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
+                         
+                         # Get all the questions for the course in random order, then pick only ones that match the themes
+                         # and add those to the exam. Stop when have as many questions as the user wanted.
+                         @all_questions = Course.find_by_id(@course).questions
+                         @all_questions = @all_questions.sort_by{rand}
+                         
+                         @all_questions.each do |question|
+                         
+                              if @generated_exam.questions.size == params[:number].to_i
+                                   break
+                              end
+                              
+                              @course_themes.each do |theme|
+                                   if params[theme.theme_id.to_s] == 'chosen' and question.course_themes.include? theme
+                                        @generated_exam.questions << question
+                                        break
+                                   end
+                              end
+                              
+                              # Themeless questions are handled separately because they have different params id
+                              if params.include? 'themeless' and question.course_theme_questions.empty?
+                                   @generated_exam.questions << question
+                              end
+                              
+                         end
+                         
+                         # Fix the question numbers
+                         @generated_exam.questions.each_with_index do |question, index|
+                              question.number = index+1
+                         end
+
+                         
+                         # If no questions were chosen, return
+                         if @generated_exam.questions.empty?
+                              redirect_to generate_course_exams_url(@course.id)
+                         # Else send exam to be turned into pdf
+                         else
+                              send_data PdfExport.exam(@generated_exam), :filename => "#{@course.name} - #{@generated_exam.name}.pdf"
+                         end
+                         
+                    
+                    else
+                         @exams = @course.exams.published
+                    end
                     set_tab :generate
                end
           end

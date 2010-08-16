@@ -1,7 +1,10 @@
 class Course < ActiveRecord::Base
      has_many :exams
+     has_many :questions, :through => :exams
      has_many :shortcuts
      has_many :instances
+     has_many :course_themes
+     has_many :themes, :through => :course_themes
      belongs_to :level
 
      validates_presence_of :name_fi, :credits, :code

@@ -12,7 +12,8 @@
 
      erilliskoe = Type.create :name_fi => 'Erilliskoe'
      kurssikoe = Type.create :name_fi => 'Kurssikoe'
-     uusintakoe = Type.create :name_fi => 'Uusintakoe'     
+     uusintakoe = Type.create :name_fi => 'Uusintakoe'   
+     generoitu_koe = Type.create :name_fi => 'Generoitu koe'     
 
      ohpe = perusopinnot.courses.create :code => 581325 , :name_fi => 'Ohjelmoinnin perusteet', :credits => 5
      lama = aineopinnot.courses.create :code => 582206 , :name_fi => 'Laskennan mallit', :credits => 6
