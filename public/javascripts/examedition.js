@@ -86,25 +86,52 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
-     var image = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"image").attr('enctype','multipart/form-data').attr('method','post').append(
-         $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
-         $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number),
-         $('<input />').attr('id','image_submit').attr('name','commit').attr('type','submit').attr('value', 'Lisää')
-     )
-     var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
+     var open_image_dialog = $('<p />').append(
+          $('<button />').text('Lisää kuvatiedosto').click(function(event) {
+               createImageDialog(data).dialog('open');
+          })
+     );
+     
 
      var open_formula_dialog = $('<p />').append(
-          $('<button />').text('Add new').click(function(event) {
+          $('<button />').text('Lisää LaTeX-kaava').click(function(event) {
                createFormulaDialog(data).dialog('open');
           })
      );
+     return  $('<div />').append(open_image_dialog).append(open_formula_dialog);
+}
+function createImageDialog(data) {
+     var image = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"image").attr('enctype','multipart/form-data').attr('method','post').append(
+         $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
+         $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number)
+     ).dialog({
+          autoOpen: false,
+          resizable: false,
+          draggable: false,
+          width: 'auto',
+          height: 'auto',
+          modal: true,
+          closeOnEscape: false,
+          title: "Lisää kuvatiedosto",
+          buttons: {
+               submit: function() {
+                    $(this).submit();
+                    $(this).dialog('close');
+               },
+               close: function() {
+                    $(this).dialog('close');
+               }
+          }
+     });
+     var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
 
-     return  $('<div />').append(image).append(return_frame).append(open_formula_dialog);
+     image.append(return_frame)
+     return image
 }
 
 function createFormulaDialog(data) {
      var code_image = $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
-     var textfield = $('<input />').attr('type', 'text').attr('id', 'formulaebox').keyup(function () {
+     var textfield = $('<input />').attr('type', 'text').attr('id', 'formulaebox').change(function () {
           code_image.attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
      });
 
@@ -126,11 +153,38 @@ function createFormulaDialog(data) {
 }
 
 function createQuestionMetaCodesBox(data) {
-     var code_form = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"codes").attr('method','post').append(
-          $('<textarea />').attr('id','codebox'),
-          $('<input />').attr('type','submit').attr('id','codesubmit').attr('value','Lisää Koodi')
-     )
-     return $('<div />').append(code_form);
+     var open_code_dialog = $('<p />').append(
+          $('<button />').text('Lisää koodia').click(function(event) {
+               createCodeDialog(data).dialog('open');
+          })
+     );
+     return $('<div />').append(open_code_dialog);
+}
+function createCodeDialog(data){
+
+     var code_form = $('<form />').attr('action', getBaseURL()+"codes").attr('method','post').append(
+          $('<textarea />').attr('id','codebox').attr('cols','100').attr('rows','20')).dialog({
+          autoOpen: false,
+          resizable: false,
+          draggable: false,
+          width: 'auto',
+          height: 'auto',
+          modal: true,
+          closeOnEscape: false,
+          title: "Lisää koodia",
+          buttons: {
+               submit: function() {
+                    $(this).submit();
+                    $(this).dialog('close');
+               },
+               close: function() {
+                    $(this).dialog('close');
+               }
+          }
+     });
+
+     return code_form;
+
 }
 
 function createExamQuestion(number) {
