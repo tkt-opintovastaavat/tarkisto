@@ -6,13 +6,13 @@
      %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_url(@course.id)
      
      - if @generated_exam.questions.empty?
-          %p "No match."
+          %p Valitsemillesi teemoille ei löytynyt yhtään kysymystä.
      
      - else
           - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
 
           
-               %p Maksimipisteet: 
+               %p Maksimipisteet: #{@generated_exam.maximum_points}
                - @generated_exam.questions.each do |question|
                     %h3 #{question.number}. #{question.name} 
                     %p #{question.description}
