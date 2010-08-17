@@ -1,5 +1,8 @@
 class CodesController < ApplicationController
-     def create text
-          @code = CodeSnippets.create :text => text
+
+     def create
+          @code = CodeSnippet.create :text => params[:code]
+          render :json => {'id' => @code.id}
      end
+
 end

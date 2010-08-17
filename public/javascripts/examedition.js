@@ -170,10 +170,10 @@ function createQuestionMetaCodesBox(data) {
      );
      return $('<div />').append(open_code_dialog);
 }
-function createCodeDialog(data){
+function createCodeDialog(data) {
+     var codebox = $('<textarea />').attr('id','codebox').attr('cols','100').attr('rows','20');
 
-     var code_form = $('<form />').attr('action', getBaseURL()+"codes").attr('method','post').append(
-          $('<textarea />').attr('id','codebox').attr('cols','100').attr('rows','20')).dialog({
+     return $('<form />').append(codebox).dialog({
           autoOpen: false,
           resizable: false,
           draggable: false,
@@ -184,17 +184,18 @@ function createCodeDialog(data){
           title: "Lisää koodia",
           buttons: {
                submit: function() {
-                    $(this).submit();
-                    $(this).dialog('close');
+                    var code = $('textarea', this).val();
+                    var dialog = $(this);
+                    $.post(Routes.generate({controller: 'code', action: ''}), {'code': code}, function(jsondata) {
+                         data['codes'].push(jsondata.id);
+                         dialog.dialog('close');
+                    }, 'json');
                },
                close: function() {
                     $(this).dialog('close');
                }
           }
      });
-
-     return code_form;
-
 }
 
 function createExamQuestion(number) {
