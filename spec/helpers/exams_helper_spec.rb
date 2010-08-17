@@ -35,4 +35,16 @@ describe ExamsHelper do
 
      end
 
+     describe "#question_name_for_exam_input" do
+
+          it "should return first 15 characters from name" do
+               question_name_for_exam_input('test string for question name').length.should <= 18
+          end
+
+          it "should return placeholder for empty name" do
+               question_name_for_exam_input(nil).should == I18n.t('pages.exams.forms.questions.anon')
+          end
+
+     end
+
 end

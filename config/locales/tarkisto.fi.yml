@@ -1,5 +1,18 @@
 fi:
 
+     activerecord:
+          models:
+               exam: "Tentti"
+          attributes:
+               exam:
+                    course: "Kurssi"
+                    type_id: "Koetyyppi"
+                    date: "Päivämäärä"
+                    maximum_points: "Maksimipisteet"
+          errors:
+               messages:
+                    points_not_match: "eivät ole pisteiden summa"
+
      pdf:
           school:
                name: "Helsingin Yliopisto"
@@ -36,6 +49,8 @@ fi:
                     separate-exams: "Erilliskokeet"
                     repeat-exams: "Uusintakokeet"
                forms:
+                    continue: "Jatka"
+                    save: "Tallenna"
                     selection:
                          name: "Valitse tentti"
                          new: "-- Uusi tentti --"
@@ -51,8 +66,27 @@ fi:
                          themeless: "Teemattomat"
                          generate: "Generoi"
                          cannot_generate: "Koetta ei voida generoida koska kurssiin ei liity yhtään kysymystä."
+                         public_notification: "Tentti on oletusarvoisesti julkinen"
                     publish:
+                         back: "Takaisin"
+                         save: "Tallenna"
+                    preview:
+                         title: "Esikatselu"
                          submit: "Julkaise"
+                    questions:
+                         new: "Uusi kysymys"
+                         anon: "Nimetön"
+                         delete: "Haluatko varmasti poistaa kysymyksen?"
+                         name: "Nimi"
+                         description: "Kuvaus"
+                         points: "Pisteet"
+                         themes: "Pääteema"
+                         add_code: "Lisää koodia"
+                         add_formula: "Lisää kaava"
+                         remove: "[poista]"
+                         image:
+                              title: "Lisää kuva"
+                              submit: "Lisää"
 
           session:
                form:

@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+  config.gem "paperclip"
   config.gem "haml"
   config.gem "compass", :version => ">=0.10.1"
   config.gem "net-ldap", :lib => 'net/ldap'
@@ -44,5 +45,6 @@ Rails::Initializer.run do |config|
    config.i18n.default_locale = :fi
   
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
+  config.action_controller.allow_forgery_protection = false
 
 end

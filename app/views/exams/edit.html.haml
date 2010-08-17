@@ -3,32 +3,25 @@
 - content_for :content do
      #exam_info
 
-          - form_for @exam, :url => course_exams_url(@course) do |f|
-               %div= submit_tag t('pages.exams.forms.publish.submit')
+          %h2#name_of_exam= "#{@course.name} - #{@exam.name}"
 
-          %p#name_of_exam= "#{@course.name} - #{@exam.name}"
+          - unless flash[:errors].nil? or flash[:errors].empty?
+               %ul.errors
+               - flash[:errors].each do |error|
+                    %li #{error}
+          %p#exam_url(style="display:none") #{course_exam_path(@course.id, @exam.id)}
 
      #questions
           %ul
-               %li
-                    = link_to 'Question 1', '#questions-1'
-                    %a(href="#remove")
-                         %span.ui-icon.ui-icon-close Remove Tab
-               %li.new-question= link_to 'New question', '#new_question'
-          #questions-1
-               %p Foobar
-               %table
-                    %tr
-                         %td
-                              %textarea#question-content
-                         %td
-                              %div
-                                   %p Lisää kuva
-                                   %p
-                                        %a(href="#show-picture") P=NP
-                                        %a(href="#delete-pic") [poista]
-                              %div
-                                   %p Lisää koodi
-                                   %p
-                                        %a(href="#show-code") automata
-                                        %a(href="#delete-code") [poista]
+               - @exam.questions.each do |question|
+                    %li(id="question_id-#{question.id}")
+                         = link_to question_name_for_exam_input(question.name), course_exam_question_url(@course.id, @exam.id, question.id)
+                         %a(href="#remove")
+                              %span.ui-icon.ui-icon-close Remove Tab
+               %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question'
+
+     #buttons
+          - form_for @exam, :url => course_exam_url(@course.id, @exam.id), :html => { :method => :delete } do |f|
+               %div= submit_tag t('pages.exams.forms.publish.back')
+          - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
+               %div= submit_tag t('pages.exams.forms.publish.submit')

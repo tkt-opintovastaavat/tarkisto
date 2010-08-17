@@ -16,39 +16,12 @@
           /[if IE]
                = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
-          = javascript_include_tag 'locales', 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min', 'jquery.dataTables.min', 'examinput', 'crumbs', 'niftycube', 'showhide', 'autocomplete_search'
+          = javascript_include_tag 'locales', 'routes', 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min', 'niftycube', 'showhide', 'autocomplete_search', 'application'
 
           = include_qunit if RAILS_ENV == 'development'
 
-          %script{:type=> "text/javascript"} 
-               window.onload=function(){
-               Nifty("div#box","big");
-               }
+          = yield :header if yield :header
 
-          %script{:type=> "text/javascript"}
-               $(document).ready(function() {
-               $('#exams').dataTable({
-               "oLanguage": {
-               "sProcessing":   "Hetkinen...",
-               "sLengthMenu":   "Näytä kerralla _MENU_ riviä",
-               "sZeroRecords":  "Tietoja ei löytynyt",
-               "sInfo":         "Näytetään rivit _START_ - _END_ (yhteensä _TOTAL_ )",
-               "sInfoEmpty":    "Näytetään 0 - 0 (yhteensä 0)",
-               "sInfoFiltered": "(suodatettu _MAX_ tuloksen joukosta)",
-               "sInfoPostFix":  "",
-               "sSearch":       "Filteröi:",
-               "sUrl":          "",
-               "oPaginate": {
-               "sFirst":    "Ensimmäinen",
-               "sPrevious": "Edellinen",
-               "sNext":     "Seuraava",
-               "sLast":     "Viimeinen"
-               }
-
-               }
-               });
-               } );
-          
      %body
 
           #container
