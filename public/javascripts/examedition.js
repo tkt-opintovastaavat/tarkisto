@@ -17,10 +17,10 @@ $(document).ready(function() {
           }
      });
 
+     addExistingQuestions($tabs);
+
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          if (!lastQuestionId)
-               lastQuestionId = 0;
           var question = createExamQuestion(lastQuestionId);
           dataObject.questions.push(question);
           $(createQuestionBox(question)).appendTo('#questions');
@@ -49,21 +49,33 @@ function createQuestionDataBox(data) {
 function createQuestionDataNameBox(data) {
      var textarea = $('<textarea />').addClass('question-name').attr('id', 'question_name').change(function (){
           data.name = $(this).val();
+          dataObject.modified = true;
      });
+     if (data.name != null) {
+          $(textarea).val(data.name);
+     }
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.name'))).append(textarea);
 }
 
 function createQuestionDataDescriptionBox(data) {
      var textarea = $('<textarea />').addClass('question-content').attr('id', 'question_description').change(function () {
           data.description = $(this).val();
+          dataObject.modified = true;
      });
+     if (data.description != null) {
+          $(textarea).val(data.description);
+     }
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.description'))).append(textarea);
 }
 
 function createQuestionDataPointsBox(data) {
      var textfield = $('<input />').attr('type', 'text').attr('id', 'points').change(function () {
           data.points = $(this).val();          
+          dataObject.modified = true;
      });
+     if (data.points != null) {
+          $(textfield).val(data.points);
+     }
      return $('<p />').append($('<label />').text(I18n.t('pages.exams.forms.questions.points'))).append(textfield);
 }
 
@@ -77,6 +89,7 @@ function createQuestionDataThemesBox(data) {
      });
      dropdown_selection.change(function() {
           data.course_themes = $.parseJSON('['+$(this).val()+']')
+          dataObject.modified = true;
      });
      return $('<p />').append(dropdown_selection);
      
@@ -101,6 +114,7 @@ function createQuestionMetaImagesBox(data) {
      );
      return  $('<div />').append(open_image_dialog).append(open_formula_dialog);
 }
+
 function createImageDialog(data) {
      var image = $('<form />').attr('target','upload_frame').attr('action', Routes.generate({controller: 'image', action: ''})).attr('enctype','multipart/form-data').attr('method','post').append(
          $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
@@ -135,7 +149,7 @@ function createFormulaDialog(data) {
           $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
      );
      var textfield = $('<p />').append(
-          $('<input />').attr('type', 'text').attr('id', 'formulaebox').change(function () {
+          $('<input />').attr('type', 'text').change(function () {
                $('img', code_image).attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
           })
      );
@@ -152,6 +166,7 @@ function createFormulaDialog(data) {
                     var dialog = $(this);
                     $.post(Routes.generate({controller: 'image', action: 'formula.json'}), {'formula': formula}, function(jsondata) {
                          data['images'].push(jsondata.id);
+                         dataObject.modified = true;
                          dialog.dialog('close');
                     }, 'json');
                },
@@ -188,6 +203,7 @@ function createCodeDialog(data) {
                     var dialog = $(this);
                     $.post(Routes.generate({controller: 'code', action: ''}), {'code': code}, function(jsondata) {
                          data['codes'].push(jsondata.id);
+                         dataObject.modified = true;
                          dialog.dialog('close');
                     }, 'json');
                },
@@ -217,6 +233,15 @@ function saveDataObject(event){
           alert("Save successful")
      });
 }
+
+function addExistingQuestions($tabs) {
+     $.each(dataObject.questions, function(i, data) {
+          $(createQuestionBox(data)).appendTo('#questions');
+          $tabs.tabs('add', '#questions-' + lastQuestionId, I18n.t('pages.exams.forms.questions.anon'));
+          lastQuestionId++;
+     });
+}
+
 function getBaseURL() {
     var url = location.href;  // entire url including querystring - also: window.location.href;
     var baseURL = url.substring(0, url.indexOf('/', 14));

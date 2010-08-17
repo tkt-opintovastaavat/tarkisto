@@ -7,7 +7,8 @@ class ImagesController < ApplicationController
                format.js do
                     responds_to_parent do
                          render :update do |page|
-                              page << "dataObject['questions'][#{params[:number]}]['images'].push(#{@image.id});"
+                              page << "dataObject.questions[#{params[:number]}].images.push(#{@image.id});"
+                              page << "dataObject.modified = true;"
                               page << "alert('upload successful')"
                          end
                     end
