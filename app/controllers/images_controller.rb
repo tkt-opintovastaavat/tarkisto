@@ -23,4 +23,5 @@ class ImagesController < ApplicationController
           end
      end
 
+     #@image = Question.find_by_id(params[:question][:id]).images.create(params[:image])
 end
