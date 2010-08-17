@@ -9,9 +9,9 @@ class Image < ActiveRecord::Base
      attr_accessor :image_url
 
      before_validation :download_remote_image, :if => :image_url_provided?
-     
-     validates_attachment_presence :question_image
+     has_attached_file :question_image, :styles => { :web => "600x600>"}, :path => ":rails_root/public/:attachment/:id/:style_:basename.:extension", :url => ":rails_root/public/:attachment/:id/:style_:basename.:extension"
      validates_attachment_content_type :question_image, :content_type => /image/
+     #validates_attachment_content_type :question_image, :content_type => ["image/jpeg", "image/pjpeg", "image/gif", "image/png", "image/x-png", "image/jpg"]
 
      private
 

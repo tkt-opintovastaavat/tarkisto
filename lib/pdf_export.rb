@@ -15,6 +15,9 @@ module PdfExport
                pdf.text("\n#{question.number}. #{question.name}", :font_size => 10)
                pdf.text("\n#{question.description}", :left => 30, :font_size => 8)
                pdf.text("(#{question.points} #{I18n.t'pdf.exam.points'})", :justification => :center, :font_size => 8)
+               question.images.each do |image|
+                    pdf.image("#{image.question_image.url}")
+               end
           end
      end
   
