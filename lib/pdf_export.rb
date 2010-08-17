@@ -14,7 +14,7 @@ module PdfExport
           exam.questions.each do |question|
                attachments = question.images + question.code_snippets
 
-               pdf.text("\n#{question.number}. #{question.name}", :font_size => 10)
+               pdf.text("\n#{question.number}. #{question.name}\n", :font_size => 10)
                filter = /<\[[ci]#[0-9]+\]>/
                attach = /<\[([ci])#([0-9]+)\]>/
                texts = question.description.split(filter)
