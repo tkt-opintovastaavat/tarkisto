@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :faq, :controller => :faq, :only => [:show]
 
-     map.resource :image, :only => [:create]
+     map.resource :image, :only => [:create], :member => {:formula => :post}
 
      map.resource :code, :only => [:create]
 

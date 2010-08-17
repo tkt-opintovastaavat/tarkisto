@@ -102,7 +102,7 @@ function createQuestionMetaImagesBox(data) {
      return  $('<div />').append(open_image_dialog).append(open_formula_dialog);
 }
 function createImageDialog(data) {
-     var image = $('<form />').attr('target','upload_frame').attr('action', getBaseURL()+"image").attr('enctype','multipart/form-data').attr('method','post').append(
+     var image = $('<form />').attr('target','upload_frame').attr('action', Routes.generate({controller: 'image', action: ''})).attr('enctype','multipart/form-data').attr('method','post').append(
          $('<input />').attr('id','image_question_image').attr('name','image[question_image]').attr('size','30').attr('type','file'),
          $('<input />').attr('id','question_number').attr('name','number').attr('type','hidden').val(data.number)
      ).dialog({
@@ -131,10 +131,14 @@ function createImageDialog(data) {
 }
 
 function createFormulaDialog(data) {
-     var code_image = $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
-     var textfield = $('<input />').attr('type', 'text').attr('id', 'formulaebox').change(function () {
-          code_image.attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
-     });
+     var code_image = $('<p />').append(
+          $('<img />').attr('src','http://chart.apis.google.com/chart?cht=tx&chl=')
+     );
+     var textfield = $('<p />').append(
+          $('<input />').attr('type', 'text').attr('id', 'formulaebox').change(function () {
+               $('img', code_image).attr('src','http://chart.apis.google.com/chart?cht=tx&chl='+$(this).val())
+          })
+     );
 
      return $('<form />').append(textfield).append(code_image).dialog({
           autoOpen: false,
@@ -144,7 +148,12 @@ function createFormulaDialog(data) {
           closeOnEscape: false,
           buttons: {
                create: function() {
-                    $(this).dialog('close');
+                    var formula = $('input', this).val();
+                    var dialog = $(this);
+                    $.post(Routes.generate({controller: 'image', action: 'formula.json'}), {'formula': formula}, function(jsondata) {
+                         data['images'].push(jsondata.id);
+                         dialog.dialog('close');
+                    }, 'json');
                },
                close: function() {
                     $(this).dialog('close');

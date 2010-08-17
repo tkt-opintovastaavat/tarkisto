@@ -14,4 +14,12 @@ class ImagesController < ApplicationController
                end
           end
      end
+
+     def formula
+          @image = Image.create! :image_url => URI.encode("http://chart.apis.google.com/chart?cht=tx&chl=#{params[:formula]}")
+          respond_to do |format|
+               format.json { render :json => {'id' => @image.id} }
+          end
+     end
+
 end

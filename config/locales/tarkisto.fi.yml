@@ -50,6 +50,7 @@ fi:
                     repeat-exams: "Uusintakokeet"
                forms:
                     continue: "Jatka"
+                    save: "Tallenna"
                     selection:
                          name: "Valitse tentti"
                          new: "-- Uusi tentti --"
