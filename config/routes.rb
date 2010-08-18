@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-     map.resources :users, :active_scaffold => true
+    # map.resources :users, :active_scaffold => true
+    # map.resources :courses, :active_scaffold => true
+    # map.resources :exams, :active_scaffold => true
+     
          
      map.root :controller => :dashboard, :action => :show
 
@@ -17,9 +20,11 @@ ActionController::Routing::Routes.draw do |map|
           course.resources :exams, :only => [:index, :show, :new, :create], :collection => {:generate => :get, :preview => :post, :publish => :post}
      end
 
+     map.admin 'admin', :controller => 'admin/admin'     
+
      map.namespace :admin do |admin|
-          admin.resources :courses
-          admin.resources :users
+          admin.resources :courses, :active_scaffold => true
+          admin.resources :users, :active_scaffold => true
      end
 
 end
