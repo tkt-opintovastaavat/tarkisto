@@ -18,7 +18,7 @@ $(document).ready(function() {
      });
 
      addExistingQuestions($tabs);
-
+     populateImageList();
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
           var question = createExamQuestion(lastQuestionId+1);
@@ -41,12 +41,6 @@ $(document).ready(function() {
      });
      $('#save form').submit(saveDataObject);
 });
-function rearrangeNumbers(array){
-     for (var i = 1; i < array.length+1; i++) {
-          array[i-1].number = i;
-     };
-}
-
 function createQuestionBox(data) {
      return $('<div />').attr('id', 'questions-' + lastQuestionId).append($('<table />').append($('<tr />').append($('<td />').append(createQuestionDataBox(data))).append($('<td />').append(createQuestionMetaBox(data)))));
 }
@@ -109,6 +103,8 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
+     var list = $('<ul />').attr('id','imagelist_'+(data.number-1))
+
      var open_image_dialog = $('<p />').append(
           $('<button />').text('Lisää kuvatiedosto').click(function(event) {
                createImageDialog(data).dialog('open');
@@ -121,8 +117,24 @@ function createQuestionMetaImagesBox(data) {
                createFormulaDialog(data).dialog('open');
           })
      );
-     return  $('<div />').append(open_image_dialog).append(open_formula_dialog);
+
+     var images = $('<div />').attr('id','images').append(list).append(open_image_dialog).append(open_formula_dialog);
+
+     return images
 }
+function populateImageList() {
+     for (var j = 0; j < dataObject.questions.length; j++) {
+     var element = $('#imagelist_'+j)
+     var data = dataObject.questions[j];
+     element.empty();
+     for (var i=0; i < data.images.length; i++) {
+          $('<li />').attr('id', data.images[i]).append(
+                    $('<a />').attr('href','/question_images/'+data.images[i]+'/web.jpg').text(data.images[i])
+          ).appendTo(element);
+     };
+     }
+}
+
 
 function createImageDialog(data) {
      var image = $('<form />').attr('target','upload_frame').attr('action', Routes.generate({controller: 'image', action: ''})).attr('enctype','multipart/form-data').attr('method','post').append(
@@ -146,7 +158,7 @@ function createImageDialog(data) {
                     $(this).dialog('close');
                }
           }
-     });
+     })
      var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
 
      image.append(return_frame)
@@ -177,6 +189,7 @@ function createFormulaDialog(data) {
                          data['images'].push(jsondata.id);
                          dataObject.modified = true;
                          dialog.dialog('close');
+                         populateImageList();
                     }, 'json');
                },
                close: function() {
@@ -240,6 +253,7 @@ function saveDataObject(event){
      event.preventDefault();
      $.post($(this).attr("action"), dataObject, function(data) {
           alert("Save successful")
+          dataObject.modified = false;
      });
 }
 
@@ -272,3 +286,9 @@ function getBaseURL() {
     }
 
 }
+function rearrangeNumbers(array){
+     for (var i = 1; i < array.length+1; i++) {
+          array[i-1].number = i;
+     };
+}
+
