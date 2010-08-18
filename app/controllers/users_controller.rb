@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
+     before_filter :jquery_noconflict
+ 
+     def jquery_noconflict
+           ActionView::Helpers::PrototypeHelper.const_set(:JQUERY_VAR, 'jQuery')
+     end
+         
      # GET /users
      # GET /users.xml
      def index
           @users = User.all
 
            respond_to do |format|
-               format.html # index.html.erb
+               format.html #index.html.erb
                format.xml  { render :xml => @users }
            end
      end
