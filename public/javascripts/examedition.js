@@ -23,6 +23,8 @@ $(document).ready(function() {
           event.preventDefault();
           var question = createExamQuestion(lastQuestionId+1);
           dataObject.questions.push(question);
+          rearrangeNumbers(dataObject.questions);
+
           $(createQuestionBox(question)).appendTo('#questions');
           $tabs.tabs('add', '#questions-' + lastQuestionId, I18n.t('pages.exams.forms.questions.anon'));
           lastQuestionId++;
@@ -33,10 +35,17 @@ $(document).ready(function() {
           var index = $('li', $tabs).index($(this).parent());
           if (confirm(I18n.t('pages.exams.forms.questions.delete'))) {
                $tabs.tabs('remove', index);
+               dataObject.questions.splice(index,1);
+               rearrangeNumbers(dataObject.questions);
           }
      });
      $('#save form').submit(saveDataObject);
 });
+function rearrangeNumbers(array){
+     for (var i = 1; i < array.length+1; i++) {
+          array[i-1].number = i;
+     };
+}
 
 function createQuestionBox(data) {
      return $('<div />').attr('id', 'questions-' + lastQuestionId).append($('<table />').append($('<tr />').append($('<td />').append(createQuestionDataBox(data))).append($('<td />').append(createQuestionMetaBox(data)))));
