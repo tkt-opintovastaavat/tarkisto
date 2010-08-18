@@ -7,6 +7,9 @@ tmp/sessions/*
 tmp/sockets/*
 tmp/sass-cache/*
 
+# Image upload folder
+public/question_images/*
+
 # Cucumber rerun
 rerun.txt
 
@@ -19,6 +22,10 @@ public/stylesheets/*.css
 # Lucy and Babilu generated JavaScripts
 public/javascripts/common.js
 public/javascripts/locales.js
+
+# JavaScript routes
+public/javascripts/routes-ajax.js
+public/javascripts/routes.js
 
 # configuration files
 config/database.yml

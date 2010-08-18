@@ -13,6 +13,7 @@ Rails::Initializer.run do |config|
      config.gem "net-ldap", :lib => 'net/ldap'
      config.gem "pdf-writer", :lib => 'pdf/writer', :version => ">=1.1.0"
      config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
+     config.gem "paperclip"
 
      config.time_zone = 'UTC'
 

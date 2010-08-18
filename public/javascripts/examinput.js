@@ -9,6 +9,7 @@ var maxpoints_selection = null;
 var date_selection = null;
 
 var questions_tabs_holder = null;
+var exam_publishing_form = null;
 
 /*
  * jQuery onload
@@ -16,17 +17,18 @@ var questions_tabs_holder = null;
 
 $(document).ready(function() {
      if (examsPage()) {
-          exam_selection = jQuery('#exam_name');
-          examid = jQuery('#exam_id');
-          type_selection = jQuery('#exam_type_id');
-          maxpoints_selection = jQuery('#exam_maximum_points');
-          date_selection = jQuery('#exam_date');
+          exam_selection = $('#exam_name');
+          examid = $('#exam_id');
+          type_selection = $('#exam_type_id');
+          maxpoints_selection = $('#exam_maximum_points');
+          date_selection = $('#exam_date');
           addExamSelection();
           addCalendar();
      } else if (questionsPage()) {
-          questions_tabs_holder = jQuery('#questions');
+          questions_tabs_holder = $('#questions');
           addTabs();
           //FIXME: later ..
+          /*
           $('a[href="#show-picture"]').live('click', function(event) {
                event.preventDefault();
                alert('This will pop-up an dialog with picture');
@@ -45,6 +47,7 @@ $(document).ready(function() {
                if (confirm('Do you want to delete code?'))
                     alert('This will delete the code');
           });
+          */
      }
 });
 
@@ -75,9 +78,8 @@ function _getExamData(examid) {
      if (examid == 'new') {
           _nonexistingExam();
      } else {
-          // TODO: Add real functionality here to get json data from application.
-          var data = {id: examid, type: 2, edate: '20.06.2010', maxpoints: 60}
-          _existingExam(data);
+          var cid = /courses\/(.+)\/exams/.exec(window.location)[1];
+          $.getJSON('/courses/'+cid+'/exams/'+examid+'.json', _existingExam);
      }
 }
 
@@ -111,33 +113,58 @@ function questionsPage() {
 }
 
 function addTabs() {
-     var tab_counter = 2;
      var $tabs = questions_tabs_holder.tabs({
           tabTemplate: '<li><a href="#{href}">#{label}</a> <a href="#remove"><span class="ui-icon ui-icon-close">Remove Tab</span></a></li>',
           idPrefix: 'questions-',
           add: function(event, ui) {
-               _addNewTab(event, ui);
-               $tabs.tabs('select', '#' + ui.panel.id);
+               var index = $('li', $tabs).index($(ui.tab).parent());
+               $tabs.tabs('select', '#' + index);
+          },
+          load: function(event, ui) {
+               $('.question-content').resizable({
+                    handles: 's',
+                    minHeight: 150
+               });
+          },
+          remove: function(event, ui) {
+               var li = $(ui.tab).parent();
+               if ($(li).attr('id')) {
+                    var id = $(li).attr('id').replace('question_id-', '');
+                    send_remove_question(id);
+                    $tabs.tabs('select', '0');
+               }
           }
      });
 
      $('a[href="#remove"]').live('click', function(event) {
           event.preventDefault();
           var index = $('li', $tabs).index($(this).parent());
-          $tabs.tabs('remove', index);
+          if (confirm(I18n.t('pages.exams.forms.questions.delete'))) {
+               $tabs.tabs('remove', index);
+          }
      });
 
-     $('a[href="#new_question"]').live('click', function(event) {
+     $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
-          $tabs.tabs('add', 'questions/'+tab_counter+'.json', 'Question #'+tab_counter, $tabs.tabs('length')-1);
-          tab_counter++
+          var creation_url = _exam_url() + '/questions'
+          $.post(creation_url, function(data) {
+               $tabs.tabs('add', creation_url+'/'+data.id, I18n.t('pages.exams.forms.questions.anon'), $tabs.tabs('length')-1);
+          }, 'json');
      });
+
      $tabs.find('.ui-tabs-nav').sortable({
           axis:'x',
           items: 'li:not(.new-question)',
      });
 }
 
-function _addNewTab(event, ui) {
-     $(ui.panel).append('<p>Content of added tab</p>');
+function send_remove_question(id) {
+     $.ajax({
+          type: "DELETE",
+          url: _exam_url()+'/questions/'+id+'.json'
+     });
+}
+
+function _exam_url() {
+     return $('#exam_url').text();
 }
