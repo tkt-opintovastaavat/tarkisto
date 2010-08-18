@@ -108,15 +108,15 @@ module DataObject
      def _question_to_json q
           images = []
           q.images.each do |i|
-               images << i.attributes["id"]
+               images << i.id
           end
           codes = []
           q.code_snippets.each do |c|
-               codes << c.attributes["id"]
+               codes << c.id
           end
           course_themes = []
           q.themes.each do |t|
-               course_themes << t.attributes["id"]
+               course_themes << t.id
           end
           return q.attributes.merge(
                {"images" => images, "codes" => codes, "course_themes" => course_themes}

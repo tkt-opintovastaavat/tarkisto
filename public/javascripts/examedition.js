@@ -41,12 +41,6 @@ $(document).ready(function() {
      });
      $('#save form').submit(saveDataObject);
 });
-function rearrangeNumbers(array){
-     for (var i = 1; i < array.length+1; i++) {
-          array[i-1].number = i;
-     };
-}
-
 function createQuestionBox(data) {
      return $('<div />').attr('id', 'questions-' + lastQuestionId).append($('<table />').append($('<tr />').append($('<td />').append(createQuestionDataBox(data))).append($('<td />').append(createQuestionMetaBox(data)))));
 }
@@ -109,6 +103,7 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
+
      var open_image_dialog = $('<p />').append(
           $('<button />').text('Lisää kuvatiedosto').click(function(event) {
                createImageDialog(data).dialog('open');
@@ -121,7 +116,11 @@ function createQuestionMetaImagesBox(data) {
                createFormulaDialog(data).dialog('open');
           })
      );
-     return  $('<div />').append(open_image_dialog).append(open_formula_dialog);
+     var images = $('<div />').attr('id','images').change(function() {
+          $('#images').append($('<div />').text("lol"))
+     }).append(open_image_dialog).append(open_formula_dialog);
+
+     return images
 }
 
 function createImageDialog(data) {
@@ -146,6 +145,8 @@ function createImageDialog(data) {
                     $(this).dialog('close');
                }
           }
+     }).submit(function(){
+          $('#images').trigger('change');
      });
      var return_frame = $('<iframe />').attr('id','upload_frame').attr('name','upload_frame').attr('style','display: none')
 
@@ -272,3 +273,9 @@ function getBaseURL() {
     }
 
 }
+function rearrangeNumbers(array){
+     for (var i = 1; i < array.length+1; i++) {
+          array[i-1].number = i;
+     };
+}
+
