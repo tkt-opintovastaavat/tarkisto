@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
                          render :update do |page|
                               page << "dataObject.questions[#{position}].images.push(#{@image.id});"
                               page << "dataObject.modified = true;"
-                              page << "alert('upload successful')"
+                              page << "populateImageList()"
                          end
                     end
                end
@@ -25,28 +25,4 @@ class ImagesController < ApplicationController
 
      #@image = Question.find_by_id(params[:question][:id]).images.create(params[:image])
 
-     def getImageURL
-          image = Image.find_by_id(params[:id])
-          unless image.nil?
-               if (request.xhr?)
-                    render :text => "/public/question_images/#{params[:id]}/web_#{image.question_image_file_name}".to_s
-               else
-                    render :html => "/public/question_images/#{params[:id]}/web_#{image.question_image_file_name}".to_s
-               end
-          else
-               return ""
-          end
-     end
-     def getImageFileName          
-          image = Image.find_by_id(params[:id])
-          unless image.nil?
-               if (request.xhr?)
-                    render :text => image.question_image_file_name.to_s
-               else
-                    render :html => image.question_image_file_name.to_s
-               end
-          else
-               return ""
-          end
-     end
 end
