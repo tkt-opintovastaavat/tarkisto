@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-
+     map.resources :users, :active_scaffold => true
+         
      map.root :controller => :dashboard, :action => :show
 
      map.resource :session, :controller => :session, :only => [:create, :destroy]
