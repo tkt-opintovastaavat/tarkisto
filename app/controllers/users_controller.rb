@@ -4,7 +4,7 @@ class UsersController < ApplicationController
      def jquery_noconflict
            ActionView::Helpers::PrototypeHelper.const_set(:JQUERY_VAR, 'jQuery')
      end
-         
+=begin         
      # GET /users
      # GET /users.xml
      def index
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
                format.xml  { head :ok }
           end
      end
-
+=end
      active_scaffold :user do |config|
           config.label = "User"
           config.columns = [ :username, :email, :language, :access ]
