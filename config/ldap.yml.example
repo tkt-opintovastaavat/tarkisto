@@ -10,7 +10,7 @@ cs_helsinki_fi: &CS
 
 defaults: &defaults
      authentication:
-          <<: *CS
+          <<: *IT
           required: true
      department:
           <<: *CS
