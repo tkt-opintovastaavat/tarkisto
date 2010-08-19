@@ -40,13 +40,19 @@ en:
                          public_notification: "Exam isn't public by default"
                          continue: "Continue"
                     generate:
-                         how_many: "How many questions:"
+                         how_many: "Questions"
+                         piece_unit: "pc."
                          change_question: "Change question"
                          themeless: "Themeless"
-                         generate: "Generate"
+                         generate: "Generate again"
                          continue: "Continue"
-                         cannot_generate: "Cannot generate an exam because there are no questions linked to this course."
+                         cannot_generate: "Cannot generate an exam, because there are no questions linked to this course."
                          back: "Back"
+                         examthemes: "Themes"
+                         maxpoints: "Maximum points:"
+                         empty: "No questions were found with selected themes."
+                         points: "Points:"
+                         pdf: "Download PDF"
                     publish:
                          submit: "Publish"
 

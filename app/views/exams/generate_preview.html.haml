@@ -6,23 +6,29 @@
      %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_url(@course.id)
      
      - if @generated_exam.questions.empty?
-          %p Valitsemillesi teemoille ei löytynyt yhtään kysymystä.
+          %p= t('pages.exams.forms.generate.empty')
      
      - else
           - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
-
           
-               %p Maksimipisteet: #{@generated_exam.maximum_points}
-               - @generated_exam.questions.each do |question|
-                    %h3 #{question.number}. #{question.name} 
-                    %p #{question.description}
-                    %p Pisteet: #{question.points}
-                    %div
-                         = check_box_tag question.number, "chosen", false
-                         = label_tag t('pages.exams.forms.generate.change_question')
+               = t('pages.exams.forms.generate.maxpoints') 
+               #{@generated_exam.maximum_points}
+
+               %ol
+                    - @generated_exam.questions.each do |question|
+                         %div.questionblock
+                              %li.question #{simple_format(question.name)} 
+                              %div.description #{simple_format(question.description)}
+                              %div.questionfooter
+                                   %span.points
+                                        = t('pages.exams.forms.generate.points') 
+                                        #{question.points}
+                                   %span.change
+                                        = check_box_tag question.number, "chosen", false
+                                        = label_tag t('pages.exams.forms.generate.change_question')
                          
-               %div 
-                    = submit_tag t('pages.exams.forms.generate.generate')
-                    = hidden_field_tag "questions", @questions_string
+                    %div.generatebuttons
+                         = submit_tag t('pages.exams.forms.generate.generate')
+                         = hidden_field_tag "questions", @questions_string
                
-               %div= submit_tag "PDF"
+                         = submit_tag "PDF"
