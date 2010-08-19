@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
                          render :update do |page|
                               page << "dataObject.questions[#{position}].images.push(#{@image.id});"
                               page << "dataObject.modified = true;"
-                              page << "populateImageList()"
+                              page << "populateAttachmentList()"
                          end
                     end
                end

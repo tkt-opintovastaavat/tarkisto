@@ -18,7 +18,7 @@ $(document).ready(function() {
      });
 
      addExistingQuestions($tabs);
-     populateImageList();
+     populateAttachmentList();
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
           var question = createExamQuestion(lastQuestionId+1);
@@ -103,7 +103,7 @@ function createQuestionMetaBox(data) {
 }
 
 function createQuestionMetaImagesBox(data) {
-     var list = $('<ul />').attr('id','imagelist_'+(data.number-1))
+     var list = $('<ul />').attr('id','attachmentlist_'+(data.number-1))
 
      var open_image_dialog = $('<p />').append(
           $('<button />').text('Lisää kuvatiedosto').click(function(event) {
@@ -122,14 +122,19 @@ function createQuestionMetaImagesBox(data) {
 
      return images
 }
-function populateImageList() {
+function populateAttachmentList() {
      for (var j = 0; j < dataObject.questions.length; j++) {
-     var element = $('#imagelist_'+j)
+     var element = $('#attachmentlist_'+j)
      var data = dataObject.questions[j];
      element.empty();
      for (var i=0; i < data.images.length; i++) {
           $('<li />').attr('id', data.images[i]).append(
-                    $('<a />').attr('href','/question_images/'+data.images[i]+'/web.jpg').text(data.images[i])
+                    $('<a />').attr('target','_blank').attr('href','/question_images/'+data.images[i]+'/web.jpg').text("i#"+(i+1))
+          ).appendTo(element);
+     };
+     for (var k=0; k < data.codes.length; k++) {
+          $('<li />').attr('id', data.codes[k]).append(
+                    $('<a />').attr('target','_blank').attr('href','').text("c#"+(k+1))
           ).appendTo(element);
      };
      }
@@ -189,7 +194,7 @@ function createFormulaDialog(data) {
                          data['images'].push(jsondata.id);
                          dataObject.modified = true;
                          dialog.dialog('close');
-                         populateImageList();
+                         populateAttachmentList();
                     }, 'json');
                },
                close: function() {
@@ -227,6 +232,7 @@ function createCodeDialog(data) {
                          data['codes'].push(jsondata.id);
                          dataObject.modified = true;
                          dialog.dialog('close');
+                         populateAttachmentList();
                     }, 'json');
                },
                close: function() {
@@ -291,4 +297,3 @@ function rearrangeNumbers(array){
           array[i-1].number = i;
      };
 }
-
