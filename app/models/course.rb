@@ -60,4 +60,5 @@ class Course < ActiveRecord::Base
      def has_exams?
           return !exams.published.empty?
      end
+     
 end

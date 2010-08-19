@@ -1,14 +1,18 @@
 class Admin::ExamsController < AdminController
 
      active_scaffold :exam do |config|
-          config.label = "Exam"
-          config.columns = [ :date, :course_id, :maximum_points, :public, :published ]
+          config.label = "Koe"
+          config.columns = [ :type_id, :course, :maximum_points, :public, :published, :date, :language, :created_at, :updated_at ]
           list.sorting = {:date => 'ASC'}
-          columns[:date].label = "Date: #"
-          columns[:course_id].label = "Course ID: #"          
-          columns[:maximum_points].label = "Maximum points: #"
-          columns[:public].label = "Is public?: #"
-          columns[:published].label = "Is published?: #"
+          columns[:date].label = "Päivämäärä:"
+          columns[:course].label = "Kurssi:"          
+          columns[:maximum_points].label = "Maksimipisteet:"
+          columns[:public].label = "Julkinen:"
+          columns[:published].label = "Julkaistu:"
+          columns[:type_id].label = "Tyyppi ID:"
+          columns[:language].label = "Kieli:"
+          columns[:created_at].label = "Luotu:"
+          columns[:updated_at].label = "Päivitetty"
      end
                                                                  
 end

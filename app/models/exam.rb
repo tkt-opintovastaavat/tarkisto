@@ -21,6 +21,10 @@ class Exam < ActiveRecord::Base
      def name
           "#{type.name} #{I18n.l date, :format => :short}"
      end
+     
+     def course_name
+          course.name_fi
+     end
 
      def publish!
           unless questions.empty?
