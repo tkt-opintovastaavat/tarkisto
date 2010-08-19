@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-    # map.resources :users, :active_scaffold => true
-    # map.resources :courses, :active_scaffold => true
-    # map.resources :exams, :active_scaffold => true
-     
          
      map.root :controller => :dashboard, :action => :show
 
@@ -25,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
      map.namespace :admin do |admin|
           admin.resources :courses, :active_scaffold => true
           admin.resources :users, :active_scaffold => true
+          admin.resources :exams, :active_scaffold => true
      end
 
 end

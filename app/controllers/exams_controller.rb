@@ -147,17 +147,6 @@ class ExamsController < ApplicationController
           end
      end
      
-     active_scaffold :exam do |config|
-          config.label = "Exam"
-          config.columns = [ :date, :course_id, :maximum_points, :public, :published ]
-          list.sorting = {:date => 'ASC'}
-          columns[:code].label = "Date: #"
-          columns[:code].label = "Course ID: #"          
-          columns[:name_fi].label = "Maximum points: #"
-          columns[:credits].label = "Is public?: #"
-          columns[:credits].label = "Is published?: #"
-     end
-                                                                 
      private
 
      def _set_course
