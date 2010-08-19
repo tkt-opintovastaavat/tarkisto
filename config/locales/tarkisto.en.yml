@@ -40,7 +40,8 @@ en:
                          public_notification: "Exam isn't public by default"
                          continue: "Continue"
                     generate:
-                         how_many: "How many:"
+                         how_many: "How many questions:"
+                         change_question: "Change question"
                          themeless: "Themeless"
                          generate: "Generate"
                          continue: "Continue"

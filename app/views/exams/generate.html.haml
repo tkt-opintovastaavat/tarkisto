@@ -11,7 +11,7 @@
           - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
 
                %div
-                    = label_tag "Kuinka monta:"
+                    = label_tag t('pages.exams.forms.generate.how_many')
                     = select_tag 'number', '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>'
           
                - @course_themes.each do |ct|

@@ -29,7 +29,11 @@ class ExamsController < ApplicationController
      def new
           @exam = Exam.new
           @exams = @course.exams.unpublished
-          @types = Type.all
+          @types = []
+          @types << Type.find_by_name_fi("Uusintakoe")
+          @types << Type.find_by_name_fi("Erilliskoe")
+          @types << Type.find_by_name_fi("Kurssikoe")
+
 
           respond_to do |format|
                format.html do

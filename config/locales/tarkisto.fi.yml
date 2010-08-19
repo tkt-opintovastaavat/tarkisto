@@ -47,7 +47,8 @@ fi:
                          public_notification: "Tentti ei ole oletusarvoisesti julkinen"
                          continue: "Jatka"
                     generate:
-                         how_many: "Kuinka monta:"
+                         how_many: "Kuinka monta kysymystä:"
+                         change_question: "Vaihda kysymys"
                          themeless: "Teemattomat"
                          generate: "Generoi"
                          continue: "Jatka"

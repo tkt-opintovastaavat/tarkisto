@@ -19,7 +19,7 @@
                     %p Pisteet: #{question.points}
                     %div
                          = check_box_tag question.number, "chosen", false
-                         = label_tag "Vaihda"
+                         = label_tag t('pages.exams.forms.generate.change_question')
                          
                %div 
                     = submit_tag t('pages.exams.forms.generate.generate')
