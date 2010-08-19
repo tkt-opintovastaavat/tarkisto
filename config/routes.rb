@@ -22,6 +22,12 @@ ActionController::Routing::Routes.draw do |map|
           admin.resources :courses, :active_scaffold => true
           admin.resources :users, :active_scaffold => true
           admin.resources :exams, :active_scaffold => true
+          admin.resources :themes, :active_scaffold => true
+          admin.resources :instances, :active_scaffold => true
+          admin.resources :shortcuts, :active_scaffold => true
+          admin.resources :levels, :active_scaffold => true
+          admin.resources :course_themes, :active_scaffold => true
+          admin.resources :types, :active_scaffold => true
      end
 
 end
