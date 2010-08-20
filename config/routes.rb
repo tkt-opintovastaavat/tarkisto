@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :image, :only => [:create], :member => {:formula => :post}
 
+     map.connect 'image/:id', :controller => 'images', :action => 'getImageURL', :id => '/\d+'
+
      map.resource :code, :only => [:create]
 
      map.resources :courses, :collection => {:basics => :get, :intermediates => :get, :advanceds => :get, :others => :get}, :only => [:index] do |course|
