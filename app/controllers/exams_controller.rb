@@ -176,8 +176,19 @@ class ExamsController < ApplicationController
                                    
                     @course_themes.each do |theme|
                          if params[theme.theme_id.to_s] == 'chosen' and question.course_themes.include? theme
-                              @generated_exam.questions << question
-                              break
+                         
+                              @already_in = false
+                         
+                              @question_ids.each do |q_id|
+                                   if q_id == question.id
+                                        @already_in = true
+                                   end
+                              end
+                              
+                              if @already_in == false
+                                   @generated_exam.questions << question
+                                   break
+                              end
                          end
                     end
                               
