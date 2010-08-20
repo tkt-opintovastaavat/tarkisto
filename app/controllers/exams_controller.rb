@@ -179,12 +179,23 @@ class ExamsController < ApplicationController
                          
                               @already_in = false
                          
+                              # Compare the candidate question to questions that were in the old exam
                               @question_ids.each do |q_id|
                                    if q_id == question.id
                                         @already_in = true
+                                        break
                                    end
                               end
                               
+                              # Compare the candidate question to questions already taken for this exam
+                              @generated_exam.questions.each do |e_q_id|
+                                   if e_q_id == question.id
+                                        @already_in = true
+                                        break
+                                   end
+                              end
+                              
+                              # If candidate question wasn't already in the old or this exam, add it
                               if @already_in == false
                                    @generated_exam.questions << question
                                    break
