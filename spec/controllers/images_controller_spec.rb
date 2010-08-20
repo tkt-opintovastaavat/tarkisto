@@ -17,4 +17,20 @@ describe ImagesController do
 
      end
 
+     describe "#formula" do
+
+          it "should create image from parameters" do
+               @data = "\LaTeX"
+               @image_mock = mock_model Image
+
+               URI.should_receive(:encode)
+               Image.should_receive(:create!).and_return(@image_mock)
+
+               @image_mock.should_receive(:id)
+
+               post 'formula', :formula => @data, :format => 'json'
+          end
+
+     end
+
 end

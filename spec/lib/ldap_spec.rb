@@ -44,7 +44,7 @@ describe LDAP do
                LDAP_CONFIG.should_receive(:authentication).and_return(@hash)
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
                @ldap_mock.should_receive(:authenticate).with("uid=#{@username},#{@hash['base']}", @password)
-               @ldap_mock.should_receive(:bind)
+               @ldap_mock.should_receive(:bind).and_raise(Errno::ETIMEDOUT)
                LDAP.authenticate(@username, @password).should == false
           end
 

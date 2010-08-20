@@ -104,6 +104,19 @@ describe PdfExport do
                     @pdf_writer_mock.should_receive(:text) # this writes FU-
                end
 
+               it 'should write questions without attachments and text to file' do
+                    # early attachment handling
+                    @question_mock.should_receive(:images).twice.and_return([@image_mock])
+                    @question_mock.should_receive(:code_snippets).and_return([])
+
+                    # question description handling
+                    @question_mock.should_receive(:description).twice.and_return("<[i#1]>")
+                    @pdf_writer_mock.should_receive(:text) # this writes empty string
+                    @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
+                    @paperclip_mock.should_receive(:url)
+                    @pdf_writer_mock.should_receive(:image)
+               end
+
           end
 
           it 'should output an exam as file' do
