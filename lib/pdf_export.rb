@@ -50,7 +50,6 @@ module PdfExport
                end
 
                objects.each do |object|
-                    object.instance_of? Image
                     if object.instance_of? Image
                          pdf.image object.question_image.url( :pdf )
                     else

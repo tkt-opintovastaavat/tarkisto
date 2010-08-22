@@ -30,3 +30,4 @@ public/javascripts/routes.js
 # configuration files
 config/database.yml
 config/ldap.yml
+config/demo.yml

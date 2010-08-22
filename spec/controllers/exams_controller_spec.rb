@@ -67,9 +67,22 @@ describe ExamsController do
                end
 
                describe "#generate" do
-                    it "should be successful" do
-                         get 'generate', :course_id => @course_id
+
+                    before(:each) do
+                         @course_theme_mock = mock_model CourseTheme
                     end
+
+                    it "should be successful" do
+                         @course_mock.should_receive(:course_themes).and_return([@course_theme_mock])
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return([@exam_mock])
+
+                         get 'generate', :course_id => @course_id
+
+                         assigns(:course_themes).should == [@course_theme_mock]
+                         assigns(:exams).should == [@exam_mock]
+                    end
+
                end
 
           end
@@ -186,6 +199,10 @@ describe ExamsController do
                     flash[:errors].should == @errors
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
+
+               it "should save exam data"# do
+#                    post 'create', :course_id => @course_id, :exam => @exam_data, :format => 'json'
+#               end
 
           end
 

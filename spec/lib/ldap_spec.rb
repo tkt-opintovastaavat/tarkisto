@@ -14,7 +14,6 @@ describe LDAP do
                @hash = {
                     'host' => 'testhost',
                     'base' => 'testbase',
-                    'bind_dn' => 'testbinddn',
                     'required' => true
                }
           end
@@ -28,27 +27,24 @@ describe LDAP do
           it "should let in if ldap returns valid user" do
                LDAP_CONFIG.should_receive(:authentication).and_return(@hash)
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
-               @ldap_mock.should_receive(:host=).with(@hash['host'])
-               @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(true)
+               @ldap_mock.should_receive(:authenticate).with("uid=#{@username},#{@hash['base']}", @password).and_return(true)
+               @ldap_mock.should_receive(:bind).and_return(true)
                LDAP.authenticate(@username, @password).should == true
           end
 
           it "shouldn't let in if ldap returns invalid user" do
                LDAP_CONFIG.should_receive(:authentication).and_return(@hash)
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
-               @ldap_mock.should_receive(:host=).with(@hash['host'])
-               @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_return(false)
+               @ldap_mock.should_receive(:authenticate).with("uid=#{@username},#{@hash['base']}", @password).and_return(true)
+               @ldap_mock.should_receive(:bind).and_return(false)
                LDAP.authenticate(@username, @password).should == false
           end
 
           it "shouldn't let in if ldap doesn't work" do
                LDAP_CONFIG.should_receive(:authentication).and_return(@hash)
                Net::LDAP.should_receive(:new).and_return(@ldap_mock)
-               @ldap_mock.should_receive(:host=).with(@hash['host'])
-               @ldap_mock.should_receive(:base=).with(@hash['base'])
-               @ldap_mock.should_receive(:bind_as).with(:method => :start_tls, :base => "uid=#{@username},#{@hash['bind_dn']}", :password => @password).and_raise(Net::LDAP::LdapError)
+               @ldap_mock.should_receive(:authenticate).with("uid=#{@username},#{@hash['base']}", @password)
+               @ldap_mock.should_receive(:bind).and_raise(Errno::ETIMEDOUT)
                LDAP.authenticate(@username, @password).should == false
           end
 
