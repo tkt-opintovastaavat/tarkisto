@@ -19,6 +19,7 @@ $(document).ready(function() {
 
      addExistingQuestions($tabs);
      populateAttachmentList();
+
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
           var question = createExamQuestion(lastQuestionId+1);
@@ -124,22 +125,40 @@ function createQuestionMetaImagesBox(data) {
 }
 function populateAttachmentList() {
      for (var j = 0; j < dataObject.questions.length; j++) {
-     var element = $('#attachmentlist_'+j)
-     var data = dataObject.questions[j];
-     element.empty();
-     for (var i=0; i < data.images.length; i++) {
-          $('<li />').attr('id', data.images[i]).append(
+          var element = $('#attachmentlist_'+j)
+          var data = dataObject.questions[j];
+
+          element.empty();
+
+          for (var i=0; i < data.images.length; i++) {
+               $('<li />').attr('id', data.images[i]).append(
                     $('<a />').attr('target','_blank').attr('href','/question_images/'+data.images[i]+'/web.jpg').text("i#"+(i+1))
-          ).appendTo(element);
-     };
-     for (var k=0; k < data.codes.length; k++) {
-          $('<li />').attr('id', data.codes[k]).append(
-                    $('<a />').attr('target','_blank').attr('href','').text("c#"+(k+1))
-          ).appendTo(element);
-     };
+               ).appendTo(element);
+          };
+
+          for (var k=0; k < data.codes.length; k++) {
+               $('<li />').attr('id', 'code_'+data.codes[k]).append(
+                         $('<a />').attr('href','#opencodeview').text("c#"+(k+1)).click(codeViewingBox)
+               ).appendTo(element);
+          };
      }
 }
 
+function codeViewingBox(event) {
+     event.preventDefault();
+     var code_id = ($(this).parent().attr('id')).replace('code_','');
+     $.getJSON(Routes.generate({controller: 'codes', action: code_id+'.json'}), function(data) {
+          $('<pre />').addClass('prettyprint').addClass('linenums').text(data.text).dialog({
+               resizable: false,
+               draggable: false,
+               width: 'auto',
+               height: 'auto',
+               modal: true,
+               title: 'Näytä koodi'
+          });
+          prettyPrint();
+     });
+}
 
 function createImageDialog(data) {
      var image = $('<form />').attr('target','upload_frame').attr('action', Routes.generate({controller: 'image', action: ''})).attr('enctype','multipart/form-data').attr('method','post').append(
@@ -228,7 +247,7 @@ function createCodeDialog(data) {
                submit: function() {
                     var code = $('textarea', this).val();
                     var dialog = $(this);
-                    $.post(Routes.generate({controller: 'code', action: ''}), {'code': code}, function(jsondata) {
+                    $.post(Routes.generate({controller: 'codes', action: ''}), {'code': code}, function(jsondata) {
                          data['codes'].push(jsondata.id);
                          dataObject.modified = true;
                          dialog.dialog('close');

@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.connect 'image/:id', :controller => 'images', :action => 'getImageURL', :id => '/\d+'
 
-     map.resource :code, :only => [:create]
+     map.resources :codes, :only => [:create, :show]
 
      map.resources :courses, :collection => {:basics => :get, :intermediates => :get, :advanceds => :get, :others => :get}, :only => [:index] do |course|
           course.resources :exams, :only => [:index, :show, :new, :create], :collection => {:generate => :get, :preview => :post, :publish => :post}

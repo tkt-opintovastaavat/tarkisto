@@ -4,6 +4,9 @@
      %script(type="text/javascript")
           var dataObject = #{generate_data_object @exam}
      = javascript_include_tag "examedition"
+
+     = stylesheet_link_tag 'prettify.css', :media => 'screen, projection'
+     = javascript_include_tag "prettify/prettify"
 - content_for :content do
      #exam_info
 
