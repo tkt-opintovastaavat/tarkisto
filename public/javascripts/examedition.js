@@ -131,8 +131,8 @@ function populateAttachmentList() {
           element.empty();
 
           for (var i=0; i < data.images.length; i++) {
-               $('<li />').attr('id', data.images[i]).append(
-                    $('<a />').attr('target','_blank').attr('href','/question_images/'+data.images[i]+'/web.jpg').text("i#"+(i+1))
+               $('<li />').attr('id', 'image_'+data.images[i]).append(
+                    $('<a />').attr('href','#show').text("i#"+(i+1)).click(pictureViewingBox)
                ).appendTo(element);
           };
 
@@ -142,6 +142,19 @@ function populateAttachmentList() {
                ).appendTo(element);
           };
      }
+}
+
+function pictureViewingBox(event) {
+     event.preventDefault();
+     var image_id = ($(this).parent().attr('id')).replace('image_','');
+     $('<div />').append($('<img />').attr('src', Routes.generate({controller: 'question_images', action: image_id})+'/web.jpg')).dialog({
+          resizable: false,
+          draggable: false,
+          width: 'auto',
+          height: 'auto',
+          modal: true,
+          title: 'Näytä kuva'
+     });
 }
 
 function codeViewingBox(event) {
