@@ -28,6 +28,16 @@ class Course < ActiveRecord::Base
           end
      end
      
+     def level_name
+          if (I18n.locale == :fi)
+               return level.name_fi
+          elsif (I18n.locale == :en)
+               return level.name_en
+          elsif (I18n.locale == :se)
+               return level.name_se
+          end          
+     end
+     
      def self.search keyword
           if (I18n.locale == :fi)
                condition = "name_fi LIKE ?"
