@@ -8,7 +8,7 @@ describe ImagesController do
                @data = {}
                @image_mock = mock_model Image
                
-               Image.should_receive(:create).with(@data).and_return(@image_mock)
+               Image.should_receive(:create!).with(@data).and_return(@image_mock)
 
                post 'create', :image => @data
 
