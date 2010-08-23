@@ -7,21 +7,31 @@
           %p= t('pages.exams.forms.generate.cannot_generate')
           
      - else
-     
-          %h3= @alert
           
-          - form_tag generate_course_exams_url(@course.id), :method => 'get' do
+          - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
 
-               %div
-                    = label_tag "Kuinka monta:"
-                    = select_tag 'number', '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>'
-          
-               - @course_themes.each do |ct|
-                    %div
-                         = check_box_tag ct.theme_id, "chosen", true
-                         = label_tag ct.theme.name_fi
-               %div
-                    = check_box_tag 'themeless', 'chosen', true
-                    = label_tag t('pages.exams.forms.generate.themeless')
-     
-               %div= submit_tag t('pages.exams.forms.generate.generate')
+               %table.generator
+                    %tr
+                         %td
+                              = t('pages.exams.forms.generate.how_many')
+                         %td
+                              = select_tag 'number', '<option>1</option><option>2</option><option selected="selected">3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>'
+                              %span.pcs 
+                                   = t('pages.exams.forms.generate.piece_unit')
+
+                    %tr
+                         %td
+                              = t('pages.exams.forms.generate.examthemes')
+                         %td
+                              - @course_themes.each do |ct|
+                                   = check_box_tag ct.theme_id, "chosen", true
+                                   = label_tag ct.theme.name_fi
+                                   %br
+
+                              = check_box_tag 'themeless', 'chosen', true
+                              = label_tag t('pages.exams.forms.generate.themeless')
+
+                    %tr
+                         %td
+                         %td     
+                              = submit_tag t('pages.exams.forms.generate.continue')

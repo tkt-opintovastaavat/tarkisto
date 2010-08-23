@@ -2,7 +2,9 @@
      %p Empty
 - else
      %p Maksimipisteet: #{points}
-     - questions.each do |question|
-          %h3 #{question.number}. #{question.name} 
-          %p #{question.description}
-          %p Pisteet: #{question.points}
+     %ol
+          - questions.each do |question|
+               %div.questionblock
+                    %li.question #{simple_format(question.name)} 
+                    %div.description #{simple_format(question.description)}
+                    %div.questionfooter Pisteet: #{question.points}

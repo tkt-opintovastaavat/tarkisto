@@ -55,13 +55,15 @@ describe ExamsController do
                          Exam.should_receive(:new).and_return(@exam_mock)
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:unpublished).and_return([@exam_mock])
-                         Type.should_receive(:all).and_return([@type_mock])
+                         3.times do
+                              Type.should_receive(:find_by_name_fi).and_return(@type_mock)
+                         end
 
                          get 'new', :course_id => @course_id
 
                          assigns(:exam).should == @exam_mock
                          assigns(:exams).should == [@exam_mock]
-                         assigns(:types).should == [@type_mock]
+                         assigns(:types).should == [@type_mock, @type_mock, @type_mock]
                     end
 
                end
