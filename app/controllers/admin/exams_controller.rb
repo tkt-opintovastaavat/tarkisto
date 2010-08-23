@@ -3,6 +3,8 @@ class Admin::ExamsController < AdminController
      active_scaffold :exam do |config|
           config.label = "Koe"
           config.columns = [ :type_name, :course_name, :maximum_points, :public, :published, :date, :language, :created_at, :updated_at ]
+          config.create.columns.exclude [ :type_name, :course_name ]
+          config.create.columns.add [ :type ]
           list.sorting = {:date => 'DESC'}
           columns[:date].label = "Päivämäärä:"
           columns[:course_name].label = "Kurssi:"          
