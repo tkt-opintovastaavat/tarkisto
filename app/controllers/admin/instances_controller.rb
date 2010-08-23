@@ -2,9 +2,9 @@ class Admin::InstancesController < AdminController
 
      active_scaffold :instance do |config|
           config.label = "Kurssi-instanssit"
-          config.columns = [ :course, :period, :year, :semester, :created_at, :updated_at ]
+          config.columns = [ :course_name, :period, :year, :semester, :created_at, :updated_at ]
           list.sorting = {:year => 'DESC'}
-          columns[:course].label = "Kurssi:"
+          columns[:course_name].label = "Kurssi:"
           columns[:period].label = "Periodi:"
           columns[:year].label = "Vuosi:"
           columns[:semester].label = "Lukukausi:"
