@@ -12,9 +12,52 @@ module PdfExport
 
      def self.question_format(exam, pdf)
           exam.questions.each do |question|
-               pdf.text("\n#{question.number}. #{question.name}", :font_size => 10)
-               pdf.text("\n#{question.description}", :left => 30, :font_size => 8)
+               attachments = question.images + question.code_snippets
+
+               pdf.text("\n#{question.number}. #{question.name}\n", :font_size => 10)
+               filter = /<\[[ci]#[0-9]+\]>/
+               attach = /<\[([ci])#([0-9]+)\]>/
+               texts = question.description.split(filter)
+               objects = question.description.scan(filter).map do |object|
+                    object = object.split(attach)
+                    if object[1] == 'i'
+                         question.images[object[2].to_i-1]
+                    else
+                         question.code_snippets[object[2].to_i-1]
+                    end
+               end
+
+               if texts.empty?
+                    texts << ""
+               end
+
+               texts.each do |str|
+                    pdf.text str, :left => 30, :font_size => 8
+                    unless objects.empty?
+                         object = objects.shift
+                         if object.instance_of? Image
+                              pdf.image object.question_image.url( :pdf )
+                              attachments.delete object
+                         else
+                              pdf.text object.text
+                              attachments.delete object
+                         end
+                    end
+               end
+
+               attachments.each do |a|
+                    objects << a
+               end
+
+               objects.each do |object|
+                    if object.instance_of? Image
+                         pdf.image object.question_image.url( :pdf )
+                    else
+                         pdf.text object.text
+                    end
+               end
                pdf.text("(#{question.points} #{I18n.t'pdf.exam.points'})", :justification => :center, :font_size => 8)
+
           end
      end
   

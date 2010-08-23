@@ -1,5 +1,7 @@
 - content_for :title do
      #{@course.name} :: #{t 'pages.exams.titles.add'}
+- content_for :header do
+     = javascript_include_tag 'examselection'
 - content_for :content do
      %h2= "#{@course.name} - #{t 'pages.exams.titles.add'}"
 
@@ -10,16 +12,20 @@
      - form_for @exam, :url => course_exams_url(@course.id) do |f|
           %div= f.hidden_field :id
           %div
-               = f.label :course, t('pages.exams.forms.newexam.course')
+               = f.label :course
                %span#course{:name => :course}= @course.name
           %div
-               = f.label :type_id, t('pages.exams.forms.newexam.type')
+               = f.label :type_id
                = select_tag 'exam[type_id]', options_for_select(type_selection(@types))
           %div
-               = f.label :date, t('pages.exams.forms.newexam.date')
+               = f.label :date
                = f.text_field :date
           %div
-               = f.label :maximum_points, t('pages.exams.forms.newexam.maxpoints')
-               = f.text_field :maximum_points
+               = f.label :maximum_points
+               = f.text_field :maximum_points, :size => 3
           %div= t('pages.exams.forms.newexam.public_notification')
-          %div= submit_tag t('pages.exams.forms.newexam.continue')
+          - unless flash[:errors].nil? or flash[:errors].empty?
+               %ul.errors
+               - flash[:errors].each do |error|
+                    %li #{error}
+          %div= submit_tag t('pages.exams.forms.continue')

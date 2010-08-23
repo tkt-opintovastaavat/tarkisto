@@ -1,5 +1,26 @@
 en:
 
+     activerecord:
+          models:
+               exam: "Exam"
+          attributes:
+               exam:
+                    course: "Course"
+                    type_id: "Exam type"
+                    date: "Date"
+                    maximum_points: "Maximum points"
+          errors:
+               messages:
+                    points_not_match: "aren't sum of points"
+
+     pdf:
+          school:
+               name: "University of Helsinki"
+               department: "Computer science"
+          exam:
+               max_points: "Maximum points"
+               points: "points"
+
      courses:
           title: "Courses"
           levels:
@@ -32,12 +53,7 @@ en:
                          name: "Select exam"
                          new: "-- New exam --"
                     newexam:
-                         type: "Exam type"
-                         maxpoints: "Maximum points"
-                         course: "Course"
-                         lecturer: "Lecturer"
-                         date: "Date"
-                         public_notification: "Exam isn't public by default"
+                         public_notification: "Exam is public by default"
                          continue: "Continue"
                     generate:
                          how_many: "Questions"
@@ -54,7 +70,26 @@ en:
                          points: "Points:"
                          pdf: "Download PDF"
                     publish:
+                         submit: "Continue"
+                         back: "Back"
+                         save: "Save"
+                    preview:
+                         title: "Preview"
                          submit: "Publish"
+                    questions:
+                         new: "New question"
+                         anon: "Unnamed"
+                         delete: "Are you sure, that you want to delete this question?"
+                         name: "Name"
+                         description: "Description"
+                         points: "Points"
+                         themes: "Theme"
+                         add_code: "Add code"
+                         add_formula: "Add formula"
+                         remove: "[remove]"
+                         image:
+                              title: "Add picture"
+                              submit: "Add"
 
           session:
                form:
