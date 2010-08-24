@@ -136,11 +136,19 @@ function populateAttachmentList() {
                ).appendTo(element);
           };
 
-          for (var k=0; k < data.codes.length; k++) {
-               $('<li />').attr('id', 'code_'+data.codes[k]).append(
-                         $('<a />').attr('href','#opencodeview').text("c#"+(k+1)).click(codeViewingBox)
+          $.each(data.codes, function(index, code_id) {
+               $('<li />').attr('id', 'code_'+code_id).append(
+                    $('<a />').attr('href','#opencodeview').text("c#"+(index+1)).click(codeViewingBox)
+               ).append(' ').append(
+                    $('<a />').attr('href', '#delete').text('[poista]').click(function(event) {
+                         event.preventDefault();
+                         if (confirm('Poistetaanko?!')) {
+                              data.codes.splice(index, 1);
+                              populateAttachmentList();
+                         }
+                    })
                ).appendTo(element);
-          };
+          });
      }
 }
 

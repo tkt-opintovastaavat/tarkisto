@@ -52,31 +52,23 @@ module DataObject
                     question = _new_question q, exam
                end
                unless q["codes"].nil?
-                    question.codes.each do |c|
-                         c.destroy unless q["codes"].include? c.id
+                    question.code_snippets.each do |c|
+                         c.destroy unless q["codes"].include? c.id.to_s
                     end
                     q["codes"].each do |c|
                          if question.code_snippets.find_by_id(c).nil?
-                              code = CodeSnippet.find_by_id c
-                              question.codes << code
+                              question.code_snippets << CodeSnippet.find_by_id(c)
                          end
-                    end
-               else
-                    question.images.each do |c|
-                         c.destroy
                     end
                end
                unless q["images"].nil?
-                    questions.images.each do |i|
-                         i.destroy unless q["images"].include? i.id
+                    question.images.each do |i|
+                         i.destroy unless q["images"].include? i.id.to_s
                     end
                     q["images"].each do |i|
-                         image = Image.find_by_id i
-                         question.images << image
-                    end
-               else
-                    question.images.each do |i|
-                         i.destroy
+                         if question.images.find_by_id(i).nil?
+                              question.images << Image.find_by_id(i)
+                         end
                     end
                end
                unless q["course_themes"].nil? 
