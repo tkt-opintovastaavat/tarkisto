@@ -304,7 +304,7 @@ function createExamQuestion(number) {
 
 function saveDataObject(event){
      event.preventDefault();
-     $.post($(this).attr("action"), dataObject, function(data) {
+     $.post($(this).attr("action"), {data: dataObject}, function(data) {
           alert("Save successful")
           dataObject.modified = false;
      });

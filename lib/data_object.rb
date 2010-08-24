@@ -60,6 +60,10 @@ module DataObject
                               question.code_snippets << CodeSnippet.find_by_id(c)
                          end
                     end
+               else
+                    question.code_snippets.each do |c|
+                         c.destroy
+                    end
                end
                unless q["images"].nil?
                     question.images.each do |i|
@@ -69,6 +73,10 @@ module DataObject
                          if question.images.find_by_id(i).nil?
                               question.images << Image.find_by_id(i)
                          end
+                    end
+               else
+                    question.images.each do |i|
+                         i.destroy
                     end
                end
                unless q["course_themes"].nil? 
