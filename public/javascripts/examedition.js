@@ -124,9 +124,8 @@ function createQuestionMetaImagesBox(data) {
      return images
 }
 function populateAttachmentList() {
-     for (var j = 0; j < dataObject.questions.length; j++) {
+     $.each(dataObject.questions, function(j, data) {
           var element = $('#attachmentlist_'+j)
-          var data = dataObject.questions[j];
 
           element.empty();
 
@@ -157,7 +156,7 @@ function populateAttachmentList() {
                     })
                ).appendTo(element);
           });
-     }
+     });
 }
 
 function pictureViewingBox(event) {
