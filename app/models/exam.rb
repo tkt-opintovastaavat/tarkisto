@@ -22,26 +22,6 @@ class Exam < ActiveRecord::Base
           "#{type.name} #{I18n.l date, :format => :short}"
      end
      
-     def course_name
-          if (I18n.locale == :fi)
-               return course.name_fi
-          elsif (I18n.locale == :en)
-               return course.name_en
-          elsif (I18n.locale == :se)
-               return course.name_se
-          end
-     end
-
-     def type_name
-          if (I18n.locale == :fi)
-               return type.name_fi
-          elsif (I18n.locale == :en)
-               return type.name_en
-          elsif (I18n.locale == :se)
-               return type.name_se
-          end
-     end
-
      def publish!
           unless questions.empty?
                questions.each do |question|
