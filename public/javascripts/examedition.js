@@ -130,11 +130,19 @@ function populateAttachmentList() {
 
           element.empty();
 
-          for (var i=0; i < data.images.length; i++) {
-               $('<li />').attr('id', 'image_'+data.images[i]).append(
-                    $('<a />').attr('href','#show').text("i#"+(i+1)).click(pictureViewingBox)
+          $.each(data.images, function(index, image_id) {
+               $('<li />').attr('id', 'image_'+image_id).append(
+                    $('<a />').attr('href','#show').text("i#"+(index+1)).click(pictureViewingBox)
+               ).append(' ').append(
+                    $('<a />').attr('href', '#delete').text('[poista]').click(function(event) {
+                         event.preventDefault();
+                         if (confirm('Poistetaanko?!')) {
+                              data.images.splice(index, 1);
+                              populateAttachmentList();
+                         }
+                    })
                ).appendTo(element);
-          };
+          });
 
           $.each(data.codes, function(index, code_id) {
                $('<li />').attr('id', 'code_'+code_id).append(
