@@ -14,6 +14,12 @@ class ExamsController < ApplicationController
      end
 
      def show
+          @exam = @course.exams.published.find_by_id(params[:id])
+         
+          if @exam.nil?
+               redirect_to course_exams_url(@course.id)
+               return
+          end
           respond_to do |format|
                format.html do
                     @exam = @course.exams.published.find_by_id(params[:id])
@@ -42,6 +48,11 @@ class ExamsController < ApplicationController
      end
 
      def new
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+          end
+
           @exam = Exam.new
           @exams = @course.exams.unpublished
           @types = Type.all
@@ -54,6 +65,41 @@ class ExamsController < ApplicationController
      end
 
      def create
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+          end
+
+          if params.include? 'exam'
+               if params['exam'].include? 'id'
+                    exam = @course.exams.find_by_id params['exam']['id']
+               end
+               if exam.nil?
+                    exam = @course.exams.create params['exam'].delete_if{|key, value| key == 'id'}
+               end
+               unless exam.new_record?
+                    redirect_to edit_course_exam_url(@course.id, exam.id)
+                    return
+               end
+          end
+          redirect_to new_course_exam_url(@course.id)
+     end
+
+     def edit
+          unless moderator?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :back
+          end
+
+          @exam = @course.exams.find_by_id(params[:id])
+
+          if @exam.nil?
+               redirect_to new_course_exam_url(@course.id)
+               return
+          elsif @exam.published
+               redirect_to course_exam_url(@course.id, @exam.id)
+               return
+          end
           respond_to do |format|
                format.html do
                     if params.include? 'exam'
@@ -79,13 +125,19 @@ class ExamsController < ApplicationController
                end
           end
      end
-
      def preview
           @exam = Exam.build_exam params[:exam]
           render :action => :show
      end
-
      def generate
+          @exam = @course.exams.published
+          @exam = @exam.only_public unless access?
+
+          if @exam.nil?
+               redirect_to course_exams_url(@course.id)
+               return
+          end
+
           respond_to do |format|
                format.html do
                

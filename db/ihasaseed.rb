@@ -9,8 +9,8 @@ File.open("seeds.rb", 'w') do |f|
      f.puts("aine = Level.create :name_fi => 'Aineopinnot'");
      f.puts("syve = Level.create :name_fi => 'Syventävät opinnot'");
      f.puts("muut = Level.create :name_fi => 'Muut opinnot'");
-
-     conn = OCI8.new('tarkisto', 'exam1ne', 'bodbacka/test')
+     
+     conn = OCI8.new('tarkisto', ARGV.first, 'bodbacka/test')
 
      jaksot = conn.exec("select kurssikoodi, nimi_suomi, nimi_ruotsi, nimi_englanti, opintopisteet, taso from opintojakso where tyyppi = 'K' and opintopisteet != 0")
 

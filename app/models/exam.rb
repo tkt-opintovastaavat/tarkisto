@@ -15,6 +15,7 @@ class Exam < ActiveRecord::Base
      named_scope :separate_exams, :conditions => {:type_id => Type.find_by_name_fi('Erilliskoe').id}
      named_scope :unpublished, :conditions => {:published => false}
      named_scope :published, :conditions => {:published => true}
+     named_scope :public, :conditions => { :published => true, :public => true}
      named_scope :only_private, :conditions => {:public => false}
      named_scope :only_public, :conditions => {:public => true}
 

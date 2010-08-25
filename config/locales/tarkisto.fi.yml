@@ -101,6 +101,8 @@ fi:
                     login_failed: "Kirjautumisyrityksesi epäonnistui"
                notifications:
                     logout: "Onnistuneesti kirjauduttu ulos"
+                    access:
+                         denied: "Sinulla ei ole tarvittavia oikeuksia"
 
           courses:
                showall: "Näytä kaikki"
