@@ -26,5 +26,17 @@ describe Question do
      it "should have number info" do
           @invalid_question.should have(1).error_on(:number)
      end     
-     
+
+     it "should return themes" do
+          @course_theme_mock = mock_model CourseTheme
+          @theme_mock = mock_model Theme
+          @themes = [@theme_mock]
+
+          question = Question.new
+          question.should_receive(:course_themes).and_return([@course_theme_mock])
+          @course_theme_mock.should_receive(:theme).and_return(@theme_mock)
+
+          question.themes.should == @themes
+     end
+
 end

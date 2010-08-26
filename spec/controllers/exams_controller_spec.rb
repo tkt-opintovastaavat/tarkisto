@@ -52,24 +52,54 @@ describe ExamsController do
                describe "#new" do
 
                     it "should be successful" do
+                         controller.should_receive(:access?).and_return(true)
                          Exam.should_receive(:new).and_return(@exam_mock)
                          @course_mock.should_receive(:exams).and_return(@exams_mock)
                          @exams_mock.should_receive(:unpublished).and_return([@exam_mock])
-                         Type.should_receive(:all).and_return([@type_mock])
+                         3.times do
+                              Type.should_receive(:find_by_name_fi).and_return(@type_mock)
+                         end
 
                          get 'new', :course_id => @course_id
 
                          assigns(:exam).should == @exam_mock
                          assigns(:exams).should == [@exam_mock]
-                         assigns(:types).should == [@type_mock]
+                         assigns(:types).should == [@type_mock, @type_mock, @type_mock]
                     end
 
                end
 
                describe "#generate" do
-                    it "should be successful" do
-                         get 'generate', :course_id => @course_id
+
+                    before(:each) do
+                         @course_theme_mock = mock_model CourseTheme
                     end
+
+                    it "should be generating from public only if no access" do
+                         @course_mock.should_receive(:course_themes).and_return([@course_theme_mock])
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return(@exams_mock)
+                         controller.should_receive(:access?).and_return(false)
+                         @exams_mock.should_receive(:only_public).and_return([@exam_mock])
+
+                         get 'generate', :course_id => @course_id
+
+                         assigns(:course_themes).should == [@course_theme_mock]
+                         assigns(:exams).should == [@exam_mock]
+                    end
+
+                    it "should be generating from all if access" do
+                         @course_mock.should_receive(:course_themes).and_return([@course_theme_mock])
+                         @course_mock.should_receive(:exams).and_return(@exams_mock)
+                         @exams_mock.should_receive(:published).and_return(@exams_mock)
+                         controller.should_receive(:access?).and_return(true)
+
+                         get 'generate', :course_id => @course_id
+
+                         assigns(:course_themes).should == [@course_theme_mock]
+                         assigns(:exams).should == [@exam_mock]
+                    end
+
                end
 
           end
@@ -136,12 +166,20 @@ describe ExamsController do
 
           describe "#create" do
 
+               it "should be redirected if not logged in" do
+                    controller.should_receive(:access?).and_return(false)
+                    post 'create', :course_id => @course_id
+                    response.should redirect_to(root_url)
+               end
+
                it "should be redirected back to new page if missing attributes." do
+                    controller.should_receive(:access?).and_return(true)
                     post 'create', :course_id => @course_id
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
 
                it "should confirm old data and assign id-variable data" do
+                    controller.should_receive(:access?).and_return(true)
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(@exam_mock)
 
@@ -152,6 +190,7 @@ describe ExamsController do
                end
 
                it "should confirm old data and redirect to previous page on wrong id number." do
+                    controller.should_receive(:access?).and_return(true)
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:find_by_id).with(@exam_id).and_return(nil)
 
@@ -161,6 +200,7 @@ describe ExamsController do
                end
 
                it "should store new data (id isn't set) in variable" do
+                    controller.should_receive(:access?).and_return(true)
                     @exam_data = {}
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
                     @exams_mock.should_receive(:new).with(@exam_data).and_return(@exam_mock)
@@ -173,6 +213,7 @@ describe ExamsController do
                end
 
                it "should be redirected back to new page if invalid attributes." do
+                    controller.should_receive(:access?).and_return(true)
                     @errors = []
                     @exam_data = {'type_id' => '1'}
                     @course_mock.should_receive(:exams).and_return(@exams_mock)
@@ -186,6 +227,10 @@ describe ExamsController do
                     flash[:errors].should == @errors
                     response.should redirect_to(new_course_exam_url(@course_id))
                end
+
+               it "should save exam data"# do
+#                    post 'create', :course_id => @course_id, :exam => @exam_data, :format => 'json'
+#               end
 
           end
 

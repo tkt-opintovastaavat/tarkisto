@@ -6,6 +6,7 @@ export NLS_LANG=AMERICAN_AMERICA.UTF8
 echo "Copying database"
 cp config/database.yml.example config/database.yml >> /dev/null
 cp config/ldap.yml.example config/ldap.yml >> /dev/null
+cp config/demo.yml.example config/demo.yml >> /dev/null
 echo "Setting up database"
 rake db:drop # >> /dev/null
 rake db:drop RAILS_ENV=test # >> /dev/null

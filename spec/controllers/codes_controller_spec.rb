@@ -2,9 +2,18 @@ require 'spec_helper'
 
 describe CodesController do
 
-  #Delete this example and add some real ones
-  it "should use CodesController" do
-    controller.should be_an_instance_of(CodesController)
-  end
+     describe "#create" do
+
+          it "should be redirected back to new page if missing attributes." do
+               @data = "public static void main(String[] args)"
+               @code_mock = mock_model CodeSnippet
+
+               CodeSnippet.should_receive(:create!).with(:text => @data).and_return(@code_mock)
+               @code_mock.should_receive(:id)
+
+               post 'create', :code => @data
+          end
+
+     end
 
 end

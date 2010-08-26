@@ -15,7 +15,7 @@ fi:
 
      pdf:
           school:
-               name: "Helsingin Yliopisto"
+               name: "Helsingin yliopisto"
                department: "Tietojenkäsittelytiede"
           exam:
                max_points: "Maksimipisteet"
@@ -56,16 +56,25 @@ fi:
                          new: "-- Uusi tentti --"
                     newexam:
                          type: "Koetyyppi"
-                         maxpoints: "Maksipisteet"
+                         maxpoints: "Maksimipisteet"
                          course: "Kurssi"
                          date: "Päivämäärä"
                          public_notification: "Tentti ei ole oletusarvoisesti julkinen"
                          continue: "Jatka"
                     generate:
-                         how_many: "Kuinka monta:"
+                         how_many: "Kysymyksiä"
+                         piece_unit: " kpl"
+                         change_question: "Vaihda kysymys"
                          themeless: "Teemattomat"
-                         generate: "Generoi"
-                         cannot_generate: "Koetta ei voida generoida koska kurssiin ei liity yhtään kysymystä."
+                         generate: "Generoi uudestaan"
+                         continue: "Jatka"
+                         cannot_generate: "Koetta ei voida generoida, koska kurssiin ei liity yhtään kysymystä."
+                         back: "Takaisin"
+                         examthemes: "Aihepiirit"
+                         maxpoints: "Harjoitustentin maksimipisteet:"
+                         empty: "Valitsemillasi aihepiireillä ei löytynyt yhtään kysymystä."
+                         points: "Pisteet:"
+                         pdf: "Lataa PDF"
                          public_notification: "Tentti on oletusarvoisesti julkinen"
                     publish:
                          back: "Takaisin"
