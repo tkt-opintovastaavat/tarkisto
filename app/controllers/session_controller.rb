@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   
      def create
-          admin = ["ptkarjal", "azlauril", "tniemela", "saada", "thusu", "aekuosma"]
+          admin = ["azlauril", "tniemela", "thusu", "ptkarjal", "aekuosma", "saada"] #demo use
           user = User.authentication params[:session][:username], params[:session][:password]
           unless user.nil?
                session[:user_id] = user.id
