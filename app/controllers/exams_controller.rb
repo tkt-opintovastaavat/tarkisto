@@ -43,7 +43,7 @@ class ExamsController < ApplicationController
 
      def new
           unless access?
-               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               flash[:notice] = I18n.t('pages.session.notifications.access.denied')
                redirect_to :root
           else
                @exam = Exam.new
@@ -64,7 +64,7 @@ class ExamsController < ApplicationController
 
      def create
           unless access?
-               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               flash[:notice] = I18n.t('pages.session.notifications.access.denied')
                redirect_to :root
           else
                respond_to do |format|

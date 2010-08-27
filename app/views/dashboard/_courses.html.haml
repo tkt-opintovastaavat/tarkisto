@@ -16,6 +16,3 @@
                %td.noexams= link_to t('pages.dashboard.practice'), generate_course_exams_url(course)
 
           %td.column3= link_to t('pages.dashboard.addnew'), new_course_exam_url(course)
-          - unless flash[:notice].nil?
-               %tr
-                    %td.notifications(colspan=3)=  flash[:notice]

@@ -2,6 +2,8 @@
      Dashboard
 - content_for :content do
      %h2= t 'courses.title'
+     - unless flash[:notice].nil?
+          %p.notifications=  flash[:notice]
      %table#basic_studies
           %tr
                %th= t 'courses.levels.basic'
