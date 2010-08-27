@@ -42,9 +42,9 @@ module ExamsHelper
 
           objects.each do |object|
                if object.instance_of? Image
-                    description = description + "<img src='#{object.question_image.url(:web)}' />"
+                    description = description + "<img src='#{object.question_image.url(:web)}' /> <br />"
                else
-                    description = description + "#{object.text}"
+                    description = description + "#{object.text} <br />"
                end
           end
           return description

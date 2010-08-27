@@ -36,7 +36,7 @@ module PdfExport
                     unless objects.empty?
                          object = objects.shift
                          if object.instance_of? Image
-                              pdf.image object.question_image.url( :pdf )
+                              pdf.image object.question_image.path( :pdf )
                               attachments.delete object
                          else
                               pdf.text object.text
@@ -51,7 +51,7 @@ module PdfExport
 
                objects.each do |object|
                     if object.instance_of? Image
-                         pdf.image object.question_image.url( :pdf )
+                         pdf.image object.question_image.path( :pdf )
                     else
                          pdf.text object.text
                     end
