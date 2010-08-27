@@ -18,3 +18,6 @@
      %span.title #{t('pages.session.logged_in')}:
      #{current_user.username}
      = link_to t('pages.session.logout'), session_url, :method => :delete
+     - if admin?
+          = link_to t('pages.session.admin'), admin_url
+     

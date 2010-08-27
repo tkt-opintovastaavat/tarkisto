@@ -27,7 +27,7 @@ class Course < ActiveRecord::Base
                return name_se
           end
      end
-     
+
      def self.search keyword
           if (I18n.locale == :fi)
                condition = "name_fi LIKE ?"
@@ -60,4 +60,5 @@ class Course < ActiveRecord::Base
      def has_exams?
           return !exams.published.empty?
      end
+     
 end

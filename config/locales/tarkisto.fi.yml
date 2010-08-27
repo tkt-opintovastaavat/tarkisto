@@ -105,10 +105,13 @@ fi:
                     title: "Kirjaudu sisään"
                logout: "Kirjaudu ulos"
                logged_in: "Kirjautuneena"
+               admin: "Admin"
                errors:
                     login_failed: "Kirjautumisyrityksesi epäonnistui"
                notifications:
                     logout: "Onnistuneesti kirjauduttu ulos"
+                    access:
+                         denied: "Sinulla ei ole tarvittavia oikeuksia"
 
           courses:
                showall: "Näytä kaikki"
