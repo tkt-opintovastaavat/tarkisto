@@ -6,5 +6,5 @@
           - questions.each do |question|
                %div.questionblock
                     %li.question #{simple_format(question.name)} 
-                    %div.description #{simple_format(question.description)}
+                    %div.description #{simple_format(question_format(question))}
                     %div.questionfooter Pisteet: #{question.points}

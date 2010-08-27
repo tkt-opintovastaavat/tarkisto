@@ -16,7 +16,7 @@ Rails::Initializer.run do |config|
      config.gem "paperclip"
 
      config.time_zone = 'UTC'
-
+     config.action_controller.allow_forgery_protection = false
      config.i18n.default_locale = :fi
 
 end
