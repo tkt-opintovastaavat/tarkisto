@@ -42,44 +42,54 @@ class ExamsController < ApplicationController
      end
 
      def new
-          @exam = Exam.new
-          @exams = @course.exams.unpublished
-          @types = []
-          @types << Type.find_by_name_fi("Uusintakoe")
-          @types << Type.find_by_name_fi("Erilliskoe")
-          @types << Type.find_by_name_fi("Kurssikoe")
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :root
+          else
+               @exam = Exam.new
+               @exams = @course.exams.unpublished
+               @types = []
+               @types << Type.find_by_name_fi("Uusintakoe")
+               @types << Type.find_by_name_fi("Erilliskoe")
+               @types << Type.find_by_name_fi("Kurssikoe")
 
 
-          respond_to do |format|
-               format.html do
-                    set_tab :new
+               respond_to do |format|
+                    format.html do
+                         set_tab :new
+                    end
                end
           end
      end
 
      def create
-          respond_to do |format|
-               format.html do
-                    if params.include? 'exam'
-                         if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
-                              @exam = @course.exams.find_by_id(params[:exam][:id])
-                              redirect_to new_course_exam_url(@course.id) if @exam.nil?
+          unless access?
+               flash[:notice] = I18n.t('pages.session.notifications.denied')
+               redirect_to :root
+          else
+               respond_to do |format|
+                    format.html do
+                         if params.include? 'exam'
+                              if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
+                                   @exam = @course.exams.find_by_id(params[:exam][:id])
+                                   redirect_to new_course_exam_url(@course.id) if @exam.nil?
 
-                         else
-                              @exam = @course.exams.new params[:exam]
-                              unless @exam.valid?
-                                   flash[:errors] = @exam.errors.full_messages
-                                   redirect_to new_course_exam_url(@course.id)
+                              else
+                                   @exam = @course.exams.new params[:exam]
+                                   unless @exam.valid?
+                                        flash[:errors] = @exam.errors.full_messages
+                                        redirect_to new_course_exam_url(@course.id)
+                                   end
                               end
+                         else
+                              redirect_to new_course_exam_url(@course.id)
                          end
-                    else
-                         redirect_to new_course_exam_url(@course.id)
                     end
-               end
-               format.json do
-                    exam = save_data_object(params)
-                    object = generate_data_object(exam)
-                    render :json => object
+                    format.json do
+                         exam = save_data_object(params)
+                         object = generate_data_object(exam)
+                         render :json => object
+                    end
                end
           end
      end
@@ -93,6 +103,7 @@ class ExamsController < ApplicationController
           respond_to do |format|
                format.html do
                     @exams = @course.exams.published
+                    @exams = @exams.only_public unless access?
                     @course_themes = @course.course_themes
                     set_tab :generate
                end

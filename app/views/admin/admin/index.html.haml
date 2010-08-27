@@ -1,0 +1,29 @@
+%span.title #{t('pages.session.logged_in')}:
+#{current_user.username}
+= link_to t('pages.session.logout'), session_url, :method => :delete
+
+= render :active_scaffold => 'admin/users'
+%br
+%br
+= render :active_scaffold => 'admin/exams'
+%br
+%br
+= render :active_scaffold => 'admin/courses'
+%br
+%br
+= render :active_scaffold => 'admin/themes'
+%br
+%br
+= render :active_scaffold => 'admin/instances'
+%br
+%br
+= render :active_scaffold => 'admin/shortcuts'
+%br
+%br
+= render :active_scaffold => 'admin/levels'
+%br
+%br
+= render :active_scaffold => 'admin/course_themes'
+%br
+%br
+= render :active_scaffold => 'admin/types'

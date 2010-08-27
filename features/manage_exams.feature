@@ -25,6 +25,8 @@ Feature: Manage exams
 
      Scenario: Add new exam
           Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
+          And I am on the exams page of course 581325
+          And I log in with valid user
           And I am on the new exam page of course 581325
           And I should see "Ohjelmoinnin perusteet" within "#mainbody"
           And I should see "Lisää uusi tentti" within "#mainbody"

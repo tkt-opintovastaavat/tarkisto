@@ -2,6 +2,6 @@
  * Application specific javascripts.
  */
 
-$(document).ready(function() {
+$(function() {
      Nifty("div#box","big");
 });
