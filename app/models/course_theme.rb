@@ -6,4 +6,5 @@ class CourseTheme < ActiveRecord::Base
      has_many :questions, :through => :course_theme_questions
 
      validates_presence_of :theme_id , :course_id
+
 end
