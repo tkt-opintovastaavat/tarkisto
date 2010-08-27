@@ -84,17 +84,34 @@ function createQuestionDataPointsBox(data) {
 }
 
 function createQuestionDataThemesBox(data) {
-     var dropdown_selection = $('<select />').attr('multiple','multiple').attr('id','course_themes').attr('name','course_theme_selection')
+
+     //var dropdown_selection = $('<select />').attr('multiple','multiple').attr('id','course_themes').attr('name','course_theme_selection')
+     //$.each(dataObject.themes, function(i, theme) {
+     //     theme = ($.parseJSON(theme)).theme;
+     //     dropdown_selection.append(
+     //          $('<option />').attr('value', theme.id).text(theme.name_fi)
+     //     );
+     //});
+     var dropdown_selection = $('<ul />').attr('id','course_themes');
+
      $.each(dataObject.themes, function(i, theme) {
           theme = ($.parseJSON(theme)).theme;
-          dropdown_selection.append(
-               $('<option />').attr('value', theme.id).text(theme.name_fi)
-          );
+          $('<li />').append(
+               $('<input />').attr('type', 'checkbox').attr('id',theme.name_fi).attr('value', theme.id).change(function() {
+                    value = $.parseJSON($(this).val());
+                    if($(this).is(':checked')){
+                         data.course_themes.push(value)
+                         dataObject.modified = true;
+                    }
+                    else {
+                         $.each(data.course_themes, function(j, course_theme) {
+                              if (course_theme == value)
+                                   data.course_themes.splice(j,1);
+                         });
+                    }
+                    })).append(theme.name_fi).appendTo(dropdown_selection);
      });
-     dropdown_selection.change(function() {
-          data.course_themes = $.parseJSON('['+$(this).val()+']')
-          dataObject.modified = true;
-     });
+
      return $('<p />').append(dropdown_selection);
      
 }
