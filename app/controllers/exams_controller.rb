@@ -86,7 +86,7 @@ class ExamsController < ApplicationController
                          end
                     end
                     format.json do
-                         exam = save_data_object(params)
+                         exam = save_data_object(params[:data])
                          object = generate_data_object(exam)
                          render :json => object
                     end

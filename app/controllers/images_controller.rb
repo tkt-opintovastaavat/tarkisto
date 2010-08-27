@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
      def create
-          @image = Image.create(params[:image])
+          @image = Image.create! params[:image]
           position = params[:number].to_i-1
           respond_to do |format|
                format.js do

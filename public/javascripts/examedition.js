@@ -19,6 +19,7 @@ $(document).ready(function() {
 
      addExistingQuestions($tabs);
      populateAttachmentList();
+
      $('a[href="#new_question"]').unbind().live('click', function(event) {
           event.preventDefault();
           var question = createExamQuestion(lastQuestionId+1);
@@ -123,23 +124,69 @@ function createQuestionMetaImagesBox(data) {
      return images
 }
 function populateAttachmentList() {
-     for (var j = 0; j < dataObject.questions.length; j++) {
-     var element = $('#attachmentlist_'+j)
-     var data = dataObject.questions[j];
-     element.empty();
-     for (var i=0; i < data.images.length; i++) {
-          $('<li />').attr('id', data.images[i]).append(
-                    $('<a />').attr('target','_blank').attr('href','/question_images/'+data.images[i]+'/web.jpg').text("i#"+(i+1))
-          ).appendTo(element);
-     };
-     for (var k=0; k < data.codes.length; k++) {
-          $('<li />').attr('id', data.codes[k]).append(
-                    $('<a />').attr('target','_blank').attr('href','').text("c#"+(k+1))
-          ).appendTo(element);
-     };
-     }
+     $.each(dataObject.questions, function(j, data) {
+          var element = $('#attachmentlist_'+j)
+
+          element.empty();
+
+          $.each(data.images, function(index, image_id) {
+               $('<li />').attr('id', 'image_'+image_id).append(
+                    $('<a />').attr('href','#show').text("i#"+(index+1)).click(pictureViewingBox)
+               ).append(' ').append(
+                    $('<a />').attr('href', '#delete').text('[poista]').click(function(event) {
+                         event.preventDefault();
+                         if (confirm('Poistetaanko?!')) {
+                              data.images.splice(index, 1);
+                              populateAttachmentList();
+                         }
+                    })
+               ).appendTo(element);
+          });
+
+          $.each(data.codes, function(index, code_id) {
+               $('<li />').attr('id', 'code_'+code_id).append(
+                    $('<a />').attr('href','#opencodeview').text("c#"+(index+1)).click(codeViewingBox)
+               ).append(' ').append(
+                    $('<a />').attr('href', '#delete').text('[poista]').click(function(event) {
+                         event.preventDefault();
+                         if (confirm('Poistetaanko?!')) {
+                              data.codes.splice(index, 1);
+                              populateAttachmentList();
+                         }
+                    })
+               ).appendTo(element);
+          });
+     });
 }
 
+function pictureViewingBox(event) {
+     event.preventDefault();
+     var image_id = ($(this).parent().attr('id')).replace('image_','');
+     $('<div />').append($('<img />').attr('src', Routes.generate({controller: 'question_images', action: image_id})+'/web.jpg')).dialog({
+          resizable: false,
+          draggable: false,
+          width: 'auto',
+          height: 'auto',
+          modal: true,
+          title: 'Näytä kuva'
+     });
+}
+
+function codeViewingBox(event) {
+     event.preventDefault();
+     var code_id = ($(this).parent().attr('id')).replace('code_','');
+     $.getJSON(Routes.generate({controller: 'codes', action: code_id+'.json'}), function(data) {
+          $('<pre />').addClass('prettyprint').addClass('linenums').text(data.text).dialog({
+               resizable: false,
+               draggable: false,
+               width: 'auto',
+               height: 'auto',
+               modal: true,
+               title: 'Näytä koodi'
+          });
+          prettyPrint();
+     });
+}
 
 function createImageDialog(data) {
      var image = $('<form />').attr('target','upload_frame').attr('action', Routes.generate({controller: 'image', action: ''})).attr('enctype','multipart/form-data').attr('method','post').append(
@@ -228,7 +275,7 @@ function createCodeDialog(data) {
                submit: function() {
                     var code = $('textarea', this).val();
                     var dialog = $(this);
-                    $.post(Routes.generate({controller: 'code', action: ''}), {'code': code}, function(jsondata) {
+                    $.post(Routes.generate({controller: 'codes', action: ''}), {'code': code}, function(jsondata) {
                          data['codes'].push(jsondata.id);
                          dataObject.modified = true;
                          dialog.dialog('close');
@@ -257,7 +304,7 @@ function createExamQuestion(number) {
 
 function saveDataObject(event){
      event.preventDefault();
-     $.post($(this).attr("action"), dataObject, function(data) {
+     $.post($(this).attr("action"), {data: dataObject}, function(data) {
           alert("Save successful")
           dataObject.modified = false;
      });
