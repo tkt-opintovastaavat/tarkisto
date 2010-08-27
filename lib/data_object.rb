@@ -51,6 +51,11 @@ module DataObject
                else
                     question = _new_question q, exam
                end
+               
+               question.points = q["points"] unless question.points == q["points"]
+               question.description = q["description"] unless question.points == q["description"]
+               question.name = q["name"] unless question.points == q["name"]
+               
                unless q["codes"].nil?
                     question.code_snippets.each do |c|
                          c.destroy unless q["codes"].include? c.id.to_s
@@ -90,6 +95,7 @@ module DataObject
                          end
                     end
                end
+               question.save
           end
           exam.publish!
 
