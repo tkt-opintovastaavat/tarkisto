@@ -16,4 +16,39 @@ module Session
           end
      end
 
+     def access?
+          unless logged_in?
+               return false
+          else
+               if session[:access] > 0
+                    return true
+               else
+                    return false
+               end               
+          end
+     end
+
+     def moderator?
+          unless logged_in?
+               return false
+          else
+               if session[:access] > 1
+                    return true
+               else
+                    return false
+               end               
+          end
+     end
+
+     def admin?
+          unless logged_in?
+               return false
+          else
+               if session[:access] == 3
+                    return true
+               else
+                    return false
+               end
+          end
+     end
 end
