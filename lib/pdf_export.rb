@@ -60,7 +60,7 @@ module PdfExport
 
           end
      end
-  
+
      def self.exam(exam)
 
           pdf = PDF::Writer.new(:paper => "A4")

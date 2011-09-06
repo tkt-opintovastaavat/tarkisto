@@ -80,7 +80,7 @@ describe PdfExport do
                     # attachments handling
                     ## image
                     @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-                    @paperclip_mock.should_receive(:url)
+                    @paperclip_mock.should_receive(:path)
                     @pdf_writer_mock.should_receive(:image)
                     ## code
                     @code_mock.should_receive(:text)
@@ -96,7 +96,7 @@ describe PdfExport do
                     @question_mock.should_receive(:description).twice.and_return("LOL<[i#1]>TROLL<[c#1]>FU-")
                     @pdf_writer_mock.should_receive(:text) # this writes LOL
                     @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-                    @paperclip_mock.should_receive(:url)
+                    @paperclip_mock.should_receive(:path)
                     @pdf_writer_mock.should_receive(:image)
                     @pdf_writer_mock.should_receive(:text) # this writes TROLL
                     @code_mock.should_receive(:text)
@@ -113,7 +113,7 @@ describe PdfExport do
                     @question_mock.should_receive(:description).twice.and_return("<[i#1]>")
                     @pdf_writer_mock.should_receive(:text) # this writes empty string
                     @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-                    @paperclip_mock.should_receive(:url)
+                    @paperclip_mock.should_receive(:path)
                     @pdf_writer_mock.should_receive(:image)
                end
 
@@ -132,5 +132,5 @@ describe PdfExport do
           end
 
      end
-     
+
 end
