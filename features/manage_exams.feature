@@ -28,8 +28,7 @@ Feature: Manage exams
           And I am on the exams page of course 581325
           And I log in with valid user
           And I am on the new exam page of course 581325
-          And I should see "Ohjelmoinnin perusteet" within "#mainbody"
-          And I should see "Lisää uusi tentti" within "#mainbody"
+          And I should see "Ohjelmoinnin perusteet - Lisää uusi tentti" within "#mainbody"
           When I select "Erilliskoe" from "Koetyyppi"
           And I fill in "Päivämäärä" with "25.01.2009"
           And I fill in "Maksimipisteet" with "60"

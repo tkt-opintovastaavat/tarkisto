@@ -22,7 +22,7 @@
                          %span#course{:name => :course}= @course.name
                %tr
                     %td
-                         = f.label :type
+                         = f.label :type_id
                     %td
                          = select_tag 'exam[type_id]', options_for_select(type_selection(@types))
                %tr
