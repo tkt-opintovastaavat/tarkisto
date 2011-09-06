@@ -4,8 +4,8 @@
           color: red
 
      /* The relative sizes of the parts. */
-     !left-width = 23%
-     !right-width = 21%
+     $left-width: 23%
+     $right-width: 21%
 
      /* Whole background is colored white. */
      background: #fff
@@ -13,9 +13,9 @@
      /* The left block where the tabs go in the exams views. Empty in course view. */
      #left
           float: left
-          width: !left-width
+          width: $left-width
           padding-top: 3.5em
-          
+
           ul
                /* border-top: 1px dashed black */
                list-style: none
@@ -32,7 +32,7 @@
                          background-color: #e5e5e5
                     a:hover
                          background-color: #cccccc
-                         
+
                /* Span is the active tab when tabs are made with TabsOnRails.*/
                span
                     font-weight: bold
@@ -40,7 +40,7 @@
                     padding: 7px
                     background-color: #666666
                     color: #ffffff
-                    
+
 
      /* The middle part where crumbs, search and content go. */
      #mainbody
@@ -48,15 +48,15 @@
           float: center
           background: #fff
           position: relative
-          margin-left: !left-width
-          margin-right: !right-width
-          
+          margin-left: $left-width
+          margin-right: $right-width
+
           padding: 1em 1.7% 4em
           border-left: 1px dashed #666
           border-right: 1px dashed #666
           min-height: 50em
 
-          
+
           /* Styling for the crumbs created with javascript. */
           #breadcrumb
                padding-top: 1em
@@ -64,10 +64,10 @@
           /* Content, declared by views. */
           #content
 
-               /* Styling for generator layout */          
+               /* Styling for generator layout */
                table.generator
                     width: auto
-                    
+
                     tr
                          td
                               margin: 0px
@@ -89,8 +89,8 @@
                     border-spacing: 2px
                     border-style: solid
                     border-color: #000
-                    border-collapse: collapse 
-                    
+                    border-collapse: collapse
+
                     tr
 
                          td
@@ -122,43 +122,43 @@
                     border-bottom: 2px solid #e7b01f
 
                #examlists
-               
+
                     margin-top: 2em
-                    
+
                     h3
                          margin: 0 6px 15px 6px
                     table
                          /* margin: 0px 6px 15px 6px */
                          margin-top: 10px
-                
+
                .noexams
                     a
                          color: #ccc
                          font-weight: normal
-     
+
                #back
                     margin: 0px 6px 45px 6px
-                    
+
                     a
                          font-weight: bold
                          /* border: 0px solid */
                          padding: 2px
-                         
+
                #hide-button
                     margin: 0px 6px 10px 6px
                     font-weight: bold
-     
+
                .paginate_disabled_previous
                     background-image: url('/images/back_disabled.jpg')
 
 
-               .paginate_enabled_previous 
+               .paginate_enabled_previous
                     background-image: url('/images/back_enabled.jpg')
 
 
-               .paginate_disabled_next 
+               .paginate_disabled_next
                     background-image: url('/images/forward_disabled.jpg')
-               
+
 
                .paginate_enabled_next
                     background-image: url('/images/forward_enabled.jpg')
@@ -184,9 +184,9 @@
 
                /* Styling for description of question */
                div.description
-                    margin: 10px 0px 5px 30px 
+                    margin: 10px 0px 5px 30px
 
-               /* Styling for question points*/ 
+               /* Styling for question points*/
                div.questionfooter
                     margin: 20px 0px 0px 0px
                     padding: 10px
@@ -203,7 +203,7 @@
                div.generatebuttons
                     margin: 20px 0px 0px 0px
 
-     
+
                #questions
 
                     a
@@ -219,10 +219,10 @@
                          tr
                               td:hover
                                    background-color: #f2f2f2
-                         
 
-     
+
+
      /* Empty right block. */
      #right
           float: right
-          width: !right-width
+          width: $right-width
