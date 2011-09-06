@@ -1,7 +1,7 @@
 Feature: Manage exams
      In order to do all exam actions
      wants to have following scenarios
-  
+
      Scenario: Show all exams
           Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
           And I have "Erilliskoe" type of exam on course 581325

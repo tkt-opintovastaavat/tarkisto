@@ -6,7 +6,7 @@ fi:
           attributes:
                exam:
                     course: "Kurssi"
-                    type_id: "Koetyyppi"
+                    type: "Koetyyppi"
                     date: "Päivämäärä"
                     maximum_points: "Maksimipisteet"
           errors:

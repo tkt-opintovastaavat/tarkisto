@@ -14,7 +14,7 @@
                          %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
                     %td
                          = select_tag :exam_name, options_for_select(exam_selection(@exams), 'new')
- 
+
                %tr
                     %td
                          = f.label :course
@@ -22,7 +22,7 @@
                          %span#course{:name => :course}= @course.name
                %tr
                     %td
-                         = f.label :type_id
+                         = f.label :type
                     %td
                          = select_tag 'exam[type_id]', options_for_select(type_selection(@types))
                %tr
