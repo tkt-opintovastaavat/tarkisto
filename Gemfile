@@ -15,6 +15,8 @@ gem 'paperclip'
 gem 'lucy'
 gem 'babilu'
 
+gem 'responds_to_parent'
+
 group :development, :test do
   gem 'rspec', '1.3.2'
   gem 'rspec-rails', '1.3.4'
