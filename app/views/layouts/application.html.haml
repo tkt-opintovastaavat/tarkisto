@@ -18,8 +18,6 @@
 
           = javascript_include_tag 'locales', 'routes', 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min', 'niftycube', 'showhide', 'autocomplete_search', 'application'
 
-          = include_qunit if RAILS_ENV == 'development'
-
           = yield :header if yield :header
 
      %body
