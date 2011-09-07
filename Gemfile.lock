@@ -12,6 +12,8 @@ GEM
     activeresource (2.3.11)
       activesupport (= 2.3.11)
     activesupport (2.3.11)
+    babilu (0.2.2)
+      lucy
     builder (3.0.0)
     chunky_png (1.2.1)
     cocaine (0.2.0)
@@ -37,6 +39,7 @@ GEM
     hoe (2.12.2)
       rake (~> 0.8)
     json (1.5.4)
+    lucy (0.2.1)
     mime-types (1.16)
     net-ldap (0.2.2)
     nokogiri (1.5.0-x86-mingw32)
@@ -78,11 +81,13 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  babilu
   compass
   cucumber
   cucumber-rails (= 0.3.2)
   database_cleaner
   haml
+  lucy
   net-ldap
   paperclip
   pdf-writer

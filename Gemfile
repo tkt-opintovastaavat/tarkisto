@@ -12,6 +12,9 @@ gem 'pdf-writer'
 gem 'tabs_on_rails', '1.3.3'
 gem 'paperclip'
 
+gem 'lucy'
+gem 'babilu'
+
 group :development, :test do
   gem 'rspec', '1.3.2'
   gem 'rspec-rails', '1.3.4'
