@@ -6,6 +6,7 @@ tmp/pids/*
 tmp/sessions/*
 tmp/sockets/*
 tmp/sass-cache/*
+.bundle
 
 # Image upload folder
 public/question_images/*
