@@ -25,3 +25,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'webrat'
 end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+end
