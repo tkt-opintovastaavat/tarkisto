@@ -16,7 +16,7 @@ gem 'babilu'
 gem 'responds_to_parent'
 
 group :production do
-  gem 'pg'
+  gem 'postgres'
 end
 
 group :development, :test do
