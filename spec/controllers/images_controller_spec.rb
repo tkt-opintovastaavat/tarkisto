@@ -2,35 +2,35 @@ require 'spec_helper'
 
 describe ImagesController do
 
-     describe "#create" do
+  describe "#create" do
 
-          it "should create image from parameters" do
-               @data = {}
-               @image_mock = mock_model Image
-               
-               Image.should_receive(:create!).with(@data).and_return(@image_mock)
+    it "should create image from parameters" do
+      @data = {}
+      @image_mock = mock_model Image
 
-               post 'create', :image => @data
+      Image.should_receive(:create!).with(@data).and_return(@image_mock)
 
-               assigns(:image).should == @image_mock
-          end
+      post 'create', :image => @data
 
-     end
+      assigns(:image).should == @image_mock
+    end
 
-     describe "#formula" do
+  end
 
-          it "should create image from parameters" do
-               @data = "\LaTeX"
-               @image_mock = mock_model Image
+  describe "#formula" do
 
-               URI.should_receive(:encode)
-               Image.should_receive(:create!).and_return(@image_mock)
+    it "should create image from parameters" do
+      @data = "\LaTeX"
+      @image_mock = mock_model Image
 
-               @image_mock.should_receive(:id)
+      URI.should_receive(:encode)
+      Image.should_receive(:create!).and_return(@image_mock)
 
-               post 'formula', :formula => @data, :format => 'json'
-          end
+      @image_mock.should_receive(:id)
 
-     end
+      post 'formula', :formula => @data, :format => 'json'
+    end
+
+  end
 
 end

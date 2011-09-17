@@ -1,133 +1,133 @@
 en:
 
-     activerecord:
-          models:
-               exam: "Exam"
-          attributes:
-               exam:
-                    course: "Course"
-                    type_id: "Exam type"
-                    date: "Date"
-                    maximum_points: "Maximum points"
-          errors:
-               messages:
-                    points_not_match: "aren't sum of points"
+  activerecord:
+    models:
+      exam: "Exam"
+    attributes:
+      exam:
+        course: "Course"
+        type_id: "Exam type"
+        date: "Date"
+        maximum_points: "Maximum points"
+    errors:
+      messages:
+        points_not_match: "aren't sum of points"
 
-     pdf:
-          school:
-               name: "University of Helsinki"
-               department: "Computer science"
-          exam:
-               max_points: "Maximum points"
-               points: "points"
+  pdf:
+    school:
+      name: "University of Helsinki"
+      department: "Computer science"
+    exam:
+      max_points: "Maximum points"
+      points: "points"
 
-     courses:
-          title: "Courses"
-          levels:
-               basic: "Basic studies"
-               intermediate: "Intermediate studies"
-               advanced: "Advanced studies"
-               other: "Other studies"
+  courses:
+    title: "Courses"
+    levels:
+      basic: "Basic studies"
+      intermediate: "Intermediate studies"
+      advanced: "Advanced studies"
+      other: "Other studies"
 
-     pages:
-          dashboard:
-               practice: "Practice"
-               addnew: "Add exam"
-          exams:
-               no-exams: "No exams."
-               tabs:
-                    all: "All exams"
-                    generate: "Generate"
-                    add: "Add exam"
-               titles:
-                    add: "Add new exam"
-                    generate: "Generate practice exam"
-                    all: "All exams"
-                    edit: "Edit exam"
-               types:
-                    course-exams: "Course exams"
-                    separate-exams: "Separate exams"
-                    repeat-exams: "Repeat exams"
-               forms:
-                    selection:
-                         name: "Select exam"
-                         new: "-- New exam --"
-                    newexam:
-                         public_notification: "Exam is public by default"
-                         continue: "Continue"
-                    generate:
-                         how_many: "Questions"
-                         piece_unit: "pc."
-                         change_question: "Change question"
-                         themeless: "Themeless"
-                         generate: "Generate again"
-                         continue: "Continue"
-                         cannot_generate: "Cannot generate an exam, because there are no questions linked to this course."
-                         back: "Back"
-                         examthemes: "Themes"
-                         maxpoints: "Maximum points:"
-                         empty: "No questions were found with selected themes."
-                         points: "Points:"
-                         pdf: "Download PDF"
-                    publish:
-                         submit: "Continue"
-                         back: "Back"
-                         save: "Save"
-                    preview:
-                         title: "Preview"
-                         submit: "Publish"
-                    questions:
-                         new: "New question"
-                         anon: "Unnamed"
-                         delete: "Are you sure, that you want to delete this question?"
-                         name: "Name"
-                         description: "Description"
-                         points: "Points"
-                         themes: "Theme"
-                         add_code: "Add code"
-                         add_formula: "Add formula"
-                         remove: "[remove]"
-                         image:
-                              title: "Add picture"
-                              submit: "Add"
+  pages:
+    dashboard:
+      practice: "Practice"
+      addnew: "Add exam"
+    exams:
+      no-exams: "No exams."
+      tabs:
+        all: "All exams"
+        generate: "Generate"
+        add: "Add exam"
+      titles:
+        add: "Add new exam"
+        generate: "Generate practice exam"
+        all: "All exams"
+        edit: "Edit exam"
+      types:
+        course-exams: "Course exams"
+        separate-exams: "Separate exams"
+        repeat-exams: "Repeat exams"
+      forms:
+        selection:
+          name: "Select exam"
+          new: "-- New exam --"
+        newexam:
+          public_notification: "Exam is public by default"
+          continue: "Continue"
+        generate:
+          how_many: "Questions"
+          piece_unit: "pc."
+          change_question: "Change question"
+          themeless: "Themeless"
+          generate: "Generate again"
+          continue: "Continue"
+          cannot_generate: "Cannot generate an exam, because there are no questions linked to this course."
+          back: "Back"
+          examthemes: "Themes"
+          maxpoints: "Maximum points:"
+          empty: "No questions were found with selected themes."
+          points: "Points:"
+          pdf: "Download PDF"
+        publish:
+          submit: "Continue"
+          back: "Back"
+          save: "Save"
+        preview:
+          title: "Preview"
+          submit: "Publish"
+        questions:
+          new: "New question"
+          anon: "Unnamed"
+          delete: "Are you sure, that you want to delete this question?"
+          name: "Name"
+          description: "Description"
+          points: "Points"
+          themes: "Theme"
+          add_code: "Add code"
+          add_formula: "Add formula"
+          remove: "[remove]"
+          image:
+            title: "Add picture"
+            submit: "Add"
 
-          session:
-               form:
-                    username: "Username"
-                    password: "Password"
-                    submit: "Log in"
-                    title: "Log in"
-               logout: "Log out"
-               logged_in: "Logged in"
-               errors:
-                    login_failed: "Your login attempt failed"
-               notifications:
-                    logout: "Successfully logged out"
+    session:
+      form:
+        username: "Username"
+        password: "Password"
+        submit: "Log in"
+        title: "Log in"
+      logout: "Log out"
+      logged_in: "Logged in"
+      errors:
+        login_failed: "Your login attempt failed"
+      notifications:
+        logout: "Successfully logged out"
 
-          courses:
-               showall: "Show all"
-               back: "Back to dashboard"
-               show-hide-unpublished: "Show/hide unpublished courses"
+    courses:
+      showall: "Show all"
+      back: "Back to dashboard"
+      show-hide-unpublished: "Show/hide unpublished courses"
 
-      # Course level names
-     basic_studies: "Basic studies"
-     intermediate_studies: "Intermediate studies"
-     advanced_studies: "Advanced studies"
-     other_studies: "Other studies"
-     courses: "Courses"
+   # Course level names
+  basic_studies: "Basic studies"
+  intermediate_studies: "Intermediate studies"
+  advanced_studies: "Advanced studies"
+  other_studies: "Other studies"
+  courses: "Courses"
 
-      # Tabs
-     all_exams: "All exams"
-     generate_exam: "Generate"
-     add_exam: "Add exam"
+   # Tabs
+  all_exams: "All exams"
+  generate_exam: "Generate"
+  add_exam: "Add exam"
 
-     # Titles on the pages
-     new_exam_title: "Add new exam"
-     generate_exam_title: "Generate practice exam"
+  # Titles on the pages
+  new_exam_title: "Add new exam"
+  generate_exam_title: "Generate practice exam"
 
-     # Login box stuff
-     username_tag: "Username"
-     passwd_tag: "Password"
-     login_tag: "Log in"
-     login_title: "Log in"
-     logout_tag: "Log out"
+  # Login box stuff
+  username_tag: "Username"
+  passwd_tag: "Password"
+  login_tag: "Log in"
+  login_title: "Log in"
+  logout_tag: "Log out"

@@ -3,5 +3,5 @@
  */
 
 $(function() {
-     Nifty("div#box","big");
+  Nifty("div#box","big");
 });

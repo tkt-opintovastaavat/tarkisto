@@ -1,119 +1,119 @@
 fi:
 
-     activerecord:
-          models:
-               exam: "Tentti"
-          attributes:
-               exam:
-                    course: "Kurssi"
-                    type_id: "Koetyyppi"
-                    date: "Päivämäärä"
-                    maximum_points: "Maksimipisteet"
-          errors:
-               messages:
-                    points_not_match: "eivät ole pisteiden summa"
+  activerecord:
+    models:
+      exam: "Tentti"
+    attributes:
+      exam:
+        course: "Kurssi"
+        type_id: "Koetyyppi"
+        date: "Päivämäärä"
+        maximum_points: "Maksimipisteet"
+    errors:
+      messages:
+        points_not_match: "eivät ole pisteiden summa"
 
-     pdf:
-          school:
-               name: "Helsingin yliopisto"
-               department: "Tietojenkäsittelytiede"
-          exam:
-               max_points: "Maksimipisteet"
-               points: "pistettä"
+  pdf:
+    school:
+      name: "Helsingin yliopisto"
+      department: "Tietojenkäsittelytiede"
+    exam:
+      max_points: "Maksimipisteet"
+      points: "pistettä"
 
-     courses:
-          title: "Kurssit"
-          levels:
-               basic: "Perusopinnot"
-               intermediate: "Aineopinnot"
-               advanced: "Syventävät opinnot"
-               other: "Muut opinnot"
+  courses:
+    title: "Kurssit"
+    levels:
+      basic: "Perusopinnot"
+      intermediate: "Aineopinnot"
+      advanced: "Syventävät opinnot"
+      other: "Muut opinnot"
 
-     pages:
-          dashboard:
-               practice: "Harjoittele"
-               addnew: "Lisää koe"
-          exams:
-               no_exams: "Ei kokeita."
-               tabs:
-                    all: "Kaikki kokeet"
-                    generate: "Generoi"
-                    add: "Lisää koe"
-               titles:
-                    add: "Lisää uusi tentti"
-                    generate: "Generoi harjoitustentti"
-                    all: "Kaikki tentit"
-                    edit: "Muokkaa tenttiä"
-               types:
-                    course-exams: "Kurssikokeet"
-                    separate-exams: "Erilliskokeet"
-                    repeat-exams: "Uusintakokeet"
-               forms:
-                    continue: "Jatka"
-                    save: "Tallenna"
-                    selection:
-                         name: "Valitse tentti"
-                         new: "-- Uusi tentti --"
-                    newexam:
-                         type: "Koetyyppi"
-                         maxpoints: "Maksimipisteet"
-                         course: "Kurssi"
-                         date: "Päivämäärä"
-                         public_notification: "Tentti ei ole oletusarvoisesti julkinen"
-                         continue: "Jatka"
-                    generate:
-                         how_many: "Kysymyksiä"
-                         piece_unit: " kpl"
-                         change_question: "Vaihda kysymys"
-                         themeless: "Teemattomat"
-                         generate: "Generoi uudestaan"
-                         continue: "Jatka"
-                         cannot_generate: "Koetta ei voida generoida, koska kurssiin ei liity yhtään kysymystä."
-                         back: "Takaisin"
-                         examthemes: "Aihepiirit"
-                         maxpoints: "Harjoitustentin maksimipisteet:"
-                         empty: "Valitsemillasi aihepiireillä ei löytynyt yhtään kysymystä."
-                         points: "Pisteet:"
-                         pdf: "Lataa PDF"
-                         public_notification: "Tentti on oletusarvoisesti julkinen"
-                    publish:
-                         back: "Takaisin"
-                         save: "Tallenna"
-                    preview:
-                         title: "Esikatselu"
-                         submit: "Julkaise"
-                    questions:
-                         new: "Uusi kysymys"
-                         anon: "Nimetön"
-                         delete: "Haluatko varmasti poistaa kysymyksen?"
-                         name: "Nimi"
-                         description: "Kuvaus"
-                         points: "Pisteet"
-                         themes: "Pääteema"
-                         add_code: "Lisää koodia"
-                         add_formula: "Lisää kaava"
-                         remove: "[poista]"
-                         image:
-                              title: "Lisää kuva"
-                              submit: "Lisää"
+  pages:
+    dashboard:
+      practice: "Harjoittele"
+      addnew: "Lisää koe"
+    exams:
+      no_exams: "Ei kokeita."
+      tabs:
+        all: "Kaikki kokeet"
+        generate: "Generoi"
+        add: "Lisää koe"
+      titles:
+        add: "Lisää uusi tentti"
+        generate: "Generoi harjoitustentti"
+        all: "Kaikki tentit"
+        edit: "Muokkaa tenttiä"
+      types:
+        course-exams: "Kurssikokeet"
+        separate-exams: "Erilliskokeet"
+        repeat-exams: "Uusintakokeet"
+      forms:
+        continue: "Jatka"
+        save: "Tallenna"
+        selection:
+          name: "Valitse tentti"
+          new: "-- Uusi tentti --"
+        newexam:
+          type: "Koetyyppi"
+          maxpoints: "Maksimipisteet"
+          course: "Kurssi"
+          date: "Päivämäärä"
+          public_notification: "Tentti ei ole oletusarvoisesti julkinen"
+          continue: "Jatka"
+        generate:
+          how_many: "Kysymyksiä"
+          piece_unit: " kpl"
+          change_question: "Vaihda kysymys"
+          themeless: "Teemattomat"
+          generate: "Generoi uudestaan"
+          continue: "Jatka"
+          cannot_generate: "Koetta ei voida generoida, koska kurssiin ei liity yhtään kysymystä."
+          back: "Takaisin"
+          examthemes: "Aihepiirit"
+          maxpoints: "Harjoitustentin maksimipisteet:"
+          empty: "Valitsemillasi aihepiireillä ei löytynyt yhtään kysymystä."
+          points: "Pisteet:"
+          pdf: "Lataa PDF"
+          public_notification: "Tentti on oletusarvoisesti julkinen"
+        publish:
+          back: "Takaisin"
+          save: "Tallenna"
+        preview:
+          title: "Esikatselu"
+          submit: "Julkaise"
+        questions:
+          new: "Uusi kysymys"
+          anon: "Nimetön"
+          delete: "Haluatko varmasti poistaa kysymyksen?"
+          name: "Nimi"
+          description: "Kuvaus"
+          points: "Pisteet"
+          themes: "Pääteema"
+          add_code: "Lisää koodia"
+          add_formula: "Lisää kaava"
+          remove: "[poista]"
+          image:
+            title: "Lisää kuva"
+            submit: "Lisää"
 
-          session:
-               form:
-                    username: "Käyttäjätunnus"
-                    password: "Salasana"
-                    submit: "Kirjaudu"
-                    title: "Kirjaudu sisään"
-               logout: "Kirjaudu ulos"
-               logged_in: "Kirjautuneena"
-               admin: "Admin"
-               errors:
-                    login_failed: "Kirjautumisyrityksesi epäonnistui"
-               notifications:
-                    logout: "Onnistuneesti kirjauduttu ulos"
-                    access:
-                         denied: "Sinulla ei ole tarvittavia oikeuksia"
+    session:
+      form:
+        username: "Käyttäjätunnus"
+        password: "Salasana"
+        submit: "Kirjaudu"
+        title: "Kirjaudu sisään"
+      logout: "Kirjaudu ulos"
+      logged_in: "Kirjautuneena"
+      admin: "Admin"
+      errors:
+        login_failed: "Kirjautumisyrityksesi epäonnistui"
+      notifications:
+        logout: "Onnistuneesti kirjauduttu ulos"
+        access:
+          denied: "Sinulla ei ole tarvittavia oikeuksia"
 
-          courses:
-               showall: "Näytä kaikki"
-               back: "Takaisin etusivulle"
-               show-hide-unpublished: "Näytä/piilota julkaisemattomat kokeet"
+    courses:
+      showall: "Näytä kaikki"
+      back: "Takaisin etusivulle"
+      show-hide-unpublished: "Näytä/piilota julkaisemattomat kokeet"
