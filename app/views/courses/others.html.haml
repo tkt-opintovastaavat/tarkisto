@@ -1,14 +1,14 @@
 - content_for :title do
-     = t 'courses.levels.other'
+  = t 'courses.levels.other'
 - content_for :content do
 
-     %p#back= link_to t('pages.courses.back'), root_url
-     
-     %p#hide-button
-          %a(href="#hideshow-noexams")=t 'pages.courses.show-hide-unpublished'
+  %p#back= link_to t('pages.courses.back'), root_url
 
-     %table#other_studies
-          %tr
-               %th= t 'courses.levels.other'
-          
-          = render :partial => "courses", :locals => {:courses => @courses}
+  %p#hide-button
+    %a(href="#hideshow-noexams")=t 'pages.courses.show-hide-unpublished'
+
+  %table#other_studies
+    %tr
+      %th= t 'courses.levels.other'
+
+    = render :partial => "courses", :locals => {:courses => @courses}

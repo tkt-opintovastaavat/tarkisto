@@ -1,17 +1,17 @@
 - if exams.empty?
-     %p=t 'pages.exams.no_exams'
-     %br
-     %br
+  %p=t 'pages.exams.no_exams'
+  %br
+  %br
 - else
-     %table#exams
-          %thead
-               %tr
-                    %th Koetyyppi
-                    %th Päivämäärä
-                    %th PDF
-          %tbody
-               - exams.each do |exam|
-                    %tr
-                         %td= link_to exam.type.name, course_exam_url(exam.course, exam)
-                         %td= exam.date
-                         %td= link_to "PDF", course_exam_url(exam.course, exam, :format => :pdf)
+  %table#exams
+    %thead
+      %tr
+        %th Koetyyppi
+        %th Päivämäärä
+        %th PDF
+    %tbody
+      - exams.each do |exam|
+        %tr
+          %td= link_to exam.type.name, course_exam_url(exam.course, exam)
+          %td= exam.date
+          %td= link_to "PDF", course_exam_url(exam.course, exam, :format => :pdf)

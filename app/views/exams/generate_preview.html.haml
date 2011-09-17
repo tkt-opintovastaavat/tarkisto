@@ -1,34 +1,34 @@
 - content_for :title do
-     #{@course.name} :: #{t 'pages.exams.titles.generate'}
+  #{@course.name} :: #{t 'pages.exams.titles.generate'}
 - content_for :content do
-     %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
+  %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
 
-     %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_url(@course.id)
-     
-     - if @generated_exam.questions.empty?
-          %p= t('pages.exams.forms.generate.empty')
-     
-     - else
-          - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
-          
-               = t('pages.exams.forms.generate.maxpoints') 
-               #{@generated_exam.maximum_points}
+  %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_url(@course.id)
 
-               %ol
-                    - @generated_exam.questions.each do |question|
-                         %div.questionblock
-                              %li.question #{simple_format(question.name)} 
-                              %div.description #{simple_format(question_format(question))}
-                              %div.questionfooter
-                                   %span.points
-                                        = t('pages.exams.forms.generate.points') 
-                                        #{question.points}
-                                   %span.change
-                                        = check_box_tag question.number, "chosen", false
-                                        = label_tag t('pages.exams.forms.generate.change_question')
-                         
-                    %div.generatebuttons
-                         = submit_tag t('pages.exams.forms.generate.generate')
-                         = hidden_field_tag "questions", @questions_string
-               
-                         = submit_tag "PDF"
+  - if @generated_exam.questions.empty?
+    %p= t('pages.exams.forms.generate.empty')
+
+  - else
+    - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
+
+      = t('pages.exams.forms.generate.maxpoints')
+      #{@generated_exam.maximum_points}
+
+      %ol
+        - @generated_exam.questions.each do |question|
+          %div.questionblock
+            %li.question #{simple_format(question.name)}
+            %div.description #{simple_format(question_format(question))}
+            %div.questionfooter
+              %span.points
+                = t('pages.exams.forms.generate.points')
+                #{question.points}
+              %span.change
+                = check_box_tag question.number, "chosen", false
+                = label_tag t('pages.exams.forms.generate.change_question')
+
+        %div.generatebuttons
+          = submit_tag t('pages.exams.forms.generate.generate')
+          = hidden_field_tag "questions", @questions_string
+
+          = submit_tag "PDF"

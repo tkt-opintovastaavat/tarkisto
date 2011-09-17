@@ -1,27 +1,27 @@
 - content_for :title do
-     #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
+  #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
 - content_for :content do
-     #exam_info
+  #exam_info
 
-          %h2#name_of_exam= "#{@course.name} - #{@exam.name}"
+    %h2#name_of_exam= "#{@course.name} - #{@exam.name}"
 
-          - unless flash[:errors].nil? or flash[:errors].empty?
-               %ul.errors
-               - flash[:errors].each do |error|
-                    %li #{error}
-          %p#exam_url(style="display:none") #{course_exam_path(@course.id, @exam.id)}
+    - unless flash[:errors].nil? or flash[:errors].empty?
+      %ul.errors
+      - flash[:errors].each do |error|
+        %li #{error}
+    %p#exam_url(style="display:none") #{course_exam_path(@course.id, @exam.id)}
 
-     #questions
-          %ul
-               - @exam.questions.each do |question|
-                    %li(id="question_id-#{question.id}")
-                         = link_to question_name_for_exam_input(question.name), course_exam_question_url(@course.id, @exam.id, question.id)
-                         %a(href="#remove")
-                              %span.ui-icon.ui-icon-close Remove Tab
-               %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question'
+  #questions
+    %ul
+      - @exam.questions.each do |question|
+        %li(id="question_id-#{question.id}")
+          = link_to question_name_for_exam_input(question.name), course_exam_question_url(@course.id, @exam.id, question.id)
+          %a(href="#remove")
+            %span.ui-icon.ui-icon-close Remove Tab
+      %li.new-question= link_to t('pages.exams.forms.questions.new'), '#new_question'
 
-     #buttons
-          - form_for @exam, :url => course_exam_url(@course.id, @exam.id), :html => { :method => :delete } do |f|
-               %div= submit_tag t('pages.exams.forms.publish.back')
-          - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
-               %div= submit_tag t('pages.exams.forms.publish.submit')
+  #buttons
+    - form_for @exam, :url => course_exam_url(@course.id, @exam.id), :html => { :method => :delete } do |f|
+      %div= submit_tag t('pages.exams.forms.publish.back')
+    - form_for @exam, :url => course_exam_url(@course.id, @exam.id) do |f|
+      %div= submit_tag t('pages.exams.forms.publish.submit')

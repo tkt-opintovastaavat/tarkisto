@@ -1,6 +1,6 @@
 - content_for :title do
-     #{@course.name} :: #{@exam.name}
+  #{@course.name} :: #{@exam.name}
 - content_for :content do
-     %h2 #{@course.name} - #{@exam.name}
+  %h2 #{@course.name} - #{@exam.name}
 
-     = render :partial => "questions", :locals => {:questions => @questions, :points => @exam.maximum_points}
+  = render :partial => "questions", :locals => {:questions => @questions, :points => @exam.maximum_points}

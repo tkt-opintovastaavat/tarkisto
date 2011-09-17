@@ -1,36 +1,36 @@
 %table
-     %tr
-          %td
+  %tr
+    %td
 
-               - form_for @question, :url => '#' do |f|
+      - form_for @question, :url => '#' do |f|
 
-                    %p
-                         = f.label t('pages.exams.forms.questions.name')
-                         = text_area_tag 'question_name', (@question.name unless @question.name.nil? or @question.name.empty?), :class => 'question-name'
+        %p
+          = f.label t('pages.exams.forms.questions.name')
+          = text_area_tag 'question_name', (@question.name unless @question.name.nil? or @question.name.empty?), :class => 'question-name'
 
-                    %p
-                         = f.label t('pages.exams.forms.questions.description')
-                         = text_area_tag 'question_description', (@question.description unless @question.description.nil? or @question.description.empty?), :class => 'question-content'
+        %p
+          = f.label t('pages.exams.forms.questions.description')
+          = text_area_tag 'question_description', (@question.description unless @question.description.nil? or @question.description.empty?), :class => 'question-content'
 
-                    %p
-                         = f.label t('pages.exams.forms.questions.points')
-                         = f.text_field 'points'
+        %p
+          = f.label t('pages.exams.forms.questions.points')
+          = f.text_field 'points'
 
-                    %p Teemat tähän
+        %p Teemat tähän
 
-          %td
-               %div
-                    %p= t('pages.exams.forms.questions.image.title')
-                    - form_for :image, :url => image_url, :html => { :multipart => true } do |f|
-                         = f.file_field :question_image
-                         = hidden_field(:question, :id)
-                         = f.submit t('pages.exams.forms.questions.image.submit')
-                    %ul 
-                         %li
-                              %a(href="#show-picture") P=NP
-                              %a(href="#delete-pic")= t('pages.exams.forms.questions.remove')
-               %div
-                    %p= t('pages.exams.forms.questions.add_code')
-                    %p
-                         %a(href="#show-code") automata
-                         %a(href="#delete-code")= t('pages.exams.forms.questions.remove')
+    %td
+      %div
+        %p= t('pages.exams.forms.questions.image.title')
+        - form_for :image, :url => image_url, :html => { :multipart => true } do |f|
+          = f.file_field :question_image
+          = hidden_field(:question, :id)
+          = f.submit t('pages.exams.forms.questions.image.submit')
+        %ul
+          %li
+            %a(href="#show-picture") P=NP
+            %a(href="#delete-pic")= t('pages.exams.forms.questions.remove')
+      %div
+        %p= t('pages.exams.forms.questions.add_code')
+        %p
+          %a(href="#show-code") automata
+          %a(href="#delete-code")= t('pages.exams.forms.questions.remove')

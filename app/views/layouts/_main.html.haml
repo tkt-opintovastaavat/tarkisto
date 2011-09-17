@@ -1,21 +1,21 @@
 #main
 
-     #left
-          - if (@controller.controller_name == 'exams')
-               -# tabs_on_rails gem making tabs if the current page is one of the exams pages
-               - tabs_tag do |tab|
-                    = tab.all t('pages.exams.tabs.all'), course_exams_url(@course)
-                    = tab.generate t('pages.exams.tabs.generate'), generate_course_exams_url(@course)
-                    = tab.new t('pages.exams.tabs.add'), new_course_exam_url(@course)
-     
-     #mainbody
+  #left
+    - if (@controller.controller_name == 'exams')
+      -# tabs_on_rails gem making tabs if the current page is one of the exams pages
+      - tabs_tag do |tab|
+        = tab.all t('pages.exams.tabs.all'), course_exams_url(@course)
+        = tab.generate t('pages.exams.tabs.generate'), generate_course_exams_url(@course)
+        = tab.new t('pages.exams.tabs.add'), new_course_exam_url(@course)
 
-          -# stupid history breadcrumbs are disabled
-          -# #breadcrumb
-               -# %script{:type=> "text/javascript"} doCrumbs();
+  #mainbody
 
-          = render :partial => "layouts/search"
+    -# stupid history breadcrumbs are disabled
+    -# #breadcrumb
+      -# %script{:type=> "text/javascript"} doCrumbs();
 
-          #content= (yield :content or yield)
+    = render :partial => "layouts/search"
 
-     #right
+    #content= (yield :content or yield)
+
+  #right

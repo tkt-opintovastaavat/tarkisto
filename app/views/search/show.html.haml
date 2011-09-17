@@ -1,9 +1,9 @@
 - content_for :title do
-     = "Haku :: #{@p}"
+  = "Haku :: #{@p}"
 - content_for :content do
-     %h2= "Hakusi oli: #{@p}"
+  %h2= "Hakusi oli: #{@p}"
 
-     - if @result.empty?
-          %p= "Hakusi ei tuottanut tuloksia"
-     - else
-          %table#search_results= render :partial => "dashboard/courses", :locals => {:courses => @result}                    
+  - if @result.empty?
+    %p= "Hakusi ei tuottanut tuloksia"
+  - else
+    %table#search_results= render :partial => "dashboard/courses", :locals => {:courses => @result}

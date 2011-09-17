@@ -1,10 +1,10 @@
 - if questions.empty?
-     %p Empty
+  %p Empty
 - else
-     %p Maksimipisteet: #{points}
-     %ol
-          - questions.each do |question|
-               %div.questionblock
-                    %li.question #{simple_format(question.name)} 
-                    %div.description #{simple_format(question_format(question))}
-                    %div.questionfooter Pisteet: #{question.points}
+  %p Maksimipisteet: #{points}
+  %ol
+    - questions.each do |question|
+      %div.questionblock
+        %li.question #{simple_format(question.name)}
+        %div.description #{simple_format(question_format(question))}
+        %div.questionfooter Pisteet: #{question.points}
