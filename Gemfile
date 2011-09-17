@@ -3,6 +3,8 @@ source 'http://gemcutter.org'
 
 gem 'rails', '2.3.11'
 
+gem 'pg'
+
 gem 'haml'
 gem 'compass'
 gem 'net-ldap'
@@ -14,10 +16,6 @@ gem 'lucy'
 gem 'babilu'
 
 gem 'responds_to_parent'
-
-group :production do
-  gem 'postgres'
-end
 
 group :development, :test do
   gem 'rspec', '1.3.2'
@@ -31,6 +29,4 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
-
-  gem 'sqlite3' # CS-computers
 end
