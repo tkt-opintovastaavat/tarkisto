@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 function showHideUnpublished(event){
   $('.noexams').toggle();
-  $('.noexams_add').toggle();
 }
 
 function showhide(event) {
