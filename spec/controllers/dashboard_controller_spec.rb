@@ -14,12 +14,12 @@ describe DashboardController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      Level.should_receive(:find_by_name_fi).with("Perusopinnot").and_return(@level_mock)
-      Level.should_receive(:find_by_name_fi).with("Aineopinnot").and_return(@level_mock)
-      Level.should_receive(:find_by_name_fi).with("Muut opinnot").and_return(@level_mock)
-      Level.should_receive(:find_by_name_fi).with("Syventävät opinnot").and_return(@level_mock)
-      4.times do
-        @level_mock.should_receive(:courses).and_return(@courses_mock)
+      [:basic_courses,
+       :intermediate_courses,
+       :advanced_courses,
+       :other_courses
+      ].each do |course_level|
+        Course.should_receive(course_level).and_return(@courses_mock)
         @courses_mock.should_receive(:alphabetize).and_return(@courses_mock)
         @courses_mock.should_receive(:courses_on_semester).and_return(@courses_mock)
       end
