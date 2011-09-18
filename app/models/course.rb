@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  include LocalizeName
+
   has_many :exams
   has_many :questions, :through => :exams
   has_many :shortcuts
@@ -20,16 +22,6 @@ class Course < ActiveRecord::Base
   named_scope :search, lambda { |keyword|
     { :conditions => ["name_#{I18n.locale.to_sym} ILIKE ?", "%#{keyword}%"] }
   }
-
-  def name
-    if (I18n.locale == :fi)
-      return name_fi
-    elsif (I18n.locale == :en)
-      return name_en
-    elsif (I18n.locale == :se)
-      return name_se
-    end
-  end
 
   def self.sorting_priority keyword, course1, course2
     first_starts_with_keyword = !course1.name.scan(/^#{keyword}/i).empty?

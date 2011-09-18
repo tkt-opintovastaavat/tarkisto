@@ -1,4 +1,6 @@
 class Level < ActiveRecord::Base
+  include LocalizeName
+
   has_many :courses
 
   validates_presence_of :name_fi
@@ -17,16 +19,6 @@ class Level < ActiveRecord::Base
 
   def self.other_studies
     self.find_by_name_fi("Muut opinnot")
-  end
-
-  def name
-    if (I18n.locale == :fi)
-      return name_fi
-    elsif (I18n.locale == :en)
-      return name_en
-    elsif (I18n.locale == :se)
-      return name_se
-    end
   end
 
 end
