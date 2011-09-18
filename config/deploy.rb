@@ -21,7 +21,6 @@ namespace :deploy do
 
   after "deploy:update", "deploy:cleanup"
   after "deploy:update_code", "symlinks:db"
-  after "deploy:update_code", "symlinks:demo"
   after "deploy:update_code", "symlinks:ldap"
 
   task :start, :roles => :app do ; end
@@ -39,10 +38,6 @@ namespace :symlinks do
 
   task :db do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-
-  task :demo do
-    run "ln -nfs #{shared_path}/config/demo.yml #{release_path}/config/demo.yml"
   end
 
   task :ldap do

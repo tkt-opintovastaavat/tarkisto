@@ -4,34 +4,30 @@ describe SchoolDates do
 
   describe "#semester" do
 
-    it "should return autumn, when in demo stage" do
-      DEMO_CONFIG.should_receive(:demo_stage).and_return(true)
-      SchoolDates.semester.should == 'S'
+    before(:each) do
+      @fakedate = "lol"
+      Date.should_receive(:today).and_return(@fakedate)
     end
 
-    describe "real functionality" do
-
-      before(:each) do
-        @fakedate = "lol"
-        DEMO_CONFIG.should_receive(:demo_stage).and_return(false)
-        Date.should_receive(:today).and_return(@fakedate)
-      end
-
-      it "should return spring" do
-        @fakedate.should_receive(:month).and_return(1)
+    it "should return spring" do
+      [1..5].each do |month|
+        @fakedate.should_receive(:month).and_return(month)
         SchoolDates.semester.should == 'K'
       end
+    end
 
-      it "should return summer" do
-        @fakedate.should_receive(:month).and_return(6)
+    it "should return summer" do
+      [6..8].each do |month|
+        @fakedate.should_receive(:month).and_return(month)
         SchoolDates.semester.should == 'V'
       end
+    end
 
-      it "should return autumn" do
-        @fakedate.should_receive(:month).and_return(11)
+    it "should return autumn" do
+      [9..12].each do |month|
+        @fakedate.should_receive(:month).and_return(month)
         SchoolDates.semester.should == 'S'
       end
-
     end
 
   end
