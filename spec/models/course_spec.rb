@@ -99,6 +99,10 @@ describe Course do
       found.should == true
     end
 
+    it "should search case insensitive" do
+      Course.search("ohJelm").should_not be_empty
+    end
+
     it "should search name in English" do
       I18n.stub!(:locale).and_return(:en)
       results = Course.search "Introduction to Programming"
@@ -115,12 +119,6 @@ describe Course do
       results.each do |result|
         found == true if result.name == "Introduktion till programmering"
       end
-    end
-
-    it "should return nil if locale fails" do
-      I18n.stub!(:locale).and_return(nil)
-      results = Course.search "Ohjelmoinnin perusteet"
-      results.should == nil
     end
 
     describe "#sorting_priority" do

@@ -17,6 +17,9 @@ class Course < ActiveRecord::Base
   named_scope :courses_on_semester, lambda { |year, semester|
     { :joins => :instances, :conditions => ["instances.year = ? AND instances.semester = ?", year, semester] }
   }
+  named_scope :search, lambda { |keyword|
+    { :conditions => ["name_#{I18n.locale.to_sym} ILIKE ?", "%#{keyword}%"] }
+  }
 
   def name
     if (I18n.locale == :fi)
@@ -26,21 +29,6 @@ class Course < ActiveRecord::Base
     elsif (I18n.locale == :se)
       return name_se
     end
-  end
-
-  def self.search keyword
-    if (I18n.locale == :fi)
-      condition = "name_fi LIKE ?"
-    elsif (I18n.locale == :en)
-      condition = "name_en LIKE ?"
-    elsif (I18n.locale == :se)
-      condition = "name_se LIKE ?"
-    else
-      return nil
-    end
-
-    courses = Course.find :all, :conditions => [condition , "%#{keyword}%"]
-    courses.sort { |course1, course2| sorting_priority keyword, course1, course2 }
   end
 
   def self.sorting_priority keyword, course1, course2
