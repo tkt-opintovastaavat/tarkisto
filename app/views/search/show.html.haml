@@ -6,4 +6,4 @@
   - if @result.empty?
     %p= "Hakusi ei tuottanut tuloksia"
   - else
-    %table#search_results= render :partial => "dashboard/courses", :locals => {:courses => @result}
+    %table#search_results= render :partial => "courses/courses", :locals => {:courses => @result}
