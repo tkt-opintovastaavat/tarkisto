@@ -1,5 +1,4 @@
 class Instance < ActiveRecord::Base
-  include LocalizeName
 
   belongs_to :course
   has_many :attendances
