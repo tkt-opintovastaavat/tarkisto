@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:tkt-opintovastaavat/tko-aly-auth.git
+  remote: git://github.com/tkt-opintovastaavat/tko-aly-auth.git
   revision: de7213a2ab644e3095d795d303da904b4176337a
   specs:
     tko-aly-auth (0.0.1)
