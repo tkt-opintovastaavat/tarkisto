@@ -7,5 +7,12 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   include Session
+  include SslRequirement
+
+  protected
+
+  def ssl_required?
+    !Rails.env.development?
+  end
 
 end
