@@ -1,5 +1,17 @@
-=== Setup the application
+=== Setup the application for development
 
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
+
+
+=== Deploy
+
+== SSH-host
+
+Add following lines to your CS-FS $HOME/.ssh/config
+
+  Host tarkisto-staff
+  User tkt_tark
+  Hostname staff.cs.helsinki.fi
+  IdentityFile /home/group/tarkisto/tarkisto-sshid
