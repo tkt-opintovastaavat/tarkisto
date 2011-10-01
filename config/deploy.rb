@@ -45,3 +45,11 @@ namespace :symlinks do
   end
 
 end
+
+namespace :customs do
+
+  task :tarkisto do
+    run "cd #{release_path} && bundle exec rake tarkisto"
+  end
+
+end
