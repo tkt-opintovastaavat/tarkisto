@@ -15,3 +15,30 @@ Add following lines to your CS-FS $HOME/.ssh/config
   User tkt_tark
   Hostname staff.cs.helsinki.fi
   IdentityFile /home/group/tarkisto/tarkisto-sshid
+
+== Prepare the deploy
+
+If you haven't already cloned the repository to CS-FS, do it now.
+
+Pull latest commits from GitHub so your deploy receipts are latest.
+
+== Deploy staging
+
+Command:
+  $ cap staging deploy
+
+Visit:
+  https://tenttiarkisto-test.staff.cs.helsinki.fi
+
+== Deploy production
+
+Command:
+  $ cap production deploy
+
+Visit:
+  https://tenttiarkisto.staff.cs.helsinki.fi
+
+
+== Contribute!
+
+Fork and create pull requests :)
