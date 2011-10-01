@@ -1,0 +1,50 @@
+h1. Tarkisto - Exam archive !https://secure.travis-ci.org/tkt-opintovastaavat/tarkisto.png!
+
+h2. Setup the application for development
+
+<pre>
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+</pre>
+
+
+h2. Deploy
+
+h3. SSH-host
+
+Add following lines to your CS-FS $HOME/.ssh/config
+
+<pre>
+Host tarkisto-staff
+User tkt_tark
+Hostname staff.cs.helsinki.fi
+IdentityFile /home/group/tarkisto/tarkisto-sshid
+</pre>
+
+h3. Prepare the deploy
+
+If you haven't already cloned the repository to CS-FS, do it now.
+
+Pull latest commits from GitHub so your deploy receipts are latest.
+
+h3. Deploy staging
+
+<pre>
+$ cap staging deploy
+</pre>
+
+https://tenttiarkisto-test.staff.cs.helsinki.fi
+
+h3. Deploy production
+
+<pre>
+$ cap production deploy
+</pre>
+
+https://tenttiarkisto.staff.cs.helsinki.fi
+
+
+h2. Contribute!
+
+Fork and create pull requests :)
