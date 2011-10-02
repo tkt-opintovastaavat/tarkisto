@@ -24,7 +24,7 @@ describe DashboardController do
         @courses_mock.should_receive(:courses_on_semester).and_return(@courses_mock)
       end
 
-      get 'show'
+      get :show
       assigns(:basic_studies).should==[@course_mock]
       assigns(:intermediate_studies).should==[@course_mock]
       assigns(:advanced_studies).should==[@course_mock]

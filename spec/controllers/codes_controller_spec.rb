@@ -13,7 +13,7 @@ describe CodesController do
       CodeSnippet.should_receive(:create!).with(:text => @data).and_return(@code_mock)
       @code_mock.should_receive(:id)
 
-      post 'create', :code => @data
+      post :create, :code => @data
     end
 
   end
@@ -25,7 +25,7 @@ describe CodesController do
       CodeSnippet.should_receive(:find_by_id).with(@id).and_return(@code_mock)
       @code_mock.should_receive(:text)
 
-      post 'show', :id => @id
+      get :show, :id => @id
     end
 
   end
