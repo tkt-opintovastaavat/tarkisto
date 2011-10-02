@@ -20,4 +20,8 @@ Spec::Runner.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
 
+  config.before(:each, :type => :controller) do
+    controller.stub!(:local_request?).and_return(true)
+  end
+
 end
