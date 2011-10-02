@@ -17,6 +17,9 @@ GEM
     activeresource (2.3.11)
       activesupport (= 2.3.11)
     activesupport (2.3.11)
+    airbrake (3.0.4)
+      activesupport
+      builder
     babilu (0.2.2)
       lucy
     builder (3.0.0)
@@ -108,6 +111,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  airbrake
   babilu
   capistrano
   capistrano-ext

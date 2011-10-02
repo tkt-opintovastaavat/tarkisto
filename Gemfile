@@ -18,6 +18,8 @@ gem 'responds_to_parent'
 
 gem 'tko-aly-auth', :git => 'git://github.com/tkt-opintovastaavat/tko-aly-auth.git'
 
+gem 'airbrake'
+
 group :development, :test do
   gem 'rspec', '1.3.2'
   gem 'rspec-rails', '1.3.4'
