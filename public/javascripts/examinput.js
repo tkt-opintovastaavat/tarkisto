@@ -146,9 +146,9 @@ function addTabs() {
 
   $('a[href="#new_question"]').unbind().live('click', function(event) {
     event.preventDefault();
-    var creation_url = _exam_url() + '/questions'
-    $.post(creation_url, function(data) {
-      $tabs.tabs('add', creation_url+'/'+data.id, I18n.t('pages.exams.forms.questions.anon'), $tabs.tabs('length')-1);
+    var creation_path = _exam_path() + '/questions'
+    $.post(creation_path, function(data) {
+      $tabs.tabs('add', creation_path+'/'+data.id, I18n.t('pages.exams.forms.questions.anon'), $tabs.tabs('length')-1);
     }, 'json');
   });
 
@@ -161,10 +161,10 @@ function addTabs() {
 function send_remove_question(id) {
   $.ajax({
     type: "DELETE",
-    url: _exam_url()+'/questions/'+id+'.json'
+    url: _exam_path()+'/questions/'+id+'.json'
   });
 }
 
-function _exam_url() {
-  return $('#exam_url').text();
+function _exam_path() {
+  return $('#exam_path').text();
 }

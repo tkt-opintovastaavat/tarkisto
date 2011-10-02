@@ -19,7 +19,7 @@ class ExamsController < ApplicationController
         @exam = @course.exams.published.find_by_id(params[:id])
 
         if @exam.nil?
-          redirect_to course_exams_url(@course.id)
+          redirect_to course_exams_path(@course.id)
           return
         end
 
@@ -32,7 +32,7 @@ class ExamsController < ApplicationController
         @exam = @course.exams.published.find_by_id(params[:id])
 
         if @exam.nil?
-          redirect_to course_exams_url(@course.id)
+          redirect_to course_exams_path(@course.id)
           return
         end
 
@@ -72,17 +72,17 @@ class ExamsController < ApplicationController
           if params.include? 'exam'
             if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
               @exam = @course.exams.find_by_id(params[:exam][:id])
-              redirect_to new_course_exam_url(@course.id) if @exam.nil?
+              redirect_to new_course_exam_path(@course.id) if @exam.nil?
 
             else
               @exam = @course.exams.new params[:exam]
               unless @exam.valid?
                 flash[:errors] = @exam.errors.full_messages
-                redirect_to new_course_exam_url(@course.id)
+                redirect_to new_course_exam_path(@course.id)
               end
             end
           else
-            redirect_to new_course_exam_url(@course.id)
+            redirect_to new_course_exam_path(@course.id)
           end
         end
         format.json do

@@ -3,13 +3,13 @@
 - content_for :content do
   %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
 
-  %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_url(@course.id)
+  %p= link_to t('pages.exams.forms.generate.back'), generate_course_exams_path(@course.id)
 
   - if @generated_exam.questions.empty?
     %p= t('pages.exams.forms.generate.empty')
 
   - else
-    - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
+    - form_tag generate_preview_course_exams_path(@course.id), :method => 'get' do
 
       = t('pages.exams.forms.generate.maxpoints')
       #{@generated_exam.maximum_points}

@@ -12,13 +12,13 @@ class SessionController < ApplicationController
     else
       flash[:session_error] = I18n.t('pages.session.errors.login_failed')
     end
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def destroy
     session[:user_id] = nil
     flash[:session_notification] = I18n.t('pages.session.notifications.logout')
-    redirect_to root_url
+    redirect_to root_path
   end
 
 end

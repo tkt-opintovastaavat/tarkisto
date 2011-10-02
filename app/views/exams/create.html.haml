@@ -18,6 +18,6 @@
     %ul
 
   #buttons
-    %div= button_to t('pages.exams.forms.publish.back'), new_course_exam_url(@course.id), :method => :get
-    #save= button_to t('pages.exams.forms.save'), course_exams_url(:format => :json)
-    -#%div= button_to t('pages.exams.forms.continue'), preview_course_exams_url(@course.id)
+    %div= button_to t('pages.exams.forms.publish.back'), new_course_exam_path(@course.id), :method => :get
+    #save= button_to t('pages.exams.forms.save'), course_exams_path(:format => :json)
+    -#%div= button_to t('pages.exams.forms.continue'), preview_course_exams_path(@course.id)

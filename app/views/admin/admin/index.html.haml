@@ -1,6 +1,6 @@
 %span.title #{t('pages.session.logged_in')}:
 #{current_user.username}
-= link_to t('pages.courses.back'), root_url
+= link_to t('pages.courses.back'), root_path
 
 = render :active_scaffold => 'admin/users'
 %br

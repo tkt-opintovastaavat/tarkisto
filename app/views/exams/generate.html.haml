@@ -8,7 +8,7 @@
 
   - else
 
-    - form_tag generate_preview_course_exams_url(@course.id), :method => 'get' do
+    - form_tag generate_preview_course_exams_path(@course.id), :method => 'get' do
 
       %table.generator
         %tr

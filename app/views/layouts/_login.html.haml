@@ -1,5 +1,5 @@
 - unless logged_in?
-  - form_for :session, :url => session_url do |f|
+  - form_for :session, :url => session_path do |f|
     %table
       %tr
         %td= f.label :username , t('pages.session.form.username')
@@ -17,7 +17,7 @@
 - else
   %span.title #{t('pages.session.logged_in')}:
   #{current_user.username}
-  = link_to t('pages.session.logout'), session_url, :method => :delete
+  = link_to t('pages.session.logout'), session_path, :method => :delete
   - if admin?
-    = link_to t('pages.session.admin'), admin_url
+    = link_to t('pages.session.admin'), admin_path
 

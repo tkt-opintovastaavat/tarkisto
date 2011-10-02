@@ -5,7 +5,7 @@
 - content_for :content do
   %h2= "#{@course.name} - #{t 'pages.exams.titles.add'}"
 
-  - form_for @exam, :url => course_exams_url(@course.id) do |f|
+  - form_for @exam, :url => course_exams_path(@course.id) do |f|
     %div= f.hidden_field :id
 
     %table.generator

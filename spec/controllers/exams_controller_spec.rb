@@ -115,7 +115,7 @@ describe ExamsController do
 
           get 'show', :course_id => @course_id, :id => 1
 
-          response.should redirect_to(course_exams_url(@course_id))
+          response.should redirect_to(course_exams_path(@course_id))
         end
 
         it "should render json if so requested" do
@@ -135,7 +135,7 @@ describe ExamsController do
 
           get 'show', :course_id => @course_id, :id => 1, :format => 'pdf'
 
-          response.should redirect_to(course_exams_url(@course_id))
+          response.should redirect_to(course_exams_path(@course_id))
         end
 
         it "should format pdf from given exam id" do
@@ -169,13 +169,13 @@ describe ExamsController do
       it "should be redirected if not logged in" do
         controller.should_receive(:access?).and_return(false)
         post 'create', :course_id => @course_id
-        response.should redirect_to(root_url)
+        response.should redirect_to(root_path)
       end
 
       it "should be redirected back to new page if missing attributes." do
         controller.should_receive(:access?).and_return(true)
         post 'create', :course_id => @course_id
-        response.should redirect_to(new_course_exam_url(@course_id))
+        response.should redirect_to(new_course_exam_path(@course_id))
       end
 
       it "should confirm old data and assign id-variable data" do
@@ -196,7 +196,7 @@ describe ExamsController do
 
         post 'create', :course_id => @course_id, :exam => {:id => @exam_id}
 
-        response.should redirect_to(new_course_exam_url(@course_id))
+        response.should redirect_to(new_course_exam_path(@course_id))
       end
 
       it "should store new data (id isn't set) in variable" do
@@ -225,7 +225,7 @@ describe ExamsController do
         post 'create', :course_id => @course_id, :exam => @exam_data
 
         flash[:errors].should == @errors
-        response.should redirect_to(new_course_exam_url(@course_id))
+        response.should redirect_to(new_course_exam_path(@course_id))
       end
 
       it "should save exam data"# do
