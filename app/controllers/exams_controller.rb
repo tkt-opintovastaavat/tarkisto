@@ -44,7 +44,7 @@ class ExamsController < ApplicationController
   def new
     unless access?
       flash[:notice] = I18n.t('pages.session.notifications.access.denied')
-      redirect_to :root
+      redirect_to root_path
     else
       @exam = Exam.new
       @exams = @course.exams.unpublished
