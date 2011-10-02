@@ -22,6 +22,7 @@ namespace :deploy do
   after "deploy:update", "deploy:cleanup"
   after "deploy:update_code", "symlinks:db"
   after "deploy:update_code", "symlinks:ldap"
+  before "deploy:restart", "deploy:migrate"
   before "deploy:restart", "customs:tarkisto"
 
   task :start, :roles => :app do ; end
