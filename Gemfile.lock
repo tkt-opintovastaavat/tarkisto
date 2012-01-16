@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/tkt-opintovastaavat/kurli-ruby.git
+  revision: b48f50b841115990a808530ad8ae0030f044a276
+  specs:
+    kurli (0.0.1)
+      json
+
+GIT
   remote: git://github.com/tkt-opintovastaavat/tko-aly-auth.git
   revision: de7213a2ab644e3095d795d303da904b4176337a
   specs:
@@ -120,6 +127,7 @@ DEPENDENCIES
   cucumber-rails (= 0.3.2)
   database_cleaner
   haml
+  kurli!
   lucy
   net-ldap
   paperclip

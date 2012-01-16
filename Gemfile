@@ -17,6 +17,7 @@ gem 'babilu'
 gem 'responds_to_parent'
 
 gem 'tko-aly-auth', :git => 'git://github.com/tkt-opintovastaavat/tko-aly-auth.git'
+gem 'kurli', :git => 'git://github.com/tkt-opintovastaavat/kurli-ruby.git'
 
 gem 'airbrake'
 
