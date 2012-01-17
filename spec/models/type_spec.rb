@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Type do
   before(:each) do
     @valid_attributes = {
-      :name_fi => 'Kurssikoe'
+      :name_fi => 'Type name'
     }
     @invalid_type = Type.new
   end

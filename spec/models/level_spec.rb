@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Level do
   before(:each) do
     @valid_attributes = {
-      :name_fi => 'Perusopinnot'
+      :name_fi => 'Level name'
     }
     @invalid_level = Level.new
   end
@@ -18,20 +18,25 @@ describe Level do
 
   describe "names" do
 
+    before(:each) do
+      @level = mock_model(Level)
+      Level.should_receive(:find_by_name_fi).and_return(@level)
+    end
+
     it "should have basic studies" do
-      Level.basic_studies.name.should == "Perusopinnot"
+      Level.basic_studies.should == @level
     end
 
     it "should have intermediate studies" do
-      Level.intermediate_studies.name.should == "Aineopinnot"
+      Level.intermediate_studies.should == @level
     end
 
     it "should have advanced studies" do
-      Level.advanced_studies.name.should == "Syventävät opinnot"
+      Level.advanced_studies.should == @level
     end
 
     it "should have other studies" do
-      Level.other_studies.name.should == "Muut opinnot"
+      Level.other_studies.should == @level
     end
 
   end
