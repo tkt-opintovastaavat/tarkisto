@@ -10,9 +10,9 @@ class Exam < ActiveRecord::Base
   validates_numericality_of :maximum_points, :only_integer => true, :greater_than => 0, :unless =>Proc.new { |exam| exam.maximum_points.nil? }
   validate_on_update :validate_points
 
-  named_scope :repeat_exams, :conditions => {:type_id => Type.find_by_name_fi('Uusintakoe').id}
-  named_scope :course_exams, :conditions => {:type_id => Type.find_by_name_fi('Kurssikoe').id}
-  named_scope :separate_exams, :conditions => {:type_id => Type.find_by_name_fi('Erilliskoe').id}
+  named_scope :course_exams, :conditions => {:type_id => Type.course_exams.id}
+  named_scope :repeat_exams, :conditions => {:type_id => Type.renewal_exams.id}
+  named_scope :separate_exams, :conditions => {:type_id => Type.separate_exams.id}
   named_scope :unpublished, :conditions => {:published => false}
   named_scope :published, :conditions => {:published => true}
   named_scope :public, :conditions => { :published => true, :public => true}

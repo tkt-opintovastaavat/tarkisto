@@ -4,6 +4,7 @@ class Level < ActiveRecord::Base
   has_many :courses
 
   validates_presence_of :name_fi
+  validates_uniqueness_of :name_fi
 
   def self.basic_studies
     self.find_by_name_fi("Perusopinnot")

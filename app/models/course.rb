@@ -15,6 +15,7 @@ class Course < ActiveRecord::Base
   named_scope :intermediate_courses, :conditions => {:level_id => Level.intermediate_studies.id}
   named_scope :advanced_courses, :conditions => {:level_id => Level.advanced_studies.id}
   named_scope :other_courses , :conditions => {:level_id => Level.other_studies.id}
+
   named_scope :alphabetize, :order => "name_#{I18n.locale.to_sym}".to_sym
   named_scope :courses_on_semester, lambda { |year, semester|
     { :select => 'distinct courses.*', :joins => :instances, :conditions => ["instances.year = ? AND instances.semester = ?", year, semester] }
