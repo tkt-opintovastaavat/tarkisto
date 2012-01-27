@@ -6,5 +6,6 @@ class CourseTheme < ActiveRecord::Base
   has_many :questions, :through => :course_theme_questions
 
   validates_presence_of :theme_id , :course_id
+  validates_uniqueness_of :theme_id, :scope => :course_id
 
 end

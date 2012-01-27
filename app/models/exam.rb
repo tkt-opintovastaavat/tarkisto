@@ -6,6 +6,7 @@ class Exam < ActiveRecord::Base
 
   attr_protected :public, :published
 
+  validates_uniqueness_of :date, :scope => :type_id
   validates_presence_of :date, :maximum_points
   validates_numericality_of :maximum_points, :only_integer => true, :greater_than => 0, :unless =>Proc.new { |exam| exam.maximum_points.nil? }
   validate_on_update :validate_points
