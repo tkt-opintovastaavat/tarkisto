@@ -14,4 +14,18 @@ class User < ActiveRecord::Base
           end
      end
 
+     def access
+       @access ||= tko_aly_auth
+     end
+
+     private
+
+     def tko_aly_auth
+       if TKOaly::Auth.tarkisto_admin? self.username
+         3
+       else
+         1 # 0 = banned, 1 = standard access , 2 = moderator access,  3 = administrator access
+       end
+     end
+
 end

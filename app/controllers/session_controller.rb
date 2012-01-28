@@ -4,11 +4,7 @@ class SessionController < ApplicationController
     user = User.authentication params[:session][:username], params[:session][:password]
     unless user.nil?
       session[:user_id] = user.id
-      if TKOaly::Auth.tarkisto_admin? user.username
-        session[:access] = 3
-      else
-        session[:access] = 1 # 0 = banned, 1 = standard access , 2 = moderator access,  3 = administrator access
-      end
+      session[:access] = user.access
     else
       flash[:session_error] = I18n.t('pages.session.errors.login_failed')
     end
@@ -17,6 +13,7 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:access] = -1
     flash[:session_notification] = I18n.t('pages.session.notifications.logout')
     redirect_to root_path
   end

@@ -15,7 +15,7 @@ describe SessionController do
 
     it "should be succesful" do
       User.should_receive(:authentication).with("petri", "karjalainen").and_return(@user_mock)
-      @user_mock.should_receive(:username)
+      @user_mock.should_receive(:access).and_return(1)
       post 'create', :session => { :username => "petri", :password => "karjalainen" }
       response.should be_redirect
       session[:user_id].should == @user_mock.id
