@@ -15,7 +15,7 @@
           %td
             = t('pages.exams.forms.generate.how_many')
           %td
-            = select_tag 'number', '<option>1</option><option>2</option><option selected="selected">3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>'
+            = select_tag 'number', options_for_select((1..10), 3)
             %span.pcs
               = t('pages.exams.forms.generate.piece_unit')
 
