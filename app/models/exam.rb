@@ -26,20 +26,15 @@ class Exam < ActiveRecord::Base
   end
 
   def publish!
-    unless questions.empty?
-      questions.each do |question|
-        return false unless question.valid?
-      end
-      self.published = true if valid?
-      save
+    unless questions.empty? or questions.map(&:valid?).uniq.include? false or not valid?
+      self.update_attribute :published, true
     else
       false
     end
   end
 
   def unpublish!
-    self.published = false
-    save
+    self.update_attribute :published, false
   end
 
   def to_public
