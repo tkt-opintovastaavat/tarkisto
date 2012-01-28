@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session, :controller => :session, :only => [:create, :destroy]
 
-  map.resource :search, :controller => :search, :only => [:show], :member => {:courses => :get}
+  map.resource :search, :controller => :search, :only => [:show]
 
   map.resource :faq, :controller => :faq, :only => [:show]
 
