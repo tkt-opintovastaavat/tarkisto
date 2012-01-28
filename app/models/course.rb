@@ -18,7 +18,7 @@ class Course < ActiveRecord::Base
 
   named_scope :alphabetize, :order => "name_#{I18n.locale.to_sym}".to_sym
   named_scope :courses_on_semester, lambda { |year, semester|
-    { :select => 'distinct courses.*', :joins => :instances, :conditions => ["instances.year = ? AND instances.semester = ?", year, semester] }
+    { :conditions => ["id IN (?)", Instance.on_semester(year, semester).map(&:course_id)] }
   }
   named_scope :search, lambda { |keyword|
     { :conditions => ["name_#{I18n.locale.to_sym} ILIKE ?", "%#{keyword}%"] }
