@@ -16,12 +16,12 @@ class Course < ActiveRecord::Base
   named_scope :advanced_courses, :conditions => {:level_id => Level.advanced_studies.id}
   named_scope :other_courses , :conditions => {:level_id => Level.other_studies.id}
 
-  named_scope :alphabetize, :order => "name_#{I18n.locale.to_sym}".to_sym
+  named_scope :alphabetize, :order => "name_#{I18n.locale}".to_sym
   named_scope :courses_on_semester, lambda { |year, semester|
     { :conditions => ["id IN (?)", Instance.on_semester(year, semester).map(&:course_id)] }
   }
   named_scope :search, lambda { |keyword|
-    { :conditions => ["name_#{I18n.locale.to_sym} ILIKE ?", "%#{keyword}%"] }
+    { :conditions => ["name_#{I18n.locale} ILIKE ?", "%#{keyword}%"] }
   }
 
   def self.sorting_priority keyword, course1, course2
