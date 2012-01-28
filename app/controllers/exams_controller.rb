@@ -95,7 +95,7 @@ class ExamsController < ApplicationController
   end
 
   def preview
-    @exam = Exam.build_exam params[:exam]
+    @exam = Exam.new params[:exam]
     render :action => :show
   end
 

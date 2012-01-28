@@ -239,7 +239,7 @@ describe ExamsController do
       it "should deliver exam data" do
         @exam_data = {'type_id' => '1'}
 
-        Exam.should_receive(:build_exam).with(@exam_data).and_return(@exam_mock)
+        Exam.should_receive(:new).with(@exam_data).and_return(@exam_mock)
 
         post 'preview', :course_id => @course_id, :exam => @exam_data
 

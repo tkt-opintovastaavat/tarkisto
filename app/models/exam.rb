@@ -45,8 +45,4 @@ class Exam < ActiveRecord::Base
     errors.add 'maximum_points', I18n.t('activerecord.errors.messages.points_not_match') unless questions.map{|q| q.points.to_i}.sum == maximum_points
   end
 
-  def self.build_exam data
-    Exam.new data
-  end
-
 end

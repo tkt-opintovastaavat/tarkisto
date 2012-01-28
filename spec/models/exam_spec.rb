@@ -172,17 +172,4 @@ describe Exam do
 
   end
 
-  describe "#build_exam" do
-
-    it "should create exam from hash" do
-      date = Date.today
-      data = { 'type_id' => 1, 'date' => date, 'maximum_points' => 60 }
-      exam = Exam.build_exam data
-      exam.type.id.should == 1
-      exam.date.should == date
-      exam.maximum_points.should == 60
-    end
-
-  end
-
 end
