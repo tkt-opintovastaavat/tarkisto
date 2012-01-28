@@ -8,7 +8,7 @@ tmp/sass-cache/*
 .bundle
 
 # Image upload folder
-public/question_images/*
+public/system/*
 
 # Cucumber rerun
 rerun.txt
