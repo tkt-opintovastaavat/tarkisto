@@ -116,10 +116,9 @@ class ExamsController < ApplicationController
 
     if params[:commit] == t('pages.exams.forms.generate.continue')
       # Generate the basic info for the exam
-      @generated_exam = Exam.new
+      @generated_exam = Exam.generated_exams.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Get all the questions for the course in random order, then pick only ones that match the themes
@@ -168,10 +167,9 @@ class ExamsController < ApplicationController
     elsif params[:commit] == t('pages.exams.forms.generate.generate')
 
       # Generate the basic info for the exam, again, because objects don't pass correctly in params
-      @generated_exam = Exam.new
+      @generated_exam = Exam.generated_exams.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Parse the question ids from params
@@ -255,10 +253,9 @@ class ExamsController < ApplicationController
     elsif params[:commit] == "PDF"
 
       # Generate the basic info for the exam, again, because objects don't pass correctly in params
-      @generated_exam = Exam.new
+      @generated_exam = Exam.generated_exams.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Parse the question ids from params and add them to the exam

@@ -14,6 +14,7 @@ class Exam < ActiveRecord::Base
   named_scope :course_exams, :conditions => {:type_id => Type.course_exams.id}
   named_scope :repeat_exams, :conditions => {:type_id => Type.renewal_exams.id}
   named_scope :separate_exams, :conditions => {:type_id => Type.separate_exams.id}
+  named_scope :generated_exams, :conditions => {:type_id => Type.generated_exams.id}
   named_scope :unpublished, :conditions => {:published => false}
   named_scope :published, :conditions => {:published => true}
   named_scope :public, :conditions => { :published => true, :public => true}
