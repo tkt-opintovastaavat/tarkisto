@@ -49,9 +49,9 @@ class ExamsController < ApplicationController
       @exam = Exam.new
       @exams = @course.exams.unpublished
       @types = []
-      @types << Type.find_by_name_fi("Uusintakoe")
-      @types << Type.find_by_name_fi("Erilliskoe")
-      @types << Type.find_by_name_fi("Kurssikoe")
+      @types << Type.renewal_exams
+      @types << Type.separate_exams
+      @types << Type.course_exams
 
 
       respond_to do |format|
@@ -119,7 +119,7 @@ class ExamsController < ApplicationController
       @generated_exam = Exam.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
+      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Get all the questions for the course in random order, then pick only ones that match the themes
@@ -171,7 +171,7 @@ class ExamsController < ApplicationController
       @generated_exam = Exam.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
+      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Parse the question ids from params
@@ -258,7 +258,7 @@ class ExamsController < ApplicationController
       @generated_exam = Exam.new
       @generated_exam.course_id = @course.id
       @generated_exam.date = Date.today
-      @generated_exam.type_id = Type.find_by_name_fi("Generoitu koe").id
+      @generated_exam.type_id = Type.generated_exams.id
       @generated_exam.maximum_points = 0
 
       # Parse the question ids from params and add them to the exam

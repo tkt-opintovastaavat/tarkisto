@@ -18,4 +18,8 @@ class Type < ActiveRecord::Base
     self.find_by_name_fi('Erilliskoe')
   end
 
+  def self.generated_exams
+    self.find_by_name_fi("Generoitu koe")
+  end
+
 end
