@@ -1,55 +1,23 @@
 module Session
 
   def logged_in?
-    unless current_user.nil?
-      return true
-    else
-      return false
-    end
+    not current_user.nil?
   end
 
   def current_user
-    unless session[:user_id].nil?
-      User.find_by_id session[:user_id]
-    else
-      nil
-    end
+    User.find_by_id session[:user_id] unless session[:user_id].nil?
   end
 
   def access?
-    unless logged_in?
-      return false
-    else
-      if session[:access] > 0
-        return true
-      else
-        return false
-      end
-    end
+    logged_in? and session[:access] > 0
   end
 
   def moderator?
-    unless logged_in?
-      return false
-    else
-      if session[:access] > 1
-        return true
-      else
-        return false
-      end
-    end
+    logged_in? and session[:access] > 1
   end
 
   def admin?
-    unless logged_in?
-      return false
-    else
-      if session[:access] == 3
-        return true
-      else
-        return false
-      end
-    end
+    logged_in? and session[:access] == 3
   end
 
 end
