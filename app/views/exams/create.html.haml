@@ -2,7 +2,7 @@
   #{@course.name} #{@exam.name} :: #{t 'pages.exams.titles.edit'}
 - content_for :header do
   %script(type="text/javascript")
-    var dataObject = #{generate_data_object @exam}
+    var dataObject = #{raw generate_data_object @exam}
   = javascript_include_tag "examedition"
 
   = stylesheet_link_tag 'prettify.css', :media => 'screen, projection'

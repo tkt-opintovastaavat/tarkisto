@@ -1,20 +1,12 @@
 log/*.log
 db/*.sqlite3
-tmp/cache/*
-tmp/pids/*
-tmp/sessions/*
-tmp/sockets/*
-tmp/sass-cache/*
+tmp/
 .bundle
 
 # Image upload folder
 public/system/*
 
-# Cucumber rerun
-rerun.txt
-
-# rcov directory
-coverage
+.rspec
 
 # Compiled stylesheets
 public/stylesheets/*.css
@@ -23,6 +15,6 @@ public/stylesheets/*.css
 public/javascripts/common.js
 public/javascripts/locales.js
 
-# JavaScript routes
-public/javascripts/routes-ajax.js
-public/javascripts/routes.js
+## JavaScript routes
+#public/javascripts/routes-ajax.js
+#public/javascripts/routes.js

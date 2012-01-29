@@ -1,23 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '2.3.14'
-
-gem 'rake'
-gem 'rdoc'
-
+gem 'rails', '3.0.11'
 gem 'pg'
 
 gem 'haml'
 gem 'compass'
 gem 'net-ldap'
 gem 'pdf-writer'
-gem 'tabs_on_rails', '1.3.3'
+gem 'tabs_on_rails'
 gem 'paperclip'
-
+#
 gem 'lucy'
 gem 'babilu'
 
-gem 'responds_to_parent'
+#gem 'responds_to_parent'
 
 gem 'tko-aly-auth', :git => 'git://github.com/tkt-opintovastaavat/tko-aly-auth.git'
 gem 'kurli', :git => 'git://github.com/tkt-opintovastaavat/kurli-ruby.git'
@@ -25,12 +21,11 @@ gem 'kurli', :git => 'git://github.com/tkt-opintovastaavat/kurli-ruby.git'
 gem 'airbrake'
 
 group :development, :test do
-  gem 'rspec', '1.3.2'
-  gem 'rspec-rails', '1.3.4'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'cucumber'
-  gem 'cucumber-rails', '0.3.2'
+  gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem 'webrat'
 end
 
 group :development do

@@ -11,16 +11,16 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :name_fi, :credits, :code
 
-  named_scope :basic_courses, :conditions => {:level_id => Level.basic_studies.id}
-  named_scope :intermediate_courses, :conditions => {:level_id => Level.intermediate_studies.id}
-  named_scope :advanced_courses, :conditions => {:level_id => Level.advanced_studies.id}
-  named_scope :other_courses , :conditions => {:level_id => Level.other_studies.id}
+  scope :basic_courses, :conditions => {:level_id => Level.basic_studies.try(:id)}
+  scope :intermediate_courses, :conditions => {:level_id => Level.intermediate_studies.try(:id)}
+  scope :advanced_courses, :conditions => {:level_id => Level.advanced_studies.try(:id)}
+  scope :other_courses , :conditions => {:level_id => Level.other_studies.try(:id)}
 
-  named_scope :alphabetize, :order => "name_#{I18n.locale}".to_sym
-  named_scope :courses_on_semester, lambda { |year, semester|
+  scope :alphabetize, :order => "name_#{I18n.locale}".to_sym
+  scope :courses_on_semester, lambda { |year, semester|
     { :conditions => ["id IN (?)", Instance.on_semester(year, semester).map(&:course_id)] }
   }
-  named_scope :search, lambda { |keyword|
+  scope :search, lambda { |keyword|
     { :conditions => ["name_#{I18n.locale} ILIKE ?", "%#{keyword}%"] }
   }
 

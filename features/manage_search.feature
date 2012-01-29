@@ -2,6 +2,7 @@ Feature: Manage searches
   In order to have functional search
   wants to have following scenarios
 
+  @wip
   Scenario: See a search result
     Given I have a course called "Laskennan mallit"
     Then I search with keyword "laskennan"

@@ -1,11 +1,5 @@
-# Bootstrap the Rails environment, frameworks, and default configuration
-require File.join(File.dirname(__FILE__), 'boot')
-require 'ostruct'
+# Load the rails application
+require File.expand_path('../application', __FILE__)
 
-Rails::Initializer.run do |config|
-
-  config.time_zone = 'UTC'
-  config.action_controller.allow_forgery_protection = false
-  config.i18n.default_locale = :fi
-
-end
+# Initialize the rails application
+Tarkisto::Application.initialize!

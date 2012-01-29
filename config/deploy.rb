@@ -61,4 +61,5 @@ Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'airbrake-*')].eac
   $: << File.join(vendored_notifier, 'lib')
 end
 
+require './config/boot'
 require 'airbrake/capistrano'

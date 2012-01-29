@@ -2,6 +2,7 @@ Feature: Manage exams
   In order to do all exam actions
   wants to have following scenarios
 
+  @wip
   Scenario: Show all exams
     Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
     And I have "Erilliskoe" type of exam on course 581325
@@ -13,6 +14,7 @@ Feature: Manage exams
     And I should see "Kurssikoe" within "#mainbody"
     And I should see "Uusintakoe" within "#mainbody"
 
+  @wip
   Scenario: Show one exam page
     Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
     And I have "Erilliskoe" type of exam on course 581325
@@ -23,6 +25,7 @@ Feature: Manage exams
     Then I should see "Ohjelmoinnin perusteet" within "#mainbody"
     And I should see "Erilliskoe" within "#mainbody"
 
+  @wip
   Scenario: Add new exam
     Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
     And I am on the exams page of course 581325
@@ -35,6 +38,7 @@ Feature: Manage exams
     And I press "Jatka"
     Then I should see "Erilliskoe 25.01.2009"
 
+  @wip
   Scenario: Generate practice exam
     Given I have a course 581325 "Ohjelmoinnin perusteet" (5op) which is in "Perusopinnot"
     And I am on the generate practice exam page of course 581325

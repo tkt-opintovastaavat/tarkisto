@@ -5,7 +5,7 @@ describe LDAP do
   before(:each) do
     @username = 'username'
     @password = 'password'
-    @ldap_mock = mock_model Net::LDAP
+    @ldap_mock = mock Net::LDAP
   end
 
   describe "#authenticate" do

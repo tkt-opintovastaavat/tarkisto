@@ -9,17 +9,17 @@ class Exam < ActiveRecord::Base
   validates_uniqueness_of :date, :scope => :type_id
   validates_presence_of :date, :maximum_points
   validates_numericality_of :maximum_points, :only_integer => true, :greater_than => 0, :unless =>Proc.new { |exam| exam.maximum_points.nil? }
-  validate_on_update :validate_points
+  validate :validate_points, :on => :update
 
-  named_scope :course_exams, :conditions => {:type_id => Type.course_exams.id}
-  named_scope :repeat_exams, :conditions => {:type_id => Type.renewal_exams.id}
-  named_scope :separate_exams, :conditions => {:type_id => Type.separate_exams.id}
-  named_scope :generated_exams, :conditions => {:type_id => Type.generated_exams.id}
-  named_scope :unpublished, :conditions => {:published => false}
-  named_scope :published, :conditions => {:published => true}
-  named_scope :public, :conditions => { :published => true, :public => true}
-  named_scope :only_private, :conditions => {:public => false}
-  named_scope :only_public, :conditions => {:public => true}
+  scope :course_exams, :conditions => {:type_id => Type.course_exams.try(:id)}
+  scope :repeat_exams, :conditions => {:type_id => Type.renewal_exams.try(:id)}
+  scope :separate_exams, :conditions => {:type_id => Type.separate_exams.try(:id)}
+  scope :generated_exams, :conditions => {:type_id => Type.generated_exams.try(:id)}
+  scope :unpublished, :conditions => {:published => false}
+  scope :published, :conditions => {:published => true}
+  scope :public, :conditions => { :published => true, :public => true}
+  scope :only_private, :conditions => {:public => false}
+  scope :only_public, :conditions => {:public => true}
 
   def name
     "#{type.name} #{I18n.l date, :format => :short}"

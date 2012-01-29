@@ -69,15 +69,15 @@ describe Exam do
     it "should have points error" do
       @valid_exam.should have(0).error_on(:maximum_points)
       @valid_exam.save
-      @valid_exam.questions.new(:points => 20).save(false)
+      @valid_exam.questions.new(:points => 20).save(:validate => false)
       @valid_exam.should have(1).error_on(:maximum_points)
     end
 
     it "should have same amount of points in questions than maximum points" do
       @valid_exam.should have(0).error_on(:maximum_points)
       @valid_exam.save
-      @valid_exam.questions.new(:points => 20).save(false)
-      @valid_exam.questions.new(:points => 40).save(false)
+      @valid_exam.questions.new(:points => 20).save(:validate => false)
+      @valid_exam.questions.new(:points => 40).save(:validate => false)
       @valid_exam.should have(0).error_on(:maximum_points)
     end
 
@@ -125,7 +125,7 @@ describe Exam do
       exam = Exam.create!(@valid_attributes)
       exam.published.should == false
       question = exam.questions.new
-      question.save(false)
+      question.save(:validate => false)
       exam.publish!.should == false
       exam.published.should == false
     end
