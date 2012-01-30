@@ -1,31 +1,24 @@
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :trackable, :lockable
 
-     has_many :attendances
+  attr_accessible :username, :password, :remember_me
 
-     def self.authentication username, password
-          return nil if username.nil? or username.empty?
-          include LDAP
-          if LDAP.authenticate(username, password) && LDAP.departmentcheck(username)
-               user = User.find_by_username username
-               if user.nil?
-                    user = User.create :username => username
-               end
-               return user
-          end
-     end
+  attr_accessor :encrypted_password
 
-     def access
-       @access ||= tko_aly_auth
-     end
+  has_many :attendances
 
-     private
+  def access
+    @access ||= tko_aly_auth
+  end
 
-     def tko_aly_auth
-       if TKOaly::Auth.tarkisto_admin? self.username
-         3
-       else
-         1 # 0 = banned, 1 = standard access , 2 = moderator access,  3 = administrator access
-       end
-     end
+  private
+
+  def tko_aly_auth
+    if TKOaly::Auth.tarkisto_admin? self.username
+      3
+    else
+      1 # 0 = banned, 1 = standard access , 2 = moderator access,  3 = administrator access
+    end
+  end
 
 end

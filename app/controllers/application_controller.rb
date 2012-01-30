@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
-  #protect_from_forgery
+  protect_from_forgery
 
-  include Session
+  before_filter :authenticate_user!
 
 end

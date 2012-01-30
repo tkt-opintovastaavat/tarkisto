@@ -1,8 +1,8 @@
 Tarkisto::Application.routes.draw do
 
-  root :to => "dashboard#show"
+  devise_for :users
 
-  resource :session, :controller => :session, :only => [:create, :destroy]
+  root :to => "dashboard#show"
 
   resource :search, :controller => :search, :only => [:show]
 

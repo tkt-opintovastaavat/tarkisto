@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
 
+  skip_before_filter :authenticate_user!
+
   def show
     @basic_studies = Course.basic_courses.alphabetize.courses_on_semester Date.today.year, SchoolDates.semester
     @intermediate_studies = Course.intermediate_courses.alphabetize.courses_on_semester Date.today.year, SchoolDates.semester
