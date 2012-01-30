@@ -27,7 +27,7 @@ module ExamsHelper
       unless objects.empty?
         object = objects.shift
         if object.instance_of? Image
-          description = description + "<img src='#{object.question_image.url(:web)}' />"
+          description = description + "<img src='#{object.file.url(:web)}' />"
           attachments.delete object
         else
           description = description + "#{object.text}"
@@ -42,7 +42,7 @@ module ExamsHelper
 
     objects.each do |object|
       if object.instance_of? Image
-        description = description + "<img src='#{object.question_image.url(:web)}' /> <br />"
+        description = description + "<img src='#{object.file.url(:web)}' /> <br />"
       else
         description = description + "#{object.text} <br />"
       end

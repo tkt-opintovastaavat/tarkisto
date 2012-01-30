@@ -8,8 +8,9 @@ gem 'compass'
 gem 'net-ldap'
 gem 'pdf-writer'
 gem 'tabs_on_rails'
-gem 'paperclip'
-#
+gem 'carrierwave'
+gem 'rmagick'
+
 gem 'lucy'
 gem 'babilu'
 

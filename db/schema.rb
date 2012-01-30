@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110917093148) do
+ActiveRecord::Schema.define(:version => 20120130162940) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "instance_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110917093148) do
     t.string   "question_image_file_name"
     t.string   "question_image_content_type"
     t.integer  "question_image_file_size"
+    t.string   "file"
   end
 
   create_table "instances", :force => true do |t|

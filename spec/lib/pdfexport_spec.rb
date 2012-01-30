@@ -39,7 +39,7 @@ describe PdfExport do
       before(:each) do
         @image_mock = mock_model Image
         @code_mock = mock_model CodeSnippet
-        @paperclip_mock = mock Paperclip
+        @imageuploader_mock = mock ImageUploader
 
         # basic questions handling
         @exam_mock.should_receive(:questions).and_return(@questions_mock)
@@ -79,8 +79,8 @@ describe PdfExport do
 
         # attachments handling
         ## image
-        @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-        @paperclip_mock.should_receive(:path)
+        @image_mock.should_receive(:file).and_return(@imageuploader_mock)
+        @imageuploader_mock.should_receive(:path)
         @pdf_writer_mock.should_receive(:image)
         ## code
         @code_mock.should_receive(:text)
@@ -95,8 +95,8 @@ describe PdfExport do
         # question description handling
         @question_mock.should_receive(:description).twice.and_return("LOL<[i#1]>TROLL<[c#1]>FU-")
         @pdf_writer_mock.should_receive(:text) # this writes LOL
-        @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-        @paperclip_mock.should_receive(:path)
+        @image_mock.should_receive(:file).and_return(@imageuploader_mock)
+        @imageuploader_mock.should_receive(:path)
         @pdf_writer_mock.should_receive(:image)
         @pdf_writer_mock.should_receive(:text) # this writes TROLL
         @code_mock.should_receive(:text)
@@ -112,8 +112,8 @@ describe PdfExport do
         # question description handling
         @question_mock.should_receive(:description).twice.and_return("<[i#1]>")
         @pdf_writer_mock.should_receive(:text) # this writes empty string
-        @image_mock.should_receive(:question_image).and_return(@paperclip_mock)
-        @paperclip_mock.should_receive(:path)
+        @image_mock.should_receive(:file).and_return(@imageuploader_mock)
+        @imageuploader_mock.should_receive(:path)
         @pdf_writer_mock.should_receive(:image)
       end
 
