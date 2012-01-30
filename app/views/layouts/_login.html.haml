@@ -1,2 +1,6 @@
-= link_to t('pages.session.login'), new_user_session_path
-= link_to t('pages.session.logout'), destroy_user_session_path
+- if signed_in?
+  %span.title #{t('pages.session.logged_in')}:
+  #{current_user.username}
+  = link_to t('pages.session.logout'), destroy_user_session_path
+- else
+  = link_to t('pages.session.login'), new_user_session_path
