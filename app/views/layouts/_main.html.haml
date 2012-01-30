@@ -1,7 +1,7 @@
 #main
 
   #left
-    - if (@controller.controller_name == 'exams')
+    - if (controller.controller_name == 'exams')
       -# tabs_on_rails gem making tabs if the current page is one of the exams pages
       - tabs_tag do |tab|
         = tab.all t('pages.exams.tabs.all'), course_exams_path(@course)
