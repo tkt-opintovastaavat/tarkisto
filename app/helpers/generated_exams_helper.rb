@@ -1,0 +1,2 @@
+module GeneratedExamsHelper
+end

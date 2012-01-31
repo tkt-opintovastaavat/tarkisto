@@ -1,0 +1,38 @@
+- content_for :title do
+  #{@course.name} :: #{t 'pages.exams.titles.generate'}
+- content_for :content do
+  %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
+
+  - if @exams.empty?
+
+    %p= t('pages.exams.forms.generate.cannot_generate')
+
+  - else
+
+    - form_tag generate_preview_course_exams_path(@course.id), :method => 'get' do
+
+      %table.generator
+        %tr
+          %td
+            = t('pages.exams.forms.generate.how_many')
+          %td
+            = select_tag 'number', options_for_select((1..10), 3)
+            %span.pcs
+              = t('pages.exams.forms.generate.piece_unit')
+
+        %tr
+          %td
+            = t('pages.exams.forms.generate.examthemes')
+          %td
+            - @themes.each do |theme|
+              = check_box_tag theme.id, "chosen", true
+              = label_tag theme.name
+              %br
+
+            = check_box_tag 'themeless', 'chosen', true
+            = label_tag t('pages.exams.forms.generate.themeless')
+
+        %tr
+          %td
+          %td
+            = submit_tag t('pages.exams.forms.generate.continue')

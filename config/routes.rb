@@ -28,6 +28,8 @@ Tarkisto::Application.routes.draw do
 
     end
 
+    resources :generated_exams, :only => [:new]
+
   end
 
 end
