@@ -1,0 +1,4 @@
+- tabs_tag do |tab|
+  = tab.all t('pages.exams.tabs.all'), course_exams_path(@course)
+  = tab.generate t('pages.exams.tabs.generate'), new_course_generated_exam_path(@course)
+  = tab.new t('pages.exams.tabs.add'), new_course_exam_path(@course)

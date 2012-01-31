@@ -50,39 +50,6 @@ describe ExamsController do
 
       end
 
-      describe "#generate" do
-
-        before(:each) do
-          @course_theme_mock = mock_model CourseTheme
-        end
-
-        it "should be generating from public only if no access" do
-          @course_mock.should_receive(:course_themes).and_return([@course_theme_mock])
-          @course_mock.should_receive(:exams).and_return(@exams_mock)
-          @exams_mock.should_receive(:published).and_return(@exams_mock)
-          controller.should_receive(:signed_in?).and_return(false)
-          @exams_mock.should_receive(:only_public).and_return(@exams_mock)
-
-          get 'generate', :course_id => @course_id
-
-          assigns(:course_themes).should == [@course_theme_mock]
-          assigns(:exams).should == [@exam_mock]
-        end
-
-        it "should be generating from all if access" do
-          @course_mock.should_receive(:course_themes).and_return([@course_theme_mock])
-          @course_mock.should_receive(:exams).and_return(@exams_mock)
-          @exams_mock.should_receive(:published).and_return(@exams_mock)
-          controller.should_receive(:signed_in?).and_return(true)
-
-          get 'generate', :course_id => @course_id
-
-          assigns(:course_themes).should == [@course_theme_mock]
-          assigns(:exams).should == [@exam_mock]
-        end
-
-      end
-
     end
 
     describe "redirect or render" do

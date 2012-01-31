@@ -1,12 +1,12 @@
 class ExamsController < ApplicationController
 
-  skip_before_filter :authenticate_user!, :only => [:index, :show, :generate, :generate_preview]
+  skip_before_filter :authenticate_user!, :only => [:index, :show, :generate_preview]
 
   include DataObject
 
   before_filter :_set_course
 
-  skip_authorization_check :only => [:index, :show, :generate, :generate_preview]
+  skip_authorization_check :only => [:index, :show, :generate_preview]
 
   def index
     @exams = @course.exams.published
@@ -100,17 +100,6 @@ class ExamsController < ApplicationController
   def preview
     @exam = Exam.new params[:exam]
     render :action => :show
-  end
-
-  def generate
-    respond_to do |format|
-      format.html do
-        @exams = @course.exams.published
-        @exams = @exams.only_public unless signed_in?
-        @course_themes = @course.course_themes
-        set_tab :generate
-      end
-    end
   end
 
   def generate_preview

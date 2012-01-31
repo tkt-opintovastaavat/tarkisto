@@ -21,7 +21,6 @@ Tarkisto::Application.routes.draw do
     resources :exams, :only => [:index, :show, :new, :create] do
 
       collection do
-        get :generate
         get :generate_preview
         post :publish
       end

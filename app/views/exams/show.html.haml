@@ -1,5 +1,9 @@
 - content_for :title do
   #{@course.name} :: #{@exam.name}
+
+- content_for :left do
+  = render :partial => 'left'
+
 - content_for :content do
   %h2 #{@course.name} - #{@exam.name}
 

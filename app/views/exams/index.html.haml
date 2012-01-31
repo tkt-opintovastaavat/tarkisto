@@ -1,6 +1,9 @@
 - content_for :title do
   #{@course.name} :: #{t 'pages.exams.titles.all'}
 
+- content_for :left do
+  = render :partial => 'left'
+
 - content_for :header do
   = javascript_include_tag 'jquery.dataTables.min'
 

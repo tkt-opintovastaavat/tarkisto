@@ -4,10 +4,15 @@ class GeneratedExamsController < ApplicationController
   skip_authorization_check
 
   def new
-    @course = Course.find_by_id params[:course_id]
-    @exams = @course.exams.published
-    @exams = @exams.only_public unless signed_in?
-    @themes = @course.themes
+    respond_to do |format|
+      format.html do
+        @course = Course.find_by_id params[:course_id]
+        @exams = @course.exams.published
+        @exams = @exams.only_public unless signed_in?
+        @themes = @course.themes
+        set_tab :generate
+      end
+    end
   end
 
 end
