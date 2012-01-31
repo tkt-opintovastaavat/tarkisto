@@ -13,7 +13,7 @@ fi:
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
       unconfirmed: 'Sinun täytyy vahvistaa tunnuksesi ennen kuin voit jatkaa.'
       locked: 'Tunnuksesi on lukittu.'
-      invalid: 'Epäkelpo sähköpostiosoite tai salasana.'
+      invalid: 'Epäkelpo käyttäjätunnus tai salasana.'
       invalid_token: 'Epäkelpo autentikaatiopoletti.'
       timeout: 'Istuntosi on vanhentunut, ole hyvä ja kirjaudu sisään jatkaaksesi.'
       inactive: 'Tunnustasi ei ole vielä aktivoitu.'

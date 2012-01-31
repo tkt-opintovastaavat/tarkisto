@@ -2,5 +2,15 @@
   %span.title #{t('pages.session.logged_in')}:
   #{current_user.username}
   = link_to t('pages.session.logout'), destroy_user_session_path
+  - if can? :access, :admin
+    = link_to t('pages.session.admin'), admin_dashboard_path
 - else
-  = link_to t('pages.session.login'), new_user_session_path
+  = form_for(User.new, :user, :url => session_path(:user)) do |f|
+    %table
+      %tr
+        %td= f.label :username, t('pages.session.form.username')
+        %td= f.label :password, t('pages.session.form.password')
+      %tr
+        %td= f.text_field :username
+        %td= f.password_field :password
+        %td= submit_tag t('pages.session.form.submit')
