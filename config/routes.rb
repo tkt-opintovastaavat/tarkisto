@@ -1,8 +1,10 @@
 Tarkisto::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   devise_for :users
 
-  root :to => "dashboard#show"
+  root :to => "home#show"
 
   match 'search' => "search#show"
   match 'faq' => "faq#show"
