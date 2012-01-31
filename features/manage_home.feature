@@ -1,9 +1,9 @@
-Feature: Manage dashboard
+Feature: Manage home
   In order to use dashboard
   wants to have following scenarios
 
   @wip
-  Scenario: Visit dashboard page
+  Scenario: Visit home page
     Given I am on the home page
     And I should see "Kurssit" within "#content"
 

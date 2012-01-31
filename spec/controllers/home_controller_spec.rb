@@ -1,15 +1,11 @@
 require 'spec_helper'
 
-describe DashboardController do
+describe HomeController do
 
   before :each do
     @level_mock = mock_model Level
     @course_mock = mock_model Course
     @courses_mock = [@course_mock]
-  end
-
-  it "should use DashboardController" do
-    controller.should be_an_instance_of(DashboardController)
   end
 
   describe "GET 'show'" do

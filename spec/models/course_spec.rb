@@ -78,6 +78,7 @@ describe Course do
 
     before :each do
       Course.create! @valid_attributes
+      I18n.stub!(:locale).and_return(:fi)
     end
 
     it "should search by full name in finnish" do
