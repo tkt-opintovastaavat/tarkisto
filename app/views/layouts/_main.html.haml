@@ -13,6 +13,10 @@
     -# stupid history breadcrumbs are disabled
     -# #breadcrumb
       -# %script{:type=> "text/javascript"} doCrumbs();
+    - unless flash[:notice].blank?
+      %p.notifications= flash[:notice]
+    - unless flash[:alert].blank?
+      %p.notifications= flash[:alert]
 
     = render :partial => "layouts/search"
 

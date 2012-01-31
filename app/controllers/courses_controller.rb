@@ -2,6 +2,8 @@ class CoursesController < ApplicationController
 
   skip_before_filter :authenticate_user!
 
+  skip_authorization_check :only => [:index, :basics, :intermediates, :advanceds, :others]
+
   def index
     @courses_json = format_json(Course.search(params[:term]))
     respond_to do |format|

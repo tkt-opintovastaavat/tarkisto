@@ -6,6 +6,8 @@ class ExamsController < ApplicationController
 
   before_filter :_set_course
 
+  skip_authorization_check :only => [:index, :show, :generate, :generate_preview]
+
   def index
     @exams = @course.exams.published
     @exams = @exams.only_public unless signed_in?
@@ -47,22 +49,18 @@ class ExamsController < ApplicationController
   end
 
   def new
-    unless access?
-      flash[:notice] = I18n.t('pages.session.notifications.access.denied')
-      redirect_to root_path
-    else
-      @exam = Exam.new
-      @exams = @course.exams.unpublished
-      @types = []
-      @types << Type.renewal_exams
-      @types << Type.separate_exams
-      @types << Type.course_exams
+    authorize! :create, Exam
+    @exam = Exam.new
+    @exams = @course.exams.unpublished
+    @types = []
+    @types << Type.renewal_exams
+    @types << Type.separate_exams
+    @types << Type.course_exams
 
 
-      respond_to do |format|
-        format.html do
-          set_tab :new
-        end
+    respond_to do |format|
+      format.html do
+        set_tab :new
       end
     end
   end
