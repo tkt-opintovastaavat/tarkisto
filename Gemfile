@@ -10,9 +10,12 @@ gem 'pdf-writer'
 gem 'tabs_on_rails'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'devise'
 gem 'lucy'
 gem 'babilu'
+
+gem 'devise'
+gem 'cancan'
+gem 'activeadmin'
 
 #gem 'responds_to_parent'
 
