@@ -18,6 +18,7 @@ class GeneratedExamsController < ApplicationController
   end
 
   def create
+    set_tab :generate
 
     @course_themes = @course.course_themes
 

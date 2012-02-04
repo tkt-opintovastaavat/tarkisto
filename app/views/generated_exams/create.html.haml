@@ -1,5 +1,9 @@
 - content_for :title do
   #{@course.name} :: #{t 'pages.exams.titles.generate'}
+
+- content_for :left do
+  = render :partial => 'exams/left'
+
 - content_for :content do
   %h2= "#{@course.name} - #{t 'pages.exams.titles.generate'}"
 
