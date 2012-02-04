@@ -18,11 +18,10 @@ Tarkisto::Application.routes.draw do
       get :others
     end
 
-    resources :exams, :only => [:index, :show, :new, :create] do
+    resources :exams, :only => [:index, :show] do
 
       collection do
         get :generate_preview
-        post :publish
       end
 
     end

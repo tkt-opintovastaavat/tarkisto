@@ -48,60 +48,6 @@ class ExamsController < ApplicationController
     end
   end
 
-  def new
-    authorize! :create, Exam
-    @exam = Exam.new
-    @exams = @course.exams.unpublished
-    @types = []
-    @types << Type.renewal_exams
-    @types << Type.separate_exams
-    @types << Type.course_exams
-
-
-    respond_to do |format|
-      format.html do
-        set_tab :new
-      end
-    end
-  end
-
-  def create
-    unless access?
-      flash[:notice] = I18n.t('pages.session.notifications.access.denied')
-      redirect_to :root
-    else
-      respond_to do |format|
-        format.html do
-          if params.include? 'exam'
-            if params[:exam].include? 'id' and !params[:exam][:id].nil? and !params[:exam][:id].empty?
-              @exam = @course.exams.find_by_id(params[:exam][:id])
-              redirect_to new_course_exam_path(@course.id) if @exam.nil?
-
-            else
-              @exam = @course.exams.new params[:exam]
-              unless @exam.valid?
-                flash[:errors] = @exam.errors.full_messages
-                redirect_to new_course_exam_path(@course.id)
-              end
-            end
-          else
-            redirect_to new_course_exam_path(@course.id)
-          end
-        end
-        format.json do
-          exam = save_data_object(params[:data])
-          object = generate_data_object(exam)
-          render :json => object
-        end
-      end
-    end
-  end
-
-  def preview
-    @exam = Exam.new params[:exam]
-    render :action => :show
-  end
-
   def generate_preview
 
     @course_themes = @course.course_themes
