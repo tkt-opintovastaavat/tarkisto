@@ -13,7 +13,7 @@ describe GeneratedExamsController do
     @themes_mock = [@theme_mock]
   end
 
-  describe "new generated exam" do
+  describe "initialize generator" do
 
     before(:each) do
       Course.should_receive(:find_by_id).with(@course_id).and_return(@course_mock)
@@ -37,6 +37,13 @@ describe GeneratedExamsController do
 
       response.should be_success
     end
+
+  end
+
+  describe "generator in use" do
+
+    it "should use only public exams, when not logged in"
+    it "should use all exams, when logged in"
 
   end
 

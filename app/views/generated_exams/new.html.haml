@@ -13,7 +13,7 @@
 
   - else
 
-    - form_tag generate_preview_course_exams_path(@course.id), :method => 'get' do
+    - form_tag course_generated_exams_path(@course.id), :method => :post do
 
       %table.generator
         %tr
