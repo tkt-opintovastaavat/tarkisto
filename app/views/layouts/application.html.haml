@@ -28,4 +28,6 @@
 
       = render :partial => "layouts/main"
 
-      = render :partial => "layouts/footer"
+      #footer
+        %span= link_to('FAQ', faq_path)
+        %span | Copyright &copy; #{Date.today.year} Tarkisto Developers
