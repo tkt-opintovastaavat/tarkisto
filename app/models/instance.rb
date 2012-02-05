@@ -7,7 +7,7 @@ class Instance < ActiveRecord::Base
   validates_presence_of :year, :semester
 
   scope :on_semester, lambda { |year, semester|
-    { :conditions => { :year => year, :semester => semester} }
+    where(:year => year).where(:semester => semester)
   }
 
 end
