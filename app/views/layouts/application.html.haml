@@ -24,7 +24,12 @@
 
     #container
 
-      = render :partial => "layouts/header"
+      #header
+
+        #logo
+          = link_to(image_tag("logo.png", :border => 0, :alt => "Tenttiarkisto", :title => "Tenttiarkisto"), root_path)
+
+        #login= render :partial => "layouts/login"
 
       = render :partial => "layouts/main"
 
