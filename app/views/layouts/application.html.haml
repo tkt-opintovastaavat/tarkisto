@@ -46,7 +46,13 @@
           - unless flash[:alert].blank?
             %p.notifications= flash[:alert]
 
-          = render :partial => "layouts/search"
+          #search
+            #box
+              = form_tag search_path, :method => :get do
+                %table
+                  %tr
+                    %td.textfield= text_field_tag :query
+                    %td.submit= image_submit_tag "mag.png"
 
           #content= (yield :content or yield)
 
