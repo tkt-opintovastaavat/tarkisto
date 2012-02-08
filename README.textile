@@ -30,6 +30,12 @@ Pull latest commits from GitHub so your deploy receipts are latest.
 
 h3. Deploy staging
 
+Staging is used to test features in production like environment before taking them in master.
+
+<pre>
+$ git push -f origin this_branch_goes_to_staging:test
+</pre>
+
 <pre>
 $ cap staging deploy
 </pre>
