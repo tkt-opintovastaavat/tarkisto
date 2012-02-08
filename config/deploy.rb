@@ -51,7 +51,7 @@ end
 namespace :customs do
 
   task :tarkisto do
-    run "cd #{release_path} && bundle exec rake tarkisto"
+    run "cd #{release_path} && bundle exec rake tarkisto RAILS_ENV=production"
   end
 
 end
