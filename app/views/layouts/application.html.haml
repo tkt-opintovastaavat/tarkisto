@@ -5,7 +5,7 @@
 
     %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
 
-    %title Tenttiarkisto #{":: #{yield :title}" if yield(:title)}
+    %title= title(yield(:title))
 
     = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
