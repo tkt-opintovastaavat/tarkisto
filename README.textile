@@ -1,4 +1,4 @@
-h1. Tarkisto - Exam archive !https://secure.travis-ci.org/tkt-opintovastaavat/tarkisto.png!
+h1. Tarkisto - Exam archive !https://secure.travis-ci.org/tkt-opintovastaavat/tarkisto.png! !https://gemnasium.com/tkt-opintovastaavat/tarkisto.png!
 
 h2. Setup the application for development
 
