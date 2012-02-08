@@ -1,6 +1,7 @@
 Tarkisto::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
+  # BUG: https://github.com/gregbell/active_admin/issues/292
+  ActiveAdmin.routes(self) unless ( File.basename($0) == "rake" and not ARGV.nil? and not ARGV.index{ |a| a =~ /^db:\w/i }.nil? )
 
   devise_for :users
 
