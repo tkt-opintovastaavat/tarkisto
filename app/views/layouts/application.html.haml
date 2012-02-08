@@ -31,8 +31,7 @@
             %span.title #{t('pages.session.logged_in')}:
             #{current_user.username}
             = link_to t('pages.session.logout'), destroy_user_session_path
-            - if can? :access, :admin
-              = link_to t('pages.session.admin'), admin_dashboard_path
+            = link_to t('pages.session.admin'), admin_dashboard_path if can? :access, :admin
           - else
             = form_for(User.new, :user, :url => session_path(:user)) do |f|
               %table
