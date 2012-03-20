@@ -11,18 +11,24 @@ class ExamBuildersController < ApplicationController
   end
 
   def new
-    @exam_builder = ExamBuilder.new
-    @exam_builders = @course.exam_builders
-    @types = Type.all
+    provide_new_data
   end
 
   def create
-    if params[:exam_name] == 'new'
-      raise params.inspect
+    if params[:exam_builder][:id].blank?
+      eb_params = params[:exam_builder]
+      exam = @course.exams.new :type_id => eb_params[:type_id], :maximum_points => eb_params[:maximum_points], :date => eb_params[:date]
+      if exam.save
+        eb = ExamBuilder.create! :exam_id => exam.id, :user_id => current_user.id
+        redirect_to course_exam_builder_path(@course)
+      else
+        provide_new_data
+        render :new
+      end
     else
       exam_builder = ExamBuilder.find_by_id params[:exam_name]
       exam_builder.update_attribute :user_id, current_user.id
-      redirect_to edit_course_exam_builder_path(@course)
+      redirect_to course_exam_builder_path(@course)
     end
   end
 
@@ -34,6 +40,12 @@ class ExamBuildersController < ApplicationController
 
   private
 
+  def provide_new_data
+    @exam_builder = ExamBuilder.new
+    @exam_builders = @course.exam_builders
+    @types = Type.all
+  end
+
   def set_tab_as_new
     set_tab :new
   end
@@ -44,7 +56,7 @@ class ExamBuildersController < ApplicationController
 
   def check_if_user_is_in_builder
     if current_user.exam_builder
-      redirect_to edit_course_exam_builder_path(@course)
+      redirect_to course_exam_builder_path(@course)
     end
   end
 
