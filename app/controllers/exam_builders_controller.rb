@@ -9,6 +9,9 @@ class ExamBuildersController < ApplicationController
   end
 
   def new
+    @exam_builder = ExamBuilder.new
+    @exams = @course.exams
+    @types = Type.all
   end
 
   def create
