@@ -10,7 +10,7 @@ class ExamBuildersController < ApplicationController
 
   def new
     @exam_builder = ExamBuilder.new
-    @exams = @course.exams
+    @exam_builders = @course.exam_builders
     @types = Type.all
   end
 

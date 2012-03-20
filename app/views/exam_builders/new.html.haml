@@ -15,7 +15,7 @@
         %td
           %label{:for => :exam_name}= t('pages.exams.forms.selection.name')
         %td
-          = select_tag :exam_name, options_for_select(exam_builder_selection(@exams), 'new')
+          = select_tag :exam_name, options_for_select(exam_builder_selection(@exam_builders), 'new')
 
       %tr
         %td
