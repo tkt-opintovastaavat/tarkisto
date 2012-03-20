@@ -65,6 +65,8 @@ fi:
           date: "Päivämäärä"
           public_notification: "Tentti ei ole oletusarvoisesti julkinen"
           continue: "Jatka"
+        editexam:
+          button: "Muokkaa"
         generate:
           how_many: "Kysymyksiä"
           piece_unit: " kpl"
