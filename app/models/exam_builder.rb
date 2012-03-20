@@ -8,4 +8,8 @@ class ExamBuilder < ActiveRecord::Base
 
   attr_accessor :date, :maximum_points, :type_id
 
+  def release!
+    update_attribute :user_id, nil
+  end
+
 end

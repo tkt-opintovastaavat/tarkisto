@@ -4,7 +4,7 @@ class ExamBuildersController < ApplicationController
 
   before_filter :set_tab_as_new
   before_filter :assign_course
-  before_filter :ensure_exam_builder, :only => [:show, :edit, :update]
+  before_filter :ensure_exam_builder, :only => [:show, :edit, :update, :destroy]
   before_filter :check_if_user_is_in_builder, :only => [:new, :create]
 
   def show
@@ -40,6 +40,12 @@ class ExamBuildersController < ApplicationController
   def update
   end
 
+  def destroy
+    @exam_builder = current_user.exam_builder
+    @exam_builder.release!
+    redirect_to new_course_exam_builder_path(@exam_builder.course)
+  end
+
   private
 
   def provide_new_data
@@ -57,14 +63,18 @@ class ExamBuildersController < ApplicationController
   end
 
   def ensure_exam_builder
-    unless current_user.exam_builder
+    if current_user.exam_builder
+      if current_user.exam_builder.course != @course
+        redirect_to course_exam_builder_path(current_user.exam_builder.course), :alert => t('pages.exams.forms.editexam.wrong_course')
+      end
+    else
       redirect_to new_course_exam_builder_path(@course)
     end
   end
 
   def check_if_user_is_in_builder
     if current_user.exam_builder
-      redirect_to course_exam_builder_path(@course)
+      redirect_to course_exam_builder_path(@course), :alert => t('pages.exams.forms.editexam.already_started')
     end
   end
 

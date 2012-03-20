@@ -67,6 +67,9 @@ fi:
           continue: "Jatka"
         editexam:
           button: "Muokkaa"
+          release: "Vapauta"
+          wrong_course: "Sinulla oli tentin luonti kesken toiselle kurssille"
+          already_started: "Sinulla oli tentin luonti kesken"
         generate:
           how_many: "Kysymyksiä"
           piece_unit: " kpl"

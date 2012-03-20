@@ -6,4 +6,4 @@
 
   = render :partial => "exams/questions", :locals => {:questions => @exam_builder.exam.questions, :points => @exam_builder.exam.maximum_points}
 
-  #{link_to t('pages.exams.forms.editexam.button'), edit_course_exam_builder_path(@course)} | Other blah blah
+  #{link_to t('pages.exams.forms.editexam.button'), edit_course_exam_builder_path(@course)} | #{link_to t('pages.exams.forms.editexam.release'), course_exam_builder_path(@course), :method => :delete} | Other blah blah
