@@ -1,0 +1,7 @@
+- content_for :title do
+  #{@course.name} :: #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
+
+- content_for :content do
+  %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
+
+  form here blah blah

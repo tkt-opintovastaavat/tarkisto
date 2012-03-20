@@ -34,6 +34,7 @@ class ExamBuildersController < ApplicationController
   end
 
   def edit
+    @exam_builder = current_user.exam_builder
   end
 
   def update
