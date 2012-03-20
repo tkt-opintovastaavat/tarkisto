@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   include LocalizeName
 
   has_many :exams
+  has_many :exam_builders, :through => :exams
   has_many :questions, :through => :exams
   has_many :shortcuts
   has_many :instances
