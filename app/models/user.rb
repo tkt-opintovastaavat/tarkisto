@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :encrypted_password
 
+  has_one :exam_builder
   has_many :attendances
 
   def access

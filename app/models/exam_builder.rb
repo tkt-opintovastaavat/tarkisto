@@ -1,8 +1,11 @@
 class ExamBuilder < ActiveRecord::Base
 
+  belongs_to :user
   belongs_to :exam
   has_one :course, :through => :exam
 
-  attr_accessor :date, :maximum_points
+  validates_uniqueness_of :user_id
+
+  attr_accessor :date, :maximum_points, :type_id
 
 end
