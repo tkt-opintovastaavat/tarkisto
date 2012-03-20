@@ -31,6 +31,10 @@ describe Exam do
 
   describe "validation" do
 
+    it "should create a new instance from factory" do
+      Factory.create(:exam)
+    end
+
     it "should create a new instance given valid attributes" do
       Exam.create!(@valid_attributes)
     end
