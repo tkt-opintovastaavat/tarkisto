@@ -4,10 +4,11 @@ class ExamBuildersController < ApplicationController
 
   before_filter :set_tab_as_new
   before_filter :assign_course
-
+  before_filter :ensure_exam_builder, :only => [:show, :edit, :update]
   before_filter :check_if_user_is_in_builder, :only => [:new, :create]
 
   def show
+    @exam_builder = current_user.exam_builder
   end
 
   def new
@@ -52,6 +53,12 @@ class ExamBuildersController < ApplicationController
 
   def assign_course
     @course = Course.find_by_id params[:course_id]
+  end
+
+  def ensure_exam_builder
+    unless current_user.exam_builder
+      redirect_to new_course_exam_builder_path(@course)
+    end
   end
 
   def check_if_user_is_in_builder
