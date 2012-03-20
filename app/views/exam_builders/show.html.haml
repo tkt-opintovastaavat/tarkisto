@@ -4,4 +4,6 @@
 - content_for :content do
   %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
-  foobarbaz
+  = render :partial => "exams/questions", :locals => {:questions => @exam_builder.exam.questions, :points => @exam_builder.exam.maximum_points}
+
+  Edit | Other blah blah
