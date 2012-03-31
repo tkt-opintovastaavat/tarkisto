@@ -38,6 +38,7 @@ class ExamBuildersController < ApplicationController
   end
 
   def update
+    redirect_to course_exam_builder_path(@course)
   end
 
   def destroy

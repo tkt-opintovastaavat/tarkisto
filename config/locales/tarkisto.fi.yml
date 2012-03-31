@@ -68,6 +68,7 @@ fi:
         editexam:
           button: "Muokkaa"
           release: "Vapauta"
+          back: "Takaisin"
           wrong_course: "Sinulla oli tentin luonti kesken toiselle kurssille"
           already_started: "Sinulla oli tentin luonti kesken"
         generate:

@@ -4,4 +4,7 @@
 - content_for :content do
   %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
-  form here blah blah
+  - form_for @exam_builder.exam, :url => course_exam_builder_path(@course), :html => {:method => :put} do |f|
+    %p= f.submit
+
+  %p= link_to t('pages.exams.forms.editexam.back'), course_exam_builder_path(@course)
