@@ -48,6 +48,7 @@ fi:
         generate: "Generoi harjoitustentti"
         all: "Kaikki tentit"
         edit: "Muokkaa tenttiä"
+        add_question: "Lisää uusi kysymys tenttiin"
       types:
         course-exams: "Kurssikokeet"
         separate-exams: "Erilliskokeet"

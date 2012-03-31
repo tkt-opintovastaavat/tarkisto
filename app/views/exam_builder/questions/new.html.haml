@@ -1,0 +1,5 @@
+- content_for :title do
+  #{@course.name} :: #{t 'pages.exams.titles.add_question'}: #{@exam_builder.exam.name}
+
+- content_for :content do
+  %h2 #{@course.name} - #{t 'pages.exams.titles.add_question'}: #{@exam_builder.exam.name}

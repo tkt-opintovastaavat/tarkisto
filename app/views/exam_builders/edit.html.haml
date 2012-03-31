@@ -7,4 +7,6 @@
   - form_for @exam_builder.exam, :url => course_exam_builder_path(@course), :html => {:method => :put} do |f|
     %p= f.submit
 
+  %p= link_to t('pages.exams.forms.questions.new'), new_course_exam_builder_question_path(@course)
+
   %p= link_to t('pages.exams.forms.editexam.back'), course_exam_builder_path(@course)

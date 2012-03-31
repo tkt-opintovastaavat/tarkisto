@@ -1,0 +1,2 @@
+module ExamBuilder::BaseHelper
+end
