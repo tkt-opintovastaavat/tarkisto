@@ -8,7 +8,7 @@ class Ability
       end
       can :manage, ExamBuilder
       can :manage, Question, :exam => {:exam_builder => {:user_id => user.id}}
-      can :new, Question
+      can [:new, :create], Question
     end
   end
 end

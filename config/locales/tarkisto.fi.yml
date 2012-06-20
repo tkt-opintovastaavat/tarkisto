@@ -3,6 +3,7 @@ fi:
   activerecord:
     models:
       exam: "Tentti"
+      question: "Kysymys"
     attributes:
       exam:
         course: "Kurssi"

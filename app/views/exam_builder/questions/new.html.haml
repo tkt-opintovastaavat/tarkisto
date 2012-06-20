@@ -3,3 +3,23 @@
 
 - content_for :content do
   %h2 #{@course.name} - #{t 'pages.exams.titles.add_question'}: #{@exam_builder.exam.name}
+
+  - form_for @question, :url => course_exam_builder_questions_path(@course) do |f|
+
+    %p
+      = f.label :number
+      = f.number_field :number
+
+    %p
+      = f.label :name
+      = f.text_field :name
+
+    %p
+      = f.label :description
+      = f.text_area :description
+
+    %p
+      = f.label :points
+      #{f.number_field :points, :size => 2} / #{@exam_builder.exam.maximum_points}
+
+    %p= f.submit
