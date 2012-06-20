@@ -1,0 +1,41 @@
+common: &default_settings
+  license_key: '972d140f9bded1a3e3fc660328af9954373cf7c1'
+  agent_enabled: auto
+  app_name: Tarkisto
+  monitor_mode: true
+  developer_mode: false
+  log_level: info
+  ssl: true
+  apdex_t: 0.5
+  capture_params: false
+  transaction_tracer:
+    enabled: false
+    transaction_threshold: apdex_f
+    record_sql: obfuscated
+    stack_trace_threshold: 0.500
+  error_collector:
+    enabled: false
+    capture_source: true
+    ignore_errors: ActionController::RoutingError
+  # disable_view_instrumentation: true
+  # disable_activerecord_instrumentation: true
+  # disable_memcache_instrumentation: true
+  # disable_dj: true
+
+development:
+  <<: *default_settings
+  monitor_mode: false
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+production:
+  <<: *default_settings
+  monitor_mode: true
+
+staging:
+  <<: *default_settings
+  monitor_mode: true
+  app_name: Tarkisto (Staging)

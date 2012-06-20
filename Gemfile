@@ -23,6 +23,7 @@ gem 'tko-aly-auth', :git => 'git://github.com/tkt-opintovastaavat/tko-aly-auth.g
 gem 'kurli', :git => 'git://github.com/tkt-opintovastaavat/kurli-ruby.git'
 
 gem 'airbrake'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec'
