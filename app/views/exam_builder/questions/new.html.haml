@@ -7,10 +7,6 @@
   - form_for @question, :url => course_exam_builder_questions_path(@course) do |f|
 
     %p
-      = f.label :number
-      = f.number_field :number
-
-    %p
       = f.label :name
       = f.text_field :name
 
