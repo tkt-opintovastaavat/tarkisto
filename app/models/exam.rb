@@ -2,6 +2,7 @@ class Exam < ActiveRecord::Base
 
   belongs_to :course
   belongs_to :type
+  has_one :exam_builder
   has_many :questions
 
   attr_protected :public, :published

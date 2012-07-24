@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131193920) do
+ActiveRecord::Schema.define(:version => 20120208225850) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(:version => 20120131193920) do
     t.integer  "level_id"
     t.integer  "credits"
     t.integer  "replaced_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exam_builders", :force => true do |t|
+    t.integer  "exam_id"
+    t.integer  "user_id"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

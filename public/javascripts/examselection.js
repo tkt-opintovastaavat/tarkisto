@@ -14,10 +14,10 @@ var date_selection = null;
 
 $(document).ready(function() {
   exam_selection = $('#exam_name');
-  examid = $('#exam_id');
-  type_selection = $('#exam_type_id');
-  maxpoints_selection = $('#exam_maximum_points');
-  date_selection = $('#exam_date');
+  examid = $('#exam_builder_id');
+  type_selection = $('#exam_builder_type_id');
+  maxpoints_selection = $('#exam_builder_maximum_points');
+  date_selection = $('#exam_builder_date');
   addExamSelection();
   addCalendar();
 });
@@ -49,8 +49,8 @@ function _getExamData(examid) {
   if (examid == 'new') {
     _nonexistingExam();
   } else {
-    var cid = /courses\/(.+)\/exams/.exec(window.location)[1];
-    $.getJSON('/courses/'+cid+'/exams/'+examid+'.json', _existingExam);
+    var opt = this.exam_selection.find('option[value="'+examid+'"]');
+    _existingExam({id: examid, edate: opt.data('date'), maxpoints: opt.data('points'), type: opt.data('type')});
   }
 }
 

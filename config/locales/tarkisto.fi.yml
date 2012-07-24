@@ -3,9 +3,14 @@ fi:
   activerecord:
     models:
       exam: "Tentti"
+      question: "Kysymys"
     attributes:
       exam:
         course: "Kurssi"
+        type_id: "Koetyyppi"
+        date: "Päivämäärä"
+        maximum_points: "Maksimipisteet"
+      exam_builder:
         type_id: "Koetyyppi"
         date: "Päivämäärä"
         maximum_points: "Maksimipisteet"
@@ -44,6 +49,7 @@ fi:
         generate: "Generoi harjoitustentti"
         all: "Kaikki tentit"
         edit: "Muokkaa tenttiä"
+        add_question: "Lisää uusi kysymys tenttiin"
       types:
         course-exams: "Kurssikokeet"
         separate-exams: "Erilliskokeet"
@@ -61,6 +67,12 @@ fi:
           date: "Päivämäärä"
           public_notification: "Tentti ei ole oletusarvoisesti julkinen"
           continue: "Jatka"
+        editexam:
+          button: "Muokkaa"
+          release: "Vapauta"
+          back: "Takaisin"
+          wrong_course: "Sinulla oli tentin luonti kesken toiselle kurssille"
+          already_started: "Sinulla oli tentin luonti kesken"
         generate:
           how_many: "Kysymyksiä"
           piece_unit: " kpl"
