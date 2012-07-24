@@ -3,13 +3,13 @@
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     %div
-      = f.label :username
-      %br
+      = f.label :username, t('pages.session.form.username')
+      %br/
       = f.text_field :username
 
     %div
-      = f.label :password
-      %br
+      = f.label :password, t('pages.session.form.password')
+      %br/
       = f.password_field :password
 
     - if devise_mapping.rememberable?
@@ -17,6 +17,4 @@
         = f.check_box :remember_me
         = f.label :remember_me
 
-    %div= f.submit "Sign in"
-
-  = render :partial => "devise/shared/links"
+    %div= f.submit t('pages.session.form.submit')

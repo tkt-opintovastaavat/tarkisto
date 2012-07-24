@@ -9,39 +9,13 @@ Devise.setup do |config|
   config.authentication_keys = [ :username ]
   config.case_insensitive_keys = [ :username ]
   config.strip_whitespace_keys = [ :username ]
-
   config.params_authenticatable = true
   config.http_authenticatable = false
   config.http_authenticatable_on_xhr = true
-
-  # ==> Configuration for :timeoutable
-  # The time you want to timeout the user session without activity. After this
-  # time the user will be asked for credentials again. Default is 30 minutes.
-  # config.timeout_in = 30.minutes
-
-  # ==> Configuration for :lockable
-  # Defines which strategy will be used to lock an account.
-  # :failed_attempts = Locks an account after a number of failed attempts to sign in.
-  # :none            = No lock strategy. You should handle locking by yourself.
-  # config.lock_strategy = :failed_attempts
-
-  # Defines which key will be used when locking and unlocking an account
+  config.timeout_in = 2.hours
+  config.lock_strategy = :none
   config.unlock_keys = [ :username ]
-
-  # Defines which strategy will be used to unlock an account.
-  # :email = Sends an unlock link to the user email
-  # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
-  # :both  = Enables both strategies
-  # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
-
-  # Number of authentication tries before locking an account if lock_strategy
-  # is failed attempts.
-  # config.maximum_attempts = 20
-
-  # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  # config.unlock_in = 1.hour
-
+  config.unlock_strategy = :none
   config.scoped_views = false
   config.default_scope = :user
   config.sign_out_all_scopes = true
