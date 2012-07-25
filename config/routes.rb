@@ -24,7 +24,15 @@ Tarkisto::Application.routes.draw do
     resources :generated_exams, :only => [:new, :create]
 
     namespace :exam_builder do
-      resources :questions
+
+      resources :questions do
+
+        collection do
+          post :sort
+        end
+
+      end
+
     end
     resource :exam_builder
 

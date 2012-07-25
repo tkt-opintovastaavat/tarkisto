@@ -2,10 +2,30 @@
   #{@course.name} :: #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
 - content_for :content do
+  :javascript
+    $(document).ready(function(){
+      $('#questions').sortable({
+        axis: 'y',
+        dropOnEmpty: false,
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        update: function() {
+          $.post(
+            '#{sort_course_exam_builder_questions_path(@course)}',
+            $('#questions').sortable('serialize'),
+            function(data) {
+              $('#questions').html(data).effect('highlight');
+            }
+          );
+        }
+      });
+    });
+
   %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
-  - form_for @exam_builder.exam, :url => course_exam_builder_path(@course), :html => {:method => :put} do |f|
-    %p= f.submit
+  %ul#questions
+    = render(:partial => 'exam_builder/question', :collection => @exam_builder.exam.questions)
 
   %p= link_to t('pages.exams.forms.questions.new'), new_course_exam_builder_question_path(@course)
 

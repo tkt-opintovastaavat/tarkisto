@@ -18,6 +18,10 @@ class ExamBuilder::QuestionsController < ExamBuilder::BaseController
     end
   end
 
+  def sort
+    render :layout => false
+  end
+
   private
 
   def assing_exam_builder
