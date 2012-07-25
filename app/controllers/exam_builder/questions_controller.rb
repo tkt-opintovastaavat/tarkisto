@@ -19,6 +19,7 @@ class ExamBuilder::QuestionsController < ExamBuilder::BaseController
   end
 
   def sort
+    @exam_builder.sort_questions!(params[:questions])
     render :layout => false
   end
 

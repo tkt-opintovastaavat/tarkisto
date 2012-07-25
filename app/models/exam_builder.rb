@@ -12,4 +12,10 @@ class ExamBuilder < ActiveRecord::Base
     update_attribute :user_id, nil
   end
 
+  def sort_questions!(new_order)
+    new_order.each_with_index do |id, index|
+      exam.questions.find(id).update_attribute :showing_order_position, index
+    end
+  end
+
 end
