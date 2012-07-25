@@ -25,7 +25,7 @@
   %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
   %ol#questions
-    = render(:partial => 'exam_builder/question', :collection => @exam_builder.exam.questions)
+    = render(:partial => 'exam_builder/question', :collection => @exam_builder.exam.questions.rank(:showing_order))
 
   %p= link_to t('pages.exams.forms.questions.new'), new_course_exam_builder_question_path(@course)
 

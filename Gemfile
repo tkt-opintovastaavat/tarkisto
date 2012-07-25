@@ -11,6 +11,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'lucy'
 gem 'babilu'
+gem 'ranked-model'
 
 gem 'devise'
 gem 'cancan'
