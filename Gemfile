@@ -4,7 +4,6 @@ gem 'rails', '~>3.0.0'
 gem 'pg'
 
 gem 'haml'
-gem 'compass'
 gem 'net-ldap'
 gem 'pdf-writer'
 gem 'tabs_on_rails'
@@ -24,6 +23,10 @@ gem 'kurli', :git => 'git://github.com/tkt-opintovastaavat/kurli-ruby.git'
 
 gem 'airbrake'
 gem 'newrelic_rpm'
+
+group :assets do
+  gem 'compass-rails'
+end
 
 group :development, :test do
   gem 'rspec'
