@@ -1,1 +1,3 @@
-%li{:id => "questions_#{question.id}"}= question.name
+%li{:id => "questions_#{question.id}"}
+  = question.name
+  = link_to 'Muokkaa kysymystä', edit_course_exam_builder_question_path(@course, question.id)

@@ -39,6 +39,12 @@ class ExamBuildersController < ExamBuilder::BaseController
     redirect_to course_exam_builder_path(@course)
   end
 
+  def publish
+    @exam_builder = current_user.exam_builder
+    @exam_builder.publish!
+    redirect_to course_exam_path(@course, @exam_builder.exam.id)
+  end
+
   def destroy
     @exam_builder = current_user.exam_builder
     @exam_builder.release!

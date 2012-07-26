@@ -11,10 +11,10 @@ module PdfExport
   end
 
   def self.question_format(exam, pdf)
-    exam.questions.each do |question|
+    exam.questions.rank(:showing_order).each_with_index do |question, number|
       attachments = question.images + question.code_snippets
 
-      pdf.text("\n#{question.number}. #{question.name}\n", :font_size => 10)
+      pdf.text("\n#{number+1}. #{question.name}\n", :font_size => 10)
       filter = /<\[[ci]#[0-9]+\]>/
       attach = /<\[([ci])#([0-9]+)\]>/
       texts = question.description.split(filter)

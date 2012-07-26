@@ -1,0 +1,15 @@
+- form_for question, :url => url do |f|
+
+  %p
+    = f.label :name
+    = f.text_field :name
+
+  %p
+    = f.label :description
+    = f.text_area :description
+
+  %p
+    = f.label :points
+    #{f.number_field :points, :size => 2} / #{exam_builder.exam.maximum_points}
+
+  %p= f.submit

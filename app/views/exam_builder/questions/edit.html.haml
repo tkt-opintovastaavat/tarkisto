@@ -1,0 +1,7 @@
+- content_for :title do
+  #{@course.name} :: #{t 'pages.exams.titles.edit_question'}: #{@exam_builder.exam.name}
+
+- content_for :content do
+  %h2 #{@course.name} - #{t 'pages.exams.titles.edit_question'}: #{@exam_builder.exam.name}
+
+  = render :partial => 'form', :locals => {:question => @question, :url => course_exam_builder_question_path(@course, @question), :exam_builder => @exam_builder}

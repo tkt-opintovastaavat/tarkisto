@@ -1,9 +1,9 @@
 - if questions.empty?
   %p Tentti ei sisällä vielä yhtään kysymystä.
 - else
-  %p Maksimipisteet: #{points}
+  %p Maksimipisteet: #{format_points points, questions}
   %ol
-    - questions.each do |question|
+    - questions.rank(:showing_order).each do |question|
       %div.questionblock
         %li.question #{simple_format(question.name)}
         %div.description #{simple_format(question_format(question))}

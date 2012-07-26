@@ -18,6 +18,19 @@ class ExamBuilder::QuestionsController < ExamBuilder::BaseController
     end
   end
 
+  def edit
+    @question = @exam_builder.exam.questions.find params[:id]
+  end
+
+  def update
+    @question = @exam_builder.exam.questions.find params[:id]
+    if @question.update_attributes params[:question]
+      redirect_to course_exam_builder_path(@course)
+    else
+      render :edit
+    end
+  end
+
   def sort
     @exam_builder.sort_questions!(params[:questions])
     render :layout => false

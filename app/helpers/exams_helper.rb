@@ -49,4 +49,14 @@ module ExamsHelper
     end
     return description
   end
+
+  def format_points total_points, questions
+    points_from_questions = questions.map(&:points).sum
+    if total_points == points_from_questions
+      total_points
+    else
+      "#{total_points} (#{pluralize(total_points - points_from_questions, 'piste', 'pistettä')} puuttuu)"
+    end
+  end
+
 end

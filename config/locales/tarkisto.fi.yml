@@ -50,6 +50,7 @@ fi:
         all: "Kaikki tentit"
         edit: "Muokkaa tenttiä"
         add_question: "Lisää uusi kysymys tenttiin"
+        edit_question: "Muokkaa tentin kysymystä"
       types:
         course-exams: "Kurssikokeet"
         separate-exams: "Erilliskokeet"
@@ -70,6 +71,7 @@ fi:
         editexam:
           button: "Muokkaa"
           release: "Vapauta"
+          publish: "Julkaise"
           back: "Takaisin"
           wrong_course: "Sinulla oli tentin luonti kesken toiselle kurssille"
           already_started: "Sinulla oli tentin luonti kesken"

@@ -24,6 +24,8 @@
 
   %h2 #{@course.name} - #{t 'pages.exams.titles.add'}: #{@exam_builder.exam.name}
 
+  %p Voit vaihtaa kysymyksien järjestystä siirtämällä haluamasi kysymyksen oikealle paikalle.
+
   %ol#questions
     = render(:partial => 'exam_builder/question', :collection => @exam_builder.exam.questions.rank(:showing_order))
 

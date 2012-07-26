@@ -34,7 +34,14 @@ Tarkisto::Application.routes.draw do
       end
 
     end
-    resource :exam_builder
+
+    resource :exam_builder do
+
+      member do
+        post :publish
+      end
+
+    end
 
   end
 
