@@ -3,7 +3,7 @@
 
   %head
 
-    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
+    = favicon_link_tag
     = csrf_meta_tag
 
     %title= title(yield(:title))
